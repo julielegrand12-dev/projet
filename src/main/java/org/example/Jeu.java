@@ -13,7 +13,7 @@ public class Jeu {
     //grille
     private int nbligne;
     private int nbcol;
-    private int [][][][] plateau;
+   // private int [][][][] plateau;
 
 
 
@@ -40,35 +40,4 @@ public class Jeu {
 
     }
 
-    public void plateau(int n,int p)
-    {
-        nbligne=n;
-        nbcol=p;
-        plateau = new int[nbligne][nbcol][1][1];
-
-        for(int i=0; i<10;i++)
-        {
-            for(int j=0; j<10;j++)
-            {
-                plateau[i][j][0][0]='x';
-            }
-            //System.out.println(----);
-        }
-        System.out.println();
-        for(int i=0; i<10;i++)
-        {
-            for (int j = 0; j < 10; j++)
-            {
-
-                System.out.print(" | "+plateau[i][j][0][0]);
-
-
-            }
-            System.out.println(" | ");
-        }
-        System.out.println();
-
-
-
-    }
 }
