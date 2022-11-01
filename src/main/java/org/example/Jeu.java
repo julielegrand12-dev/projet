@@ -1,4 +1,4 @@
-package java.org.example;
+package org.example;
 import java.util.ArrayList;
 
 public class Jeu {

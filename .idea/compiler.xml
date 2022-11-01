@@ -10,8 +10,5 @@
         <module name="BATAILLE" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="projet" target="17" />
-    </bytecodeTargetLevel>
   </component>
 </project>
