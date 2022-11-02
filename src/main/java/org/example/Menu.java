@@ -5,7 +5,9 @@ public class Menu
     Plateau P = new Plateau();
     private int choix=0;
     private Scanner scan = new Scanner(System.in);
+    private Scanner scan1 = new Scanner(System.in);
     private boolean test=false;
+    String pseudo;
 
     public void MenuDebut()
     {
@@ -28,7 +30,12 @@ public class Menu
 
         switch(choix)
         {
-            case 1 : System.out.println("Nouvelle partie\n");
+            case 1 :
+                System.out.println("Veuillez selectionner votre pseudo:\n");
+                pseudo= scan1.nextLine();
+                JoueurHumain joueurH= new JoueurHumain(pseudo, '0'); //nous inserons le pseudo choisi dans le constructeur
+                System.out.println("Bonjour " + joueurH.getPseudo() + "\n");
+                System.out.println("Nouvelle partie\n");
                 P.plateau(15,15);
                 break;
             case 2 : System.out.println("Redemarrer une partie\n");
