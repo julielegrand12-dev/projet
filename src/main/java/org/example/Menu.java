@@ -2,13 +2,10 @@ package org.example;
 import java.util.Scanner;
 public class Menu
 {
-
     Plateau P = new Plateau();
-
     private int choix=0;
     private Scanner scan = new Scanner(System.in);
     private boolean test=false;
-
 
     public void MenuDebut()
     {
@@ -17,7 +14,6 @@ public class Menu
         System.out.println("2- Charger une partie\n");
         System.out.println("3- Aide\n");
         System.out.println("4- Quitter\n");
-
 
         do{
 
@@ -43,11 +39,5 @@ public class Menu
                 return;
 
         }
-
-
-
     }
-
-
-
 }
