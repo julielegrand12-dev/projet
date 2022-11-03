@@ -7,7 +7,5 @@ public class Main {
         System.out.println("Jeu réalisé par Julie Legrand - Ludivine Fulop - Sara Suleiman");
         Menu M = new Menu();
         M.MenuDebut();
-
   }
-
 }

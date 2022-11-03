@@ -13,10 +13,14 @@ public class Jeu {
     //grille
     private int nbligne;
     private int nbcol;
-   // private int [][][][] plateau;
 
+    //Constructeur
+    public Jeu(int nbligne, int nbcol) {
+        this.nbligne = nbligne;
+        this.nbcol = nbcol;
+    }
 
-
+    //Getters et Setters
     public ArrayList<Integer> getNavires() {
         return navires;
     }
@@ -25,19 +29,24 @@ public class Jeu {
         this.navires = navires;
     }
 
-    public Jeu() {
-
-    }
-
     public void positionnement_navire()
     {
         int hori = 0;
         int verti = 1;
         //grille de 15 * 15 - placer 4 navires
         int tempo = 0;
-        
-
 
     }
 
+    public void plateauHumain ()
+    {
+    Plateau Ph = new Plateau();
+    Ph.plateau(15,15);
+    }
+
+    public void plateauOrdi ()
+    {
+        Plateau Po = new Plateau();
+        Po.plateau(15,15);
+    }
 }

@@ -2,12 +2,12 @@ package org.example;
 import java.util.Scanner;
 public class Menu
 {
-    Plateau P = new Plateau();
     private int choix=0;
     private Scanner scan = new Scanner(System.in);
     private Scanner scan1 = new Scanner(System.in);
     private boolean test=false;
-    String pseudo;
+    private String pseudo;
+    Jeu j= new Jeu('0', '0');
 
     public void MenuDebut()
     {
@@ -35,8 +35,11 @@ public class Menu
                 pseudo= scan1.nextLine();
                 JoueurHumain joueurH= new JoueurHumain(pseudo, '0'); //nous inserons le pseudo choisi dans le constructeur
                 System.out.println("Bonjour " + joueurH.getPseudo() + "\n");
-                System.out.println("Nouvelle partie\n");
-                P.plateau(15,15);
+                System.out.println("Votre plateau "+joueurH.getPseudo()+":\n");
+                j.plateauHumain();
+                System.out.println("Bonjour Joueur 2\n");
+                System.out.println("Votre plateau Joueur 2:\n");
+                j.plateauOrdi();
                 break;
             case 2 : System.out.println("Redemarrer une partie\n");
                 break;

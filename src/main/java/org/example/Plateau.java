@@ -10,12 +10,10 @@ public class Plateau {
         nbcol=p;
         grille = new char[nbligne][nbcol];
 
-
         for(int i=0; i<15;i++)
         {
             for(int j=0; j<15;j++)
             {
-
                 grille[i][j] = ' ';
             }
 
