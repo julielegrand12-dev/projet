@@ -4,33 +4,40 @@ import java.awt.*;
 
 
 public class Plateau extends JPanel {
+    private JFrame fen;
+    private JPanel p;
+    private JButton b;
+    private JLabel lab;
 
     public void Fenetre()
+
     {
-        JFrame fen = new JFrame();
-        fen.setVisible(true); //pour ouvrir la fenetre
+        gui();
+
+
+    }
+    public void gui()
+    {
+        fen=new JFrame("XXX");
+        fen.setVisible(true);
         fen.setSize(600,600);
         fen.setDefaultCloseOperation(fen.EXIT_ON_CLOSE);
-        fen.setTitle("Fenetre 1");
-        fen.add(this);
-        //fen.setContentPane(fen);
-        JLabel jla = new JLabel("Joueur 1");
-        fen.add(jla);
+
+        p= new JPanel();
+        p.setBackground(Color.BLUE);
+
+        //b= new JButton("test");
+        lab = new JLabel("Joueur 1");
+
+        //p.add(b);
+        p.add(lab);
+
+        fen.add(p,BorderLayout.NORTH);
+        fen.add(new Panel());
 
 
     }
-    public void paintComponent(Graphics g)
-    {
-        g.setColor(Color.BLACK);
 
-        for(int i=50; i<550;i++ )
-        {
-            g.drawLine(i,50,i,550);
-            g.drawLine(50,i,550,i);
-            i=i+30;
-        }
-
-    }
 
     private void setBackgroud(Color blue) {
     }
