@@ -29,3 +29,4 @@ public class JoueurHumain //initialisation de la classe joueur humain
         this.score = score;
     }
 }
+

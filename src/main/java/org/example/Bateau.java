@@ -1,6 +1,7 @@
 package org.example;
 
 public class Bateau {
+    private static int length;
     //attribut
 
     private int id_navire  ;
@@ -8,6 +9,9 @@ public class Bateau {
     private Case[][] LesCases ;
     private int taille_navire ; // le nb de case du bateau
     private boolean Horizontal ; // dans le cas d'un navire vertical, ce sont les lignes x qui déterminent la taille
+
+    public Bateau(String taille, String id, String nom) {
+    }
     // dans le cas 'un navire horizontal,ce sont les colonnes y qui determinent la taille
 
     public boolean isHorizontal() {
@@ -68,20 +72,21 @@ public class Bateau {
         this.taille_navire = taille_navire ;
 
     }
-    private static final String[][] Bateau  ={
-            {"7","1","Cruisarde"},
-            {"5", "2", "Croiseur"},
-            {"5", "3", "Croiseur"},
-            {"3", "4", "Destroyer"},
-            {"3", "5", "Destroyer"},
-            {"3", "6", "Destroyer"},
-            {"1", "7", "Sous-marin"},
-            {"1", "8", "Sous-marin"},
-            {"1", "9", "Sous-marin"},
-            {"1", "10", "Sous-marin"}
+
+    public static void declaBateaux(String[][] Bateau) { // Declaration des bateaux
+          Bateau B1 = new Bateau("7","1","Cruisarde");
+          Bateau B2 = new Bateau("5", "2", "Croiseur");
+          Bateau B3 = new Bateau("5", "3", "Croiseur");
+          Bateau B4 = new Bateau("3", "4", "Destroyer");
+          Bateau B5 = new Bateau("3", "5", "Destroyer");
+          Bateau B6 = new Bateau("3", "6", "Destroyer");
+          Bateau B7 = new Bateau("1", "7", "Sous-marin");
+          Bateau B8 = new Bateau("1", "8", "Sous-marin");
+          Bateau B9 = new Bateau("1", "9", "Sous-marin");
+          Bateau B10 = new Bateau("1", "10", "Sous-marin");
     };
 
-    public static String[] getconfigbateau(int id_navire) {
+    public static String[] getconfigbateau(int id_navire, String[][] Bateau) {
         if (id_navire < 0 || id_navire >= Bateau.length) {
             return new String[0];
         }
