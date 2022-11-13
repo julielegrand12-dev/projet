@@ -86,7 +86,7 @@ public class Bateau {
           Bateau B10 = new Bateau("1", "10", "Sous-marin");
     };
 
-    public static String[] getconfigbateau(int id_navire, String[][] Bateau) {
+    public static String[] getconfigbateau(int id_navire) {
         if (id_navire < 0 || id_navire >= Bateau.length) {
             return new String[0];
         }
