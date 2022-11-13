@@ -59,7 +59,8 @@ public class JoueurHumain //initialisation de la classe joueur humain
                     test = 1;
                 }
             } while (test == 0);
-// continuer cette fonction pour bien prendre encompte l'absence de voisins et le non chevauchement 
+
+// continuer cette fonction pour bien prendre encompte l'absence de voisins et le non chevauchement
         }
 }
 
