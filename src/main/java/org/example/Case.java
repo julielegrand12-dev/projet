@@ -10,11 +10,11 @@ public class Case {
 
     // getter et setter
     public int getX() {
-        return x_ligne;
+        return this.x_ligne;
     }
 
     public int getY() {
-        return y_colonne;
+        return this.y_colonne;
     }
 
     public void setGetID(int getID) {

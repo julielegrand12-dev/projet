@@ -1,17 +1,21 @@
 package org.example;
 
+import java.util.ArrayList;
+
 public class Bateau {
     private static int length;
     //attribut
 
     private int id_navire  ;
     private String nom_navire ;
-    private Case[][] LesCases ;
+    private ArrayList<Case> lesCases;
     private int taille_navire ; // le nb de case du bateau
     private boolean Horizontal ; // dans le cas d'un navire vertical, ce sont les lignes x qui déterminent la taille
 
-    public Bateau(String taille, String id, String nom) {
+
+    public Bateau(Integer integer, int i, String nom) {
     }
+
     // dans le cas 'un navire horizontal,ce sont les colonnes y qui determinent la taille
 
     public boolean isHorizontal() {
@@ -47,33 +51,32 @@ public class Bateau {
         this.nom_navire = nom_navire;
     }
 
-    public Case[][] getLesCases() {
-        return LesCases;
+    public ArrayList<Case> getlesCases() {
+        return lesCases;
     }
 
-    public void setLesCases(Case[][] lesCases) {
-        LesCases = lesCases;
+    public void setlesCases(Case[][] lesCases) {
+        Bateau.this.lesCases = Bateau.this.lesCases;
     }
 
     //methodes et constructeurs
 
-    public boolean couler() {
-        for (int i = 0 ; i<15 ; i++ )
-            for (int j =0; j<15 ; j++ )
-                if (this.LesCases[i][j].EtatCase()){
-                    return true ;
-                }
-        return false ;
+
+    public boolean estCouler(){
+        for (int i = 0; i<lesCases.size();i++){
+            if(this.lesCases.get(i).EtatCase()){
+                return true;
+            }
+        }return false;
     }
 
     public void Bateau( int taille_navire,int id_navire, String nom_navire){
         this.id_navire = id_navire ;
         this.nom_navire = nom_navire ;
         this.taille_navire = taille_navire ;
-
     }
 
-    public static void declaBateaux(String[][] Bateau) { // Declaration des bateaux
+   /* public static void declaBateaux(String[][] Bateau) { // Declaration des bateaux
           Bateau B1 = new Bateau("7","1","Cruisarde");
           Bateau B2 = new Bateau("5", "2", "Croiseur");
           Bateau B3 = new Bateau("5", "3", "Croiseur");
@@ -85,16 +88,16 @@ public class Bateau {
           Bateau B9 = new Bateau("1", "9", "Sous-marin");
           Bateau B10 = new Bateau("1", "10", "Sous-marin");
     };
+*/
 
-    public static String[] getconfigbateau(int id_navire) {
-        if (id_navire < 0 || id_navire >= Bateau.length) {
-            return new String[0];
-        }
-        return Bateau[id_navire];
-    }
 
     public static int nombrebateaux() {
         return Bateau.length;
     }
+
+    public void genererBateaux(){
+
+    }
+
 
 }
