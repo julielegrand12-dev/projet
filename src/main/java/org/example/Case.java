@@ -35,10 +35,10 @@ public class Case {
 
     // méthodes
 
-    public Case(int x, int y){
+    public Case(int x, int y,int id){
         this.x_ligne = x ;
         this.y_colonne = y;
-        this.ID = 0; // initialise à 0
+        this.ID = id; // initialise à 0
         this.EtatCase = false ; // initialise à 'pas coulé'
 
     }
