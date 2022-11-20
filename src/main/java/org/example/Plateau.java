@@ -51,18 +51,6 @@ public class Plateau extends JPanel {
 
     }
 
-    /*public Case[] generateBoatCoordinates(int x, int y, boolean Horizontal, int taille_bateau, int id_navire) {
-        Case[] response = new Case[taille_bateau];
-        for (int i = 0; i < taille_bateau; i++) {
-            if (Horizontal == true) {
-                response[i] = new Case(x + i, y);
-            } else if (Horizontal == false) {
-                response[i] = new Case(x, y + i);
-            }
-            response[i].addBoat(boatId);
-        }
-        return response;
-    }*/
+
 
 }
-// test des branches idk what that is

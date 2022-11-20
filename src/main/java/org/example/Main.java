@@ -13,7 +13,7 @@ public class Main {
         J.PlacementBateau(mapDeCases);
 
         for(Integer i : mapDeCases.keySet()){
-            System.out.println("Case n."+i+ " de Coordonnée X = "+ mapDeCases.get(i).getX() + " "  + " et coordonnée Y = " + mapDeCases.get(i).getY());
+            System.out.println("Case n."+i+ " de Coordonnée X = "+ mapDeCases.get(i).getX() + " "  + " et coordonnée Y = " + mapDeCases.get(i).getY() + "   " + mapDeCases.get(i).getGetID());
         }
 
 

@@ -1,9 +1,9 @@
 package org.example;
-
+import org.example.JoueurHumain;
 import java.awt.*;
 import javax.swing.*;
 
-
+import java.util.HashMap;
 public class Panel extends JPanel{
 
 
@@ -30,8 +30,10 @@ public class Panel extends JPanel{
             i=i+30;
         }
         g.setColor(Color.BLACK);
+        for(Integer i : mapDeCases.keySet())
+        {
 
-
+        }
 
 
     }
