@@ -184,17 +184,17 @@ public class JoueurHumain //initialisation de la classe joueur humain
 // continuer cette fonction pour bien prendre encompte l'absence de voisins et le non chevauchement
         }
         for (int i = 0; i<listeCases.size();i++){
-            //System.out.println(i + " Avec X = " + listeCases.get(i).getX() + " et Y = " + listeCases.get(i).getY() + "\n et d'ID = " + listeCases.get(i).getGetID());
+            System.out.println(i + " Avec X = " + listeCases.get(i).getX() + " et Y = " + listeCases.get(i).getY() + "\n et d'ID = " + listeCases.get(i).getGetID());
             MapDeCases.put(i, listeCases.get(i));
 
 
 
 
-// Ajouter les bateaux dans les hashmappp !
+
             // donner case de départ pour chaque bateau
 
-} for(Integer TY : mapDeBateaux.keySet()){
+} /*for(Integer TY : mapDeBateaux.keySet()){
             System.out.println("Bateau n."+TY+ " de nom = "+ mapDeBateaux.get(TY).getNom_navire() );
-        }
+        }*/
         return MapDeCases; }}
 
