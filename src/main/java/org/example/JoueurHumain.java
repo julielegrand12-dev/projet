@@ -109,14 +109,14 @@ public class JoueurHumain //initialisation de la classe joueur humain
                     System.out.println("\nPlacement du " + lesNoms.get(i)+ " " + compte);
                     for(int z=0; z<7;z++){
                         if(Horizontal == true){
-                            Case c = new Case(x++,y,i);
+                            Case c = new Case(x++,y,lesTailles.get(i));
 
                             listeCases.add(c);
 
 
                         }
                         if(Horizontal == false){
-                            Case c = new Case(x,y++,i);
+                            Case c = new Case(x,y++,lesTailles.get(i));
 
                             listeCases.add(c);
 
@@ -133,11 +133,11 @@ public class JoueurHumain //initialisation de la classe joueur humain
                     System.out.println("\nPlacement du " + lesNoms.get(i) + " " + compte++);
                     for(int z=7; z<12;z++){
                         if(Horizontal == true){
-                            Case c = new Case(x++,y,i);
+                            Case c = new Case(x++,y,lesTailles.get(i));
                             listeCases.add(c);
                         }
                         if(Horizontal == false){
-                            Case c = new Case(x,y++,i);
+                            Case c = new Case(x,y++,lesTailles.get(i));
                             listeCases.add(c);
                         }
                         NoDoublonX.add(x);
@@ -150,11 +150,11 @@ public class JoueurHumain //initialisation de la classe joueur humain
                     System.out.println("\nPlacement du " + lesNoms.get(i) + " " +compte++);
                     for(int z=12; z<15;z++){
                         if(Horizontal == true){
-                            Case c = new Case(x++,y,i);
+                            Case c = new Case(x++,y,lesTailles.get(i));
                             listeCases.add(c);
                         }
                         if(Horizontal == false){
-                            Case c = new Case(x,y++,i);
+                            Case c = new Case(x,y++,lesTailles.get(i));
                             listeCases.add(c);
                         }
                         NoDoublonX.add(x);
@@ -166,11 +166,11 @@ public class JoueurHumain //initialisation de la classe joueur humain
                     System.out.println("\nPlacement du " + lesNoms.get(i) + " " +compte++);
                     for(int z=15; z<16;z++){
                         if(Horizontal == true){
-                            Case c = new Case(x++,y,i);
+                            Case c = new Case(x++,y,lesTailles.get(i));
                             listeCases.add(c);
                         }
                         if(Horizontal == false){
-                            Case c = new Case(x,y++,i);
+                            Case c = new Case(x,y++,lesTailles.get(i));
                             listeCases.add(c);
                         }
                         NoDoublonX.add(x);
