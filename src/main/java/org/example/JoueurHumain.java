@@ -16,7 +16,6 @@ public class JoueurHumain //initialisation de la classe joueur humain
         this.mapDeCases = mapDeCases;
     }
 
-
     public HashMap<Integer, Case> getMapDeCases() {
         return mapDeCases;
     }
@@ -49,7 +48,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
 
         Random alea = new Random();
         List<Integer> lesTailles = new ArrayList<>(List.of(7,5,5,3,3,3,1,1,1,1));
-        List<String> lesNoms = new ArrayList<>(List.of("Cruisarde","Croiseur","Croiseur", "Destroyer","Destroyer","Destroyer","Destroyer","Sous-marrin","Sous-marin","Sous-marin","Sous-marin"));
+        List<String> lesNoms = new ArrayList<>(List.of("Cruisarde","Croiseur","Croiseur", "Destroyer","Destroyer","Destroyer","Destroyer","Sous-marin","Sous-marin","Sous-marin","Sous-marin"));
         ArrayList<Case> listeCases = new ArrayList<Case>();
         for (int i = 0; i< 10; i++) {
             int int_random = alea.nextInt(2);
@@ -68,8 +67,8 @@ public class JoueurHumain //initialisation de la classe joueur humain
             Bateau B = new Bateau(lesTailles.get(i), i,lesNoms.get(i));
             B.setNom_navire(lesNoms.get(i));
             mapDeBateaux.put(i,B);
-            do {
 
+            do {
                 if (int_random == 0) {
                     Horizontal = true;
                     // dans ce cas y reste le meme et x varie
@@ -82,10 +81,9 @@ public class JoueurHumain //initialisation de la classe joueur humain
                             y = alea.nextInt(16)+1;
                         }
                     }
-
-
                     test = 1;
-                } else {
+                }
+                else {
                     Horizontal = false;
                     // x reste la meme et y varie
                     x = alea.nextInt(16)+1;
@@ -97,10 +95,8 @@ public class JoueurHumain //initialisation de la classe joueur humain
                         y = alea.nextInt(16)+1;
                     }
                 }
-                    }
+                }
                     test = 1;
-
-
 
                 //Case C  = new Case(x,y);
                 int compte = i;
