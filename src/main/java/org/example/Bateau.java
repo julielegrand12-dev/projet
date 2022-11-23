@@ -3,20 +3,46 @@ package org.example;
 import java.util.ArrayList;
 
 public class Bateau {
-    private static int length;
-    //attribut
 
+    // attribut
     private int id_navire  ;
+    private int  coordonneeDebutX ;
+    private int coordonneeDebutY ;
     private String nom_navire ;
     private ArrayList<Case> lesCases;
     private int taille_navire ; // le nb de case du bateau
     private boolean Horizontal ; // dans le cas d'un navire vertical, ce sont les lignes x qui déterminent la taille
 
 
-    public Bateau(Integer integer, int i, String nom) {
+    public Bateau(int taille, int i, String nom, boolean horizontal,  int  coordonneeDebutX, int coordonneeDebutY) {
     }
 
     // dans le cas 'un navire horizontal,ce sont les colonnes y qui determinent la taille
+
+
+    public int getCoordonneeDebutX() {
+        return coordonneeDebutX;
+    }
+
+    public void setCoordonneeDebutX(int coordonneeDebutX) {
+        this.coordonneeDebutX = coordonneeDebutX;
+    }
+
+    public int getCoordonneeDebutY() {
+        return coordonneeDebutY;
+    }
+
+    public void setCoordonneeDebutY(int coordonneeDebutY) {
+        this.coordonneeDebutY = coordonneeDebutY;
+    }
+
+    public ArrayList<Case> getLesCases() {
+        return lesCases;
+    }
+
+    public void setLesCases(ArrayList<Case> lesCases) {
+        this.lesCases = lesCases;
+    }
 
     public boolean isHorizontal() {
         return Horizontal;
@@ -70,10 +96,13 @@ public class Bateau {
         }return false;
     }
 
-    public void Bateau( int taille_navire,int id_navire, String nom_navire){
+    public void Bateau( int taille_navire,int id_navire, String nom_navire, boolean Horizontal, int coordonneeDebutX, int coordonneeDebutY){
         this.id_navire = id_navire ;
         this.nom_navire = nom_navire ;
         this.taille_navire = taille_navire ;
+        this.Horizontal = Horizontal ;
+        this.coordonneeDebutX  = coordonneeDebutX ;
+        this.coordonneeDebutY = coordonneeDebutY ;
     }
 
    /* public static void declaBateaux(String[][] Bateau) { // Declaration des bateaux
@@ -90,10 +119,6 @@ public class Bateau {
     };
 */
 
-
-    public static int nombrebateaux() {
-        return Bateau.length;
-    }
 
     public void genererBateaux(){
 
