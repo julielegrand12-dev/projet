@@ -12,6 +12,14 @@ public class JoueurHumain //initialisation de la classe joueur humain
     private HashMap<Integer, Case> mapDeCases = new HashMap<Integer,Case>();
     private HashMap<Integer,Bateau> mapDeBateaux = new HashMap<Integer, Bateau>();
 
+    public HashMap<Integer, Bateau> getMapDeBateaux() {
+        return mapDeBateaux;
+    }
+
+    public void setMapDeBateaux(HashMap<Integer, Bateau> mapDeBateaux) {
+        this.mapDeBateaux = mapDeBateaux;
+    }
+
     public void setMapDeCases(HashMap<Integer, Case> mapDeCases) {
         this.mapDeCases = mapDeCases;
     }
@@ -45,7 +53,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
         this.score = score;
     }
 
-    protected HashMap<Integer, Case> PlacementBateau(HashMap<Integer, Case>MapDeCases) {
+    protected HashMap<Integer, Case> PlacementCases(HashMap<Integer, Case>MapDeCases, HashMap<Integer, Bateau>MapDeBateaux) {
 
         Random alea = new Random();
         List<Integer> lesTailles = new ArrayList<>(List.of(7,5,5,3,3,3,1,1,1,1));
@@ -65,9 +73,8 @@ public class JoueurHumain //initialisation de la classe joueur humain
             int compy = y;
             NoDoublonX.add(x);
             NoDoublonY.add(y);
-            Bateau B = new Bateau(lesTailles.get(i), i,lesNoms.get(i));
-            B.setNom_navire(lesNoms.get(i));
-            mapDeBateaux.put(i,B);
+
+
             do {
 
                 if (int_random == 0) {
@@ -76,12 +83,22 @@ public class JoueurHumain //initialisation de la classe joueur humain
                     // il faut s'assurer que la taille du bateau ne dépasse pas de la  grille
                     x = alea.nextInt(limite++) +1;
                     y = alea.nextInt(16)+1;
+
                     for (int w=0;w<NoDoublonX.size();w++){
                         if(NoDoublonX.get(w) == x || NoDoublonY.get(w)== y){
                             x = alea.nextInt(limite++)+1;
                             y = alea.nextInt(16)+1;
                         }
                     }
+
+                    Bateau B = new Bateau(lesTailles.get(i), i,lesNoms.get(i), Horizontal, x, y);
+                    B.setId_navire(i);
+                    B.setNom_navire(lesNoms.get(i));
+                    B.setTaille_navire(lesTailles.get(i));
+                    B.setHorizontal(Horizontal);
+                    B.setCoordonneeDebutX(x);
+                    B.setCoordonneeDebutY(y);
+                    MapDeBateaux.put(i,B);
 
 
                     test = 1;
@@ -97,12 +114,17 @@ public class JoueurHumain //initialisation de la classe joueur humain
                         y = alea.nextInt(16)+1;
                     }
                 }
+                    Bateau B = new Bateau(lesTailles.get(i), i,lesNoms.get(i), Horizontal, x, y);
+                    B.setId_navire(i);
+                    B.setNom_navire(lesNoms.get(i));
+                    B.setTaille_navire(lesTailles.get(i));
+                    B.setHorizontal(Horizontal);
+                    MapDeBateaux.put(i,B);
+                    B.setCoordonneeDebutX(x);
+                    B.setCoordonneeDebutY(y);
                     }
                     test = 1;
 
-
-
-                //Case C  = new Case(x,y);
                 int compte = i;
                 compte = compte +1;
                 if (lesTailles.get(i)== 7){
@@ -124,8 +146,6 @@ public class JoueurHumain //initialisation de la classe joueur humain
                         NoDoublonX.add(x);
                         NoDoublonY.add(y);
                         System.out.println("Nouvelle case de coordonnée: X :" + x + " & Y:" + y);
-
-
 
                     }
                 }
@@ -183,18 +203,22 @@ public class JoueurHumain //initialisation de la classe joueur humain
 
 // continuer cette fonction pour bien prendre encompte l'absence de voisins et le non chevauchement
         }
-        for (int i = 0; i<listeCases.size();i++){
+        /*for (int i = 0; i<listeCases.size();i++){
             System.out.println(i + " Avec X = " + listeCases.get(i).getX() + " et Y = " + listeCases.get(i).getY() + "\n et d'ID = " + listeCases.get(i).getGetID());
             MapDeCases.put(i, listeCases.get(i));
 
+            setMapDeBateaux(MapDeBateaux);
+        } */
+        return MapDeCases; }
 
+        protected HashMap<Integer, Bateau> PlacementBateaux (HashMap<Integer, Bateau>MapDeBateaux) {
+            getMapDeBateaux();
+            for (Integer TY : mapDeBateaux.keySet()) {
+                System.out.println("Bateau n." + TY + " de nom = " + mapDeBateaux.get(TY).getNom_navire()  +" D'id : " +  mapDeBateaux.get(TY).getId_navire() + " de taille = " + mapDeBateaux.get(TY).getTaille_navire()+  "\n, de direction horizontale : "  + mapDeBateaux.get(TY).isHorizontal() + "\n, de coordonnées debut x = " + mapDeBateaux.get(TY).getCoordonneeDebutX()+ " et y = " + mapDeBateaux.get(TY).getCoordonneeDebutY() + "\n\n" );
 
-
-
-            // donner case de départ pour chaque bateau
-
-} /*for(Integer TY : mapDeBateaux.keySet()){
-            System.out.println("Bateau n."+TY+ " de nom = "+ mapDeBateaux.get(TY).getNom_navire() );
-        }*/
-        return MapDeCases; }}
-
+            }
+            return MapDeBateaux;
+        }
+        // Trouver moyen de retourner coordonnée de début
+}
+//j'ai du coup changer le nom de placementBateau vers placementcase

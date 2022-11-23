@@ -29,11 +29,13 @@ public class Panel extends JPanel{
             g.drawLine(50,i,515,i);
             i=i+30;
         }
-        g.setColor(Color.BLACK);
+        /*g.setColor(Color.BLACK);
         for(Integer i : mapDeCases.keySet())
         {
 
-        }
+        }*/
+
+
 
 
     }
