@@ -212,7 +212,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
         return MapDeCases; }
 
         protected HashMap<Integer, Bateau> PlacementBateaux (HashMap<Integer, Bateau>MapDeBateaux) {
-            getMapDeBateaux();
+            //getMapDeBateaux();
             for (Integer TY : mapDeBateaux.keySet()) {
                 System.out.println("Bateau n." + TY + " de nom = " + mapDeBateaux.get(TY).getNom_navire()  +" D'id : " +  mapDeBateaux.get(TY).getId_navire() + " de taille = " + mapDeBateaux.get(TY).getTaille_navire()+  "\n, de direction horizontale : "  + mapDeBateaux.get(TY).isHorizontal() + "\n, de coordonnées debut x = " + mapDeBateaux.get(TY).getCoordonneeDebutX()+ " et y = " + mapDeBateaux.get(TY).getCoordonneeDebutY() + "\n\n" );
 
