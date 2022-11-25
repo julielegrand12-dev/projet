@@ -1,35 +1,40 @@
 package org.example;
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
 
 
 public class Plateau extends JPanel {
     private JFrame fen;
-    private JPanel p;
+    private JPanel panel1;
+    private JPanel panel2;
     private JButton b;
     private JLabel lab;
 
-    public void Fenetre()
-    {
-        gui();
-    }
+
     public void gui()
     {
-        fen=new JFrame("XXX");
+        
+        fen=new JFrame("BATAILLE NAVALE");
         fen.setVisible(true);
-        fen.setSize(600,600);
+        fen.setSize(800,650);
         fen.setDefaultCloseOperation(fen.EXIT_ON_CLOSE);
 
-        p= new JPanel();
-        p.setBackground(Color.BLUE);
+        panel1= new JPanel();
+        panel2= new JPanel();
+        panel1.setBackground(Color.ORANGE);
+        panel2.setBackground(Color.ORANGE);
 
-        //b= new JButton("test");
         lab = new JLabel("Joueur 1");
+        b= new JButton("Sauvegarder la partie");
 
-        //p.add(b);
-        p.add(lab);
 
-        fen.add(p,BorderLayout.NORTH);
+        panel1.add(lab);
+        panel2.add(b);
+
+
+        fen.add(panel1,BorderLayout.NORTH);
+        fen.add(panel2,BorderLayout.SOUTH);
         fen.add(new Panel());
 
 
@@ -39,15 +44,8 @@ public class Plateau extends JPanel {
     private void setBackgroud(Color blue) {
     }
 
-    private int nbligne;
-    private int nbcol;
-    private char[][] grille;
-    public void plateau(int n,int p)
-    {
-        Fenetre();
 
 
-    }
 
 
 
