@@ -9,9 +9,14 @@ public class Menu
     private String pseudo;
     private Scanner scan1 = new Scanner(System.in);
 
+    public Menu(int choix)
+    {
+        this.choix = choix;
+    }
+
     public void MenuDebut()
     {
-        System.out.println("Veuillez faire un choix"); //Nous affichons les choix possibles sur
+        System.out.println("Veuillez faire un choix"); //Nous affichons les choix possibles
         System.out.println("1- Jouer une partie\n");
         System.out.println("2- Charger une partie\n");
         System.out.println("3- Aide\n");
@@ -23,8 +28,6 @@ public class Menu
                 test=true;
             else
                 System.out.println("Erreur ");
-
-
         }while(!test);
 
         switch(choix)
@@ -53,4 +56,35 @@ public class Menu
 
         }
     }
+
+    public void MenuBateau()
+    {
+        System.out.println("Veuillez faire un choix");
+        //Nous affichons les choix possibles
+        System.out.println("1- Tirer\n");
+        System.out.println("2- Déplacer un bateau de sa flotte\n");
+        System.out.println("3- Quitter\n");
+
+        do{
+            choix= scan.nextInt();
+            if(choix>0 && choix<4)
+                test=true;
+            else
+                System.out.println("Erreur ");
+        }while(!test);
+
+        switch(choix)
+        {
+            case 1 :
+                break;
+
+            case 2:
+                break;
+
+            case 3 : System.out.println("Quitter\n");
+                return;
+
+        }
+    }
+
 }

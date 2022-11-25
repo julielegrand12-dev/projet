@@ -22,7 +22,6 @@ public class Panel extends JPanel{
 
         }
 
-
         for(int i=50; i<520;i++ )
         {
             g.drawLine(i,50,i,515);
@@ -30,7 +29,7 @@ public class Panel extends JPanel{
             i=i+30;
         }
         /*g.setColor(Color.BLACK);
-        for(Integer i : mapDeCases.keySet())
+        /*for(Integer i : mapDeCases.keySet())
         {
 
         }*/

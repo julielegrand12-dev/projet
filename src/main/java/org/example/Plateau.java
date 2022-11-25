@@ -12,8 +12,6 @@ public class Plateau extends JPanel {
     public void Fenetre()
     {
         gui();
-
-
     }
     public void gui()
     {

@@ -54,10 +54,15 @@ public class JoueurHumain //initialisation de la classe joueur humain
 
     protected HashMap<Integer, Case> PlacementCases(HashMap<Integer, Case>MapDeCases, HashMap<Integer, Bateau>MapDeBateaux) {
 
+       //Initialisation de la fonction aléatoire
         Random alea = new Random();
+
+        //On déclare des listes
         List<Integer> lesTailles = new ArrayList<>(List.of(7,5,5,3,3,3,1,1,1,1));
         List<String> lesNoms = new ArrayList<>(List.of("Cruisarde","Croiseur","Croiseur", "Destroyer","Destroyer","Destroyer","Destroyer","Sous-marin","Sous-marin","Sous-marin","Sous-marin"));
         ArrayList<Case> listeCases = new ArrayList<Case>();
+
+        //On boucle 10 fois pour les 10 bateaux
         for (int i = 0; i< 10; i++) {
             int int_random = alea.nextInt(2);
             boolean Horizontal;
@@ -72,7 +77,9 @@ public class JoueurHumain //initialisation de la classe joueur humain
             int compy = y;
             NoDoublonX.add(x);
             NoDoublonY.add(y);
-
+           /* Bateau B = new Bateau(lesTailles.get(i), i,lesNoms.get(i));
+            B.setNom_navire(lesNoms.get(i));
+            mapDeBateaux.put(i,B);*/
 
             do {
 
@@ -101,7 +108,8 @@ public class JoueurHumain //initialisation de la classe joueur humain
 
 
                     test = 1;
-                } else {
+                }
+                else {
                     Horizontal = false;
                     // x reste la meme et y varie
                     x = alea.nextInt(16)+1;
@@ -124,6 +132,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
                     }
                     test = 1;
 
+                //Case C  = new Case(x,y);
                 int compte = i;
                 compte = compte +1;
                 if (lesTailles.get(i)== 7){
@@ -145,6 +154,8 @@ public class JoueurHumain //initialisation de la classe joueur humain
                         NoDoublonX.add(x);
                         NoDoublonY.add(y);
                         System.out.println("Nouvelle case de coordonnée: X :" + x + " & Y:" + y);
+
+
 
                     }
                 }
@@ -202,12 +213,12 @@ public class JoueurHumain //initialisation de la classe joueur humain
 
 // continuer cette fonction pour bien prendre encompte l'absence de voisins et le non chevauchement
         }
-        /*for (int i = 0; i<listeCases.size();i++){
+        for (int i = 0; i<listeCases.size();i++){
             System.out.println(i + " Avec X = " + listeCases.get(i).getX() + " et Y = " + listeCases.get(i).getY() + "\n et d'ID = " + listeCases.get(i).getGetID());
             MapDeCases.put(i, listeCases.get(i));
 
             setMapDeBateaux(MapDeBateaux);
-        } */
+        }
         return MapDeCases; }
 
         protected HashMap<Integer, Bateau> PlacementBateaux (HashMap<Integer, Bateau>MapDeBateaux) {
@@ -219,5 +230,10 @@ public class JoueurHumain //initialisation de la classe joueur humain
             return MapDeBateaux;
         }
         // Trouver moyen de retourner coordonnée de début
+
+    void DeplacerBateau()
+    {
+
+    }
 }
 //j'ai du coup changer le nom de placementBateau vers placementcase
