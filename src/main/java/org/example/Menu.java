@@ -1,4 +1,6 @@
 package org.example;
+
+import java.util.HashMap;
 import java.util.Scanner;
 public class Menu
 {
@@ -8,6 +10,10 @@ public class Menu
     Jeu j= new Jeu('0', '0');
     private String pseudo;
     private Scanner scan1 = new Scanner(System.in);
+    JoueurHumain J = new JoueurHumain("Sara",0);
+    //Déclaration HashMap
+    HashMap<Integer, Case> mapDeCases = new HashMap<Integer, Case>();
+    HashMap<Integer, Bateau> mapDeBateaux = new HashMap<>();
 
     public Menu(int choix)
     {
@@ -79,6 +85,7 @@ public class Menu
                 break;
 
             case 2:
+                J.DeplacerBateau(mapDeBateaux);
                 break;
 
             case 3 : System.out.println("Quitter\n");

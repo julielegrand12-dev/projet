@@ -52,7 +52,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
         this.score = score;
     }
 
-    protected HashMap<Integer, Case> PlacementCases(HashMap<Integer, Case>MapDeCases, HashMap<Integer, Bateau>MapDeBateaux) {
+    protected HashMap<Integer, Case> PlacementCases(HashMap<Integer,Case>MapDeCases, HashMap<Integer,Bateau>MapDeBateaux) {
 
        //Initialisation de la fonction aléatoire
         Random alea = new Random();
@@ -219,10 +219,11 @@ public class JoueurHumain //initialisation de la classe joueur humain
 
             setMapDeBateaux(MapDeBateaux);
         }
-        return MapDeCases; }
+        return MapDeCases;
+    }
 
         protected HashMap<Integer, Bateau> PlacementBateaux (HashMap<Integer, Bateau>MapDeBateaux) {
-            //getMapDeBateaux();
+            getMapDeBateaux();
             for (Integer TY : mapDeBateaux.keySet()) {
                 System.out.println("Bateau n." + TY + " de nom = " + mapDeBateaux.get(TY).getNom_navire()  +" D'id : " +  mapDeBateaux.get(TY).getId_navire() + " de taille = " + mapDeBateaux.get(TY).getTaille_navire()+  "\n, de direction horizontale : "  + mapDeBateaux.get(TY).isHorizontal() + "\n, de coordonnées debut x = " + mapDeBateaux.get(TY).getCoordonneeDebutX()+ " et y = " + mapDeBateaux.get(TY).getCoordonneeDebutY() + "\n\n" );
 
@@ -231,9 +232,16 @@ public class JoueurHumain //initialisation de la classe joueur humain
         }
         // Trouver moyen de retourner coordonnée de début
 
-    void DeplacerBateau()
+    void DeplacerBateau(HashMap<Integer, Bateau>MapDeBateaux)
     {
-
+        System.out.println("Vous avez choisi de déplacer votre bateau\n");
+        System.out.println("Veuillez selectionner le bateau souhaite:\n");
+        //setMapDeBateaux(mapDeBateaux);
+     getMapDeBateaux();
+       for(Integer i : mapDeBateaux.keySet())
+        {
+            System.out.println(" " + mapDeBateaux.get(i).getNom_navire() + " et 'id : "+ mapDeBateaux.get(i).getId_navire());
+        }
     }
 }
 //j'ai du coup changer le nom de placementBateau vers placementcase

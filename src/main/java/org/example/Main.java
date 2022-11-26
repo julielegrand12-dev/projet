@@ -19,8 +19,7 @@ public class Main {
         System.out.println("Jeu réalisé par Julie Legrand - Ludivine Fulop - Sara Suleiman");
 
         //Appel de fonctions dans les classes
-        J.setMapDeCases(mapDeCases);
-        J.PlacementCases(mapDeCases, mapDeBateaux);
+
         J.setMapDeBateaux(mapDeBateaux);
         J.PlacementBateaux(mapDeBateaux);
 
@@ -31,5 +30,6 @@ public class Main {
         //Appel des menus
         //M.MenuDebut();
         M.MenuBateau();
+
   }
 }
