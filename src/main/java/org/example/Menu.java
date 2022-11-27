@@ -1,7 +1,7 @@
 package org.example;
-
 import java.util.HashMap;
 import java.util.Scanner;
+
 public class Menu
 {
     private int choix=0;
@@ -10,10 +10,13 @@ public class Menu
     Jeu j= new Jeu('0', '0');
     private String pseudo;
     private Scanner scan1 = new Scanner(System.in);
+
     JoueurHumain J = new JoueurHumain("Sara",0);
+
     //Déclaration HashMap
     HashMap<Integer, Case> mapDeCases = new HashMap<Integer, Case>();
     HashMap<Integer, Bateau> mapDeBateaux = new HashMap<>();
+
 
     public Menu(int choix)
     {
@@ -65,6 +68,14 @@ public class Menu
 
     public void MenuBateau()
     {
+        //Déclaration HashMap
+        HashMap<Integer, Case> mapDeCases = new HashMap<Integer, Case>();
+        HashMap<Integer, Bateau> mapDeBateaux = new HashMap<>();
+
+        //Appel de fonctions dans les classes
+        J.setMapDeCases(mapDeCases);
+        J.setMapDeBateaux(mapDeBateaux);
+
         System.out.println("Veuillez faire un choix");
         //Nous affichons les choix possibles
         System.out.println("1- Tirer\n");
@@ -85,6 +96,11 @@ public class Menu
                 break;
 
             case 2:
+                //Appel de fonctions dans les classes
+J.PlacementCases(mapDeCases, mapDeBateaux);
+                J.setMapDeBateaux(mapDeBateaux);
+                J.PlacementBateaux(mapDeBateaux);
+
                 J.DeplacerBateau(mapDeBateaux);
                 break;
 

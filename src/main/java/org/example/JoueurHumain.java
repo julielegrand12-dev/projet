@@ -250,12 +250,13 @@ public class JoueurHumain //initialisation de la classe joueur humain
     {
         System.out.println("Vous avez choisi de déplacer votre bateau\n");
         System.out.println("Veuillez selectionner le bateau souhaite:\n");
-        //setMapDeBateaux(mapDeBateaux);
-     getMapDeBateaux();
-       for(Integer i : mapDeBateaux.keySet())
+
+       for(Integer i : MapDeBateaux.keySet())
         {
-            System.out.println(" " + mapDeBateaux.get(i).getNom_navire() + " et 'id : "+ mapDeBateaux.get(i).getId_navire());
+            System.out.println(" " + MapDeBateaux.get(i).getNom_navire() + " et 'id : "+ MapDeBateaux.get(i).getId_navire());
         }
+
+
     }
 }
 //j'ai du coup changer le nom de placementBateau vers placementcase
