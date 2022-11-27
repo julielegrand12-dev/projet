@@ -88,14 +88,15 @@ public class JoueurHumain //initialisation de la classe joueur humain
                    // y = alea.nextInt(16)+1;
                     x = (int) (Math.random()*(15-limite))+1;
                     y = (int)(Math.random()*(15))+1;
+                    System.out.println("X  : "+ x + " Y : "+ y);
 
-                   for (int a=1;a<=taille_bateau;a++){
+                   for (int a=0;a<=taille_bateau;a++){
                     for (int w=0;w<listeCases.size();w++){
-                        while(listeCases.get(w).getX() == x + a && listeCases.get(w).getY() == y){
+                        while(listeCases.get(w).getX() == x  + a && listeCases.get(w).getY() == y){
                             x = (int) (Math.random()*(15-limite))+1;
                             y = (int)(Math.random()*(15))+1;
                             System.out.println("\n\nerrorororororororo");
-                            a=1;
+                            a=0;
                             break;
 
                         }
@@ -120,14 +121,15 @@ public class JoueurHumain //initialisation de la classe joueur humain
 
                     x = (int) (Math.random()*(15))+1;
                     y = (int)(Math.random()*(15-limite))+1;
-                     for (int a=1;a<=taille_bateau;a++){
+                    System.out.println("X  : "+ x + " Y : "+ y);
+                     for (int a=0;a<=taille_bateau;a++){
                      for (int w=0;w<listeCases.size();w++){
-                    while(listeCases.get(w).getX() == x && listeCases.get(w).getY() == y + a){
+                    while(listeCases.get(w).getX() == x && listeCases.get(w).getY() == y+ a){
 
                         x = (int) (Math.random()*(15))+1;
                         y = (int)(Math.random()*(15-limite))+1;
                         System.out.println("\n\nERRor");
-                        a=1;
+                        a=0;
                         break;
 
 
@@ -251,7 +253,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
         System.out.println("Vous avez choisi de déplacer votre bateau\n");
         System.out.println("Veuillez selectionner le bateau souhaite:\n");
         //setMapDeBateaux(mapDeBateaux);
-     getMapDeBateaux();
+     MapDeBateaux  = getMapDeBateaux();
        for(Integer i : mapDeBateaux.keySet())
         {
             System.out.println(" " + mapDeBateaux.get(i).getNom_navire() + " et 'id : "+ mapDeBateaux.get(i).getId_navire());
