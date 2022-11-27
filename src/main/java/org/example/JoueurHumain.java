@@ -59,9 +59,16 @@ public class JoueurHumain //initialisation de la classe joueur humain
 
         //On déclare des listes
         List<Integer> lesTailles = new ArrayList<>(List.of(7,5,5,3,3,3,1,1,1,1));
-        List<String> lesNoms = new ArrayList<>(List.of("Cruisarde","Croiseur","Croiseur", "Destroyer","Destroyer","Destroyer","Destroyer","Sous-marin","Sous-marin","Sous-marin","Sous-marin"));
+        List<String> lesNoms = new ArrayList<>(List.of("Cruisarde","Croiseur","Croiseur", "Destroyer","Destroyer","Destroyer","Sous-marin","Sous-marin","Sous-marin","Sous-marin","Sous-marin"));
         ArrayList<Case> listeCases = new ArrayList<Case>();
-
+        List<Integer> NoDoublonX = new ArrayList<>();
+        List<Integer> NoDoublonY = new ArrayList<>();
+        int y=0;
+        int x=0;
+        int compx = x;
+        int compy = y;
+        NoDoublonX.add(0);
+        NoDoublonY.add(0);
         //On boucle 10 fois pour les 10 bateaux
         for (int i = 0; i< 10; i++) {
             int int_random = alea.nextInt(2);
@@ -69,40 +76,36 @@ public class JoueurHumain //initialisation de la classe joueur humain
             int taille_bateau = lesTailles.get(i);
             int limite = 15 - taille_bateau;
             int test = 0;
-            List<Integer> NoDoublonX = new ArrayList<>();
-            List<Integer> NoDoublonY = new ArrayList<>();
-            int y=0;
-            int x=0;
-            int compx = x;
-            int compy = y;
-            NoDoublonX.add(x);
-            NoDoublonY.add(y);
            /* Bateau B = new Bateau(lesTailles.get(i), i,lesNoms.get(i));
             B.setNom_navire(lesNoms.get(i));
             mapDeBateaux.put(i,B);*/
-
-            do {
 
                 if (int_random == 0) {
                     Horizontal = true;
                     // dans ce cas y reste le meme et x varie
                     // il faut s'assurer que la taille du bateau ne dépasse pas de la  grille
-                    x = alea.nextInt(limite++) +1;
-                    y = alea.nextInt(16)+1;
+                   // x = alea.nextInt(limite++) +1;
+                   // y = alea.nextInt(16)+1;
+                    x = (int) (Math.random()*(15-limite))+1;
+                    y = (int)(Math.random()*(15))+1;
 
-                    for (int w=0;w<NoDoublonX.size();w++){
-                        if(NoDoublonX.get(w) == x || NoDoublonY.get(w)== y){
-                            x = alea.nextInt(limite++)+1;
-                            y = alea.nextInt(16)+1;
+                   for (int a=1;a<=taille_bateau;a++){
+                    for (int w=0;w<listeCases.size();w++){
+                        while(listeCases.get(w).getX() == x + a && listeCases.get(w).getY() == y){
+                            x = (int) (Math.random()*(15-limite))+1;
+                            y = (int)(Math.random()*(15))+1;
+                            System.out.println("\n\nerrorororororororo");
+                            a=1;
+                            break;
+
                         }
-                    }
-
-                    Bateau B = new Bateau(lesTailles.get(i), i,lesNoms.get(i), Horizontal, x, y);
+                    }}
+                    Bateau B = new Bateau(lesTailles.get(i), i,lesNoms.get(i), Horizontal, x+1, y);
                     B.setId_navire(i);
                     B.setNom_navire(lesNoms.get(i));
                     B.setTaille_navire(lesTailles.get(i));
                     B.setHorizontal(Horizontal);
-                    B.setCoordonneeDebutX(x);
+                    B.setCoordonneeDebutX(x+1);
                     B.setCoordonneeDebutY(y);
                     MapDeBateaux.put(i,B);
 
@@ -112,23 +115,32 @@ public class JoueurHumain //initialisation de la classe joueur humain
                 else {
                     Horizontal = false;
                     // x reste la meme et y varie
-                    x = alea.nextInt(16)+1;
-                    y = alea.nextInt(limite++)+1;
+                    //x = alea.nextInt(16)+1;
+                    //y = alea.nextInt(limite++)+1;
 
-                for (int w=0;w<NoDoublonX.size();w++){
-                    if(NoDoublonX.get(w) == x && NoDoublonY.get(w)== y){
-                        x = alea.nextInt(limite++)+1;
-                        y = alea.nextInt(16)+1;
-                    }
+                    x = (int) (Math.random()*(15))+1;
+                    y = (int)(Math.random()*(15-limite))+1;
+                     for (int a=1;a<=taille_bateau;a++){
+                     for (int w=0;w<listeCases.size();w++){
+                    while(listeCases.get(w).getX() == x && listeCases.get(w).getY() == y + a){
+
+                        x = (int) (Math.random()*(15))+1;
+                        y = (int)(Math.random()*(15-limite))+1;
+                        System.out.println("\n\nERRor");
+                        a=1;
+                        break;
+
+
+                    }}
                 }
-                    Bateau B = new Bateau(lesTailles.get(i), i,lesNoms.get(i), Horizontal, x, y);
+                    Bateau B = new Bateau(lesTailles.get(i), i,lesNoms.get(i), Horizontal, x, y+1);
                     B.setId_navire(i);
                     B.setNom_navire(lesNoms.get(i));
                     B.setTaille_navire(lesTailles.get(i));
                     B.setHorizontal(Horizontal);
                     MapDeBateaux.put(i,B);
                     B.setCoordonneeDebutX(x);
-                    B.setCoordonneeDebutY(y);
+                    B.setCoordonneeDebutY(y+1);
                     }
                     test = 1;
 
@@ -139,40 +151,40 @@ public class JoueurHumain //initialisation de la classe joueur humain
                     System.out.println("\nPlacement du " + lesNoms.get(i)+ " " + compte);
                     for(int z=0; z<7;z++){
                         if(Horizontal == true){
-                            Case c = new Case(x++,y,lesTailles.get(i));
+                            Case c = new Case(x=x+1,y,lesTailles.get(i));
+                            System.out.println("Nouvelle case de coordonnée: X :" + c.getX() + " & Y:" + c.getY());
 
                             listeCases.add(c);
 
 
                         }
                         if(Horizontal == false){
-                            Case c = new Case(x,y++,lesTailles.get(i));
+                            Case c = new Case(x,y=y+1,lesTailles.get(i));
+                            System.out.println("Nouvelle case de coordonnée: X :" + c.getX() + " & Y:" + c.getY());
 
                             listeCases.add(c);
 
                         }
-                        NoDoublonX.add(x);
-                        NoDoublonY.add(y);
-                        System.out.println("Nouvelle case de coordonnée: X :" + x + " & Y:" + y);
-
-
-
+                        //NoDoublonX.add(x);
+                       // NoDoublonY.add(y);
                     }
                 }
                 if (lesTailles.get(i)== 5){
                     System.out.println("\nPlacement du " + lesNoms.get(i) + " " + compte++);
                     for(int z=7; z<12;z++){
                         if(Horizontal == true){
-                            Case c = new Case(x++,y,lesTailles.get(i));
+                            Case c = new Case(x=x+1,y,lesTailles.get(i));
+                            System.out.println("Nouvelle case de coordonnée: X :" + c.getX() + " & Y:" + c.getY());
                             listeCases.add(c);
                         }
                         if(Horizontal == false){
-                            Case c = new Case(x,y++,lesTailles.get(i));
+                            Case c = new Case(x,y=y+1,lesTailles.get(i));
+                            System.out.println("Nouvelle case de coordonnée: X :" + c.getX() + " & Y:" + c.getY());
                             listeCases.add(c);
                         }
-                        NoDoublonX.add(x);
-                        NoDoublonY.add(y);
-                        System.out.println("Nouvelle case de coordonnée :  X : " + x + " & Y : " + y);
+                        //NoDoublonX.add(x);
+                        //NoDoublonY.add(y);
+
 
                     }
                 }
@@ -180,60 +192,67 @@ public class JoueurHumain //initialisation de la classe joueur humain
                     System.out.println("\nPlacement du " + lesNoms.get(i) + " " +compte++);
                     for(int z=12; z<15;z++){
                         if(Horizontal == true){
-                            Case c = new Case(x++,y,lesTailles.get(i));
+                            Case c = new Case(x=x+1,y,lesTailles.get(i));
+                            System.out.println("Nouvelle case de coordonnée: X :" + c.getX() + " & Y:" + c.getY());
                             listeCases.add(c);
                         }
                         if(Horizontal == false){
-                            Case c = new Case(x,y++,lesTailles.get(i));
+                            Case c = new Case(x,y=y+1,lesTailles.get(i));
+                            System.out.println("Nouvelle case de coordonnée: X :" + c.getX() + " & Y:" + c.getY());
                             listeCases.add(c);
                         }
-                        NoDoublonX.add(x);
-                        NoDoublonY.add(y);
-                        System.out.println("Nouvelle case de coordonnée : X : " + x + " & Y: " + y);
+                        //NoDoublonX.add(x);
+                        //NoDoublonY.add(y);
                     }
                 }
                 if (lesTailles.get(i)== 1){
                     System.out.println("\nPlacement du " + lesNoms.get(i) + " " +compte++);
                     for(int z=15; z<16;z++){
                         if(Horizontal == true){
-                            Case c = new Case(x++,y,lesTailles.get(i));
+                            Case c = new Case(x=x+1,y,lesTailles.get(i));
+                            System.out.println("Nouvelle case de coordonnée: X :" + c.getX() + " & Y:" + c.getY());
                             listeCases.add(c);
                         }
                         if(Horizontal == false){
-                            Case c = new Case(x,y++,lesTailles.get(i));
+                            Case c = new Case(x,y=y+1,lesTailles.get(i));
+                            System.out.println("Nouvelle case de coordonnée: X :" + c.getX() + " & Y:" + c.getY());
                             listeCases.add(c);
                         }
-                        NoDoublonX.add(x);
-                        NoDoublonY.add(y);
-                        System.out.println("Nouvelle case de coordonnée : X : " + x + " & Y: " + y);
+                        //NoDoublonX.add(x);
+                        //NoDoublonY.add(y);
+
                     }
                 }
 
-            } while (test == 0);
 
 // continuer cette fonction pour bien prendre encompte l'absence de voisins et le non chevauchement
         }
-        for (int i = 0; i<listeCases.size();i++){
+        /*for (int i = 0; i<listeCases.size();i++){
             System.out.println(i + " Avec X = " + listeCases.get(i).getX() + " et Y = " + listeCases.get(i).getY() + "\n et d'ID = " + listeCases.get(i).getGetID());
             MapDeCases.put(i, listeCases.get(i));
 
-            setMapDeBateaux(MapDeBateaux);
-        }
+
+        }*/
+        setMapDeBateaux(MapDeBateaux);
         return MapDeCases; }
 
         protected HashMap<Integer, Bateau> PlacementBateaux (HashMap<Integer, Bateau>MapDeBateaux) {
-            //getMapDeBateaux();
-            for (Integer TY : mapDeBateaux.keySet()) {
+            MapDeBateaux  = getMapDeBateaux();
+           /* for (Integer TY : mapDeBateaux.keySet()) {
                 System.out.println("Bateau n." + TY + " de nom = " + mapDeBateaux.get(TY).getNom_navire()  +" D'id : " +  mapDeBateaux.get(TY).getId_navire() + " de taille = " + mapDeBateaux.get(TY).getTaille_navire()+  "\n, de direction horizontale : "  + mapDeBateaux.get(TY).isHorizontal() + "\n, de coordonnées debut x = " + mapDeBateaux.get(TY).getCoordonneeDebutX()+ " et y = " + mapDeBateaux.get(TY).getCoordonneeDebutY() + "\n\n" );
 
-            }
+            }*/
             return MapDeBateaux;
         }
         // Trouver moyen de retourner coordonnée de début
 
-    void DeplacerBateau()
+    void DeplacerBateau(HashMap<Integer, Bateau>MapDeBateaux)
     {
 
-    }
-}
+        for (Integer TY : mapDeBateaux.keySet()) {
+            System.out.println("Bateau n." + TY + " de nom = " + mapDeBateaux.get(TY).getNom_navire()  +" D'id : " +  mapDeBateaux.get(TY).getId_navire() + " de taille = " + mapDeBateaux.get(TY).getTaille_navire()+  "\n, de direction horizontale : "  + mapDeBateaux.get(TY).isHorizontal() + "\n, de coordonnées debut x = " + mapDeBateaux.get(TY).getCoordonneeDebutX()+ " et y = " + mapDeBateaux.get(TY).getCoordonneeDebutY() + "\n\n" );
+
+
+        }
+}}
 //j'ai du coup changer le nom de placementBateau vers placementcase
