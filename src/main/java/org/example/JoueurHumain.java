@@ -88,7 +88,6 @@ public class JoueurHumain //initialisation de la classe joueur humain
                    // y = alea.nextInt(16)+1;
                     x = (int) (Math.random()*(15-limite))+1;
                     y = (int)(Math.random()*(15))+1;
-                    System.out.println("X  : "+ x + " Y : "+ y);
 
                    for (int a=0;a<=taille_bateau;a++){
                     for (int w=0;w<listeCases.size();w++){
