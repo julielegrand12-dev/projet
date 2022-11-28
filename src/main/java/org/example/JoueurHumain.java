@@ -102,12 +102,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
                         }
                     }}
                     Bateau B = new Bateau(lesTailles.get(i), i,lesNoms.get(i), Horizontal, x+1, y);
-                    B.setId_navire(i);
-                    B.setNom_navire(lesNoms.get(i));
-                    B.setTaille_navire(lesTailles.get(i));
-                    B.setHorizontal(Horizontal);
-                    B.setCoordonneeDebutX(x+1);
-                    B.setCoordonneeDebutY(y);
+
                     MapDeBateaux.put(i,B);
 
 
@@ -135,14 +130,10 @@ public class JoueurHumain //initialisation de la classe joueur humain
 
                     }}
                 }
+
                     Bateau B = new Bateau(lesTailles.get(i), i,lesNoms.get(i), Horizontal, x, y+1);
-                    B.setId_navire(i);
-                    B.setNom_navire(lesNoms.get(i));
-                    B.setTaille_navire(lesTailles.get(i));
-                    B.setHorizontal(Horizontal);
+
                     MapDeBateaux.put(i,B);
-                    B.setCoordonneeDebutX(x);
-                    B.setCoordonneeDebutY(y+1);
                     }
                     test = 1;
 
@@ -253,10 +244,10 @@ public class JoueurHumain //initialisation de la classe joueur humain
         System.out.println("Vous avez choisi de déplacer votre bateau\n");
         System.out.println("Veuillez selectionner le bateau souhaite:\n");
         //setMapDeBateaux(mapDeBateaux);
-     MapDeBateaux  = getMapDeBateaux();
-       for(Integer i : mapDeBateaux.keySet())
+     //MapDeBateaux  = getMapDeBateaux();
+       for(Integer i : MapDeBateaux.keySet())
         {
-            System.out.println(" " + mapDeBateaux.get(i).getNom_navire() + " et 'id : "+ mapDeBateaux.get(i).getId_navire());
+            System.out.println(" " + MapDeBateaux.get(i).getNom_navire() + " et d'id : "+ MapDeBateaux.get(i).getId_navire());
         }
     }
 }
