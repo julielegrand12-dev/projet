@@ -1,16 +1,21 @@
 package org.example;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 
-public class Plateau extends JPanel {
+public class Plateau extends JPanel implements ActionListener {
     private JFrame fen;
     private JPanel panel1;
     private JPanel panel2;
     private JButton b;
     private JLabel lab;
 
+    public JButton getB() {
+        return b;
+    }
 
     public void gui()
     {
@@ -27,7 +32,10 @@ public class Plateau extends JPanel {
 
         lab = new JLabel("Joueur 1");
         b= new JButton("Sauvegarder la partie");
+       // Sauvegarde S = new Sauvegarde();
 
+        //b.addActionListener();
+//actionperformed
 
         panel1.add(lab);
         panel2.add(b);
@@ -35,8 +43,19 @@ public class Plateau extends JPanel {
 
         fen.add(panel1,BorderLayout.NORTH);
         fen.add(panel2,BorderLayout.SOUTH);
+        b.addActionListener(this);
         fen.add(new Panel());
 
+
+    }
+    public void actionPerformed(ActionEvent a)
+    {
+        if(a.getSource()==b)
+        {
+            Sauvegarde S = new Sauvegarde();
+            S.SauvegarderJeu();
+
+        }
 
     }
 
@@ -50,3 +69,4 @@ public class Plateau extends JPanel {
 
 
 }
+
