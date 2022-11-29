@@ -1,5 +1,7 @@
 package org.example;
 
+import jdk.internal.access.JavaIOFileDescriptorAccess;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,6 +9,8 @@ import java.util.Random;
 
 public class JoueurHumain //initialisation de la classe joueur humain
 {
+   // public JavaIOFileDescriptorAccess getMapDeCases;
+    //public HashMap<Object, Object> mapDeCases;
     private String pseudo;
     private int score;
     private HashMap<Integer, Case> mapDeCases = new HashMap<Integer,Case>();
@@ -19,6 +23,8 @@ public class JoueurHumain //initialisation de la classe joueur humain
     public void setMapDeBateaux(HashMap<Integer, Bateau> mapDeBateaux) {
         this.mapDeBateaux = mapDeBateaux;
     }
+
+
 
     public void setMapDeCases(HashMap<Integer, Case> mapDeCases) {
         this.mapDeCases = mapDeCases;
@@ -88,6 +94,8 @@ public class JoueurHumain //initialisation de la classe joueur humain
                    // y = alea.nextInt(16)+1;
                     x = (int) (Math.random()*(15-limite))+1;
                     y = (int)(Math.random()*(15))+1;
+                    x = alea.nextInt(limite++) +1;
+                    y = alea.nextInt(14)+1;
 
                    for (int a=0;a<=taille_bateau;a++){
                     for (int w=0;w<listeCases.size();w++){
