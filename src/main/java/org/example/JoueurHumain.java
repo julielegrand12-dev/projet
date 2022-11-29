@@ -137,10 +137,11 @@ public class JoueurHumain //initialisation de la classe joueur humain
 
                     }}
                 }
+                    if (lesTailles.get(i)== 5){
 
-                    Bateau B = new Bateau(lesTailles.get(i), i,lesNoms.get(i), Horizontal, x, y+1);
+                    Bateau B = new SousMarin(lesTailles.get(i), i,lesNoms.get(i), Horizontal, x, y+1);
 
-                    MapDeBateaux.put(i,B);
+                    MapDeBateaux.put(i,B);}
                     }
                     test = 1;
 
@@ -227,12 +228,12 @@ public class JoueurHumain //initialisation de la classe joueur humain
 
 // continuer cette fonction pour bien prendre encompte l'absence de voisins et le non chevauchement
         }
-        /*for (int i = 0; i<listeCases.size();i++){
-            System.out.println(i + " Avec X = " + listeCases.get(i).getX() + " et Y = " + listeCases.get(i).getY() + "\n et d'ID = " + listeCases.get(i).getGetID());
+        for (int i = 0; i<listeCases.size();i++){
+            //System.out.println(i + " Avec X = " + listeCases.get(i).getX() + " et Y = " + listeCases.get(i).getY() + "\n et d'ID = " + listeCases.get(i).getGetID());
             MapDeCases.put(i, listeCases.get(i));
 
 
-        }*/
+        }
         setMapDeBateaux(MapDeBateaux);
         return MapDeCases; }
 
