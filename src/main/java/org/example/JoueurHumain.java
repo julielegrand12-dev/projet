@@ -1,11 +1,6 @@
 package org.example;
 
-import jdk.internal.access.JavaIOFileDescriptorAccess;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class JoueurHumain //initialisation de la classe joueur humain
 {
@@ -24,6 +19,8 @@ public class JoueurHumain //initialisation de la classe joueur humain
         this.mapDeBateauxHumain = mapDeBateaux;
     }
 
+    private Scanner scan1 = new Scanner(System.in);
+    private Scanner scan = new Scanner(System.in);
 
 
     public void setMapDeCasesHumain(HashMap<Integer, Case> mapDeCases) {
@@ -247,9 +244,29 @@ public class JoueurHumain //initialisation de la classe joueur humain
 
             return MapDeBateaux;
         }
+        // Trouver moyen de retourner coordonnée de début
 
     void DeplacerBateau(HashMap<Integer, Bateau>MapDeBateaux)
     {
+        Integer choix;
+        Boolean Horizontal;
+        int coordonneesX;
+        int coordonneesY;
+        int x=0;
+
+        //définition du boolean
+        if (x == 0) {
+            Horizontal = true;
+        }
+        else {
+            Horizontal = false;
+        }
+
+        //on initialise un objet pour la classe bateau et la map
+        Bateau B= new Bateau(0,0,"l", Horizontal, 0, 0);
+        MapDeBateaux  = getMapDeBateauxHumain();
+
+        //affichage de départ
         System.out.println("Vous avez choisi de déplacer votre bateau\n");
         System.out.println("Veuillez selectionner le bateau souhaite:\n");
         //setMapDeBateaux(mapDeBateaux);
@@ -258,6 +275,36 @@ public class JoueurHumain //initialisation de la classe joueur humain
         {
             System.out.println(" " + MapDeBateaux.get(i).getNom_navire() + " et d'id : "+ MapDeBateaux.get(i).getId_navire());
         }
+        System.out.println("Veuillez selectionner le bateau souhaite dans la liste ci-dessous:\n");
+
+//fonction affichage mapBateaux
+    for(Integer i : MapDeBateaux.keySet())
+    {
+        //System.out.println(" " + MapDeBateaux.get(i).getNom_navire() + " et d'id : "+ MapDeBateaux.get(i).getId_navire());
     }
+        choix = scan1.nextInt();
+
+    //on blinde l'entrée
+     while(choix<0 || choix>9)
+     {
+         System.out.print("Saisie incorrecte: Veulliez saisir un bon id :");
+         choix = scan1.nextInt();
+
+     }
+
+     //on demande les coordonnées
+        System.out.print("Vous avez choisi le bateau : "+ MapDeBateaux.get(choix).getNom_navire()+"\n");
+        System.out.print("Indiquer les coordonnées souhaitées\n");
+        System.out.print("Coordonnées X:\n");
+        coordonneesX=scan.nextInt();
+        B.setCoordoX(coordonneesX); //on inclut les nouvelles coordonnées dans la classe bateau
+        System.out.print("Coordonnées Y:\n");
+        coordonneesY=scan.nextInt();
+        B.setCoordoY(coordonneesY);
+        System.out.println("Les coordonnées sont: X:"+B.getCoordoX()+" Y:"+B.getCoordoY());
+
+    }
+
+
 }
 //j'ai du coup changer le nom de placementBateau vers placementcase
