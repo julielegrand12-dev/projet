@@ -4,10 +4,13 @@ import java.util.Scanner;
 
 public class Menu
 {
+
+
     private int choix=0;
     private Scanner scan = new Scanner(System.in);
     private boolean test=false;
     Jeu j= new Jeu('0', '0');
+
     private String pseudo;
     private Scanner scan1 = new Scanner(System.in);
 

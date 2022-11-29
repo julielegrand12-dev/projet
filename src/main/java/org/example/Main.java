@@ -34,8 +34,6 @@ public class Main {
             System.out.println("Case n."+i+ " de Coordonnée X = "+ mapDeCases.get(i).getX() + " "  + " et coordonnée Y = " + mapDeCases.get(i).getY() + "   " + mapDeCases.get(i).getGetID());
         }*/
 
-
-
         //Appel des menus
        M.MenuDebut();
        //M.MenuBateau();
