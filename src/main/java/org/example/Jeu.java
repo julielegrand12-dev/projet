@@ -42,25 +42,25 @@ public class Jeu {
     public void plateauHumainNavires ()
     {
     Plateau Ph = new Plateau();
-    Ph.plateau(15,15);
+    Ph.gui();
     }
 
     public void plateauHumainDommages ()
     {
         Plateau Pd = new Plateau();
-        Pd.plateau(15,15);
+       Pd.gui();
     }
 
     public void plateauOrdiNavires ()
     {
         Plateau Po = new Plateau();
-        Po.plateau(15,15);
+        Po.gui();
     }
 
     public void plateauOrdiDommages ()
     {
         Plateau Pn = new Plateau();
-        Pn.plateau(15,15);
+       Pn.gui();
     }
 
 }
