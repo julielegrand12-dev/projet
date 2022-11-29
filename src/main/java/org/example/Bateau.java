@@ -14,8 +14,7 @@ public class Bateau {
     private boolean Horizontal ; // dans le cas d'un navire vertical, ce sont les lignes x qui déterminent la taille
 
 
-    public Bateau(int taille, int i, String nom, boolean horizontal,  int  coordonneeDebutX, int coordonneeDebutY) {
-    }
+    public Bateau() {}
 
     // dans le cas 'un navire horizontal,ce sont les colonnes y qui determinent la taille
 
@@ -96,7 +95,7 @@ public class Bateau {
         }return false;
     }
 
-    public void Bateau( int taille_navire,int id_navire, String nom_navire, boolean Horizontal, int coordonneeDebutX, int coordonneeDebutY){
+    public Bateau( int taille_navire,int id_navire, String nom_navire, boolean Horizontal, int coordonneeDebutX, int coordonneeDebutY){
         this.id_navire = id_navire ;
         this.nom_navire = nom_navire ;
         this.taille_navire = taille_navire ;
