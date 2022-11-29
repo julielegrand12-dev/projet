@@ -46,8 +46,8 @@ private int tempo =0;
                 mapDeBateauxO = mapDeBateaux;
                 setTempo(2);
             }
-            J.setMapDeCases(mapDeCases);
-            J.PlacementCases(mapDeCases,mapDeBateaux);
+            J.setMapDeCasesHumain(mapDeCases);
+            J.PlacementCasesHumain(mapDeCases,mapDeBateaux);
 
 
             int j=60;
