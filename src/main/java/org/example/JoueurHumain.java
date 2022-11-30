@@ -1,11 +1,6 @@
 package org.example;
 
-import jdk.internal.access.JavaIOFileDescriptorAccess;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class JoueurHumain //initialisation de la classe joueur humain
 {
@@ -13,25 +8,27 @@ public class JoueurHumain //initialisation de la classe joueur humain
     //public HashMap<Object, Object> mapDeCases;
     private String pseudo;
     private int score;
-    private HashMap<Integer, Case> mapDeCases = new HashMap<Integer,Case>();
-    private HashMap<Integer,Bateau> mapDeBateaux = new HashMap<Integer, Bateau>();
+    private HashMap<Integer, Case> mapDeCasesHumain = new HashMap<Integer,Case>();
+    private HashMap<Integer,Bateau> mapDeBateauxHumain = new HashMap<Integer, Bateau>();
 
-    public HashMap<Integer, Bateau> getMapDeBateaux() {
-        return mapDeBateaux;
+    public HashMap<Integer, Bateau> getMapDeBateauxHumain() {
+        return mapDeBateauxHumain;
     }
 
-    public void setMapDeBateaux(HashMap<Integer, Bateau> mapDeBateaux) {
-        this.mapDeBateaux = mapDeBateaux;
+    public void setMapDeBateauxHumain(HashMap<Integer, Bateau> mapDeBateaux) {
+        this.mapDeBateauxHumain = mapDeBateaux;
     }
 
+    private Scanner scan1 = new Scanner(System.in);
+    private Scanner scan = new Scanner(System.in);
 
 
-    public void setMapDeCases(HashMap<Integer, Case> mapDeCases) {
-        this.mapDeCases = mapDeCases;
+    public void setMapDeCasesHumain(HashMap<Integer, Case> mapDeCases) {
+        this.mapDeCasesHumain = mapDeCases;
     }
 
-    public HashMap<Integer, Case> getMapDeCases() {
-        return mapDeCases;
+    public HashMap<Integer, Case> getMapDeCasesHumain() {
+        return mapDeCasesHumain;
     }
 
     //Déclaration du constructeur
@@ -58,7 +55,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
         this.score = score;
     }
 
-    protected HashMap<Integer, Case> PlacementCases(HashMap<Integer, Case>MapDeCases, HashMap<Integer, Bateau>MapDeBateaux) {
+    protected HashMap<Integer, Case> PlacementCasesHumain(HashMap<Integer, Case>MapDeCases, HashMap<Integer, Bateau>MapDeBateaux) {
 
        //Initialisation de la fonction aléatoire
         Random alea = new Random();
@@ -234,29 +231,80 @@ public class JoueurHumain //initialisation de la classe joueur humain
 
 
         }
-        setMapDeBateaux(MapDeBateaux);
+        setMapDeBateauxHumain(MapDeBateaux);
+        setMapDeCasesHumain(MapDeCases);
         return MapDeCases; }
 
-        protected HashMap<Integer, Bateau> PlacementBateaux (HashMap<Integer, Bateau>MapDeBateaux) {
-            MapDeBateaux  = getMapDeBateaux();
+        protected HashMap<Integer, Bateau> PlacementBateauxHumain (HashMap<Integer, Bateau>MapDeBateaux) {
+            MapDeBateaux  = getMapDeBateauxHumain();
            /* for (Integer TY : mapDeBateaux.keySet()) {
                 System.out.println("Bateau n." + TY + " de nom = " + mapDeBateaux.get(TY).getNom_navire()  +" D'id : " +  mapDeBateaux.get(TY).getId_navire() + " de taille = " + mapDeBateaux.get(TY).getTaille_navire()+  "\n, de direction horizontale : "  + mapDeBateaux.get(TY).isHorizontal() + "\n, de coordonnées debut x = " + mapDeBateaux.get(TY).getCoordonneeDebutX()+ " et y = " + mapDeBateaux.get(TY).getCoordonneeDebutY() + "\n\n" );
 
             }*/
+
             return MapDeBateaux;
         }
         // Trouver moyen de retourner coordonnée de début
 
     void DeplacerBateau(HashMap<Integer, Bateau>MapDeBateaux)
     {
+        Integer choix;
+        Boolean Horizontal;
+        int coordonneesX;
+        int coordonneesY;
+        int x=0;
+
+        //définition du boolean
+        if (x == 0) {
+            Horizontal = true;
+        }
+        else {
+            Horizontal = false;
+        }
+
+        //on initialise un objet pour la classe bateau et la map
+        Bateau B= new Bateau(0,0,"l", Horizontal, 0, 0);
+        MapDeBateaux  = getMapDeBateauxHumain();
+
+        //affichage de départ
         System.out.println("Vous avez choisi de déplacer votre bateau\n");
         System.out.println("Veuillez selectionner le bateau souhaite:\n");
         //setMapDeBateaux(mapDeBateaux);
-     //MapDeBateaux  = getMapDeBateaux();
+     MapDeBateaux  = getMapDeBateauxHumain();
        for(Integer i : MapDeBateaux.keySet())
         {
             System.out.println(" " + MapDeBateaux.get(i).getNom_navire() + " et d'id : "+ MapDeBateaux.get(i).getId_navire());
         }
+        System.out.println("Veuillez selectionner le bateau souhaite dans la liste ci-dessous:\n");
+
+//fonction affichage mapBateaux
+    for(Integer i : MapDeBateaux.keySet())
+    {
+        //System.out.println(" " + MapDeBateaux.get(i).getNom_navire() + " et d'id : "+ MapDeBateaux.get(i).getId_navire());
     }
+        choix = scan1.nextInt();
+
+    //on blinde l'entrée
+     while(choix<0 || choix>9)
+     {
+         System.out.print("Saisie incorrecte: Veulliez saisir un bon id :");
+         choix = scan1.nextInt();
+
+     }
+
+     //on demande les coordonnées
+        System.out.print("Vous avez choisi le bateau : "+ MapDeBateaux.get(choix).getNom_navire()+"\n");
+        System.out.print("Indiquer les coordonnées souhaitées\n");
+        System.out.print("Coordonnées X:\n");
+        coordonneesX=scan.nextInt();
+        B.setCoordoX(coordonneesX); //on inclut les nouvelles coordonnées dans la classe bateau
+        System.out.print("Coordonnées Y:\n");
+        coordonneesY=scan.nextInt();
+        B.setCoordoY(coordonneesY);
+        System.out.println("Les coordonnées sont: X:"+B.getCoordoX()+" Y:"+B.getCoordoY());
+
+    }
+
+
 }
 //j'ai du coup changer le nom de placementBateau vers placementcase

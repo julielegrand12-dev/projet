@@ -10,23 +10,23 @@ public class JoueurOrdi {
     private String pseudo;
     private int score;
 
-    private HashMap<Integer, Case> mapDeCases = new HashMap<Integer,Case>();
-    private HashMap<Integer,Bateau> mapDeBateaux = new HashMap<Integer, Bateau>();
+    private HashMap<Integer, Case> mapDeCasesOrdi = new HashMap<Integer,Case>();
+    private HashMap<Integer,Bateau> mapDeBateauxOrdi = new HashMap<Integer, Bateau>();
 
-    public HashMap<Integer, Bateau> getMapDeBateaux() {
-        return mapDeBateaux;
+    public HashMap<Integer, Bateau> getMapDeBateauxOrdi() {
+        return mapDeBateauxOrdi;
     }
 
-    public void setMapDeBateaux(HashMap<Integer, Bateau> mapDeBateaux) {
-        this.mapDeBateaux = mapDeBateaux;
+    public void setMapDeBateauxOrdi(HashMap<Integer, Bateau> mapDeBateaux) {
+        this.mapDeBateauxOrdi = mapDeBateaux;
     }
 
-    public void setMapDeCases(HashMap<Integer, Case> mapDeCases) {
-        this.mapDeCases = mapDeCases;
+    public void setMapDeCasesOrdi(HashMap<Integer, Case> mapDeCases) {
+        this.mapDeCasesOrdi = mapDeCases;
     }
 
-    public HashMap<Integer, Case> getMapDeCases() {
-        return mapDeCases;
+    public HashMap<Integer, Case> getMapDeCasesOrdi() {
+        return mapDeCasesOrdi;
     }
 
     //Déclaration du constructeur
@@ -54,7 +54,7 @@ public class JoueurOrdi {
     }
 
 
-    protected HashMap<Integer, Case> PlacementCases(HashMap<Integer, Case>MapDeCases, HashMap<Integer, Bateau>MapDeBateaux) {
+    protected HashMap<Integer, Case> PlacementCasesOrdi(HashMap<Integer, Case>MapDeCases, HashMap<Integer, Bateau>MapDeBateaux) {
 
         //Initialisation de la fonction aléatoire
         Random alea = new Random();
@@ -235,11 +235,11 @@ public class JoueurOrdi {
 
 
         }*/
-        setMapDeBateaux(MapDeBateaux);
+        setMapDeBateauxOrdi(MapDeBateaux);
         return MapDeCases; }
 
-    protected HashMap<Integer, Bateau> PlacementBateaux (HashMap<Integer, Bateau>MapDeBateaux) {
-        MapDeBateaux  = getMapDeBateaux();
+    protected HashMap<Integer, Bateau> PlacementBateauxOrdi (HashMap<Integer, Bateau>MapDeBateaux) {
+        MapDeBateaux  = getMapDeBateauxOrdi();
            /* for (Integer TY : mapDeBateaux.keySet()) {
                 System.out.println("Bateau n." + TY + " de nom = " + mapDeBateaux.get(TY).getNom_navire()  +" D'id : " +  mapDeBateaux.get(TY).getId_navire() + " de taille = " + mapDeBateaux.get(TY).getTaille_navire()+  "\n, de direction horizontale : "  + mapDeBateaux.get(TY).isHorizontal() + "\n, de coordonnées debut x = " + mapDeBateaux.get(TY).getCoordonneeDebutX()+ " et y = " + mapDeBateaux.get(TY).getCoordonneeDebutY() + "\n\n" );
 
@@ -250,9 +250,10 @@ public class JoueurOrdi {
 
     void DeplacerBateau(HashMap<Integer, Bateau>MapDeBateaux)
     {
+        MapDeBateaux  = getMapDeBateauxOrdi();
 
-        for (Integer TY : mapDeBateaux.keySet()) {
-            System.out.println("Bateau n." + TY + " de nom = " + mapDeBateaux.get(TY).getNom_navire()  +" D'id : " +  mapDeBateaux.get(TY).getId_navire() + " de taille = " + mapDeBateaux.get(TY).getTaille_navire()+  "\n, de direction horizontale : "  + mapDeBateaux.get(TY).isHorizontal() + "\n, de coordonnées debut x = " + mapDeBateaux.get(TY).getCoordonneeDebutX()+ " et y = " + mapDeBateaux.get(TY).getCoordonneeDebutY() + "\n\n" );
+        for (Integer TY : MapDeBateaux.keySet()) {
+            System.out.println("Bateau n." + TY + " de nom = " + MapDeBateaux.get(TY).getNom_navire()  +" D'id : " +  MapDeBateaux.get(TY).getId_navire() + " de taille = " + MapDeBateaux.get(TY).getTaille_navire()+  "\n, de direction horizontale : "  + MapDeBateaux.get(TY).isHorizontal() + "\n, de coordonnées debut x = " + MapDeBateaux.get(TY).getCoordonneeDebutX()+ " et y = " + MapDeBateaux.get(TY).getCoordonneeDebutY() + "\n\n" );
 
 
         }
