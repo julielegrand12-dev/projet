@@ -2,13 +2,22 @@ package org.example;
 
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 import java.util.HashMap;
+import java.awt.BorderLayout;
+import java.awt.KeyEventDispatcher;
+import java.awt.KeyboardFocusManager;
+import java.awt.event.KeyEvent;
 
-public class Panel extends JPanel{
+public class Panel extends JPanel {
 
 
-private int tempo =0;
+    private HashMap<Integer, Case> mapDeCases = new HashMap<Integer, Case>();
+    private HashMap<Integer, Bateau> mapDeBateaux = new HashMap<>();
 
+    private int tempo;
 
     public int getTempo() {
         return tempo;
@@ -18,102 +27,151 @@ private int tempo =0;
         this.tempo = tempo;
     }
 
-    public void paintComponent(Graphics g)
+    JoueurHumain J = new JoueurHumain("Sara", 0);
+
+    public Panel() {
+    }
+
+
+    public HashMap<Integer, Case> getMapDeCases() {
+        return mapDeCases;
+    }
+
+    public void setMapDeCases(HashMap<Integer, Case> mapDeCases) {
+        this.mapDeCases = mapDeCases;
+    }
+    public void testsauvegarde()
     {
-
-
-
-        if(tempo == 0 || tempo ==1)
+        /*int tempo2=0;
+        //appeler sauvegarde et si vide alor créer
+        Sauvegarde Sauv = new Sauvegarde();
+        tempo2=Sauv.testsauv();
+        System.out.println("tempo recupJ :" + tempo);
+        if(tempo2==0)
         {
-            JoueurHumain J = new JoueurHumain("Sara",0);
-            HashMap<Integer, Case> mapDeCases = new HashMap<Integer, Case>();
-            HashMap<Integer, Bateau> mapDeBateaux = new HashMap<>();
-        if(tempo==0)
-            {
-                HashMap<Integer, Case> mapDeCasesP = new HashMap<Integer, Case>();
-                HashMap<Integer, Bateau> mapDeBateauxP = new HashMap<>();
-                mapDeCasesP = mapDeCases;
-                mapDeBateauxP = mapDeBateaux;
-                setTempo(1);
-
-
-            }
-            if(tempo==1)
-            {
-                HashMap<Integer, Case> mapDeCasesO = new HashMap<Integer, Case>();
-                HashMap<Integer, Bateau> mapDeBateauxO = new HashMap<>();
-                mapDeCasesO = mapDeCases;
-                mapDeBateauxO = mapDeBateaux;
-                setTempo(2);
-            }
+            System.out.println("Nouvelle partie");
             J.setMapDeCases(mapDeCases);
-            J.PlacementCases(mapDeCases,mapDeBateaux);
+            J.setMapDeBateaux(mapDeBateaux);
+            J.PlacementCases(mapDeCases, mapDeBateaux);
+
+        }
+        if(tempo2==1)
+        {
+            System.out.println("Reprise de Sauvegarde");
+
+        }*/
+
+    }
+
+    public void paintComponent(Graphics g) {
+        System.out.println("tempo recupJ :" + tempo);
+
+        Plateau P = new Plateau();
+
+        Sauvegarde Sauv = new Sauvegarde();
+      //  tempo2=Sauv.testsauv();
+        if(tempo==0)
+        {
+            System.out.println("Nouvelle partie");
+            J.setMapDeCases(mapDeCases);
+            J.setMapDeBateaux(mapDeBateaux);
+            J.PlacementCases(mapDeCases, mapDeBateaux);
+
+        }
+        if(tempo==1)
+        {
+            System.out.println("Reprise de Sauvegarde");
+
+        }
 
 
-            int j=60;
-            for(char c = 'A'; c<='O';c++) {
-                g.drawString(String.valueOf(c),j,45);
-                j=j+31;
+        KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+        manager.addKeyEventDispatcher(new MyDispatcher());
+
+
+
+
+        int j = 60;
+        for (char c = 'A'; c <= 'O'; c++) {
+            g.drawString(String.valueOf(c), j, 45);
+            j = j + 31;
+        }
+        int k = 67;
+        for (int d = 0; d <= 14; d++) {
+            g.drawString(String.valueOf(d), 30, k);
+            k = k + 31;
+
+        }
+        int a = 0;
+
+
+        for (Integer i : J.getMapDeCases().keySet()) {
+            if (J.getMapDeCases().get(i).getGetID() == 1) {
+                g.setColor(Color.YELLOW);
+                g.fillRect(J.getMapDeCases().get(i).getX() * 31 + 50, J.getMapDeCases().get(i).getY() * 31 + 50, 31, 31);
+
             }
-            int k=67;
-            for(int d = 0; d<= 14; d++) {
-                g.drawString(String.valueOf(d),30,k);
-                k=k+31;
+            if (mapDeCases.get(i).getGetID() == 3) {
+                g.setColor(Color.ORANGE);
+                g.fillRect(mapDeCases.get(i).getX() * 31 + 50, mapDeCases.get(i).getY() * 31 + 50, 31, 31);
 
             }
-            int a=0;
-
-
-
-            for(Integer i : mapDeCases.keySet())
-            {
-                if(mapDeCases.get(i).getGetID()==1)
-                {
-                    g.setColor(Color.YELLOW);
-                    g.fillRect(mapDeCases.get(i).getX()*31+50,mapDeCases.get(i).getY()*31+50,31,31);
-
-                }
-                if(mapDeCases.get(i).getGetID()==3)
-                {
-                    g.setColor(Color.ORANGE);
-                    g.fillRect(mapDeCases.get(i).getX()*31+50,mapDeCases.get(i).getY()*31+50,31,31);
-
-                }
-                if(mapDeCases.get(i).getGetID()==5)
-                {
-                    g.setColor(Color.PINK);
-                    g.fillRect(mapDeCases.get(i).getX()*31+50,mapDeCases.get(i).getY()*31+50,31,31);
-
-                }
-                if(mapDeCases.get(i).getGetID()==7)
-                {
-                    g.setColor(Color.RED);
-                    g.fillRect(mapDeCases.get(i).getX()*31+50,mapDeCases.get(i).getY()*31+50,31,31);
-
-                }
-
+            if (mapDeCases.get(i).getGetID() == 5) {
+                g.setColor(Color.PINK);
+                g.fillRect(mapDeCases.get(i).getX() * 31 + 50, mapDeCases.get(i).getY() * 31 + 50, 31, 31);
 
             }
+            if (mapDeCases.get(i).getGetID() == 7) {
+                g.setColor(Color.RED);
+                g.fillRect(mapDeCases.get(i).getX() * 31 + 50, mapDeCases.get(i).getY() * 31 + 50, 31, 31);
 
-
-
-            g.setColor(Color.BLACK);
-            for(int i=50; i<520;i++ )
-            {
-                g.drawLine(i,50,i,515);
-                g.drawLine(50,i,515,i);
-                i=i+30;
             }
-            g.setColor(Color.BLACK);
-
 
 
         }
 
 
-
-
-
+        g.setColor(Color.BLACK);
+        for (int i = 50; i < 520; i++) {
+            g.drawLine(i, 50, i, 515);
+            g.drawLine(50, i, 515, i);
+            i = i + 30;
+        }
+        g.setColor(Color.BLACK);
 
     }
-}
+        private class MyDispatcher implements KeyEventDispatcher {
+
+            @Override
+            public boolean dispatchKeyEvent(KeyEvent e) {
+                switch (e.getID()) {
+                    case KeyEvent.KEY_PRESSED:
+
+                        setTempo(1);
+
+                            Sauvegarde S = new Sauvegarde();
+                            S.SauvegarderJeu(J);
+
+
+
+                        // System.out.println("Vous venez d'appuyer sur la touche "+ e.getKeyChar() +" (code "+ e.getKeyCode() +")");
+
+                        break;
+                    case KeyEvent.KEY_RELEASED:
+                        // System.out.println("Vous venez de relacher la touche "+ e.getKeyChar() +" (code "+ e.getKeyCode() +")");
+                        break;
+                    case KeyEvent.KEY_TYPED:
+                        //System.out.println("Vous venez de taper sur la touche "+ e.getKeyChar());
+                        break;
+                }
+                return false;
+            }
+        }
+
+    }
+
+
+
+
+
+
