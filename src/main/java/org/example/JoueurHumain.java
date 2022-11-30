@@ -55,7 +55,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
         this.score = score;
     }
 
-    protected HashMap<Integer, Case> PlacementCasesHumain(HashMap<Integer, Case>MapDeCases, HashMap<Integer, Bateau>MapDeBateaux) {
+    protected HashMap<Integer, Case> PlacementCasesHumain(HashMap<Integer,Case>MapDeCases, HashMap<Integer,Bateau>MapDeBateaux) {
 
        //Initialisation de la fonction aléatoire
         Random alea = new Random();
@@ -223,7 +223,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
                 }
 
 
-// continuer cette fonction pour bien prendre encompte l'absence de voisins et le non chevauchement
+// continuer cette fonction pour bien prendre en compte l'absence de voisins et le non chevauchement
         }
         for (int i = 0; i<listeCases.size();i++){
             //System.out.println(i + " Avec X = " + listeCases.get(i).getX() + " et Y = " + listeCases.get(i).getY() + "\n et d'ID = " + listeCases.get(i).getGetID());
@@ -235,7 +235,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
         setMapDeCasesHumain(MapDeCases);
         return MapDeCases; }
 
-        protected HashMap<Integer, Bateau> PlacementBateauxHumain (HashMap<Integer, Bateau>MapDeBateaux) {
+        protected HashMap<Integer,Bateau> PlacementBateauxHumain (HashMap<Integer,Bateau>MapDeBateaux) {
             MapDeBateaux  = getMapDeBateauxHumain();
            /* for (Integer TY : mapDeBateaux.keySet()) {
                 System.out.println("Bateau n." + TY + " de nom = " + mapDeBateaux.get(TY).getNom_navire()  +" D'id : " +  mapDeBateaux.get(TY).getId_navire() + " de taille = " + mapDeBateaux.get(TY).getTaille_navire()+  "\n, de direction horizontale : "  + mapDeBateaux.get(TY).isHorizontal() + "\n, de coordonnées debut x = " + mapDeBateaux.get(TY).getCoordonneeDebutX()+ " et y = " + mapDeBateaux.get(TY).getCoordonneeDebutY() + "\n\n" );
@@ -246,31 +246,22 @@ public class JoueurHumain //initialisation de la classe joueur humain
         }
         // Trouver moyen de retourner coordonnée de début
 
-    void DeplacerBateau(HashMap<Integer, Bateau>MapDeBateaux)
+    void DeplacerBateau(HashMap<Integer, Bateau>MapDeBateaux, HashMap<Integer,Case>MapDeCases )
     {
         Integer choix;
-        Boolean Horizontal;
-        int coordonneesX;
-        int coordonneesY;
         int x=0;
-
-        //définition du boolean
-        if (x == 0) {
-            Horizontal = true;
-        }
-        else {
-            Horizontal = false;
-        }
+        int reponse;
 
         //on initialise un objet pour la classe bateau et la map
-        Bateau B= new Bateau(0,0,"l", Horizontal, 0, 0);
-        MapDeBateaux  = getMapDeBateauxHumain();
+        Bateau B= new Bateau();
 
         //affichage de départ
         System.out.println("Vous avez choisi de déplacer votre bateau\n");
         System.out.println("Veuillez selectionner le bateau souhaite:\n");
-        //setMapDeBateaux(mapDeBateaux);
+
      MapDeBateaux  = getMapDeBateauxHumain();
+     MapDeCases = getMapDeCasesHumain();
+
        for(Integer i : MapDeBateaux.keySet())
         {
             System.out.println(" " + MapDeBateaux.get(i).getNom_navire() + " et d'id : "+ MapDeBateaux.get(i).getId_navire());
@@ -294,15 +285,103 @@ public class JoueurHumain //initialisation de la classe joueur humain
 
      //on demande les coordonnées
         System.out.print("Vous avez choisi le bateau : "+ MapDeBateaux.get(choix).getNom_navire()+"\n");
-        System.out.print("Indiquer les coordonnées souhaitées\n");
-        System.out.print("Coordonnées X:\n");
-        coordonneesX=scan.nextInt();
-        B.setCoordoX(coordonneesX); //on inclut les nouvelles coordonnées dans la classe bateau
-        System.out.print("Coordonnées Y:\n");
-        coordonneesY=scan.nextInt();
-        B.setCoordoY(coordonneesY);
-        System.out.println("Les coordonnées sont: X:"+B.getCoordoX()+" Y:"+B.getCoordoY());
 
+     if(B.isHorizontal()==true) //si le bateau est horizontale
+     {
+         Integer i;
+
+        System.out.print("Souhaitez vous deplacer le bateau vers la droite ou vers la gauche? Repondez pour droite 1 ou pour gauche 0\n");
+        reponse=scan.nextInt();
+
+        if(choix==1)
+        {
+            if(reponse==1)
+            {
+                for(i=7; i<11; i++)
+            {
+                Case c = new Case(mapDeCasesHumain.get(i).getX()+1,mapDeCasesHumain.get(i).getY(),choix);
+                mapDeCasesHumain.replace(i,c);
+                setMapDeCasesHumain(mapDeCasesHumain);
+                System.out.println("Coordonnées bateau X:"+mapDeCasesHumain.get(i).getX()+" Y:"+mapDeCasesHumain.get(i).getY());
+            }
+
+            Bateau b= new Bateau(7, choix, "Cruisade",B.isHorizontal(), (mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+1), mapDeBateauxHumain.get(choix).getCoordonneeDebutY());
+            mapDeBateauxHumain.replace(i,b);
+            setMapDeBateauxHumain(mapDeBateauxHumain);
+
+            System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());
+            }
+
+
+             if(reponse==0)
+             {
+                 for(i=7; i<11; i++)
+                 {
+                     Case c = new Case(mapDeCasesHumain.get(i).getX()-1,mapDeCasesHumain.get(i).getY(),choix);
+                     mapDeCasesHumain.replace(i,c);
+                     setMapDeCasesHumain(mapDeCasesHumain);
+                     System.out.println("Coordonnées bateau X:"+mapDeCasesHumain.get(i).getX()+" Y:"+mapDeCasesHumain.get(i).getY());
+
+                 }
+
+                 Bateau b= new Bateau(7, choix, "Cruisade",B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX()-1, mapDeBateauxHumain.get(choix).getCoordonneeDebutY());
+                 mapDeBateauxHumain.replace(i,b);
+                 setMapDeBateauxHumain(mapDeBateauxHumain);
+
+                 System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());
+             }
+         }
+
+
+    }
+        if(B.isHorizontal()==false)
+        {
+            Integer i;
+
+            System.out.print("Souhaitez vous deplacer le bateau vers le haut ou vers le bas? Repondez pour haut 1 ou pour bas 0\n");
+            reponse=scan.nextInt();
+
+            if(choix==1)
+            {
+                if(reponse==1) ////////
+                {
+                    for(i=7; i<11; i++)
+                    {
+                        Case c = new Case(mapDeCasesHumain.get(i).getX(),(mapDeCasesHumain.get(i).getY())+1,choix);
+                        mapDeCasesHumain.replace(i,c);
+                        setMapDeCasesHumain(mapDeCasesHumain);
+                        System.out.println("Coordonnées bateau X:"+mapDeCasesHumain.get(i).getX()+" Y:"+mapDeCasesHumain.get(i).getY());
+
+                    }
+
+                    Bateau b= new Bateau(7, choix, "Cruisade",B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX(), (mapDeBateauxHumain.get(choix).getCoordonneeDebutY())+1);
+                    mapDeBateauxHumain.replace(i,b);
+                    setMapDeBateauxHumain(mapDeBateauxHumain);
+
+                    System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());
+                }
+
+
+                if(reponse==0)
+                {
+                    for(i=7; i<11; i++)
+                    {
+                        Case c = new Case(mapDeCasesHumain.get(i).getX(),mapDeCasesHumain.get(i).getY()-1,choix);
+                        mapDeCasesHumain.replace(i,c);
+                        setMapDeCasesHumain(mapDeCasesHumain);
+                        System.out.println("Coordonnées bateau X:"+mapDeCasesHumain.get(i).getX()+" Y:"+mapDeCasesHumain.get(i).getY());
+
+                    }
+
+                    Bateau b= new Bateau(5, choix, "Croiseur",B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX(), mapDeBateauxHumain.get(choix).getCoordonneeDebutY()-1);
+                    mapDeBateauxHumain.replace(i,b);
+                    setMapDeBateauxHumain(mapDeBateauxHumain);
+                    System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());
+                }
+            }
+
+
+        }
     }
 
 
