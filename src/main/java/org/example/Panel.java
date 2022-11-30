@@ -33,11 +33,11 @@ public class Panel extends JPanel {
     }
 
 
-    public HashMap<Integer, Case> getMapDeCases() {
+    public HashMap<Integer, Case> getMapDeCasesHumain() {
         return mapDeCases;
     }
 
-    public void setMapDeCases(HashMap<Integer, Case> mapDeCases) {
+    public void setMapDeCasesHumain(HashMap<Integer, Case> mapDeCases) {
         this.mapDeCases = mapDeCases;
     }
     public void testsauvegarde()
@@ -64,6 +64,7 @@ public class Panel extends JPanel {
     }
 
     public void paintComponent(Graphics g) {
+        JoueurHumain J = new JoueurHumain("Sara", 0);
         System.out.println("tempo recupJ :" + tempo);
 
         Plateau P = new Plateau();
@@ -73,9 +74,9 @@ public class Panel extends JPanel {
         if(tempo==0)
         {
             System.out.println("Nouvelle partie");
-            J.setMapDeCases(mapDeCases);
-            J.setMapDeBateaux(mapDeBateaux);
-            J.PlacementCases(mapDeCases, mapDeBateaux);
+            J.setMapDeCasesHumain(mapDeCases);
+            J.setMapDeBateauxHumain(mapDeBateaux);
+            J.PlacementCasesHumain(mapDeCases, mapDeBateaux);
 
         }
         if(tempo==1)
@@ -105,10 +106,10 @@ public class Panel extends JPanel {
         int a = 0;
 
 
-        for (Integer i : J.getMapDeCases().keySet()) {
-            if (J.getMapDeCases().get(i).getGetID() == 1) {
+        for (Integer i : J.getMapDeCasesHumain().keySet()) {
+            if (J.getMapDeCasesHumain().get(i).getGetID() == 1) {
                 g.setColor(Color.YELLOW);
-                g.fillRect(J.getMapDeCases().get(i).getX() * 31 + 50, J.getMapDeCases().get(i).getY() * 31 + 50, 31, 31);
+                g.fillRect(J.getMapDeCasesHumain().get(i).getX() * 31 + 50, J.getMapDeCasesHumain().get(i).getY() * 31 + 50, 31, 31);
 
             }
             if (mapDeCases.get(i).getGetID() == 3) {

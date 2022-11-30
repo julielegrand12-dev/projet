@@ -16,8 +16,8 @@ public class Sauvegarde {
 
         System.out.println("JEU - SAUVEGARDE");
 
-        for (Object i : J.getMapDeCases().keySet()) {
-            System.out.println("Case n." + i + " de Coordonnée X = " + J.getMapDeCases().get(i).getX() + " " + " et coordonnée Y = " + J.getMapDeCases().get(i).getY() + "   " + J.getMapDeCases().get(i).getGetID());
+        for (Object i : J.getMapDeCasesHumain().keySet()) {
+            System.out.println("Case n." + i + " de Coordonnée X = " + J.getMapDeCasesHumain().get(i).getX() + " " + " et coordonnée Y = " + J.getMapDeCasesHumain().get(i).getY() + "   " + J.getMapDeCasesHumain().get(i).getGetID());
         }
 
         FileOutputStream monfichierID = null;
@@ -35,17 +35,17 @@ public class Sauvegarde {
             monfichierpseudo = new FileOutputStream("Sauvegardepseudo.dat");
             monfichierscore = new FileOutputStream("Sauvegardescore.dat");
 
-            for (Object j : J.getMapDeCases().keySet()) {
-                monfichierID.write(J.getMapDeCases().get(j).getGetID());
+            for (Object j : J.getMapDeCasesHumain().keySet()) {
+                monfichierID.write(J.getMapDeCasesHumain().get(j).getGetID());
 
 
             }
 
-            for (Object j : J.getMapDeCases().keySet()) {
-                monfichierX.write(J.getMapDeCases().get(j).getX());
+            for (Object j : J.getMapDeCasesHumain().keySet()) {
+                monfichierX.write(J.getMapDeCasesHumain().get(j).getX());
             }
-            for (Object j : J.getMapDeCases().keySet()) {
-                monfichierY.write(J.getMapDeCases().get(j).getY());
+            for (Object j : J.getMapDeCasesHumain().keySet()) {
+                monfichierY.write(J.getMapDeCasesHumain().get(j).getY());
 
             }
 
@@ -175,14 +175,14 @@ public class Sauvegarde {
             mapDeCasesSauv.put(i, listeCases.get(i));
 
         }
-        J.setMapDeCases(mapDeCasesSauv);
+        J.setMapDeCasesHumain(mapDeCasesSauv);
 
 
 
 
-            for (Object i : J.getMapDeCases().keySet()) {
+        /*    for (Object i : J.getMapDeCasesHumain().keySet()) {
                 System.out.println("Case n." + i + " de Coordonnée X = " + mapDeCasesSauv.get(i).getX() + " " + " et coordonnée Y = " + J.getMapDeCases().get(i).getY() + "   " + J.getMapDeCases().get(i).getGetID());
-            }
+            } */
     
 
     Plateau pat = new Plateau();
@@ -191,7 +191,7 @@ public class Sauvegarde {
             pan.setTempo(1);
             System.out.println("tempo :" +pan.getTempo());
     JoueurHumain Ju = new JoueurHumain("Juju", 1);
-            Ju.setMapDeCases(mapDeCasesSauv);
+            Ju.setMapDeCasesHumain(mapDeCasesSauv);
 
     pat.gui();
     }

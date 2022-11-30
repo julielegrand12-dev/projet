@@ -27,7 +27,7 @@ public class Aide extends JPanel  {
         System.out.println("3- Sauvegarder la partie pour continuer de jouer plus tard : cliquez sur n'importe quel touche du clavier\n");
         System.out.println("L'objectif est de couler tous les bateaux de votre adversaire\n");
         System.out.println("Bonne chance !");}
-
+//k
 
 
     }
