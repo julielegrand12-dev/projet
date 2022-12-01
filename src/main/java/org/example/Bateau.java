@@ -8,6 +8,8 @@ public class Bateau {
     private int id_navire  ;
     private int  coordonneeDebutX ;
     private int coordonneeDebutY ;
+    private int coordoX;
+    private int coordoY;
     private String nom_navire ;
     private ArrayList<Case> lesCases;
     private int taille_navire ; // le nb de case du bateau
@@ -33,6 +35,21 @@ public class Bateau {
 
     public void setCoordonneeDebutY(int coordonneeDebutY) {
         this.coordonneeDebutY = coordonneeDebutY;
+    }
+    public int getCoordoX() {
+        return coordoX;
+    }
+
+    public int getCoordoY() {
+        return coordoY;
+    }
+
+    public void setCoordoX(int coordoX) {
+        this.coordoX = coordoX;
+    }
+
+    public void setCoordoY(int coordoY) {
+        this.coordoY = coordoY;
     }
 
     public ArrayList<Case> getLesCases() {

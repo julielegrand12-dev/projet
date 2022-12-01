@@ -1,5 +1,6 @@
 package org.example;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Jeu {
@@ -41,26 +42,32 @@ public class Jeu {
 
     public void plateauHumainNavires ()
     {
+
+
     Plateau Ph = new Plateau();
+
+
     Ph.gui();
     }
 
     public void plateauHumainDommages ()
     {
         Plateau Pd = new Plateau();
-       Pd.gui();
+      // Pd.gui();
     }
 
     public void plateauOrdiNavires ()
     {
+
         Plateau Po = new Plateau();
+
         Po.gui();
     }
 
     public void plateauOrdiDommages ()
     {
         Plateau Pn = new Plateau();
-       Pn.gui();
+      // Pn.gui();
     }
 
 }
