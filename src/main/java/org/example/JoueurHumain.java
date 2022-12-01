@@ -293,7 +293,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
         int reponse=0;
         Integer i=0;
 
-        //on initialise un objet pour la classe bateau et la map
+        //on initialise un objet pour la classe bateau
         Bateau B= new Bateau();
 
         //affichage de départ
@@ -308,7 +308,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
 
         choix = scan1.nextInt();
 
-    //on blinde l'entrée
+    //on blinde l'entrée pour que le choix reste compris entre 0 et 9
      while( choix <0 || choix>9 )
      {
          System.out.print("Saisie incorrecte: Veulliez saisir un bon id :");
@@ -318,26 +318,26 @@ public class JoueurHumain //initialisation de la classe joueur humain
      //on demande les coordonnées
         System.out.print("Vous avez choisi le bateau : "+ MapDeBateaux.get(choix).getNom_navire()+"\n");
 
-     if(B.isHorizontal()==true) //si le bateau n'est pas horizontale
+     if(B.isHorizontal()==true) //si le bateau est horizontale
      {
         System.out.print("Souhaitez vous deplacer le bateau vers la droite ou vers la gauche? Repondez pour droite 1 ou pour gauche 0\n");
         reponse=scan.nextInt();
 
-            if(reponse==1 && choix==0)
+            if(reponse==1)
             {
                 boolean flag = true;
-                for(i=0; i<7; i++)
-            {
-                Case c = new Case(mapDeCasesHumain.get(i).getX()+1,mapDeCasesHumain.get(i).getY(),7);
 
-                if(15 >= mapDeCasesHumain.get(i).getX() + 1 && mapDeCasesHumain.get(i).getX()+1 != mapDeCasesHumain.get(i).getX() && mapDeCasesHumain.get(i).getX()+1 != mapDeCasesHumain.get(i+7).getX() && mapDeCasesHumain.get(i).getX()+1 != mapDeCasesHumain.get(i+14).getX() && mapDeCasesHumain.get(i).getX()+1 != mapDeCasesHumain.get(i+21).getX() && mapDeCasesHumain.get(i).getX()+1 != mapDeCasesHumain.get(i+28).getX())
-                {mapDeCasesHumain.replace(i,c);
-                setMapDeCasesHumain(mapDeCasesHumain);
-                System.out.println("Coordonnées bateau X:"+mapDeCasesHumain.get(i).getX()+" Y:"+mapDeCasesHumain.get(i).getY());
-                flag = false;}
-
-                else {System.out.println("Erreur, la coordonnee saisie est fausse");}
-
+                if(choix==0) //Cuirasse
+                {for(Integer a : mapDeCasesHumain.keySet())
+                    {if (mapDeCasesHumain.get(6).getX() + 1 <= 15 && mapDeCasesHumain.get(6).getX() + 1 != mapDeCasesHumain.get(a).getX())
+                    {for(i=0; i<7; i++)
+                {Case c = new Case(mapDeCasesHumain.get(i).getX()+1,mapDeCasesHumain.get(i).getY(),7);
+                        mapDeCasesHumain.replace(i, c);
+                        setMapDeCasesHumain(mapDeCasesHumain);
+                        System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(i).getX() + " Y:" + mapDeCasesHumain.get(i).getY());
+                        flag = false;
+                }}
+                    else {System.out.println("La coordonnée saisie est non disponible");}
                 }
                 if( flag = false)
                 {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+1, mapDeBateauxHumain.get(choix).getCoordonneeDebutY());
@@ -346,58 +346,425 @@ public class JoueurHumain //initialisation de la classe joueur humain
                     System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
 
                 else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+                }
 
+                if(choix==1)//Croiseur 1
+                {for(Integer a : mapDeCasesHumain.keySet())
+                {if (mapDeCasesHumain.get(11).getX() + 1 <= 15 && mapDeCasesHumain.get(11).getX() + 1 != mapDeCasesHumain.get(a).getX())
+                {for(i=7; i<11; i++)
+                {Case c = new Case(mapDeCasesHumain.get(i).getX()+1,mapDeCasesHumain.get(i).getY(),5);
+                    mapDeCasesHumain.replace(i, c);
+                    setMapDeCasesHumain(mapDeCasesHumain);
+                    System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(i).getX() + " Y:" + mapDeCasesHumain.get(i).getY());
+                    flag = false;
+                }}
+                else {System.out.println("La coordonnée saisie est non disponible");}
+                }
+                    if( flag = false)
+                    {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+1, mapDeBateauxHumain.get(choix).getCoordonneeDebutY());
+                        mapDeBateauxHumain.replace(i,b);
+                        setMapDeBateauxHumain(mapDeBateauxHumain);
+                        System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                    else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+                }
+
+                if(choix==2)//Croiseur 2
+                {for(Integer a : mapDeCasesHumain.keySet())
+                {if (mapDeCasesHumain.get(16).getX() + 1 <= 15 && mapDeCasesHumain.get(16).getX() + 1 != mapDeCasesHumain.get(a).getX())
+                {for(i=12; i<16; i++)
+                {Case c = new Case(mapDeCasesHumain.get(i).getX()+1,mapDeCasesHumain.get(i).getY(),5);
+                    mapDeCasesHumain.replace(i, c);
+                    setMapDeCasesHumain(mapDeCasesHumain);
+                    System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(i).getX() + " Y:" + mapDeCasesHumain.get(i).getY());
+                    flag = false;
+                }}
+                else {System.out.println("La coordonnée saisie est non disponible");}
+                }
+                    if( flag = false)
+                    {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+1, mapDeBateauxHumain.get(choix).getCoordonneeDebutY());
+                        mapDeBateauxHumain.replace(i,b);
+                        setMapDeBateauxHumain(mapDeBateauxHumain);
+                        System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                    else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+                }
+
+                if(choix==3)//Destroyer 1
+                {for(Integer a : mapDeCasesHumain.keySet())
+                {if (mapDeCasesHumain.get(19).getX() + 1 <= 15 && mapDeCasesHumain.get(19).getX() + 1 != mapDeCasesHumain.get(a).getX())
+                {for(i=17; i<19; i++)
+                {Case c = new Case(mapDeCasesHumain.get(i).getX()+1,mapDeCasesHumain.get(i).getY(),3);
+                    mapDeCasesHumain.replace(i, c);
+                    setMapDeCasesHumain(mapDeCasesHumain);
+                    System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(i).getX() + " Y:" + mapDeCasesHumain.get(i).getY());
+                    flag = false;
+                }}
+                else {System.out.println("La coordonnée saisie est non disponible");}
+                }
+                    if( flag = false)
+                    {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+1, mapDeBateauxHumain.get(choix).getCoordonneeDebutY());
+                        mapDeBateauxHumain.replace(i,b);
+                        setMapDeBateauxHumain(mapDeBateauxHumain);
+                        System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                    else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+                }
+
+                if(choix==4)//destroyer 2
+                {for(Integer a : mapDeCasesHumain.keySet())
+                {if (mapDeCasesHumain.get(22).getX() + 1 <= 15 && mapDeCasesHumain.get(22).getX() + 1 != mapDeCasesHumain.get(a).getX())
+                {for(i=20; i<22; i++)
+                {Case c = new Case(mapDeCasesHumain.get(i).getX()+1,mapDeCasesHumain.get(i).getY(),3);
+                    mapDeCasesHumain.replace(i, c);
+                    setMapDeCasesHumain(mapDeCasesHumain);
+                    System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(i).getX() + " Y:" + mapDeCasesHumain.get(i).getY());
+                    flag = false;
+                }}
+                else {System.out.println("La coordonnée saisie est non disponible");}
+                }
+                    if( flag = false)
+                    {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+1, mapDeBateauxHumain.get(choix).getCoordonneeDebutY());
+                        mapDeBateauxHumain.replace(i,b);
+                        setMapDeBateauxHumain(mapDeBateauxHumain);
+                        System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                    else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+                }
+
+                if(choix==5)//destroyer 3
+                {for(Integer a : mapDeCasesHumain.keySet())
+                {if (mapDeCasesHumain.get(25).getX() + 1 <= 15 && mapDeCasesHumain.get(25).getX() + 1 != mapDeCasesHumain.get(a).getX())
+                {for(i=23; i<25; i++)
+                {Case c = new Case(mapDeCasesHumain.get(i).getX()+1,mapDeCasesHumain.get(i).getY(),3);
+                    mapDeCasesHumain.replace(i, c);
+                    setMapDeCasesHumain(mapDeCasesHumain);
+                    System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(i).getX() + " Y:" + mapDeCasesHumain.get(i).getY());
+                    flag = false;
+                }}
+                else {System.out.println("La coordonnée saisie est non disponible");}
+                }
+                    if( flag = false)
+                    {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+1, mapDeBateauxHumain.get(choix).getCoordonneeDebutY());
+                        mapDeBateauxHumain.replace(i,b);
+                        setMapDeBateauxHumain(mapDeBateauxHumain);
+                        System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                    else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+                }
+
+                if(choix==6)//sous-marin 1
+                {for(Integer a : mapDeCasesHumain.keySet())
+                {if (mapDeCasesHumain.get(26).getX() + 1 <= 15 && mapDeCasesHumain.get(26).getX() + 1 != mapDeCasesHumain.get(a).getX())
+                {Case c = new Case(mapDeCasesHumain.get(26).getX()+1,mapDeCasesHumain.get(26).getY(),1);
+                    mapDeCasesHumain.replace(26, c);
+                    setMapDeCasesHumain(mapDeCasesHumain);
+                    System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(26).getX() + " Y:" + mapDeCasesHumain.get(26).getY());
+                    flag = false;
+                }
+                else {System.out.println("La coordonnée saisie est non disponible");}
+                }
+                    if( flag = false)
+                    {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+1, mapDeBateauxHumain.get(choix).getCoordonneeDebutY());
+                        mapDeBateauxHumain.replace(26,b);
+                        setMapDeBateauxHumain(mapDeBateauxHumain);
+                        System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                    else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+                }
+
+                if(choix==7)//sous-marrin 2
+                {for(Integer a : mapDeCasesHumain.keySet())
+                {if (mapDeCasesHumain.get(27).getX() + 1 <= 15 && mapDeCasesHumain.get(27).getX() + 1 != mapDeCasesHumain.get(a).getX())
+                {Case c = new Case(mapDeCasesHumain.get(27).getX()+1,mapDeCasesHumain.get(27).getY(),1);
+                    mapDeCasesHumain.replace(27, c);
+                    setMapDeCasesHumain(mapDeCasesHumain);
+                    System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(27).getX() + " Y:" + mapDeCasesHumain.get(27).getY());
+                    flag = false;
+                }
+                else {System.out.println("La coordonnée saisie est non disponible");}
+                }
+                    if( flag = false)
+                    {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+1, mapDeBateauxHumain.get(choix).getCoordonneeDebutY());
+                        mapDeBateauxHumain.replace(27,b);
+                        setMapDeBateauxHumain(mapDeBateauxHumain);
+                        System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                    else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+                }
+
+                if(choix==8)//sous-marrin 3
+                {for(Integer a : mapDeCasesHumain.keySet())
+                {if (mapDeCasesHumain.get(28).getX() + 1 <= 15 && mapDeCasesHumain.get(28).getX() + 1 != mapDeCasesHumain.get(a).getX())
+                {Case c = new Case(mapDeCasesHumain.get(28).getX()+1,mapDeCasesHumain.get(28).getY(),1);
+                    mapDeCasesHumain.replace(28, c);
+                    setMapDeCasesHumain(mapDeCasesHumain);
+                    System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(28).getX() + " Y:" + mapDeCasesHumain.get(28).getY());
+                    flag = false;
+                }
+                else {System.out.println("La coordonnée saisie est non disponible");}
+                }
+                    if( flag = false)
+                    {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+1, mapDeBateauxHumain.get(choix).getCoordonneeDebutY());
+                        mapDeBateauxHumain.replace(28,b);
+                        setMapDeBateauxHumain(mapDeBateauxHumain);
+                        System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                    else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+                }
+
+                if(choix==9)//sous-marrin 4
+                {for(Integer a : mapDeCasesHumain.keySet())
+                {if (mapDeCasesHumain.get(29).getX() + 1 <= 15 && mapDeCasesHumain.get(29).getX() + 1 != mapDeCasesHumain.get(a).getX())
+                {Case c = new Case(mapDeCasesHumain.get(29).getX()+1,mapDeCasesHumain.get(29).getY(),1);
+                    mapDeCasesHumain.replace(29, c);
+                    setMapDeCasesHumain(mapDeCasesHumain);
+                    System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(29).getX() + " Y:" + mapDeCasesHumain.get(29).getY());
+                    flag = false;
+                }
+                else {System.out.println("La coordonnée saisie est non disponible");}
+                }
+                    if( flag = false)
+                    {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+1, mapDeBateauxHumain.get(choix).getCoordonneeDebutY());
+                        mapDeBateauxHumain.replace(29,b);
+                        setMapDeBateauxHumain(mapDeBateauxHumain);
+                        System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                    else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+                }
             }
 
-         if(reponse==0 && choix==0)
+         if(reponse==0)
          {
              boolean flag = true;
-             for(i=0; i<7; i++)
-             {
-                 Case c = new Case(mapDeCasesHumain.get(i).getX()-1,mapDeCasesHumain.get(i).getY(),7);
 
-                 if(15 >= mapDeCasesHumain.get(i).getX() - 1 && mapDeCasesHumain.get(i).getX()-1 != mapDeCasesHumain.get(i).getX() && mapDeCasesHumain.get(i).getX()-1 != mapDeCasesHumain.get(i+7).getX() && mapDeCasesHumain.get(i).getX()-1 != mapDeCasesHumain.get(i+14).getX() && mapDeCasesHumain.get(i).getX()-1 != mapDeCasesHumain.get(i+21).getX() && mapDeCasesHumain.get(i).getX()-1 != mapDeCasesHumain.get(i+28).getX())
-                 {mapDeCasesHumain.replace(i,c);
-                     setMapDeCasesHumain(mapDeCasesHumain);
-                     System.out.println("Coordonnées bateau X:"+mapDeCasesHumain.get(i).getX()+" Y:"+mapDeCasesHumain.get(i).getY());
-                     flag = false;}
-
-                 else {System.out.println("Erreur, la coordonnee saisie est fausse");}
-
+             if(choix==0) //Cuirasse
+             {for(Integer a : mapDeCasesHumain.keySet())
+             {if (mapDeCasesHumain.get(0).getX() -1 <= 15 && mapDeCasesHumain.get(0).getX() - 1 != mapDeCasesHumain.get(a).getX())
+             {for(i=0; i<7; i++)
+             {Case c = new Case(mapDeCasesHumain.get(i).getX()-1,mapDeCasesHumain.get(i).getY(),7);
+                 mapDeCasesHumain.replace(i, c);
+                 setMapDeCasesHumain(mapDeCasesHumain);
+                 System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(i).getX() + " Y:" + mapDeCasesHumain.get(i).getY());
+                 flag = false;
+             }}
+             else {System.out.println("La coordonnée saisie est non disponible");}
              }
-             if( flag = false)
-             {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX()-1, mapDeBateauxHumain.get(choix).getCoordonneeDebutY());
-                 mapDeBateauxHumain.replace(i,b);
-                 setMapDeBateauxHumain(mapDeBateauxHumain);
-                 System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+                 if( flag = false)
+                 {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX()-1, mapDeBateauxHumain.get(choix).getCoordonneeDebutY());
+                     mapDeBateauxHumain.replace(i,b);
+                     setMapDeBateauxHumain(mapDeBateauxHumain);
+                     System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
 
-             else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+                 else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+             }
 
-         }
+             if(choix==1)//Croiseur 1
+             {for(Integer a : mapDeCasesHumain.keySet())
+             {if (mapDeCasesHumain.get(7).getX() - 1 <= 15 && mapDeCasesHumain.get(7).getX() - 1 != mapDeCasesHumain.get(a).getX())
+             {for(i=7; i<11; i++)
+             {Case c = new Case(mapDeCasesHumain.get(i).getX()-1,mapDeCasesHumain.get(i).getY(),5);
+                 mapDeCasesHumain.replace(i, c);
+                 setMapDeCasesHumain(mapDeCasesHumain);
+                 System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(i).getX() + " Y:" + mapDeCasesHumain.get(i).getY());
+                 flag = false;
+             }}
+             else {System.out.println("La coordonnée saisie est non disponible");}
+             }
+                 if( flag = false)
+                 {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX()-1, mapDeBateauxHumain.get(choix).getCoordonneeDebutY());
+                     mapDeBateauxHumain.replace(i,b);
+                     setMapDeBateauxHumain(mapDeBateauxHumain);
+                     System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                 else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+             }
+
+             if(choix==2)//Croiseur 2
+             {for(Integer a : mapDeCasesHumain.keySet())
+             {if (mapDeCasesHumain.get(12).getX() - 1 <= 15 && mapDeCasesHumain.get(12).getX() - 1 != mapDeCasesHumain.get(a).getX())
+             {for(i=12; i<16; i++)
+             {Case c = new Case(mapDeCasesHumain.get(i).getX()-1,mapDeCasesHumain.get(i).getY(),5);
+                 mapDeCasesHumain.replace(i, c);
+                 setMapDeCasesHumain(mapDeCasesHumain);
+                 System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(i).getX() + " Y:" + mapDeCasesHumain.get(i).getY());
+                 flag = false;
+             }}
+             else {System.out.println("La coordonnée saisie est non disponible");}
+             }
+                 if( flag = false)
+                 {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX()-1, mapDeBateauxHumain.get(choix).getCoordonneeDebutY());
+                     mapDeBateauxHumain.replace(i,b);
+                     setMapDeBateauxHumain(mapDeBateauxHumain);
+                     System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                 else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+             }
+
+             if(choix==3)//Destroyer 1
+             {for(Integer a : mapDeCasesHumain.keySet())
+             {if (mapDeCasesHumain.get(17).getX() - 1 <= 15 && mapDeCasesHumain.get(17).getX() - 1 != mapDeCasesHumain.get(a).getX())
+             {for(i=17; i<19; i++)
+             {Case c = new Case(mapDeCasesHumain.get(i).getX()-1,mapDeCasesHumain.get(i).getY(),3);
+                 mapDeCasesHumain.replace(i, c);
+                 setMapDeCasesHumain(mapDeCasesHumain);
+                 System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(i).getX() + " Y:" + mapDeCasesHumain.get(i).getY());
+                 flag = false;
+             }}
+             else {System.out.println("La coordonnée saisie est non disponible");}
+             }
+                 if( flag = false)
+                 {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX()-1, mapDeBateauxHumain.get(choix).getCoordonneeDebutY());
+                     mapDeBateauxHumain.replace(i,b);
+                     setMapDeBateauxHumain(mapDeBateauxHumain);
+                     System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                 else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+             }
+
+             if(choix==4)//destroyer 2
+             {for(Integer a : mapDeCasesHumain.keySet())
+             {if (mapDeCasesHumain.get(20).getX() - 1 <= 15 && mapDeCasesHumain.get(20).getX() - 1 != mapDeCasesHumain.get(a).getX())
+             {for(i=20; i<22; i++)
+             {Case c = new Case(mapDeCasesHumain.get(i).getX()-1,mapDeCasesHumain.get(i).getY(),3);
+                 mapDeCasesHumain.replace(i, c);
+                 setMapDeCasesHumain(mapDeCasesHumain);
+                 System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(i).getX() + " Y:" + mapDeCasesHumain.get(i).getY());
+                 flag = false;
+             }}
+             else {System.out.println("La coordonnée saisie est non disponible");}
+             }
+                 if( flag = false)
+                 {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX()-1, mapDeBateauxHumain.get(choix).getCoordonneeDebutY());
+                     mapDeBateauxHumain.replace(i,b);
+                     setMapDeBateauxHumain(mapDeBateauxHumain);
+                     System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                 else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+             }
+
+             if(choix==5)//destroyer 3
+             {for(Integer a : mapDeCasesHumain.keySet())
+             {if (mapDeCasesHumain.get(23).getX() - 1 <= 15 && mapDeCasesHumain.get(23).getX() - 1 != mapDeCasesHumain.get(a).getX())
+             {for(i=23; i<25; i++)
+             {Case c = new Case(mapDeCasesHumain.get(i).getX()-1,mapDeCasesHumain.get(i).getY(),3);
+                 mapDeCasesHumain.replace(i, c);
+                 setMapDeCasesHumain(mapDeCasesHumain);
+                 System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(i).getX() + " Y:" + mapDeCasesHumain.get(i).getY());
+                 flag = false;
+             }}
+             else {System.out.println("La coordonnée saisie est non disponible");}
+             }
+                 if( flag = false)
+                 {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX()-1, mapDeBateauxHumain.get(choix).getCoordonneeDebutY());
+                     mapDeBateauxHumain.replace(i,b);
+                     setMapDeBateauxHumain(mapDeBateauxHumain);
+                     System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                 else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+             }
+
+             if(choix==6)//sous-marin 1
+             {for(Integer a : mapDeCasesHumain.keySet())
+             {if (mapDeCasesHumain.get(26).getX() - 1 <= 15 && mapDeCasesHumain.get(26).getX() - 1 != mapDeCasesHumain.get(a).getX())
+             {Case c = new Case(mapDeCasesHumain.get(26).getX()-1,mapDeCasesHumain.get(26).getY(),1);
+                 mapDeCasesHumain.replace(26, c);
+                 setMapDeCasesHumain(mapDeCasesHumain);
+                 System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(26).getX() + " Y:" + mapDeCasesHumain.get(26).getY());
+                 flag = false;
+             }
+             else {System.out.println("La coordonnée saisie est non disponible");}
+             }
+                 if( flag = false)
+                 {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX()-1, mapDeBateauxHumain.get(choix).getCoordonneeDebutY());
+                     mapDeBateauxHumain.replace(26,b);
+                     setMapDeBateauxHumain(mapDeBateauxHumain);
+                     System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                 else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+             }
+
+             if(choix==7)//sous-marrin 2
+             {for(Integer a : mapDeCasesHumain.keySet())
+             {if (mapDeCasesHumain.get(27).getX() - 1 <= 15 && mapDeCasesHumain.get(27).getX() - 1 != mapDeCasesHumain.get(a).getX())
+             {Case c = new Case(mapDeCasesHumain.get(27).getX()-1,mapDeCasesHumain.get(27).getY(),1);
+                 mapDeCasesHumain.replace(27, c);
+                 setMapDeCasesHumain(mapDeCasesHumain);
+                 System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(27).getX() + " Y:" + mapDeCasesHumain.get(27).getY());
+                 flag = false;
+             }
+             else {System.out.println("La coordonnée saisie est non disponible");}
+             }
+                 if( flag = false)
+                 {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX()-1, mapDeBateauxHumain.get(choix).getCoordonneeDebutY());
+                     mapDeBateauxHumain.replace(27,b);
+                     setMapDeBateauxHumain(mapDeBateauxHumain);
+                     System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                 else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+             }
+
+             if(choix==8)//sous-marrin 3
+             {for(Integer a : mapDeCasesHumain.keySet())
+             {if (mapDeCasesHumain.get(28).getX() - 1 <= 15 && mapDeCasesHumain.get(28).getX() - 1 != mapDeCasesHumain.get(a).getX())
+             {Case c = new Case(mapDeCasesHumain.get(28).getX()-1,mapDeCasesHumain.get(28).getY(),1);
+                 mapDeCasesHumain.replace(28, c);
+                 setMapDeCasesHumain(mapDeCasesHumain);
+                 System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(28).getX() + " Y:" + mapDeCasesHumain.get(28).getY());
+                 flag = false;
+             }
+             else {System.out.println("La coordonnée saisie est non disponible");}
+             }
+                 if( flag = false)
+                 {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX()-1, mapDeBateauxHumain.get(choix).getCoordonneeDebutY());
+                     mapDeBateauxHumain.replace(28,b);
+                     setMapDeBateauxHumain(mapDeBateauxHumain);
+                     System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                 else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+             }
+
+             if(choix==9)//sous-marrin 4
+             {for(Integer a : mapDeCasesHumain.keySet())
+             {if (mapDeCasesHumain.get(29).getX() - 1 <= 15 && mapDeCasesHumain.get(29).getX() - 1 != mapDeCasesHumain.get(a).getX())
+             {Case c = new Case(mapDeCasesHumain.get(29).getX()-1,mapDeCasesHumain.get(29).getY(),1);
+                 mapDeCasesHumain.replace(29, c);
+                 setMapDeCasesHumain(mapDeCasesHumain);
+                 System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(29).getX() + " Y:" + mapDeCasesHumain.get(29).getY());
+                 flag = false;
+             }
+             else {System.out.println("La coordonnée saisie est non disponible");}
+             }
+                 if( flag = false)
+                 {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX()-1, mapDeBateauxHumain.get(choix).getCoordonneeDebutY());
+                     mapDeBateauxHumain.replace(29,b);
+                     setMapDeBateauxHumain(mapDeBateauxHumain);
+                     System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                 else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+             }
+             }
          }
 
 
         if(B.isHorizontal()==false)
         {
-
+            boolean flag = true;
             System.out.print("Souhaitez vous deplacer le bateau vers le haut ou vers le bas? Repondez pour haut 1 ou pour bas 0\n");
             reponse=scan.nextInt();
 
-            if(reponse==1 && choix==0)
+            if(reponse==1)
             {
-                boolean flag = true;
-                for(i=0; i<7; i++)
-                {
-                    Case c = new Case(mapDeCasesHumain.get(i).getX(),mapDeCasesHumain.get(i).getY()+1,7);
-
-                    if(15 >= mapDeCasesHumain.get(i).getY() + 1 && mapDeCasesHumain.get(i).getY()+1 != mapDeCasesHumain.get(i).getY() && mapDeCasesHumain.get(i).getY()+1 != mapDeCasesHumain.get(i+7).getY() && mapDeCasesHumain.get(i).getY()+1 != mapDeCasesHumain.get(i+14).getY() && mapDeCasesHumain.get(i).getY()+1 != mapDeCasesHumain.get(i+21).getY() && mapDeCasesHumain.get(i).getY()+1 != mapDeCasesHumain.get(i+28).getY())
-                    {mapDeCasesHumain.replace(i,c);
-                        setMapDeCasesHumain(mapDeCasesHumain);
-                        System.out.println("Coordonnées bateau X:"+mapDeCasesHumain.get(i).getX()+" Y:"+mapDeCasesHumain.get(i).getY());
-                        flag = false;}
-
-                    else {System.out.println("Erreur, la coordonnee saisie est fausse");}
-
+                for(Integer a : mapDeCasesHumain.keySet())
+                {if (mapDeCasesHumain.get(6).getY() + 1 <= 15 && mapDeCasesHumain.get(6).getY() + 1 != mapDeCasesHumain.get(a).getY())
+                {for(i=0; i<7; i++)
+                {Case c = new Case(mapDeCasesHumain.get(i).getX(),mapDeCasesHumain.get(i).getY()+1,7);
+                    mapDeCasesHumain.replace(i, c);
+                    setMapDeCasesHumain(mapDeCasesHumain);
+                    System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(i).getX() + " Y:" + mapDeCasesHumain.get(i).getY());
+                    flag = false;
+                }}
+                else {System.out.println("La coordonnée saisie est non disponible");}
                 }
                 if( flag = false)
                 {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX(), mapDeBateauxHumain.get(choix).getCoordonneeDebutY()+1);
@@ -406,40 +773,407 @@ public class JoueurHumain //initialisation de la classe joueur humain
                     System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
 
                 else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
-
             }
 
-
-            if(reponse==0 && choix==0)
-            {
-                boolean flag = true;
-                for(i=0; i<7; i++)
-                {
-                    Case c = new Case(mapDeCasesHumain.get(i).getX(),mapDeCasesHumain.get(i).getY()-1,7);
-
-                    if(15 >= mapDeCasesHumain.get(i).getY() - 1 && mapDeCasesHumain.get(i).getY()-1 != mapDeCasesHumain.get(i).getY() && mapDeCasesHumain.get(i).getY()-1 != mapDeCasesHumain.get(i+7).getY() && mapDeCasesHumain.get(i).getY()-1 != mapDeCasesHumain.get(i+14).getY() && mapDeCasesHumain.get(i).getY()-1 != mapDeCasesHumain.get(i+21).getY() && mapDeCasesHumain.get(i).getY()-1 != mapDeCasesHumain.get(i+28).getY())
-                    {mapDeCasesHumain.replace(i,c);
-                        setMapDeCasesHumain(mapDeCasesHumain);
-                        System.out.println("Coordonnées bateau X:"+mapDeCasesHumain.get(i).getX()+" Y:"+mapDeCasesHumain.get(i).getY());
-                        flag = false;}
-
-                    else {System.out.println("Erreur, la coordonnee saisie est fausse");}
-
-                    }
+            if(choix==1)//Croiseur 1
+            {for(Integer a : mapDeCasesHumain.keySet())
+            {if (mapDeCasesHumain.get(11).getY() + 1 <= 15 && mapDeCasesHumain.get(11).getY() + 1 != mapDeCasesHumain.get(a).getY())
+            {for(i=7; i<11; i++)
+            {Case c = new Case(mapDeCasesHumain.get(i).getX(),mapDeCasesHumain.get(i).getY()+1,5);
+                mapDeCasesHumain.replace(i, c);
+                setMapDeCasesHumain(mapDeCasesHumain);
+                System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(i).getX() + " Y:" + mapDeCasesHumain.get(i).getY());
+                flag = false;
+            }}
+            else {System.out.println("La coordonnée saisie est non disponible");}
+            }
                 if( flag = false)
-                {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX(), mapDeBateauxHumain.get(choix).getCoordonneeDebutY()-1);
+                {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX(), mapDeBateauxHumain.get(choix).getCoordonneeDebutY()+1);
                     mapDeBateauxHumain.replace(i,b);
                     setMapDeBateauxHumain(mapDeBateauxHumain);
                     System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
 
                 else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+            }
 
+            if(choix==2)//Croiseur 2
+            {for(Integer a : mapDeCasesHumain.keySet())
+            {if (mapDeCasesHumain.get(16).getY() + 1 <= 15 && mapDeCasesHumain.get(16).getY() + 1 != mapDeCasesHumain.get(a).getY())
+            {for(i=12; i<16; i++)
+            {Case c = new Case(mapDeCasesHumain.get(i).getX(),mapDeCasesHumain.get(i).getY()+1,5);
+                mapDeCasesHumain.replace(i, c);
+                setMapDeCasesHumain(mapDeCasesHumain);
+                System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(i).getX() + " Y:" + mapDeCasesHumain.get(i).getY());
+                flag = false;
+            }}
+            else {System.out.println("La coordonnée saisie est non disponible");}
+            }
+                if( flag = false)
+                {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX(), mapDeBateauxHumain.get(choix).getCoordonneeDebutY()+1);
+                    mapDeBateauxHumain.replace(i,b);
+                    setMapDeBateauxHumain(mapDeBateauxHumain);
+                    System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+            }
+
+            if(choix==3)//Destroyer 1
+            {for(Integer a : mapDeCasesHumain.keySet())
+            {if (mapDeCasesHumain.get(19).getY() + 1 <= 15 && mapDeCasesHumain.get(19).getY() + 1 != mapDeCasesHumain.get(a).getY())
+            {for(i=17; i<19; i++)
+            {Case c = new Case(mapDeCasesHumain.get(i).getX(),mapDeCasesHumain.get(i).getY()+1,3);
+                mapDeCasesHumain.replace(i, c);
+                setMapDeCasesHumain(mapDeCasesHumain);
+                System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(i).getX() + " Y:" + mapDeCasesHumain.get(i).getY());
+                flag = false;
+            }}
+            else {System.out.println("La coordonnée saisie est non disponible");}
+            }
+                if( flag = false)
+                {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX(), mapDeBateauxHumain.get(choix).getCoordonneeDebutY()+1);
+                    mapDeBateauxHumain.replace(i,b);
+                    setMapDeBateauxHumain(mapDeBateauxHumain);
+                    System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+            }
+
+            if(choix==4)//destroyer 2
+            {for(Integer a : mapDeCasesHumain.keySet())
+            {if (mapDeCasesHumain.get(22).getY() + 1 <= 15 && mapDeCasesHumain.get(22).getY() + 1 != mapDeCasesHumain.get(a).getY())
+            {for(i=20; i<22; i++)
+            {Case c = new Case(mapDeCasesHumain.get(i).getX(),mapDeCasesHumain.get(i).getY()+1,3);
+                mapDeCasesHumain.replace(i, c);
+                setMapDeCasesHumain(mapDeCasesHumain);
+                System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(i).getX() + " Y:" + mapDeCasesHumain.get(i).getY());
+                flag = false;
+            }}
+            else {System.out.println("La coordonnée saisie est non disponible");}
+            }
+                if( flag = false)
+                {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX(), mapDeBateauxHumain.get(choix).getCoordonneeDebutY()+1);
+                    mapDeBateauxHumain.replace(i,b);
+                    setMapDeBateauxHumain(mapDeBateauxHumain);
+                    System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+            }
+
+            if(choix==5)//destroyer 3
+            {for(Integer a : mapDeCasesHumain.keySet())
+            {if (mapDeCasesHumain.get(25).getY() + 1 <= 15 && mapDeCasesHumain.get(25).getY() + 1 != mapDeCasesHumain.get(a).getY())
+            {for(i=23; i<25; i++)
+            {Case c = new Case(mapDeCasesHumain.get(i).getX(),mapDeCasesHumain.get(i).getY()+1,3);
+                mapDeCasesHumain.replace(i, c);
+                setMapDeCasesHumain(mapDeCasesHumain);
+                System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(i).getX() + " Y:" + mapDeCasesHumain.get(i).getY());
+                flag = false;
+            }}
+            else {System.out.println("La coordonnée saisie est non disponible");}
+            }
+                if( flag = false)
+                {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX(), mapDeBateauxHumain.get(choix).getCoordonneeDebutY()+1);
+                    mapDeBateauxHumain.replace(i,b);
+                    setMapDeBateauxHumain(mapDeBateauxHumain);
+                    System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+            }
+
+            if(choix==6)//sous-marin 1
+            {for(Integer a : mapDeCasesHumain.keySet())
+            {if (mapDeCasesHumain.get(26).getY() + 1 <= 15 && mapDeCasesHumain.get(26).getY() + 1 != mapDeCasesHumain.get(a).getY())
+            {Case c = new Case(mapDeCasesHumain.get(26).getX(),mapDeCasesHumain.get(26).getY()+1,1);
+                mapDeCasesHumain.replace(26, c);
+                setMapDeCasesHumain(mapDeCasesHumain);
+                System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(26).getX() + " Y:" + mapDeCasesHumain.get(26).getY());
+                flag = false;
+            }
+            else {System.out.println("La coordonnée saisie est non disponible");}
+            }
+                if( flag = false)
+                {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX(), mapDeBateauxHumain.get(choix).getCoordonneeDebutY()+1);
+                    mapDeBateauxHumain.replace(26,b);
+                    setMapDeBateauxHumain(mapDeBateauxHumain);
+                    System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+            }
+
+            if(choix==7)//sous-marrin 2
+            {for(Integer a : mapDeCasesHumain.keySet())
+            {if (mapDeCasesHumain.get(27).getY() + 1 <= 15 && mapDeCasesHumain.get(27).getY() + 1 != mapDeCasesHumain.get(a).getY())
+            {Case c = new Case(mapDeCasesHumain.get(27).getX(),mapDeCasesHumain.get(27).getY()+1,1);
+                mapDeCasesHumain.replace(27, c);
+                setMapDeCasesHumain(mapDeCasesHumain);
+                System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(27).getX() + " Y:" + mapDeCasesHumain.get(27).getY());
+                flag = false;
+            }
+            else {System.out.println("La coordonnée saisie est non disponible");}
+            }
+                if( flag = false)
+                {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX(), mapDeBateauxHumain.get(choix).getCoordonneeDebutY()+1);
+                    mapDeBateauxHumain.replace(27,b);
+                    setMapDeBateauxHumain(mapDeBateauxHumain);
+                    System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+            }
+
+            if(choix==8)//sous-marrin 3
+            {for(Integer a : mapDeCasesHumain.keySet())
+            {if (mapDeCasesHumain.get(28).getY() + 1 <= 15 && mapDeCasesHumain.get(28).getY() + 1 != mapDeCasesHumain.get(a).getY())
+            {Case c = new Case(mapDeCasesHumain.get(28).getX(),mapDeCasesHumain.get(28).getY()+1,1);
+                mapDeCasesHumain.replace(28, c);
+                setMapDeCasesHumain(mapDeCasesHumain);
+                System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(28).getX() + " Y:" + mapDeCasesHumain.get(28).getY());
+                flag = false;
+            }
+            else {System.out.println("La coordonnée saisie est non disponible");}
+            }
+                if( flag = false)
+                {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX(), mapDeBateauxHumain.get(choix).getCoordonneeDebutY()+1);
+                    mapDeBateauxHumain.replace(28,b);
+                    setMapDeBateauxHumain(mapDeBateauxHumain);
+                    System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+            }
+
+            if(choix==9)//sous-marrin 4
+            {for(Integer a : mapDeCasesHumain.keySet())
+            {if (mapDeCasesHumain.get(29).getY() + 1 <= 15 && mapDeCasesHumain.get(29).getY() + 1 != mapDeCasesHumain.get(a).getY())
+            {Case c = new Case(mapDeCasesHumain.get(29).getX(),mapDeCasesHumain.get(29).getY()+1,1);
+                mapDeCasesHumain.replace(29, c);
+                setMapDeCasesHumain(mapDeCasesHumain);
+                System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(29).getX() + " Y:" + mapDeCasesHumain.get(29).getY());
+                flag = false;
+            }
+            else {System.out.println("La coordonnée saisie est non disponible");}
+            }
+                if( flag = false)
+                {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX(), mapDeBateauxHumain.get(choix).getCoordonneeDebutY()+1);
+                    mapDeBateauxHumain.replace(29,b);
+                    setMapDeBateauxHumain(mapDeBateauxHumain);
+                    System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+            }
+
+            if(reponse==0)
+            {
+                if(choix==0) //Cuirasse
+                {for(Integer a : mapDeCasesHumain.keySet())
+                {if (mapDeCasesHumain.get(0).getY() -1 <= 15 && mapDeCasesHumain.get(0).getY() - 1 != mapDeCasesHumain.get(a).getY())
+                {for(i=0; i<7; i++)
+                {Case c = new Case(mapDeCasesHumain.get(i).getX(),mapDeCasesHumain.get(i).getY()-1,7);
+                    mapDeCasesHumain.replace(i, c);
+                    setMapDeCasesHumain(mapDeCasesHumain);
+                    System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(i).getX() + " Y:" + mapDeCasesHumain.get(i).getY());
+                    flag = false;
+                }}
+                else {System.out.println("La coordonnée saisie est non disponible");}
+                }
+                    if( flag = false)
+                    {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX(), mapDeBateauxHumain.get(choix).getCoordonneeDebutY()-1);
+                        mapDeBateauxHumain.replace(i,b);
+                        setMapDeBateauxHumain(mapDeBateauxHumain);
+                        System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                    else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+                }
+
+                if(choix==1)//Croiseur 1
+                {for(Integer a : mapDeCasesHumain.keySet())
+                {if (mapDeCasesHumain.get(7).getY() - 1 <= 15 && mapDeCasesHumain.get(7).getY() - 1 != mapDeCasesHumain.get(a).getY())
+                {for(i=7; i<11; i++)
+                {Case c = new Case(mapDeCasesHumain.get(i).getX(),mapDeCasesHumain.get(i).getY()-1,5);
+                    mapDeCasesHumain.replace(i, c);
+                    setMapDeCasesHumain(mapDeCasesHumain);
+                    System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(i).getX() + " Y:" + mapDeCasesHumain.get(i).getY());
+                    flag = false;
+                }}
+                else {System.out.println("La coordonnée saisie est non disponible");}
+                }
+                    if( flag = false)
+                    {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX(), mapDeBateauxHumain.get(choix).getCoordonneeDebutY()-1);
+                        mapDeBateauxHumain.replace(i,b);
+                        setMapDeBateauxHumain(mapDeBateauxHumain);
+                        System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                    else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+                }
+
+                if(choix==2)//Croiseur 2
+                {for(Integer a : mapDeCasesHumain.keySet())
+                {if (mapDeCasesHumain.get(12).getY() - 1 <= 15 && mapDeCasesHumain.get(12).getY() - 1 != mapDeCasesHumain.get(a).getY())
+                {for(i=12; i<16; i++)
+                {Case c = new Case(mapDeCasesHumain.get(i).getX(),mapDeCasesHumain.get(i).getY()-1,5);
+                    mapDeCasesHumain.replace(i, c);
+                    setMapDeCasesHumain(mapDeCasesHumain);
+                    System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(i).getX() + " Y:" + mapDeCasesHumain.get(i).getY());
+                    flag = false;
+                }}
+                else {System.out.println("La coordonnée saisie est non disponible");}
+                }
+                    if( flag = false)
+                    {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX(), mapDeBateauxHumain.get(choix).getCoordonneeDebutY()-1);
+                        mapDeBateauxHumain.replace(i,b);
+                        setMapDeBateauxHumain(mapDeBateauxHumain);
+                        System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                    else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+                }
+
+                if(choix==3)//Destroyer 1
+                {for(Integer a : mapDeCasesHumain.keySet())
+                {if (mapDeCasesHumain.get(17).getY() - 1 <= 15 && mapDeCasesHumain.get(17).getY() - 1 != mapDeCasesHumain.get(a).getY())
+                {for(i=17; i<19; i++)
+                {Case c = new Case(mapDeCasesHumain.get(i).getX(),mapDeCasesHumain.get(i).getY()-1,3);
+                    mapDeCasesHumain.replace(i, c);
+                    setMapDeCasesHumain(mapDeCasesHumain);
+                    System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(i).getX() + " Y:" + mapDeCasesHumain.get(i).getY());
+                    flag = false;
+                }}
+                else {System.out.println("La coordonnée saisie est non disponible");}
+                }
+                    if( flag = false)
+                    {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX(), mapDeBateauxHumain.get(choix).getCoordonneeDebutY()-1);
+                        mapDeBateauxHumain.replace(i,b);
+                        setMapDeBateauxHumain(mapDeBateauxHumain);
+                        System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                    else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+                }
+
+                if(choix==4)//destroyer 2
+                {for(Integer a : mapDeCasesHumain.keySet())
+                {if (mapDeCasesHumain.get(20).getY() - 1 <= 15 && mapDeCasesHumain.get(20).getY() - 1 != mapDeCasesHumain.get(a).getY())
+                {for(i=20; i<22; i++)
+                {Case c = new Case(mapDeCasesHumain.get(i).getX(),mapDeCasesHumain.get(i).getY()-1,3);
+                    mapDeCasesHumain.replace(i, c);
+                    setMapDeCasesHumain(mapDeCasesHumain);
+                    System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(i).getX() + " Y:" + mapDeCasesHumain.get(i).getY());
+                    flag = false;
+                }}
+                else {System.out.println("La coordonnée saisie est non disponible");}
+                }
+                    if( flag = false)
+                    {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX(), mapDeBateauxHumain.get(choix).getCoordonneeDebutY()-1);
+                        mapDeBateauxHumain.replace(i,b);
+                        setMapDeBateauxHumain(mapDeBateauxHumain);
+                        System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                    else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+                }
+
+                if(choix==5)//destroyer 3
+                {for(Integer a : mapDeCasesHumain.keySet())
+                {if (mapDeCasesHumain.get(23).getY() - 1 <= 15 && mapDeCasesHumain.get(23).getY() - 1 != mapDeCasesHumain.get(a).getY())
+                {for(i=23; i<25; i++)
+                {Case c = new Case(mapDeCasesHumain.get(i).getX(),mapDeCasesHumain.get(i).getY()-1,3);
+                    mapDeCasesHumain.replace(i, c);
+                    setMapDeCasesHumain(mapDeCasesHumain);
+                    System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(i).getX() + " Y:" + mapDeCasesHumain.get(i).getY());
+                    flag = false;
+                }}
+                else {System.out.println("La coordonnée saisie est non disponible");}
+                }
+                    if( flag = false)
+                    {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX(), mapDeBateauxHumain.get(choix).getCoordonneeDebutY()-1);
+                        mapDeBateauxHumain.replace(i,b);
+                        setMapDeBateauxHumain(mapDeBateauxHumain);
+                        System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                    else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+                }
+
+                if(choix==6)//sous-marin 1
+                {for(Integer a : mapDeCasesHumain.keySet())
+                {if (mapDeCasesHumain.get(26).getY() - 1 <= 15 && mapDeCasesHumain.get(26).getY() - 1 != mapDeCasesHumain.get(a).getY())
+                {Case c = new Case(mapDeCasesHumain.get(26).getX(),mapDeCasesHumain.get(26).getY()-1,1);
+                    mapDeCasesHumain.replace(26, c);
+                    setMapDeCasesHumain(mapDeCasesHumain);
+                    System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(26).getX() + " Y:" + mapDeCasesHumain.get(26).getY());
+                    flag = false;
+                }
+                else {System.out.println("La coordonnée saisie est non disponible");}
+                }
+                    if( flag = false)
+                    {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX(), mapDeBateauxHumain.get(choix).getCoordonneeDebutY()-1);
+                        mapDeBateauxHumain.replace(26,b);
+                        setMapDeBateauxHumain(mapDeBateauxHumain);
+                        System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                    else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+                }
+
+                if(choix==7)//sous-marrin 2
+                {for(Integer a : mapDeCasesHumain.keySet())
+                {if (mapDeCasesHumain.get(27).getY() - 1 <= 15 && mapDeCasesHumain.get(27).getY() - 1 != mapDeCasesHumain.get(a).getY())
+                {Case c = new Case(mapDeCasesHumain.get(27).getX(),mapDeCasesHumain.get(27).getY()-1,1);
+                    mapDeCasesHumain.replace(27, c);
+                    setMapDeCasesHumain(mapDeCasesHumain);
+                    System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(27).getX() + " Y:" + mapDeCasesHumain.get(27).getY());
+                    flag = false;
+                }
+                else {System.out.println("La coordonnée saisie est non disponible");}
+                }
+                    if( flag = false)
+                    {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX(), mapDeBateauxHumain.get(choix).getCoordonneeDebutY()-1);
+                        mapDeBateauxHumain.replace(27,b);
+                        setMapDeBateauxHumain(mapDeBateauxHumain);
+                        System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                    else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+                }
+
+                if(choix==8)//sous-marrin 3
+                {for(Integer a : mapDeCasesHumain.keySet())
+                {if (mapDeCasesHumain.get(28).getY() - 1 <= 15 && mapDeCasesHumain.get(28).getY() - 1 != mapDeCasesHumain.get(a).getY())
+                {Case c = new Case(mapDeCasesHumain.get(28).getX(),mapDeCasesHumain.get(28).getY()-1,1);
+                    mapDeCasesHumain.replace(28, c);
+                    setMapDeCasesHumain(mapDeCasesHumain);
+                    System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(28).getX() + " Y:" + mapDeCasesHumain.get(28).getY());
+                    flag = false;
+                }
+                else {System.out.println("La coordonnée saisie est non disponible");}
+                }
+                    if( flag = false)
+                    {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX(), mapDeBateauxHumain.get(choix).getCoordonneeDebutY()-1);
+                        mapDeBateauxHumain.replace(28,b);
+                        setMapDeBateauxHumain(mapDeBateauxHumain);
+                        System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                    else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+                }
+
+                if(choix==9)//sous-marrin 4
+                {for(Integer a : mapDeCasesHumain.keySet())
+                {if (mapDeCasesHumain.get(29).getY() - 1 <= 15 && mapDeCasesHumain.get(29).getY() - 1 != mapDeCasesHumain.get(a).getY())
+                {Case c = new Case(mapDeCasesHumain.get(29).getX(),mapDeCasesHumain.get(29).getY()-1,1);
+                    mapDeCasesHumain.replace(29, c);
+                    setMapDeCasesHumain(mapDeCasesHumain);
+                    System.out.println("Coordonnées bateau X:" + mapDeCasesHumain.get(29).getX() + " Y:" + mapDeCasesHumain.get(29).getY());
+                    flag = false;
+                }
+                else {System.out.println("La coordonnée saisie est non disponible");}
+                }
+                    if( flag = false)
+                    {Bateau b= new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),B.isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX(), mapDeBateauxHumain.get(choix).getCoordonneeDebutY()-1);
+                        mapDeBateauxHumain.replace(29,b);
+                        setMapDeBateauxHumain(mapDeBateauxHumain);
+                        System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+
+                    else {System.out.println("Coordonnées bateau X:"+mapDeBateauxHumain.get(choix).getCoordonneeDebutX()+" Y:"+MapDeBateaux.get(choix).getCoordonneeDebutY());}
+                }
             }
 
         }
-    }
-
-
+}
 }
 
-//j'ai du coup changer le nom de placementBateau vers placementcase
+
+
+
+
