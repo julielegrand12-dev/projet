@@ -104,7 +104,7 @@ public class Menu
                 J.setMapDeBateauxHumain(mapDeBateaux);
                 J.PlacementBateauxHumain(mapDeBateaux);
 
-                J.DeplacerBateau(mapDeBateaux);
+                J.DeplacerBateau(mapDeBateaux, mapDeCases);
                 break;
 
             case 3 : System.out.println("Quitter\n");
