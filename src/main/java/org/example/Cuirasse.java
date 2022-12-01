@@ -1,12 +1,276 @@
 package org.example;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 
-public class Cuirasse extends Bateau{
-    public Cuirasse( int taille_navire,int id_navire, String nom_navire, boolean Horizontal, int coordonneeDebutX, int coordonneeDebutY){
-        super(taille_navire,id_navire,nom_navire,Horizontal,coordonneeDebutX,coordonneeDebutY);
+import java.util.Scanner;
+
+
+public class Cuirasse extends Bateau {
+    public Cuirasse(int taille_navire, int id_navire, String nom_navire, boolean Horizontal, int coordonneeDebutX, int coordonneeDebutY) {
+        super(taille_navire, id_navire, nom_navire, Horizontal, coordonneeDebutX, coordonneeDebutY);
     }
 
-    public void Attaque(){
+    public void AttaqueHumain(JoueurOrdi Ordi, JoueurHumain Joueur) {
+
+        /*System.out.println("Avec quelle bateau souhaitez-vous attaquer ? \n Saisissez son numéro : ");
+        Scanner scan = new Scanner(System.in);
+        int choix = scan.nextInt();
+
+        switch(choix){
+            case 0:
+
+        }*/
+        System.out.println("Saisissez la coordonnée que vous souhaitez attaquer");
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Saisissez X:");
+        int choixX = scan.nextInt();
+        System.out.println("Saisissez Y:");
+        int choixY = scan.nextInt();
+        HashMap<Integer, Case> mapDeCases = new HashMap<Integer, Case>();
+        HashMap<Integer, Bateau> mapDeBateaux = new HashMap<>();
+        mapDeBateaux = Joueur.getMapDeBateauxHumain();
+        mapDeCases = Joueur.getMapDeCasesHumain();
+        boolean Flag = false;
+
+        for (Integer TY : mapDeCases.keySet()) {
+            if(mapDeCases.get(TY).getX() == choixX && mapDeCases.get(TY).getY() == choixY && mapDeCases.get(TY).getGetID() !=1){
+                mapDeCases.get(TY).CaseTouche();
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " a bien été touché");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if(mapDeCases.get(TY).getX() == choixX + 1  && mapDeCases.get(TY).getY() == choixY && mapDeCases.get(TY).getGetID() !=1){
+                mapDeCases.get(TY).CaseTouche();
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " a bien été touché");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if((mapDeCases.get(TY).getX() == choixX -1   && mapDeCases.get(TY).getY() == choixY && mapDeCases.get(TY).getGetID() !=1)){
+                mapDeCases.get(TY).CaseTouche();
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " a bien été touché");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if((mapDeCases.get(TY).getX() == choixX   && mapDeCases.get(TY).getY() == choixY - 1&& mapDeCases.get(TY).getGetID() !=1)){
+                mapDeCases.get(TY).CaseTouche();
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " a bien été touché");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if((mapDeCases.get(TY).getX() == choixX  && mapDeCases.get(TY).getY() == choixY + 1 && mapDeCases.get(TY).getGetID() !=1)){
+                mapDeCases.get(TY).CaseTouche();
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " a bien été touché");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if((mapDeCases.get(TY).getX() == choixX + 1  && mapDeCases.get(TY).getY() == choixY+1&& mapDeCases.get(TY).getGetID() !=1)){
+                mapDeCases.get(TY).CaseTouche();
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " a bien été touché");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if((mapDeCases.get(TY).getX() == choixX -1  && mapDeCases.get(TY).getY() == choixY + 1&& mapDeCases.get(TY).getGetID() !=1)){
+                mapDeCases.get(TY).CaseTouche();
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " a bien été touché");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if((mapDeCases.get(TY).getX() == choixX + 1  && mapDeCases.get(TY).getY() == choixY-1&& mapDeCases.get(TY).getGetID() !=1)){
+                mapDeCases.get(TY).CaseTouche();
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + "  a bien été touché");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if(mapDeCases.get(TY).getX() == choixX -1  && mapDeCases.get(TY).getY() == choixY-1&& mapDeCases.get(TY).getGetID() !=1) {
+                mapDeCases.get(TY).CaseTouche();
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " a bien été touché");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if(mapDeCases.get(TY).getX() == choixX && mapDeCases.get(TY).getY() == choixY && mapDeCases.get(TY).getGetID() ==1){
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " est un sous-marin, il ne peut pas être attaqué par un Destroyer. ");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if(mapDeCases.get(TY).getX() == choixX + 1  && mapDeCases.get(TY).getY() == choixY && mapDeCases.get(TY).getGetID() ==1){
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " est un sous-marin, il ne peut pas être attaqué par un Destroyer. ");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if((mapDeCases.get(TY).getX() == choixX -1   && mapDeCases.get(TY).getY() == choixY && mapDeCases.get(TY).getGetID() ==1)){
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " est un sous-marin, il ne peut pas être attaqué par un Destroyer. ");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if((mapDeCases.get(TY).getX() == choixX   && mapDeCases.get(TY).getY() == choixY - 1&& mapDeCases.get(TY).getGetID() ==1)){
+                mapDeCases.get(TY).CaseTouche();
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " a bien été touché");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if((mapDeCases.get(TY).getX() == choixX  && mapDeCases.get(TY).getY() == choixY + 1 && mapDeCases.get(TY).getGetID() ==1)){
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " est un sous-marin, il ne peut pas être attaqué par un Destroyer. ");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if((mapDeCases.get(TY).getX() == choixX + 1  && mapDeCases.get(TY).getY() == choixY+1&& mapDeCases.get(TY).getGetID() ==1)){
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " est un sous-marin, il ne peut pas être attaqué par un Destroyer. ");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if((mapDeCases.get(TY).getX() == choixX -1  && mapDeCases.get(TY).getY() == choixY + 1&& mapDeCases.get(TY).getGetID() ==1)){
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " est un sous-marin, il ne peut pas être attaqué par un Destroyer. ");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if((mapDeCases.get(TY).getX() == choixX + 1  && mapDeCases.get(TY).getY() == choixY-1&& mapDeCases.get(TY).getGetID() ==1)){
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " est un sous-marin, il ne peut pas être attaqué par un Destroyer. ");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if(mapDeCases.get(TY).getX() == choixX -1  && mapDeCases.get(TY).getY() == choixY-1&& mapDeCases.get(TY).getGetID() ==1) {
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " est un sous-marin, il ne peut pas être attaqué par un Destroyer. ");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+
+        }
+        if(Flag == false){System.out.print("Pas de bateau à cette coordonnée");}
+
+        }
+
+
+    public void AttaqueOrdi(JoueurOrdi Ordi, JoueurHumain Joueur) {
+
+        /*System.out.println("Avec quelle bateau souhaitez-vous attaquer ? \n Saisissez son numéro : ");
+        Scanner scan = new Scanner(System.in);
+        int choix = scan.nextInt();
+
+        switch(choix){
+            case 0:
+
+        }*/
+        System.out.println("Saisissez la coordonnée que vous souhaitez attaquer");
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Saisissez X:");
+        int choixX = scan.nextInt();
+        System.out.println("Saisissez Y:");
+        int choixY = scan.nextInt();
+        HashMap<Integer, Case> mapDeCases = new HashMap<Integer, Case>();
+        HashMap<Integer, Bateau> mapDeBateaux = new HashMap<>();
+        mapDeBateaux = Ordi.getMapDeBateauxOrdi();
+        mapDeCases = Ordi.getMapDeCasesOrdi();
+        boolean Flag = false;
+
+        for (Integer TY : mapDeCases.keySet()) {
+            if(mapDeCases.get(TY).getX() == choixX && mapDeCases.get(TY).getY() == choixY && mapDeCases.get(TY).getGetID() !=1){
+                mapDeCases.get(TY).CaseTouche();
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " a bien été touché");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if(mapDeCases.get(TY).getX() == choixX + 1  && mapDeCases.get(TY).getY() == choixY && mapDeCases.get(TY).getGetID() !=1){
+                mapDeCases.get(TY).CaseTouche();
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " a bien été touché");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if((mapDeCases.get(TY).getX() == choixX -1   && mapDeCases.get(TY).getY() == choixY && mapDeCases.get(TY).getGetID() !=1)){
+                mapDeCases.get(TY).CaseTouche();
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " a bien été touché");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if((mapDeCases.get(TY).getX() == choixX   && mapDeCases.get(TY).getY() == choixY - 1&& mapDeCases.get(TY).getGetID() !=1)){
+                mapDeCases.get(TY).CaseTouche();
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " a bien été touché");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if((mapDeCases.get(TY).getX() == choixX  && mapDeCases.get(TY).getY() == choixY + 1 && mapDeCases.get(TY).getGetID() !=1)){
+                mapDeCases.get(TY).CaseTouche();
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " a bien été touché");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if((mapDeCases.get(TY).getX() == choixX + 1  && mapDeCases.get(TY).getY() == choixY+1&& mapDeCases.get(TY).getGetID() !=1)){
+                mapDeCases.get(TY).CaseTouche();
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " a bien été touché");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if((mapDeCases.get(TY).getX() == choixX -1  && mapDeCases.get(TY).getY() == choixY + 1&& mapDeCases.get(TY).getGetID() !=1)){
+                mapDeCases.get(TY).CaseTouche();
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " a bien été touché");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if((mapDeCases.get(TY).getX() == choixX + 1  && mapDeCases.get(TY).getY() == choixY-1&& mapDeCases.get(TY).getGetID() !=1)){
+                mapDeCases.get(TY).CaseTouche();
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + "  a bien été touché");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if(mapDeCases.get(TY).getX() == choixX -1  && mapDeCases.get(TY).getY() == choixY-1&& mapDeCases.get(TY).getGetID() !=1) {
+                mapDeCases.get(TY).CaseTouche();
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " a bien été touché");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if(mapDeCases.get(TY).getX() == choixX && mapDeCases.get(TY).getY() == choixY && mapDeCases.get(TY).getGetID() ==1){
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " est un sous-marin, il ne peut pas être attaqué par un Destroyer. ");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if(mapDeCases.get(TY).getX() == choixX + 1  && mapDeCases.get(TY).getY() == choixY && mapDeCases.get(TY).getGetID() ==1){
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " est un sous-marin, il ne peut pas être attaqué par un Destroyer. ");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if((mapDeCases.get(TY).getX() == choixX -1   && mapDeCases.get(TY).getY() == choixY && mapDeCases.get(TY).getGetID() ==1)){
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " est un sous-marin, il ne peut pas être attaqué par un Destroyer. ");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if((mapDeCases.get(TY).getX() == choixX   && mapDeCases.get(TY).getY() == choixY - 1&& mapDeCases.get(TY).getGetID() ==1)){
+                mapDeCases.get(TY).CaseTouche();
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " a bien été touché");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if((mapDeCases.get(TY).getX() == choixX  && mapDeCases.get(TY).getY() == choixY + 1 && mapDeCases.get(TY).getGetID() ==1)){
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " est un sous-marin, il ne peut pas être attaqué par un Destroyer. ");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if((mapDeCases.get(TY).getX() == choixX + 1  && mapDeCases.get(TY).getY() == choixY+1&& mapDeCases.get(TY).getGetID() ==1)){
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " est un sous-marin, il ne peut pas être attaqué par un Destroyer. ");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if((mapDeCases.get(TY).getX() == choixX -1  && mapDeCases.get(TY).getY() == choixY + 1&& mapDeCases.get(TY).getGetID() ==1)){
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " est un sous-marin, il ne peut pas être attaqué par un Destroyer. ");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if((mapDeCases.get(TY).getX() == choixX + 1  && mapDeCases.get(TY).getY() == choixY-1&& mapDeCases.get(TY).getGetID() ==1)){
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " est un sous-marin, il ne peut pas être attaqué par un Destroyer. ");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+            if(mapDeCases.get(TY).getX() == choixX -1  && mapDeCases.get(TY).getY() == choixY-1&& mapDeCases.get(TY).getGetID() ==1) {
+                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " est un sous-marin, il ne peut pas être attaqué par un Destroyer. ");
+                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
+                Flag = true;
+            }
+
+        }
+        if(Flag == false){System.out.print("Pas de bateau à cette coordonnée");}
 
     }
-
 }
+
+
+

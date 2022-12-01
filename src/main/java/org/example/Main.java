@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Main {
@@ -8,6 +9,8 @@ public class Main {
         //Appel objets d'une classe
 
         JoueurHumain J = new JoueurHumain("Sara",0);
+        JoueurOrdi O = new JoueurOrdi("Ordi",0);
+        ArrayList<Case> mapdecaseseclairees = new ArrayList<Case>();
         Menu M = new Menu('0');
 
         //Déclaration HashMap
@@ -23,6 +26,14 @@ public class Main {
         J.setMapDeBateauxHumain(mapDeBateaux);
         J.PlacementCasesHumain(mapDeCases, mapDeBateaux);
         J.PlacementBateauxHumain(mapDeBateaux);
+
+
+        //System.out.print(Cuirasse.getCoordonneeDebutX());
+       mapDeBateaux.get(5).AttaqueHumainDestroyer(O,J,mapdecaseseclairees);
+        mapDeBateaux.get(5).AttaqueHumainDestroyer(O,J, mapdecaseseclairees);
+
+        mapDeBateaux.get(5).AttaqueOrdiDestroyer(O,J,mapdecaseseclairees);
+        mapDeBateaux.get(5).AttaqueOrdiDestroyer(O,J, mapdecaseseclairees);
       /*  for (Integer  TY : mapDeCases.keySet()){
         System.out.println(mapDeCases.get(mapDeCases.get(TY)));}
         //J.DeplacerBateau(mapDeBateaux);
@@ -35,7 +46,7 @@ public class Main {
         }*/
 
         //Appel des menus
-       M.MenuDebut();
+     //  M.MenuDebut();
        //M.MenuBateau();
   }
 }

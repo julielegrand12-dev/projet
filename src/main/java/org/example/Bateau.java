@@ -121,7 +121,16 @@ public class Bateau {
 
     public void genererBateaux(){
 
+
     }
 
+    public void AttaqueHumain(JoueurOrdi o, JoueurHumain j){}
 
+    public ArrayList<Case> AttaqueHumainDestroyer(JoueurOrdi o, JoueurHumain j, ArrayList<Case> mapdecaseseclarees ){return mapdecaseseclarees;}
+    public ArrayList<Case> AttaqueOrdiDestroyer(JoueurOrdi o, JoueurHumain j, ArrayList<Case> mapdecaseseclarees ){return mapdecaseseclarees;}
+
+
+
+    public void AttaqueOrdi(JoueurOrdi o, JoueurHumain j) {
+    }
 }

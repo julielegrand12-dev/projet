@@ -1,7 +1,5 @@
 package org.example;
 
-import jdk.internal.access.JavaIOFileDescriptorAccess;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -65,7 +63,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
 
         //On déclare des listes
         List<Integer> lesTailles = new ArrayList<>(List.of(7,5,5,3,3,3,1,1,1,1));
-        List<String> lesNoms = new ArrayList<>(List.of("Cruisarde","Croiseur","Croiseur", "Destroyer","Destroyer","Destroyer","Sous-marin","Sous-marin","Sous-marin","Sous-marin","Sous-marin"));
+       // List<String> lesNoms = new ArrayList<>(List.of("Cuirasse","Croiseur","Croiseur", "Destroyer","Destroyer","Destroyer","Sous-marin","Sous-marin","Sous-marin","Sous-marin","Sous-marin"));
         ArrayList<Case> listeCases = new ArrayList<Case>();
         List<Integer> NoDoublonX = new ArrayList<>();
         List<Integer> NoDoublonY = new ArrayList<>();
@@ -94,8 +92,6 @@ public class JoueurHumain //initialisation de la classe joueur humain
                    // y = alea.nextInt(16)+1;
                     x = (int) (Math.random()*(15-limite))+1;
                     y = (int)(Math.random()*(15))+1;
-                    x = alea.nextInt(limite++) +1;
-                    y = alea.nextInt(14)+1;
 
                    for (int a=0;a<=taille_bateau;a++){
                     for (int w=0;w<listeCases.size();w++){
@@ -108,9 +104,26 @@ public class JoueurHumain //initialisation de la classe joueur humain
 
                         }
                     }}
-                    Bateau B = new Bateau(lesTailles.get(i), i,lesNoms.get(i), Horizontal, x+1, y);
+                    if (lesTailles.get(i)== 7){
 
-                    MapDeBateaux.put(i,B);
+                        Bateau B = new Cuirasse(lesTailles.get(i), i,"Cuirasse", Horizontal, x, y+1);
+
+                        MapDeBateaux.put(i,B);}
+                    if (lesTailles.get(i)== 5){
+
+                        Bateau B = new SousMarin(lesTailles.get(i), i,"Croiseur", Horizontal, x, y+1);
+
+                        MapDeBateaux.put(i,B);}
+                    if (lesTailles.get(i)== 3){
+
+                        Bateau B = new Destroyer(lesTailles.get(i), i,"Destroyer", Horizontal, x, y+1);
+
+                        MapDeBateaux.put(i,B);}
+                    if (lesTailles.get(i)== 1){
+
+                        Bateau B = new SousMarin(lesTailles.get(i), i,"Sous-marin", Horizontal, x, y+1);
+
+                        MapDeBateaux.put(i,B);}
 
 
                     test = 1;
@@ -121,35 +134,56 @@ public class JoueurHumain //initialisation de la classe joueur humain
                     //x = alea.nextInt(16)+1;
                     //y = alea.nextInt(limite++)+1;
 
-                    x = (int) (Math.random()*(15))+1;
-                    y = (int)(Math.random()*(15-limite))+1;
-                    System.out.println("X  : "+ x + " Y : "+ y);
-                     for (int a=0;a<=taille_bateau;a++){
-                     for (int w=0;w<listeCases.size();w++){
-                    while(listeCases.get(w).getX() == x && listeCases.get(w).getY() == y+ a){
+                    x = (int) (Math.random() * (15)) + 1;
+                    y = (int) (Math.random() * (15 - limite)) + 1;
+                    //System.out.println("X  : " + x + " Y : " + y);
+                    for (int a = 0; a <= taille_bateau; a++) {
+                        for (int w = 0; w < listeCases.size(); w++) {
+                            while (listeCases.get(w).getX() == x && listeCases.get(w).getY() == y + a) {
 
-                        x = (int) (Math.random()*(15))+1;
-                        y = (int)(Math.random()*(15-limite))+1;
-                        System.out.println("\n\nERRor");
-                        a=0;
-                        break;
+                                x = (int) (Math.random() * (15)) + 1;
+                                y = (int) (Math.random() * (15 - limite)) + 1;
+                                System.out.println("\n\nERRor");
+                                a = 0;
+                                break;
 
 
-                    }}
-                }
-                    if (lesTailles.get(i)== 5){
-
-                    Bateau B = new SousMarin(lesTailles.get(i), i,lesNoms.get(i), Horizontal, x, y+1);
-
-                    MapDeBateaux.put(i,B);}
+                            }
+                        }
                     }
+                    if (lesTailles.get(i) == 7) {
+
+                        Bateau B = new Cuirasse(lesTailles.get(i), i, "Cuirasse", Horizontal, x, y + 1);
+
+                        MapDeBateaux.put(i, B);
+                    }
+                    if (lesTailles.get(i) == 5) {
+
+                        Bateau B = new SousMarin(lesTailles.get(i), i, "Croiseur", Horizontal, x, y + 1);
+
+                        MapDeBateaux.put(i, B);
+                    }
+                    if (lesTailles.get(i) == 3) {
+
+                        Bateau B = new Destroyer(lesTailles.get(i), i, "Destroyer", Horizontal, x, y + 1);
+
+                        MapDeBateaux.put(i, B);
+                    }
+                    if (lesTailles.get(i) == 1) {
+
+                        Bateau B = new SousMarin(lesTailles.get(i), i, "Sous-marin", Horizontal, x, y + 1);
+
+                        MapDeBateaux.put(i, B);
+                    }
+
+                }
                     test = 1;
 
                 //Case C  = new Case(x,y);
                 int compte = i;
                 compte = compte +1;
                 if (lesTailles.get(i)== 7){
-                    System.out.println("\nPlacement du " + lesNoms.get(i)+ " " + compte);
+                    System.out.println("\nPlacement du Cuirasse " + compte);
                     for(int z=0; z<7;z++){
                         if(Horizontal == true){
                             Case c = new Case(x=x+1,y,lesTailles.get(i));
@@ -171,7 +205,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
                     }
                 }
                 if (lesTailles.get(i)== 5){
-                    System.out.println("\nPlacement du " + lesNoms.get(i) + " " + compte++);
+                    System.out.println("\nPlacement du Croiseur " + compte++);
                     for(int z=7; z<12;z++){
                         if(Horizontal == true){
                             Case c = new Case(x=x+1,y,lesTailles.get(i));
@@ -190,7 +224,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
                     }
                 }
                 if (lesTailles.get(i)== 3){
-                    System.out.println("\nPlacement du " + lesNoms.get(i) + " " +compte++);
+                    System.out.println("\nPlacement du Destroyer " +compte++);
                     for(int z=12; z<15;z++){
                         if(Horizontal == true){
                             Case c = new Case(x=x+1,y,lesTailles.get(i));
@@ -207,7 +241,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
                     }
                 }
                 if (lesTailles.get(i)== 1){
-                    System.out.println("\nPlacement du " + lesNoms.get(i) + " " +compte++);
+                    System.out.println("\nPlacement du Sous-marin " +compte++);
                     for(int z=15; z<16;z++){
                         if(Horizontal == true){
                             Case c = new Case(x=x+1,y,lesTailles.get(i));
