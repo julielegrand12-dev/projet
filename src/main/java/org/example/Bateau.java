@@ -121,20 +121,6 @@ public class Bateau {
         this.coordonneeDebutY = coordonneeDebutY ;
     }
 
-   /* public static void declaBateaux(String[][] Bateau) { // Declaration des bateaux
-          Bateau B1 = new Bateau("7","1","Cruisarde");
-          Bateau B2 = new Bateau("5", "2", "Croiseur");
-          Bateau B3 = new Bateau("5", "3", "Croiseur");
-          Bateau B4 = new Bateau("3", "4", "Destroyer");
-          Bateau B5 = new Bateau("3", "5", "Destroyer");
-          Bateau B6 = new Bateau("3", "6", "Destroyer");
-          Bateau B7 = new Bateau("1", "7", "Sous-marin");
-          Bateau B8 = new Bateau("1", "8", "Sous-marin");
-          Bateau B9 = new Bateau("1", "9", "Sous-marin");
-          Bateau B10 = new Bateau("1", "10", "Sous-marin");
-    };
-*/
-
 
     public void genererBateaux(){
 

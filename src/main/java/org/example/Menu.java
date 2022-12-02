@@ -75,9 +75,6 @@ public class Menu
         HashMap<Integer, Case> mapDeCases = new HashMap<Integer, Case>();
         HashMap<Integer, Bateau> mapDeBateaux = new HashMap<>();
 
-        //Appel de fonctions dans les classes
-        J.setMapDeCasesHumain(mapDeCases);
-        J.setMapDeBateauxHumain(mapDeBateaux);
 
         System.out.println("Veuillez faire un choix");
         //Nous affichons les choix possibles
@@ -101,9 +98,7 @@ public class Menu
             case 2:
                 //Appel de fonctions dans les classes
                 J.PlacementCasesHumain(mapDeCases, mapDeBateaux);
-                J.setMapDeBateauxHumain(mapDeBateaux);
                 J.PlacementBateauxHumain(mapDeBateaux);
-
                 J.DeplacerBateau(mapDeBateaux, mapDeCases);
                 break;
 

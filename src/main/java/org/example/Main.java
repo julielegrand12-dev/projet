@@ -29,11 +29,11 @@ public class Main {
 
 
         //System.out.print(Cuirasse.getCoordonneeDebutX());
-       mapDeBateaux.get(5).AttaqueHumainDestroyer(O,J,mapdecaseseclairees);
-        mapDeBateaux.get(5).AttaqueHumainDestroyer(O,J, mapdecaseseclairees);
+       //mapDeBateaux.get(5).AttaqueHumainDestroyer(O,J,mapdecaseseclairees);
+       // mapDeBateaux.get(5).AttaqueHumainDestroyer(O,J, mapdecaseseclairees);
 
-        mapDeBateaux.get(5).AttaqueOrdiDestroyer(O,J,mapdecaseseclairees);
-        mapDeBateaux.get(5).AttaqueOrdiDestroyer(O,J, mapdecaseseclairees);
+       // mapDeBateaux.get(5).AttaqueOrdiDestroyer(O,J,mapdecaseseclairees);
+       // mapDeBateaux.get(5).AttaqueOrdiDestroyer(O,J, mapdecaseseclairees);
       /*  for (Integer  TY : mapDeCases.keySet()){
         System.out.println(mapDeCases.get(mapDeCases.get(TY)));}
         //J.DeplacerBateau(mapDeBateaux);
@@ -47,6 +47,6 @@ public class Main {
 
         //Appel des menus
      //  M.MenuDebut();
-       //M.MenuBateau();
+       M.MenuBateau();
   }
 }
