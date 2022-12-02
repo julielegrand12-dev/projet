@@ -250,10 +250,10 @@ public class Sauvegarde {
     
 
     Plateau pat = new Plateau();
-            Panel pan = new Panel();
-            System.out.println("tempo :" + pan.getTempo());
-            pan.setTempo(1);
-            System.out.println("tempo :" +pan.getTempo());
+
+
+            
+
     JoueurHumain Ju = new JoueurHumain("Juju", 1);
             Ju.setMapDeCasesHumain(mapDeCasesSauv);
 
@@ -375,14 +375,14 @@ public class Sauvegarde {
 
 
         Plateau pat = new Plateau();
-        Panel pan = new Panel();
-        System.out.println("tempo :" + pan.getTempo());
-        pan.setTempo(1);
-        System.out.println("tempo :" +pan.getTempo());
+
+
+
+
         JoueurHumain Ju = new JoueurHumain("Juju", 1);
         Ju.setMapDeCasesHumain(mapDeCasesSauv);
 
-        pat.gui();
+        pat.PlateauJoueur();
     }
 
 

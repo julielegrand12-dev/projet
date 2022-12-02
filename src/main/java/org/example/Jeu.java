@@ -61,7 +61,6 @@ public class Jeu {
     {
 
         Plateau Po = new Plateau();
-
         Po.PlateauJoueur();
     }
 

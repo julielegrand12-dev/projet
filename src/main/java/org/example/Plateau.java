@@ -7,10 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.*;
 import java.awt.BorderLayout;
+import java.awt.KeyEventDispatcher;
+import java.awt.KeyboardFocusManager;
+import java.awt.event.KeyEvent;
 
 
 
-public class Plateau extends JFrame implements ActionListener  {
+public class Plateau extends JPanel implements ActionListener  {
 
     private HashMap<Integer, Case> mapDeCases = new HashMap<Integer, Case>();
     private HashMap<Integer, Bateau> mapDeBateaux = new HashMap<>();
@@ -22,6 +25,9 @@ public class Plateau extends JFrame implements ActionListener  {
     ArrayList<JButton> lesBoutons = new ArrayList<JButton>(); // liste de boutons
     HashMap<Integer, Case> MapDeCasesDegat = new HashMap<Integer, Case>(); //hashmap
     ArrayList<Case> listeCasesDeg = new ArrayList<Case>();
+    public JoueurHumain J = new JoueurHumain("ju", 0);
+
+
 
     public void PlateauDommage()
     {
@@ -52,11 +58,6 @@ public class Plateau extends JFrame implements ActionListener  {
             }
             Case ca = new Case(tempo,cpt,0);
             listeCasesDeg.add(ca);
-
-
-
-
-
         }
 
 
@@ -67,39 +68,10 @@ public class Plateau extends JFrame implements ActionListener  {
         }
 
 
+
         frame.add(panel);
         frame.setSize(700, 700);
         frame.show();
-
-        
-       /* fen=new JFrame("BATAILLE NAVALE");
-        fen.setVisible(true);
-        fen.setSize(800,650);
-        fen.setDefaultCloseOperation(fen.EXIT_ON_CLOSE);
-
-        panel1= new JPanel();
-
-        panel1.setBackground(Color.ORANGE);
-
-
-        lab = new JLabel("Joueur 1");
-
-       // Sauvegarde S = new Sauvegarde();
-        panel2= new JPanel();
-        panel2.setBackground(Color.ORANGE);
-
-        fen.add(panel2,BorderLayout.SOUTH);
-
-        panel1.add(lab);
-
-
-        fen.add(panel1,BorderLayout.NORTH);
-
-
-
-        //Graphics g = null;
-        //fen.add(super.paintComponent(g));
-        fen.add(new Panel());*/
 
 
     }
@@ -121,7 +93,9 @@ public class Plateau extends JFrame implements ActionListener  {
         Plateau obj = new Plateau();
         // créer un panneau
         JPanel panel = new JPanel();
+
         JButton btn[] = new JButton[225];
+        JButton boutonSauv = new JButton("Sauvegarder la partie");
         int test=43;
 
             char c = 'a';
@@ -176,6 +150,9 @@ public class Plateau extends JFrame implements ActionListener  {
         System.out.println(k + " Avec X = " + listeCasesDeg.get(k).getX() + " et Y = " + listeCasesDeg.get(k).getY() );
         //MapDeCasesDegat.put(k, listeCasesDeg.get(k));
         }
+        panel.add(boutonSauv);
+        boutonSauv.addActionListener(this);
+
 
 
         frame.add(panel);
@@ -203,6 +180,12 @@ public class Plateau extends JFrame implements ActionListener  {
             // Définir la visibilité de la boîte de dialogue
             d.setVisible(true);
         }
+        if(s.equals("Sauvegarder la partie"))
+        {
+            System.out.println("SSSSSSSSSSSAAAAAAAAAAAAAAAAAUUUUUUUUUUUUUUUUVVVVVVVVVVVVVVVv");
+            Sauvegarde S = new Sauvegarde();
+            S.SauvegarderJeuHumain(J);
+        }
     }
 
 
@@ -216,6 +199,13 @@ public class Plateau extends JFrame implements ActionListener  {
 
 
     }
+
+
+
+
+
+
+
 
 
 
