@@ -21,7 +21,7 @@ public class SousMarin extends Bateau{
         int choixY = scan.nextInt();
         HashMap<Integer, Case> mapDeCases = new HashMap<Integer, Case>();
         HashMap<Integer, Bateau> mapDeBateaux = new HashMap<>();
-        mapDeCases = Joueur.getMapDeCasesHumain();
+        mapDeCases = Ordi.getMapDeCasesOrdi();
         boolean Flag = false;
 
         for (Integer TY : mapDeCases.keySet()) {
@@ -30,9 +30,9 @@ public class SousMarin extends Bateau{
                 System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " a bien été touché");
                 System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
                 Flag = true;
-            }
+            }}
 
-        if(Flag == false){System.out.print("Pas de bateau à cette coordonnée");}}
+        if(Flag == false){System.out.print("Pas de bateau à cette coordonnée");}
 
     }
     public void AttaqueOrdi(JoueurOrdi Ordi, JoueurHumain Humain) {

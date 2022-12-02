@@ -22,15 +22,22 @@ public class Main {
         System.out.println("Jeu réalisé par Julie Legrand - Ludivine Fulop - Sara Suleiman");
 
         //Appel de fonctions dans les classes
-        J.setMapDeCasesHumain(mapDeCases);
-        J.setMapDeBateauxHumain(mapDeBateaux);
-        J.PlacementCasesHumain(mapDeCases, mapDeBateaux);
-        J.PlacementBateauxHumain(mapDeBateaux);
+        //J.setMapDeCasesHumain(mapDeCases);
+       // J.setMapDeBateauxHumain(mapDeBateaux);
+        //J.PlacementCasesHumain(mapDeCases, mapDeBateaux);
+       // J.PlacementBateauxHumain(mapDeBateaux);
+        O.PlacementCasesHumain(mapDeCases,mapDeBateaux);
+        O.PlacementBateauxHumain(mapDeBateaux);
+        O.setMapDeBateauxOrdi(mapDeBateaux);
+        O.setMapDeCasesOrdi(mapDeCases);
+
+
 
 
         //System.out.print(Cuirasse.getCoordonneeDebutX());
        //mapDeBateaux.get(0).AttaqueHumain(O,J);
-        mapDeBateaux.get(2).AttaqueHumain(O,J);
+       // System.out.println(mapDeBateaux.get(1).getNom_navire());
+       // mapDeBateaux.get(1).AttaqueHumain(O,J);
         //mapDeBateaux.get(5).AttaqueHumainDestroyer(O,J, mapdecaseseclairees);
 
        // mapDeBateaux.get(5).AttaqueOrdiDestroyer(O,J,mapdecaseseclairees);
@@ -48,6 +55,6 @@ public class Main {
 
         //Appel des menus
      //  M.MenuDebut();
-       //M.MenuBateau();
+        //M.MenuBateau();
   }
 }

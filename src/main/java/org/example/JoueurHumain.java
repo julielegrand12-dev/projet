@@ -114,7 +114,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
                         MapDeBateaux.put(i,B);}
                     if (lesTailles.get(i)== 5){
 
-                        Bateau B = new SousMarin(lesTailles.get(i), i,"Croiseur", Horizontal, x+1, y);
+                        Bateau B = new Croiseur(lesTailles.get(i), i,"Croiseur", Horizontal, x+1, y);
 
                         MapDeBateaux.put(i,B);}
                     if (lesTailles.get(i)== 3){
@@ -162,7 +162,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
                     }
                     if (lesTailles.get(i) == 5) {
 
-                        Bateau B = new SousMarin(lesTailles.get(i), i, "Croiseur", Horizontal, x, y + 1);
+                        Bateau B = new Croiseur(lesTailles.get(i), i, "Croiseur", Horizontal, x, y + 1);
 
                         MapDeBateaux.put(i, B);
                     }
@@ -582,31 +582,30 @@ public class JoueurHumain //initialisation de la classe joueur humain
 
              if(choix==0) //Cuirasse
              {
-                 for (Integer a : mapDeCasesHumain.keySet()) {
-                     if (mapDeCasesHumain.get(0).getX() -1 <= 1 && mapDeCasesHumain.get(6).getX() -1 == mapDeCasesHumain.get(a).getX()) {
+                 for (Integer a : MapDeCases.keySet()) {
+                     if (MapDeCases.get(0).getX() -1 <= 1 && MapDeCases.get(6).getX() -1 == MapDeCases.get(a).getX()) {
                          drapeau = true;
                          break;
                      }
                  }
                  if (drapeau == false) {
                      for (i = 0; i < 7; i++) {
-                         Case c = new Case(mapDeCasesHumain.get(i).getX() -1, mapDeCasesHumain.get(i).getY(), 7);
-                         mapDeCasesHumain.replace(i, c);
-                         setMapDeCasesHumain(mapDeCasesHumain);
-                         System.out.println("Coordonnées Case X :" + mapDeCasesHumain.get(i).getX() + " Y:" + mapDeCasesHumain.get(i).getY());
+                         Case c = new Case(MapDeCases.get(i).getX() -1, MapDeCases.get(i).getY(), 7);
+                         MapDeCases.replace(i, c);
+                         System.out.println("Coordonnées Case X :" + MapDeCases.get(i).getX() + " Y:" + MapDeCases.get(i).getY());
                          flag = false;
-                     }
+                     } setMapDeCasesHumain(MapDeCases);
                  } else {
                      System.out.println("La coordonnée saisie est non disponible");
                  }
 
                  if (flag = false) {
                      Bateau b = new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(), MapDeBateaux.get(choix).isHorizontal(), MapDeBateaux.get(choix).getCoordonneeDebutX() -1, MapDeBateaux.get(choix).getCoordonneeDebutY());
-                     mapDeBateauxHumain.replace(choix, b);
-                     setMapDeBateauxHumain(mapDeBateauxHumain);
-                     System.out.println("Coordonnées bateau X:" + mapDeBateauxHumain.get(choix).getCoordonneeDebutX() + " Y:" + MapDeBateaux.get(choix).getCoordonneeDebutY());
+                     MapDeBateaux.replace(choix, b);
+                     setMapDeBateauxHumain(MapDeBateaux);
+                     System.out.println("Coordonnées bateau X:" + MapDeBateaux.get(choix).getCoordonneeDebutX() + " Y:" + MapDeBateaux.get(choix).getCoordonneeDebutY());
                  } else {
-                     System.out.println("Coordonnées bateau X:" + mapDeBateauxHumain.get(choix).getCoordonneeDebutX() + " Y:" + MapDeBateaux.get(choix).getCoordonneeDebutY());
+                     System.out.println("Coordonnées bateau X:" + MapDeBateaux.get(choix).getCoordonneeDebutX() + " Y:" + MapDeBateaux.get(choix).getCoordonneeDebutY());
                  }
              }
 
@@ -679,8 +678,8 @@ public class JoueurHumain //initialisation de la classe joueur humain
                  if(choix ==3){ w = 17; z = 19;}
                  if(choix == 4){ w = 20; z= 22;}
                  if(choix==5){ w = 23; z = 25;}
-                 for (Integer a : mapDeCasesHumain.keySet()) {
-                     if (mapDeCasesHumain.get(z).getX() -1 <= 1 && mapDeCasesHumain.get(z).getX() -1 == mapDeCasesHumain.get(a).getX()) {
+                 for (Integer a : MapDeCases.keySet()) {
+                     if (MapDeCases.get(z).getX() -1 <= 1 && MapDeCases.get(z).getX() -1 == MapDeCases.get(a).getX()) {
                          drapeau = true;
                          break;
                      }
@@ -689,23 +688,22 @@ public class JoueurHumain //initialisation de la classe joueur humain
                  {
                      for (int compte = w; compte <= z; compte++) {
                          {
-                             Case c = new Case(mapDeCasesHumain.get(compte).getX() -1, mapDeCasesHumain.get(compte).getY(), 3);
-                             mapDeCasesHumain.replace(compte, c);
-                             setMapDeCasesHumain(mapDeCasesHumain);
-                             System.out.println("Coordonnée Case X:" + mapDeCasesHumain.get(compte).getX() + " Y:" + mapDeCasesHumain.get(compte).getY());
+                             Case c = new Case(MapDeCases.get(compte).getX() -1, MapDeCases.get(compte).getY(), 3);
+                             MapDeCases.replace(compte, c);
+                             System.out.println("Coordonnée Case X:" +MapDeCases.get(compte).getX() + " Y:" + MapDeCases.get(compte).getY());
                              flag = false;
-                         }
+                         }setMapDeCasesHumain(MapDeCases);
                      }
                  }else{
                      System.out.println("La coordonnée saisie est non disponible");}
 
                  if (flag == false) {
-                     Bateau b = new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),MapDeBateaux.get(choix).isHorizontal(), mapDeBateauxHumain.get(choix).getCoordonneeDebutX() -1, mapDeBateauxHumain.get(choix).getCoordonneeDebutY());
-                     mapDeBateauxHumain.replace(choix, b);
-                     setMapDeBateauxHumain(mapDeBateauxHumain);
-                     System.out.println("Coordonnées bateau X:" + mapDeBateauxHumain.get(choix).getCoordonneeDebutX() + " Y:" + MapDeBateaux.get(choix).getCoordonneeDebutY());
+                     Bateau b = new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(),MapDeBateaux.get(choix).isHorizontal(), MapDeBateaux.get(choix).getCoordonneeDebutX() -1, MapDeBateaux.get(choix).getCoordonneeDebutY());
+                     MapDeBateaux.replace(choix, b);
+                     setMapDeBateauxHumain(MapDeBateaux);
+                     System.out.println("Coordonnées bateau X:" + MapDeBateaux.get(choix).getCoordonneeDebutX() + " Y:" + MapDeBateaux.get(choix).getCoordonneeDebutY());
                  } else {
-                     System.out.println("Coordonnées bateau X:" + mapDeBateauxHumain.get(choix).getCoordonneeDebutX() + " Y:" + MapDeBateaux.get(choix).getCoordonneeDebutY());
+                     System.out.println("Coordonnées bateau X:" + MapDeBateaux.get(choix).getCoordonneeDebutX() + " Y:" + MapDeBateaux.get(choix).getCoordonneeDebutY());
                  }
              }
 

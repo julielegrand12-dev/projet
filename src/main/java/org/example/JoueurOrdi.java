@@ -109,7 +109,7 @@ public class JoueurOrdi {
                     MapDeBateaux.put(i,B);}
                 if (lesTailles.get(i)== 5){
 
-                    Bateau B = new SousMarin(lesTailles.get(i), i,"Croiseur", Horizontal, x, y+1);
+                    Bateau B = new Croiseur(lesTailles.get(i), i,"Croiseur", Horizontal, x, y+1);
 
                     MapDeBateaux.put(i,B);}
                 if (lesTailles.get(i)== 3){
@@ -157,7 +157,7 @@ public class JoueurOrdi {
                 }
                 if (lesTailles.get(i) == 5) {
 
-                    Bateau B = new SousMarin(lesTailles.get(i), i, "Croiseur", Horizontal, x, y + 1);
+                    Bateau B = new Croiseur(lesTailles.get(i), i, "Croiseur", Horizontal, x, y + 1);
 
                     MapDeBateaux.put(i, B);
                 }

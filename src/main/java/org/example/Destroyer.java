@@ -33,7 +33,7 @@ public class Destroyer extends Bateau{
 
         HashMap<Integer, Case> mapDeCases = new HashMap<Integer, Case>();
         HashMap<Integer, Bateau> mapDeBateaux = new HashMap<>();
-        mapDeCases = Joueur.getMapDeCasesHumain();
+        mapDeCases = Ordi.getMapDeCasesOrdi();
         boolean Flag = false;
         System.out.println(premFois);
         if (premFois == true){
