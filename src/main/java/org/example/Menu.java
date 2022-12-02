@@ -61,11 +61,10 @@ public class Menu
                 break;
             case 2 : System.out.println("Redemarrer une partie\n");
                 Sauvegarde S = new Sauvegarde();
-                S.RecupererJeu();
+                S.RecupererJeuHumain();
+                S.RecupererJeuOrdi();
                 break;
             case 3 : System.out.println("Aide\n");
-            Aide A = new Aide();
-            A.AideReglesJeu();
                 break;
             case 4 : System.out.println("Quitter\n");
                 return;
@@ -79,9 +78,6 @@ public class Menu
         HashMap<Integer, Case> mapDeCases = new HashMap<Integer, Case>();
         HashMap<Integer, Bateau> mapDeBateaux = new HashMap<>();
 
-        //Appel de fonctions dans les classes
-        J.setMapDeCasesHumain(mapDeCases);
-        J.setMapDeBateauxHumain(mapDeBateaux);
 
         System.out.println("Veuillez faire un choix");
         //Nous affichons les choix possibles
@@ -105,10 +101,8 @@ public class Menu
             case 2:
                 //Appel de fonctions dans les classes
                 J.PlacementCasesHumain(mapDeCases, mapDeBateaux);
-                J.setMapDeBateauxHumain(mapDeBateaux);
                 J.PlacementBateauxHumain(mapDeBateaux);
-
-                J.DeplacerBateau(mapDeBateaux);
+                J.DeplacerBateau(mapDeBateaux, mapDeCases);
                 break;
 
             case 3 : System.out.println("Quitter\n");

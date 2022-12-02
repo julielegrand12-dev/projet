@@ -24,6 +24,8 @@ public class Panel extends JPanel {
     }
 
     JoueurHumain J = new JoueurHumain("Sara", 0);
+    JoueurOrdi O = new JoueurOrdi("Ordi", 0);
+
 
     public Panel() {
     }
@@ -151,7 +153,8 @@ public class Panel extends JPanel {
                         setTempo(1);
 
                             Sauvegarde S = new Sauvegarde();
-                            S.SauvegarderJeu(J);
+                            S.SauvegarderJeuHumain(J);
+                            S.SauvegarderJeuOrdi(O);
 
 
 

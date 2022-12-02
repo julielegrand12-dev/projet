@@ -3,10 +3,10 @@ package org.example;
 public class Case {
     // attribut
 
-    private int x_ligne ;
-    private int y_colonne ;
-    private boolean EtatCase; // C'est l'état de la case (
-    private int ID ;
+    private int x_ligne; //coordonnées x
+    private int y_colonne; //coordonnées y
+    private boolean EtatCase; //etat de la case
+    private int ID; //identifiant de la case
 
     public Case() {
     }
@@ -19,7 +19,9 @@ public class Case {
     public int getY() {
         return this.y_colonne;
     }
-
+    public int getGetID() {
+        return ID;
+    }
     public void setGetID(int getID) {
         this.ID = ID;
     }
@@ -32,10 +34,6 @@ public class Case {
         this.y_colonne = y;
     }
 
-    public int getGetID() {
-        return ID;
-    }
-
     // méthodes
 
     public Case(int x, int y,int id){
@@ -43,7 +41,6 @@ public class Case {
         this.y_colonne = y;
         this.ID = id; // initialise à 0
         this.EtatCase = false ; // initialise à 'pas coulé'
-
     }
     public boolean EtatCase() {
         return this.EtatCase ;
@@ -51,7 +48,6 @@ public class Case {
     public void CaseTouche() { // Lorsque la case a été touché on passe à boolean true
         this.EtatCase = true ;
     }
-
     public void NewBateau(int ID){
         this.ID =  ID;
     }
