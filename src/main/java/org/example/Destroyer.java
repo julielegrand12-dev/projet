@@ -31,24 +31,18 @@ public class Destroyer extends Bateau{
     }
     public ArrayList<Case> AttaqueHumainDestroyer(JoueurOrdi Ordi, JoueurHumain Joueur, ArrayList<Case>mapCasesEclairees) {
 
-        Scanner scan = new Scanner(System.in);
-        int choixX = 99;
-        int choixY = 99;
         HashMap<Integer, Case> mapDeCases = new HashMap<Integer, Case>();
         HashMap<Integer, Bateau> mapDeBateaux = new HashMap<>();
         mapDeCases = Joueur.getMapDeCasesHumain();
         boolean Flag = false;
-
         System.out.println(premFois);
-
         if (premFois == true){
-            System.out.println("Choisissez la coordonnée que vous voulez afficher");
+            System.out.println("Saisissez la coordonnée que vous souhaitez afficher");
+            Scanner scan = new Scanner(System.in);
             System.out.println("Saisissez X:");
-            choixX = scan.nextInt();
+            int choixX = scan.nextInt();
             System.out.println("Saisissez Y:");
-            choixY = scan.nextInt();
-            mapCasesEclairees.clear();;
-
+            int choixY = scan.nextInt();
             for (Integer TY : mapDeCases.keySet()) {
                 if (mapDeCases.get(TY).getX() == choixX && mapDeCases.get(TY).getY() == choixY) {
                     Case c = new Case(mapDeCases.get(TY).getX(),mapDeCases.get(TY).getY(),mapDeCases.get(TY).getGetID());
@@ -70,32 +64,17 @@ public class Destroyer extends Bateau{
                     System.out.println(c.getX() +" " + c.getY() + " "  + c.getGetID());
                 }
                 setPremFois(premFois = false);
-            }
-            // for(int i = 0; i<mapCasesEclairees.size(); i++){
-            // System.out.println(i + " Avec X = " + mapCasesEclairees.get(i).getX() + " et Y = " + mapCasesEclairees.get(i).getY() + "\n et d'ID = " + mapCasesEclairees.get(i).getGetID());
-            //}
-
-        }
-       else{
+            }}
+        else{
             System.out.println("Saisissez la coordonnée que vous souhaitez attaquer");
+            Scanner scan = new Scanner(System.in);
             System.out.println("Saisissez X:");
-            choixX = scan.nextInt();
+            int choixX = scan.nextInt();
             System.out.println("Saisissez Y:");
-            choixY = scan.nextInt();
-        for (Integer TY : mapDeCases.keySet()) {
-            if(mapDeCases.get(TY).getX() == choixX  && mapDeCases.get(TY).getY() == choixY  && mapDeCases.get(TY).getGetID() != 1){
-                mapDeCases.get(TY).CaseTouche();
-                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " a bien été touché");
-                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
-                Flag = true;
-            }
-            if(mapDeCases.get(TY).getX() == choixX  && mapDeCases.get(TY).getY() == choixY  && mapDeCases.get(TY).getGetID() == 1){
-                System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " est un sous-marin, il ne peut pas être attaqué par un Destroyer. ");
-                System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
-                Flag = true;
-            }
+            int choixY = scan.nextInt();
+            lesCondtions(mapDeCases,choixX,choixY,Flag);
         }
-        if(Flag == false){System.out.print("Pas de bateau à cette coordonnée");}}
+
 
     return mapCasesEclairees;}
 
@@ -118,6 +97,7 @@ public class Destroyer extends Bateau{
         mapDeBateaux = Joueur.getMapDeBateauxHumain();
         mapDeCases = Joueur.getMapDeCasesHumain();
         boolean Flag = false;
+        System.out.println(premFoisordi);
 
         if (premFoisordi == true){
             for (Integer TY : mapDeCases.keySet()) {
@@ -141,12 +121,17 @@ public class Destroyer extends Bateau{
                     System.out.println(c.getX() +" " + c.getY() + " "  + c.getGetID());
                 }
                 setPremFoisordi(premFoisordi = false);
-            }
-            // for(int i = 0; i<mapCasesEclairees.size(); i++){
-            // System.out.println(i + " Avec X = " + mapCasesEclairees.get(i).getX() + " et Y = " + mapCasesEclairees.get(i).getY() + "\n et d'ID = " + mapCasesEclairees.get(i).getGetID());
-            //}
+            }}
+            else{
+                lesCondtions(mapDeCases,choixX,choixY,Flag);
 
-        } else{
+            }
+
+        return mapCasesEclairees;}
+
+    void lesCondtions(HashMap<Integer, Case> mapDeCases,int choixX, int choixY,boolean Flag){
+
+
             for (Integer TY : mapDeCases.keySet()) {
                 if (mapDeCases.get(TY).getX() == choixX && mapDeCases.get(TY).getY() == choixY && mapDeCases.get(TY).getGetID() != 1) {
                     mapDeCases.get(TY).CaseTouche();
@@ -164,8 +149,7 @@ public class Destroyer extends Bateau{
                 System.out.print("Pas de bateau à cette coordonnée");
             }
 
-        }
-        return mapCasesEclairees;}
+       }
 }
 
 

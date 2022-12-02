@@ -29,8 +29,9 @@ public class Main {
 
 
         //System.out.print(Cuirasse.getCoordonneeDebutX());
-       //mapDeBateaux.get(5).AttaqueHumainDestroyer(O,J,mapdecaseseclairees);
-       // mapDeBateaux.get(5).AttaqueHumainDestroyer(O,J, mapdecaseseclairees);
+       //mapDeBateaux.get(0).AttaqueHumain(O,J);
+        mapDeBateaux.get(2).AttaqueHumain(O,J);
+        //mapDeBateaux.get(5).AttaqueHumainDestroyer(O,J, mapdecaseseclairees);
 
        // mapDeBateaux.get(5).AttaqueOrdiDestroyer(O,J,mapdecaseseclairees);
        // mapDeBateaux.get(5).AttaqueOrdiDestroyer(O,J, mapdecaseseclairees);
@@ -47,6 +48,6 @@ public class Main {
 
         //Appel des menus
      //  M.MenuDebut();
-       M.MenuBateau();
+       //M.MenuBateau();
   }
 }
