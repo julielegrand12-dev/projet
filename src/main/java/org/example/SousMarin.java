@@ -34,6 +34,7 @@ public class SousMarin extends Bateau{
 
         if(Flag == false){System.out.print("Pas de bateau à cette coordonnée");}
 
+
     }
     public void AttaqueOrdi(JoueurOrdi Ordi, JoueurHumain Humain) {
 

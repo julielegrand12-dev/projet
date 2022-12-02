@@ -8,10 +8,10 @@ public class Main {
 
         //Appel objets d'une classe
 
-        JoueurHumain J = new JoueurHumain("Sara",0);
-        JoueurOrdi O = new JoueurOrdi("Ordi",0);
+
         ArrayList<Case> mapdecaseseclairees = new ArrayList<Case>();
         Menu M = new Menu('0');
+
 
         //Déclaration HashMap
         HashMap<Integer, Case> mapDeCases = new HashMap<Integer, Case>();
@@ -30,9 +30,6 @@ public class Main {
         O.PlacementBateauxHumain(mapDeBateaux);
        O.setMapDeBateauxOrdi(mapDeBateaux);
         O.setMapDeCasesOrdi(mapDeCases);*/
-
-
-
 
         //System.out.print(Cuirasse.getCoordonneeDebutX());
        //mapDeBateaux.get(0).AttaqueHumain(O,J);

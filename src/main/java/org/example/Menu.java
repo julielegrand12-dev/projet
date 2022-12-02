@@ -14,11 +14,14 @@ public class Menu
     private String pseudo;
     private Scanner scan1 = new Scanner(System.in);
 
-    JoueurHumain J = new JoueurHumain("Sara",0);
+
+    //JoueurHumain J = new JoueurHumain("Sara",0);
 
     //Déclaration HashMap
-    HashMap<Integer, Case> mapDeCases = new HashMap<Integer, Case>();
-    HashMap<Integer, Bateau> mapDeBateaux = new HashMap<>();
+
+   private HashMap<Integer, Case> mapDeCases = new HashMap<Integer, Case>();
+    private HashMap<Integer, Bateau> mapDeBateaux = new HashMap<>();
+
 
 
     public Menu(int choix)
@@ -34,6 +37,24 @@ public class Menu
         System.out.println("3- Aide\n");
         System.out.println("4- Quitter\n");
 
+        JoueurHumain JoueurH = new JoueurHumain("Personne", 0);
+
+
+        JoueurH.setMapDeCasesHumain(mapDeCases);
+        JoueurH.setMapDeBateauxHumain(mapDeBateaux);
+        JoueurH.PlacementCasesHumain(mapDeCases, mapDeBateaux);
+        JoueurH.PlacementBateauxHumain(mapDeBateaux);
+
+        JoueurOrdi JoueurO = new JoueurOrdi("Ordinateur", 0);
+
+
+        JoueurO.setMapDeCasesOrdi(mapDeCases);
+        JoueurO.setMapDeBateauxOrdi(mapDeBateaux);
+        JoueurO.PlacementCasesOrdi(mapDeCases, mapDeBateaux);
+        JoueurO.PlacementBateauxOrdi(mapDeBateaux);
+
+
+
         do{
             choix= scan.nextInt();
             if(choix>0 && choix<5)
@@ -47,17 +68,18 @@ public class Menu
             case 1 :
                 System.out.println("Veuillez selectionner votre pseudo:\n");
                 pseudo= scan1.nextLine();
-                JoueurHumain joueurH= new JoueurHumain(pseudo, '0'); //nous inserons le pseudo choisi dans le constructeur
-                System.out.println("Bonjour " + joueurH.getPseudo() + "\n");
-                System.out.println("Votre premier plateau "+joueurH.getPseudo()+"(permet de positionner et visualiser les navires):\n");
-                j.plateauHumainNavires();
-                System.out.println("Votre deuxieme plateau plateau "+joueurH.getPseudo()+"(pour visualiser les degats causes de l'adversaire):\n");
-                j.plateauHumainDommages();
+                System.out.println("Bonjour " + JoueurH.getPseudo() + "\n");
+                System.out.println("Votre premier plateau "+JoueurH.getPseudo()+"(permet de positionner et visualiser les navires):\n");
+                j.plateauHumainNavires(JoueurH,JoueurO);
+                System.out.println("Votre deuxieme plateau plateau "+JoueurH.getPseudo()+"(pour visualiser les degats causes de l'adversaire):\n");
+                j.plateauHumainDommages(JoueurH,JoueurO);
+
                 System.out.println("Bonjour Joueur 2\n");
                 System.out.println("Votre premier plateau Joueur 2 (permet de positionner et visualiser les navires):\n");
-                j.plateauOrdiNavires();
+                j.plateauOrdiNavires(JoueurH,JoueurO);
                 System.out.println("Votre deuxieme plateau plateau Joueur 2 (pour visualiser les degats causes de l'adversaire):\n");
-                j.plateauOrdiDommages();
+                j.plateauOrdiDommages(JoueurH,JoueurO);
+                //MenuBateau(JoueurH,JoueurO);
                 break;
             case 2 : System.out.println("Redemarrer une partie\n");
                 Sauvegarde S = new Sauvegarde();
@@ -72,11 +94,10 @@ public class Menu
         }
     }
 
-    public void MenuBateau()
+    public void MenuBateau(JoueurHumain JoueurH, JoueurOrdi JoueurO)
     {
         //Déclaration HashMap
-        HashMap<Integer, Case> mapDeCases = new HashMap<Integer, Case>();
-        HashMap<Integer, Bateau> mapDeBateaux = new HashMap<>();
+      
 
 
         System.out.println("Veuillez faire un choix");
@@ -92,17 +113,24 @@ public class Menu
             else
                 System.out.println("Erreur ");
         }while(!test);
+        mapDeBateaux = JoueurH.getMapDeBateauxHumain();
+        mapDeCases = JoueurH.getMapDeCasesHumain();
+        mapDeBateaux = JoueurO.getMapDeBateauxOrdi();
+        mapDeCases = JoueurO.getMapDeCasesOrdi();
 
         switch(choix)
         {
+
+
             case 1 :
+                System.out.println(JoueurH.getMapDeCasesHumain());
+                mapDeBateaux.get(9).AttaqueHumain(JoueurO,JoueurH);
                 break;
 
             case 2:
                 //Appel de fonctions dans les classes
-                J.PlacementCasesHumain(mapDeCases, mapDeBateaux);
-                J.PlacementBateauxHumain(mapDeBateaux);
-                J.DeplacerBateau(mapDeBateaux, mapDeCases);
+
+                JoueurH.DeplacerBateau(mapDeBateaux, mapDeCases);
                 break;
 
             case 3 : System.out.println("Quitter\n");

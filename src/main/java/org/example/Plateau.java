@@ -25,11 +25,11 @@ public class Plateau extends JPanel implements ActionListener  {
     ArrayList<JButton> lesBoutons = new ArrayList<JButton>(); // liste de boutons
     HashMap<Integer, Case> MapDeCasesDegat = new HashMap<Integer, Case>(); //hashmap
     ArrayList<Case> listeCasesDeg = new ArrayList<Case>();
-    public JoueurHumain J = new JoueurHumain("ju", 0);
 
 
 
-    public void PlateauDommage()
+
+    public void PlateauDommage(JoueurHumain JoueurH,JoueurOrdi JoueurO)
     {
 
 
@@ -77,16 +77,13 @@ public class Plateau extends JPanel implements ActionListener  {
     }
 
 
-
-
-
-    public void PlateauJoueur()
+    public void PlateauJoueur(JoueurHumain JoueurH,JoueurOrdi JoueurO)
     {
-        JoueurHumain J = new JoueurHumain("ju", 0);
+
+        //------------------------------------------------------------------------------
+
         System.out.println("Nouvelle partie");
-        J.setMapDeCasesHumain(mapDeCases);
-        J.setMapDeBateauxHumain(mapDeBateaux);
-        J.PlacementCasesHumain(mapDeCases, mapDeBateaux);
+
 
         frame = new JFrame("PLATEAU NAVIRE");
         // créer un objet
@@ -118,21 +115,21 @@ public class Plateau extends JPanel implements ActionListener  {
 
                     for(int j=0;j<30;j++)
                     {
-                        if((listeCasesDeg.get(i).getX() == J.getMapDeCasesHumain().get(j).getX())&&(listeCasesDeg.get(i).getY() == J.getMapDeCasesHumain().get(j).getY()))
+                        if((listeCasesDeg.get(i).getX() == JoueurH.getMapDeCasesHumain().get(j).getX())&&(listeCasesDeg.get(i).getY() == JoueurH.getMapDeCasesHumain().get(j).getY()))
                         {
-                            if(J.getMapDeCasesHumain().get(j).getGetID()==1)
+                            if(JoueurH.getMapDeCasesHumain().get(j).getGetID()==1)
                             {
                                 btn[i].setBackground(Color.YELLOW);
                             }
-                            if(J.getMapDeCasesHumain().get(j).getGetID()==3)
+                            if(JoueurH.getMapDeCasesHumain().get(j).getGetID()==3)
                             {
                                 btn[i].setBackground(Color.ORANGE);
                             }
-                            if(J.getMapDeCasesHumain().get(j).getGetID()==5)
+                            if(JoueurH.getMapDeCasesHumain().get(j).getGetID()==5)
                             {
                                 btn[i].setBackground(Color.PINK);
                             }
-                            if(J.getMapDeCasesHumain().get(j).getGetID()==7)
+                            if(JoueurH.getMapDeCasesHumain().get(j).getGetID()==7)
                             {
                                 btn[i].setBackground(Color.RED);
                             }
@@ -147,17 +144,21 @@ public class Plateau extends JPanel implements ActionListener  {
 
         for (int k = 0; k<224;k++)
         {
-        System.out.println(k + " Avec X = " + listeCasesDeg.get(k).getX() + " et Y = " + listeCasesDeg.get(k).getY() );
+       // System.out.println(k + " Avec X = " + listeCasesDeg.get(k).getX() + " et Y = " + listeCasesDeg.get(k).getY() );
         //MapDeCasesDegat.put(k, listeCasesDeg.get(k));
         }
         panel.add(boutonSauv);
         boutonSauv.addActionListener(this);
+        Menu M = new Menu('0');
 
 
 
+//------------------------------------------------------------------------------
         frame.add(panel);
         frame.setSize(700, 700);
         frame.show();
+
+        M.MenuBateau(JoueurH,JoueurO);
     }
 
 
@@ -184,7 +185,7 @@ public class Plateau extends JPanel implements ActionListener  {
         {
             System.out.println("SSSSSSSSSSSAAAAAAAAAAAAAAAAAUUUUUUUUUUUUUUUUVVVVVVVVVVVVVVVv");
             Sauvegarde S = new Sauvegarde();
-            S.SauvegarderJeuHumain(J);
+           // S.SauvegarderJeuHumain(JoueurH);
         }
     }
 

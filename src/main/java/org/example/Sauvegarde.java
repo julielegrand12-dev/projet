@@ -382,7 +382,7 @@ public class Sauvegarde {
         JoueurHumain Ju = new JoueurHumain("Juju", 1);
         Ju.setMapDeCasesHumain(mapDeCasesSauv);
 
-        pat.PlateauJoueur();
+       // pat.PlateauJoueur();
     }
 
 

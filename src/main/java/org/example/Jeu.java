@@ -40,34 +40,32 @@ public class Jeu {
 
     }
 
-    public void plateauHumainNavires ()
+    public void plateauHumainNavires (JoueurHumain JoueurH,JoueurOrdi JoueurO)
     {
-
-
     Plateau Ph = new Plateau();
 
 
-    Ph.PlateauJoueur();
+    Ph.PlateauJoueur(JoueurH,JoueurO);
     }
 
-    public void plateauHumainDommages ()
+    public void plateauHumainDommages (JoueurHumain JoueurH,JoueurOrdi JoueurO)
     {
         Plateau Pd = new Plateau();
-        Pd.PlateauDommage();
+        Pd.PlateauDommage(JoueurH,JoueurO);
 
     }
 
-    public void plateauOrdiNavires ()
+    public void plateauOrdiNavires (JoueurHumain JoueurH,JoueurOrdi JoueurO)
     {
 
         Plateau Po = new Plateau();
-        Po.PlateauJoueur();
+        Po.PlateauJoueur(JoueurH,JoueurO);
     }
 
-    public void plateauOrdiDommages ()
+    public void plateauOrdiDommages (JoueurHumain JoueurH,JoueurOrdi JoueurO)
     {
         Plateau Pn = new Plateau();
-        Pn.PlateauDommage();
+        Pn.PlateauDommage(JoueurH,JoueurO);
       // Pn.gui();
     }
 
