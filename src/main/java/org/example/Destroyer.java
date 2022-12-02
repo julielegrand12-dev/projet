@@ -35,14 +35,38 @@ public class Destroyer extends Bateau{
         HashMap<Integer, Bateau> mapDeBateaux = new HashMap<>();
         mapDeCases = Ordi.getMapDeCasesOrdi();
         boolean Flag = false;
+        boolean flag = true;
+        int choixX=99, choixY=99;
+        Scanner scan = new Scanner(System.in);
         System.out.println(premFois);
         if (premFois == true){
+
+
             System.out.println("Saisissez la coordonnée que vous souhaitez afficher");
-            Scanner scan = new Scanner(System.in);
-            System.out.println("Saisissez X:");
-            int choixX = scan.nextInt();
-            System.out.println("Saisissez Y:");
-            int choixY = scan.nextInt();
+
+            while (flag == true) {
+                System.out.println("Saisissez X:");
+                try {
+                   choixX = scan.nextInt();
+                   flag = false;
+                }
+                catch (java.util.InputMismatchException e) {
+                    scan.nextLine();
+                    flag = true;
+                }}
+
+                while (flag == true) {
+                    System.out.println("Saisissez Y:");
+                    try {
+                        choixY = scan.nextInt();
+                        flag = false;
+                    }
+                    catch (java.util.InputMismatchException e) {
+                         scan.nextLine();
+                        flag = true;
+                    }}
+
+
             for (Integer TY : mapDeCases.keySet()) {
                 if (mapDeCases.get(TY).getX() == choixX && mapDeCases.get(TY).getY() == choixY) {
                     Case c = new Case(mapDeCases.get(TY).getX(),mapDeCases.get(TY).getY(),mapDeCases.get(TY).getGetID());
@@ -67,11 +91,11 @@ public class Destroyer extends Bateau{
             }}
         else{
             System.out.println("Saisissez la coordonnée que vous souhaitez attaquer");
-            Scanner scan = new Scanner(System.in);
+
             System.out.println("Saisissez X:");
-            int choixX = scan.nextInt();
+            choixX = scan.nextInt();
             System.out.println("Saisissez Y:");
-            int choixY = scan.nextInt();
+            choixY = scan.nextInt();
             lesCondtions(mapDeCases,choixX,choixY,Flag);
         }
 

@@ -26,10 +26,10 @@ public class Main {
        // J.setMapDeBateauxHumain(mapDeBateaux);
         //J.PlacementCasesHumain(mapDeCases, mapDeBateaux);
        // J.PlacementBateauxHumain(mapDeBateaux);
-        O.PlacementCasesHumain(mapDeCases,mapDeBateaux);
+     /*  O.PlacementCasesHumain(mapDeCases,mapDeBateaux);
         O.PlacementBateauxHumain(mapDeBateaux);
-        O.setMapDeBateauxOrdi(mapDeBateaux);
-        O.setMapDeCasesOrdi(mapDeCases);
+       O.setMapDeBateauxOrdi(mapDeBateaux);
+        O.setMapDeCasesOrdi(mapDeCases);*/
 
 
 
@@ -38,7 +38,7 @@ public class Main {
        //mapDeBateaux.get(0).AttaqueHumain(O,J);
        // System.out.println(mapDeBateaux.get(1).getNom_navire());
        // mapDeBateaux.get(1).AttaqueHumain(O,J);
-        //mapDeBateaux.get(5).AttaqueHumainDestroyer(O,J, mapdecaseseclairees);
+      //  mapDeBateaux.get(5).AttaqueHumainDestroyer(O,J, mapdecaseseclairees);
 
        // mapDeBateaux.get(5).AttaqueOrdiDestroyer(O,J,mapdecaseseclairees);
        // mapDeBateaux.get(5).AttaqueOrdiDestroyer(O,J, mapdecaseseclairees);
@@ -54,7 +54,7 @@ public class Main {
         }*/
 
         //Appel des menus
-     //  M.MenuDebut();
+       M.MenuDebut();
         //M.MenuBateau();
   }
 }

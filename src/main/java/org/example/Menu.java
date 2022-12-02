@@ -60,6 +60,9 @@ public class Menu
                 j.plateauOrdiDommages();
                 break;
             case 2 : System.out.println("Redemarrer une partie\n");
+                Sauvegarde S = new Sauvegarde();
+                S.RecupererJeuHumain();
+                S.RecupererJeuOrdi();
                 break;
             case 3 : System.out.println("Aide\n");
                 break;
