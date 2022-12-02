@@ -60,8 +60,12 @@ public class Menu
                 j.plateauOrdiDommages();
                 break;
             case 2 : System.out.println("Redemarrer une partie\n");
+                Sauvegarde S = new Sauvegarde();
+                S.RecupererJeu();
                 break;
             case 3 : System.out.println("Aide\n");
+            Aide A = new Aide();
+            A.AideReglesJeu();
                 break;
             case 4 : System.out.println("Quitter\n");
                 return;

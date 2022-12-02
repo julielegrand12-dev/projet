@@ -8,6 +8,9 @@ public class Case {
     private boolean EtatCase; // C'est l'état de la case (
     private int ID ;
 
+    public Case() {
+    }
+
     // getter et setter
     public int getX() {
         return this.x_ligne;

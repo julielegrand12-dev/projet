@@ -193,7 +193,7 @@ public class Sauvegarde {
     JoueurHumain Ju = new JoueurHumain("Juju", 1);
             Ju.setMapDeCasesHumain(mapDeCasesSauv);
 
-    pat.gui();
+  
     }
 
     public int testsauv()

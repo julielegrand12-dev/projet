@@ -47,13 +47,14 @@ public class Jeu {
     Plateau Ph = new Plateau();
 
 
-    Ph.gui();
+    Ph.PlateauJoueur();
     }
 
     public void plateauHumainDommages ()
     {
         Plateau Pd = new Plateau();
-      // Pd.gui();
+        Pd.PlateauDommage();
+
     }
 
     public void plateauOrdiNavires ()
@@ -61,12 +62,13 @@ public class Jeu {
 
         Plateau Po = new Plateau();
 
-        Po.gui();
+        Po.PlateauJoueur();
     }
 
     public void plateauOrdiDommages ()
     {
         Plateau Pn = new Plateau();
+        Pn.PlateauDommage();
       // Pn.gui();
     }
 

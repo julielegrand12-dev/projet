@@ -2,11 +2,7 @@ package org.example;
 
 import java.awt.*;
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyListener;
 import java.util.HashMap;
-import java.awt.BorderLayout;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
@@ -32,6 +28,9 @@ public class Panel extends JPanel {
     public Panel() {
     }
 
+    public Panel(int tempo) {
+        this.tempo = tempo;
+    }
 
     public HashMap<Integer, Case> getMapDeCasesHumain() {
         return mapDeCases;
@@ -71,19 +70,20 @@ public class Panel extends JPanel {
 
         Sauvegarde Sauv = new Sauvegarde();
       //  tempo2=Sauv.testsauv();
-        if(tempo==0)
-        {
+       // if(tempo==0)
+       // {
+            mapDeCases=J.getMapDeCasesHumain();
             System.out.println("Nouvelle partie");
             J.setMapDeCasesHumain(mapDeCases);
             J.setMapDeBateauxHumain(mapDeBateaux);
-            J.PlacementCasesHumain(mapDeCases, mapDeBateaux);
+            //J.PlacementCasesHumain(mapDeCases, mapDeBateaux);
 
-        }
-        if(tempo==1)
+       // }
+       /* if(tempo==1)
         {
             System.out.println("Reprise de Sauvegarde");
 
-        }
+        }*/
 
 
         KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
