@@ -5,12 +5,7 @@ import java.util.Scanner;
 
 public class Jeu {
     ArrayList<Integer> navires = new ArrayList<Integer>();
-    int taille_1 = 7;
-    int taille_2 = 5;
-    int taille_3 = 3;
-    int taille_4 = 1;
-    int Joueur1=0;
-    int Joueur2=0;
+
 
     //grille
     private int nbligne;
@@ -43,15 +38,14 @@ public class Jeu {
     public void plateauHumainNavires (JoueurHumain JoueurH,JoueurOrdi JoueurO)
     {
     Plateau Ph = new Plateau();
-
-
-    Ph.PlateauJoueur(JoueurH,JoueurO);
+    Ph.PlateauDommage(JoueurH,JoueurO,Ph);
+    Ph.PlateauJoueur(JoueurH,JoueurO,Ph);
     }
 
     public void plateauHumainDommages (JoueurHumain JoueurH,JoueurOrdi JoueurO)
     {
         Plateau Pd = new Plateau();
-        Pd.PlateauDommage(JoueurH,JoueurO);
+        //Pd.PlateauDommage(JoueurH,JoueurO);
 
     }
 
@@ -59,14 +53,14 @@ public class Jeu {
     {
 
         Plateau Po = new Plateau();
-        Po.PlateauJoueur(JoueurH,JoueurO);
+        //Po.PlateauJoueur(JoueurH,JoueurO);
     }
 
     public void plateauOrdiDommages (JoueurHumain JoueurH,JoueurOrdi JoueurO)
     {
         Plateau Pn = new Plateau();
-        Pn.PlateauDommage(JoueurH,JoueurO);
-      // Pn.gui();
+        //Pn.PlateauDommage(JoueurH,JoueurO);
+
     }
 
 }

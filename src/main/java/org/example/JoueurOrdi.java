@@ -63,14 +63,8 @@ public class JoueurOrdi {
         List<Integer> lesTailles = new ArrayList<>(List.of(7,5,5,3,3,3,1,1,1,1));
         // List<String> lesNoms = new ArrayList<>(List.of("Cuirasse","Croiseur","Croiseur", "Destroyer","Destroyer","Destroyer","Sous-marin","Sous-marin","Sous-marin","Sous-marin","Sous-marin"));
         ArrayList<Case> listeCases = new ArrayList<Case>();
-        List<Integer> NoDoublonX = new ArrayList<>();
-        List<Integer> NoDoublonY = new ArrayList<>();
         int y=0;
         int x=0;
-        int compx = x;
-        int compy = y;
-        NoDoublonX.add(0);
-        NoDoublonY.add(0);
         //On boucle 10 fois pour les 10 bateaux
         for (int i = 0; i< 10; i++) {
             int int_random = alea.nextInt(2);
@@ -84,10 +78,6 @@ public class JoueurOrdi {
 
             if (int_random == 0) {
                 Horizontal = true;
-                // dans ce cas y reste le meme et x varie
-                // il faut s'assurer que la taille du bateau ne dépasse pas de la  grille
-                // x = alea.nextInt(limite++) +1;
-                // y = alea.nextInt(16)+1;
                 x = (int) (Math.random()*(15-limite))+1;
                 y = (int)(Math.random()*(15))+1;
 
@@ -96,7 +86,7 @@ public class JoueurOrdi {
                         while(listeCases.get(w).getX() == x  + a && listeCases.get(w).getY() == y){
                             x = (int) (Math.random()*(15-limite))+1;
                             y = (int)(Math.random()*(15))+1;
-                            System.out.println("\n\nerrorororororororo");
+                            System.out.println("\n\nErreur");
                             a=0;
                             break;
 
@@ -104,22 +94,22 @@ public class JoueurOrdi {
                     }}
                 if (lesTailles.get(i)== 7){
 
-                    Bateau B = new Cuirasse(lesTailles.get(i), i,"Cuirasse", Horizontal, x, y+1);
+                    Bateau B = new Cuirasse(lesTailles.get(i), i,"Cuirasse", Horizontal, x+1,y);
 
                     MapDeBateaux.put(i,B);}
                 if (lesTailles.get(i)== 5){
 
-                    Bateau B = new Croiseur(lesTailles.get(i), i,"Croiseur", Horizontal, x, y+1);
+                    Bateau B = new Croiseur(lesTailles.get(i), i,"Croiseur", Horizontal, x+1, y);
 
                     MapDeBateaux.put(i,B);}
                 if (lesTailles.get(i)== 3){
 
-                    Bateau B = new Destroyer(lesTailles.get(i), i,"Destroyer", Horizontal, x, y+1);
+                    Bateau B = new Destroyer(lesTailles.get(i), i,"Destroyer", Horizontal, x+1, y);
 
                     MapDeBateaux.put(i,B);}
                 if (lesTailles.get(i)== 1){
 
-                    Bateau B = new SousMarin(lesTailles.get(i), i,"Sous-marin", Horizontal, x, y+1);
+                    Bateau B = new SousMarin(lesTailles.get(i), i,"Sous-marin", Horizontal, x+1, y);
 
                     MapDeBateaux.put(i,B);}
 
@@ -215,10 +205,6 @@ public class JoueurOrdi {
                         System.out.println("Nouvelle case de coordonnée: X :" + c.getX() + " & Y:" + c.getY());
                         listeCases.add(c);
                     }
-                    //NoDoublonX.add(x);
-                    //NoDoublonY.add(y);
-
-
                 }
             }
             if (lesTailles.get(i)== 3){
@@ -234,8 +220,6 @@ public class JoueurOrdi {
                         System.out.println("Nouvelle case de coordonnée: X :" + c.getX() + " & Y:" + c.getY());
                         listeCases.add(c);
                     }
-                    //NoDoublonX.add(x);
-                    //NoDoublonY.add(y);
                 }
             }
             if (lesTailles.get(i)== 1){
@@ -251,9 +235,6 @@ public class JoueurOrdi {
                         System.out.println("Nouvelle case de coordonnée: X :" + c.getX() + " & Y:" + c.getY());
                         listeCases.add(c);
                     }
-                    //NoDoublonX.add(x);
-                    //NoDoublonY.add(y);
-
                 }
             }
 
@@ -272,10 +253,10 @@ public class JoueurOrdi {
 
     protected HashMap<Integer, Bateau> PlacementBateauxOrdi (HashMap<Integer, Bateau>MapDeBateaux) {
         MapDeBateaux  = getMapDeBateauxOrdi();
-           /* for (Integer TY : mapDeBateaux.keySet()) {
-                System.out.println("Bateau n." + TY + " de nom = " + mapDeBateaux.get(TY).getNom_navire()  +" D'id : " +  mapDeBateaux.get(TY).getId_navire() + " de taille = " + mapDeBateaux.get(TY).getTaille_navire()+  "\n, de direction horizontale : "  + mapDeBateaux.get(TY).isHorizontal() + "\n, de coordonnées debut x = " + mapDeBateaux.get(TY).getCoordonneeDebutX()+ " et y = " + mapDeBateaux.get(TY).getCoordonneeDebutY() + "\n\n" );
+            for (Integer TY : MapDeBateaux.keySet()) {
+                System.out.println("Bateau n." + TY + " de nom = " + MapDeBateaux.get(TY).getNom_navire()  +" D'id : " +  MapDeBateaux.get(TY).getId_navire() + " de taille = " + MapDeBateaux.get(TY).getTaille_navire()+  "\n, de direction horizontale : "  + MapDeBateaux.get(TY).isHorizontal() + "\n, de coordonnées debut x = " + MapDeBateaux.get(TY).getCoordonneeDebutX()+ " et y = " + MapDeBateaux.get(TY).getCoordonneeDebutY() + "\n\n" );
 
-            }*/
+            }
         return MapDeBateaux;
     }
 
@@ -314,7 +295,7 @@ public class JoueurOrdi {
                 if (choix == 0) //Cuirasse
                 {
                     for (Integer a : MapDeCases.keySet()) {
-                        if (MapDeCases.get(6).getX() + 1 >= 16 && MapDeCases.get(6).getX() + 1 == MapDeCases.get(a).getX()) {
+                        if (MapDeCases.get(6).getX() + 1 >= 16 || MapDeCases.get(6).getX() + 1 == MapDeCases.get(a).getX()) {
                             drapeau = true;
                             break;
                         }
@@ -346,7 +327,7 @@ public class JoueurOrdi {
                     if (choix == 1) {w = 7; z = 11;}
                     if (choix == 2) {w = 12;z = 16;}
                     for (Integer a : MapDeCases.keySet()) {
-                        if (MapDeCases.get(z).getX() + 1 >= 16 && MapDeCases.get(z).getX() + 1 == MapDeCases.get(a).getX()) {
+                        if (MapDeCases.get(z).getX() + 1 >= 16 || MapDeCases.get(z).getX() + 1 == MapDeCases.get(a).getX()) {
                             drapeau = true;
                             break;
                         }
@@ -382,7 +363,7 @@ public class JoueurOrdi {
                     if (choix == 4) {w = 20;z = 22;}
                     if (choix == 5) {w = 23;z = 25;}
                     for (Integer a : MapDeCases.keySet()) {
-                        if (MapDeCases.get(z).getX() + 1 >= 16 && MapDeCases.get(z).getX() + 1 == MapDeCases.get(a).getX()) {
+                        if (MapDeCases.get(z).getX() + 1 >= 16 || MapDeCases.get(z).getX() + 1 == MapDeCases.get(a).getX()) {
                             drapeau = true;
                             break;
                         }
@@ -418,7 +399,7 @@ public class JoueurOrdi {
                 if (choix == 0) //Cuirasse
                 {
                     for (Integer a : MapDeCases.keySet()) {
-                        if (MapDeCases.get(0).getX() - 1 <= 0 && MapDeCases.get(0).getX() - 1 == MapDeCases.get(a).getX()) {
+                        if (MapDeCases.get(0).getX() - 1 <= 0 || (MapDeCases.get(0).getX() - 1 == MapDeCases.get(a).getX() &&  MapDeCases.get(0).getY() == MapDeCases.get(a).getY())){
                             drapeau = true;
                             break;
                         }
@@ -451,7 +432,7 @@ public class JoueurOrdi {
                     if (choix == 1) {w = 7;z = 11;}
                     if (choix == 2) {w = 12;z = 16;}
                     for (Integer a : MapDeCases.keySet()) {
-                        if (MapDeCases.get(w).getX() - 1 <= 0 && MapDeCases.get(w).getX() - 1 == MapDeCases.get(a).getX()) {
+                        if (MapDeCases.get(w).getX() - 1 <= 0 || ( MapDeCases.get(w).getX() - 1 == MapDeCases.get(a).getX()&&  MapDeCases.get(w).getY() == MapDeCases.get(a).getY())  ){
                             drapeau = true;
                             break;
                         }
@@ -487,7 +468,7 @@ public class JoueurOrdi {
                     if (choix == 4) {w = 20;z = 22;}
                     if (choix == 5) {w = 23;z = 25;}
                     for (Integer a : MapDeCases.keySet()) {
-                        if (MapDeCases.get(w).getX() - 1 <= 0 && MapDeCases.get(w).getX() - 1 == MapDeCases.get(a).getX()) {
+                        if (MapDeCases.get(w).getX() - 1 <= 0 || (MapDeCases.get(w).getX() - 1 == MapDeCases.get(a).getX() &&  MapDeCases.get(w).getY() == MapDeCases.get(a).getY())) {
                             drapeau = true;
                             break;
                         }
@@ -526,7 +507,7 @@ public class JoueurOrdi {
                     if (choix == 0) //Cuirasse
                     {
                         for (Integer a : MapDeCases.keySet()) {
-                            if (MapDeCases.get(0).getY() - 1 <= 0 && MapDeCases.get(0).getY() - 1 == MapDeCases.get(a).getY()) {
+                            if (MapDeCases.get(0).getY() - 1 <= 0 || (MapDeCases.get(0).getY() - 1 == MapDeCases.get(a).getY() &&  MapDeCases.get(0).getX() == MapDeCases.get(a).getX()) ) {
                                 drapeau = true;
                                 break;
                             }
@@ -557,7 +538,7 @@ public class JoueurOrdi {
                         if (choix == 1) {w = 7;z = 11;}
                         if (choix == 2) {w = 12;z = 16;}
                         for (Integer a : MapDeCases.keySet()) {
-                            if (MapDeCases.get(w).getY() - 1 <= 0 && MapDeCases.get(w).getY() - 1 == MapDeCases.get(a).getY()) {
+                            if (MapDeCases.get(w).getY() - 1 <= 0 || ( MapDeCases.get(w).getY() - 1 == MapDeCases.get(a).getY() &&  MapDeCases.get(w).getX() == MapDeCases.get(a).getX())) {
                                 drapeau = true;
                                 break;
                             }
@@ -591,7 +572,7 @@ public class JoueurOrdi {
                         if (choix == 4) {w = 20;z = 22;}
                         if (choix == 5) {w = 23;z = 25;}
                         for (Integer a : MapDeCases.keySet()) {
-                            if (MapDeCases.get(w).getY() - 1 <= 0 && MapDeCases.get(w).getY() - 1 == MapDeCases.get(a).getY()) {
+                            if (MapDeCases.get(w).getY() - 1 <= 0 || (MapDeCases.get(w).getY() - 1 == MapDeCases.get(a).getY() &&  MapDeCases.get(w).getX() == MapDeCases.get(a).getX())) {
                                 drapeau = true;
                                 break;
                             }
@@ -628,7 +609,7 @@ public class JoueurOrdi {
                 if (choix == 0) //Cuirasse
                 {
                     for (Integer a : MapDeCases.keySet()) {
-                        if (MapDeCases.get(6).getY() + 1 >= 16 && MapDeCases.get(6).getY() + 1 == MapDeCases.get(a).getY()) {
+                        if (MapDeCases.get(6).getY() + 1 >= 16 || (MapDeCases.get(6).getY() + 1 == MapDeCases.get(a).getY() &&  MapDeCases.get(6).getX() == MapDeCases.get(a).getX())) {
                             drapeau = true;
                             break;
                         }
@@ -661,7 +642,7 @@ public class JoueurOrdi {
                     if (choix == 1) {w = 7;z = 11;}
                     if (choix == 2) {w = 12;z = 16;}
                     for (Integer a : MapDeCases.keySet()) {
-                        if (MapDeCases.get(z).getY() + 1 >= 16 && MapDeCases.get(z).getY() + 1 == MapDeCases.get(a).getY()) {
+                        if (MapDeCases.get(z).getY() + 1 >= 16 || (MapDeCases.get(z).getY() + 1 == MapDeCases.get(a).getY() &&  MapDeCases.get(z).getX() == MapDeCases.get(a).getX())) {
                             drapeau = true;
                             break;
                         }
@@ -697,7 +678,7 @@ public class JoueurOrdi {
                     if (choix == 4) {w = 20;z = 22;}
                     if (choix == 5) {w = 23;z = 25;}
                     for (Integer a : MapDeCases.keySet()) {
-                        if (MapDeCases.get(z).getY() + 1 >= 16 && MapDeCases.get(z).getY() + 1 == MapDeCases.get(a).getY()) {
+                        if (MapDeCases.get(z).getY() + 1 >= 16 || (MapDeCases.get(z).getY() + 1 == MapDeCases.get(a).getY()&&  MapDeCases.get(z).getX() == MapDeCases.get(a).getX())) {
                             drapeau = true;
                             break;
                         }
@@ -726,8 +707,6 @@ public class JoueurOrdi {
                     }
                 }
             }
-
-
         }}
 
         if (choix == 6 || choix == 7 || choix == 8 || choix == 9) { //Sous marin 1,2,3 et 4
@@ -743,7 +722,7 @@ public class JoueurOrdi {
             if(reponse == 0){
                 System.out.print("L'ordinateur a choisi de déplacer vers le haut\n");
                 for (Integer a : MapDeCases.keySet()) {
-                    if (MapDeCases.get(w).getY() -1 <= 0 && MapDeCases.get(w).getY() -1 == MapDeCases.get(a).getY()) {
+                    if (MapDeCases.get(w).getY() -1 <= 0 || ( MapDeCases.get(w).getY() -1 == MapDeCases.get(a).getY() &&  MapDeCases.get(w).getX() == MapDeCases.get(a).getX())) {
                         drapeau = true;
                         break;
                     }
@@ -770,7 +749,7 @@ public class JoueurOrdi {
             if(reponse == 2){
                 System.out.print("L'ordinateur a choisi de déplacer vers la droite\n");
                 for (Integer a : MapDeCases.keySet()) {
-                    if (MapDeCases.get(w).getX() +1 >= 16 && MapDeCases.get(w).getX() +1 == MapDeCases.get(a).getY()) {
+                    if (MapDeCases.get(w).getX() +1 >= 16 || (MapDeCases.get(w).getX() +1 == MapDeCases.get(a).getX() &&  MapDeCases.get(w).getY() == MapDeCases.get(a).getY())) {
                         drapeau = true;
                         break;
                     }
@@ -797,7 +776,7 @@ public class JoueurOrdi {
             if(reponse == 1){
                 System.out.print("L'ordinateur a choisi de déplacer vers le haut\n");
                 for (Integer a : MapDeCases.keySet()) {
-                    if (MapDeCases.get(w).getY() +1 >= 16 && MapDeCases.get(w).getY() +1 == MapDeCases.get(a).getY()) {
+                    if (MapDeCases.get(w).getY() +1 >= 16 || (MapDeCases.get(w).getY() +1 == MapDeCases.get(a).getY() &&  MapDeCases.get(w).getX() == MapDeCases.get(a).getX())) {
                         drapeau = true;
                         break;
                     }
@@ -824,7 +803,7 @@ public class JoueurOrdi {
             if(reponse == 3){
                 System.out.print("L'ordinateur a choisi de déplacer vers la gauche\n");
                 for (Integer a : MapDeCases.keySet()) {
-                    if (MapDeCases.get(w).getX() -1 <= 0 && MapDeCases.get(w).getX() -1 == MapDeCases.get(a).getY()) {
+                    if (MapDeCases.get(w).getX() -1 <= 0 || (MapDeCases.get(w).getX() -1 == MapDeCases.get(a).getX() &&  MapDeCases.get(w).getY() == MapDeCases.get(a).getY())) {
                         drapeau = true;
                         break;
                     }
