@@ -10,8 +10,6 @@ public class Menu
     Jeu j= new Jeu('0', '0');
     private String pseudo;
     private Scanner scan1 = new Scanner(System.in);
-   private HashMap<Integer, Case> mapDeCases = new HashMap<Integer, Case>();
-    private HashMap<Integer, Bateau> mapDeBateaux = new HashMap<>();
 
     public Menu(int choix)
     {
@@ -20,8 +18,13 @@ public class Menu
 
     public void MenuDebut()
     {
+
         JoueurHumain JoueurH = new JoueurHumain("Personne", 0);
         JoueurOrdi JoueurO = new JoueurOrdi("Ordinateur", 0);
+         HashMap<Integer, Case> mapDeCasesHumain = new HashMap<Integer, Case>();
+         HashMap<Integer, Bateau> mapDeBateauxHumain = new HashMap<>();
+       HashMap<Integer, Case> mapDeCasesOrdi = new HashMap<Integer, Case>();
+        HashMap<Integer, Bateau> mapDeBateauxOrdi = new HashMap<>();
         int x=6;
 
         System.out.println("Veuillez faire un choix"); //Nous affichons les choix possibles
@@ -37,15 +40,15 @@ public class Menu
                 x=1;}
         }while(x!=0 ); }while(choix!=1 && choix!=2 && choix!=3 && choix!=4);
 
-        JoueurH.setMapDeCasesHumain(mapDeCases);
-        JoueurH.setMapDeBateauxHumain(mapDeBateaux);
-        JoueurH.PlacementCasesHumain(mapDeCases, mapDeBateaux);
-        JoueurH.PlacementBateauxHumain(mapDeBateaux);
+        JoueurH.setMapDeCasesHumain(mapDeCasesHumain);
+        JoueurH.setMapDeBateauxHumain(mapDeBateauxHumain);
+        JoueurH.PlacementCasesHumain(mapDeCasesHumain, mapDeBateauxHumain);
+        JoueurH.PlacementBateauxHumain(mapDeBateauxHumain);
 
-        JoueurO.setMapDeCasesOrdi(mapDeCases);
-        JoueurO.setMapDeBateauxOrdi(mapDeBateaux);
-        JoueurO.PlacementCasesOrdi(mapDeCases, mapDeBateaux);
-        JoueurO.PlacementBateauxOrdi(mapDeBateaux);
+        JoueurO.setMapDeCasesOrdi(mapDeCasesOrdi);
+        JoueurO.setMapDeBateauxOrdi(mapDeBateauxOrdi);
+        JoueurO.PlacementCasesOrdi(mapDeCasesOrdi, mapDeBateauxOrdi);
+        JoueurO.PlacementBateauxOrdi(mapDeBateauxOrdi);
 
         switch(choix)
         {
@@ -81,6 +84,10 @@ public class Menu
 
     public void MenuBateau(JoueurHumain JoueurH, JoueurOrdi JoueurO)
     {
+        HashMap<Integer, Case> mapDeCasesHumain = new HashMap<Integer, Case>();
+        HashMap<Integer, Bateau> mapDeBateauxHumain = new HashMap<>();
+        HashMap<Integer, Case> mapDeCasesOrdi = new HashMap<Integer, Case>();
+        HashMap<Integer, Bateau> mapDeBateauxOrdi = new HashMap<>();
         //Déclaration HashMap
         int x=6;
 
@@ -96,19 +103,19 @@ public class Menu
             x=1;}
         }while(x!=0 ); }while(choix!=1 && choix!=2 && choix!=3);
 
-        mapDeBateaux = JoueurH.getMapDeBateauxHumain();
-        mapDeCases = JoueurH.getMapDeCasesHumain();
-        mapDeBateaux = JoueurO.getMapDeBateauxOrdi();
-        mapDeCases = JoueurO.getMapDeCasesOrdi();
+        mapDeBateauxHumain = JoueurH.getMapDeBateauxHumain();
+        mapDeCasesHumain = JoueurH.getMapDeCasesHumain();
+        mapDeBateauxOrdi = JoueurO.getMapDeBateauxOrdi();
+        mapDeCasesOrdi = JoueurO.getMapDeCasesOrdi();
 
         switch(choix)
         {case 1 :
                 System.out.println(JoueurH.getMapDeCasesHumain());
-                mapDeBateaux.get(9).AttaqueHumain(JoueurO,JoueurH);
+                mapDeBateauxHumain.get(9).AttaqueHumain(JoueurO,JoueurH);
                 break;
 
             case 2:
-                JoueurH.DeplacerBateauHumain(mapDeBateaux, mapDeCases);
+                JoueurH.DeplacerBateauHumain(mapDeBateauxHumain, mapDeCasesHumain);
                 break;
 
             case 3 : System.out.println("Quitter\n");

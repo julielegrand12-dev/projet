@@ -104,22 +104,22 @@ public class JoueurOrdi {
                     }}
                 if (lesTailles.get(i)== 7){
 
-                    Bateau B = new Cuirasse(lesTailles.get(i), i,"Cuirasse", Horizontal, x, y+1);
+                    Bateau B = new Cuirasse(lesTailles.get(i), i,"Cuirasse", Horizontal, x+1,y);
 
                     MapDeBateaux.put(i,B);}
                 if (lesTailles.get(i)== 5){
 
-                    Bateau B = new Croiseur(lesTailles.get(i), i,"Croiseur", Horizontal, x, y+1);
+                    Bateau B = new Croiseur(lesTailles.get(i), i,"Croiseur", Horizontal, x+1, y);
 
                     MapDeBateaux.put(i,B);}
                 if (lesTailles.get(i)== 3){
 
-                    Bateau B = new Destroyer(lesTailles.get(i), i,"Destroyer", Horizontal, x, y+1);
+                    Bateau B = new Destroyer(lesTailles.get(i), i,"Destroyer", Horizontal, x+1, y);
 
                     MapDeBateaux.put(i,B);}
                 if (lesTailles.get(i)== 1){
 
-                    Bateau B = new SousMarin(lesTailles.get(i), i,"Sous-marin", Horizontal, x, y+1);
+                    Bateau B = new SousMarin(lesTailles.get(i), i,"Sous-marin", Horizontal, x+1, y);
 
                     MapDeBateaux.put(i,B);}
 
@@ -272,10 +272,10 @@ public class JoueurOrdi {
 
     protected HashMap<Integer, Bateau> PlacementBateauxOrdi (HashMap<Integer, Bateau>MapDeBateaux) {
         MapDeBateaux  = getMapDeBateauxOrdi();
-           /* for (Integer TY : mapDeBateaux.keySet()) {
-                System.out.println("Bateau n." + TY + " de nom = " + mapDeBateaux.get(TY).getNom_navire()  +" D'id : " +  mapDeBateaux.get(TY).getId_navire() + " de taille = " + mapDeBateaux.get(TY).getTaille_navire()+  "\n, de direction horizontale : "  + mapDeBateaux.get(TY).isHorizontal() + "\n, de coordonnées debut x = " + mapDeBateaux.get(TY).getCoordonneeDebutX()+ " et y = " + mapDeBateaux.get(TY).getCoordonneeDebutY() + "\n\n" );
+            for (Integer TY : MapDeBateaux.keySet()) {
+                System.out.println("Bateau n." + TY + " de nom = " + MapDeBateaux.get(TY).getNom_navire()  +" D'id : " +  MapDeBateaux.get(TY).getId_navire() + " de taille = " + MapDeBateaux.get(TY).getTaille_navire()+  "\n, de direction horizontale : "  + MapDeBateaux.get(TY).isHorizontal() + "\n, de coordonnées debut x = " + MapDeBateaux.get(TY).getCoordonneeDebutX()+ " et y = " + MapDeBateaux.get(TY).getCoordonneeDebutY() + "\n\n" );
 
-            }*/
+            }
         return MapDeBateaux;
     }
 
@@ -726,8 +726,6 @@ public class JoueurOrdi {
                     }
                 }
             }
-
-
         }}
 
         if (choix == 6 || choix == 7 || choix == 8 || choix == 9) { //Sous marin 1,2,3 et 4
