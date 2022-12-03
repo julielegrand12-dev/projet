@@ -51,7 +51,7 @@ public class Main {
         }*/
 
         //Appel des menus
-       M.MenuDebut();
-        //M.MenuBateau();
+      M.MenuDebut();
+       // M.MenuBateau();
   }
 }
