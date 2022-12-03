@@ -419,7 +419,9 @@ public class JoueurHumain //initialisation de la classe joueur humain
             }
 
             if (reponse == 0) {
+
                 boolean flag = true;
+
                 if (choix == 0) //Cuirasse
                 {
                     for (Integer a : MapDeCases.keySet()) {
@@ -553,7 +555,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
                     System.out.println("Coordonnées bateau X:" + MapDeBateaux.get(choix).getCoordonneeDebutX() + " Y:" + MapDeBateaux.get(choix).getCoordonneeDebutY());
                 }
             }
-        }
+        }}
 
 
         if (MapDeBateaux.get(choix).isHorizontal() == false) {
@@ -626,7 +628,9 @@ public class JoueurHumain //initialisation de la classe joueur humain
                     }
                 }
 
-                if (choix == 3 || choix == 4 || choix == 5) {int w = 0;int z = 0;
+                if (choix == 3 || choix == 4 || choix == 5) {
+                    int w = 0;
+                    int z = 0;
                     if (choix == 3) {w = 17; z = 19;}
                     if (choix == 4) {w = 20;z = 22;}
                     if (choix == 5) {w = 23;z = 25;}
@@ -659,7 +663,6 @@ public class JoueurHumain //initialisation de la classe joueur humain
                         System.out.println("Coordonnées bateau X:" + MapDeBateaux.get(choix).getCoordonneeDebutX() + " Y:" + MapDeBateaux.get(choix).getCoordonneeDebutY());
                     }
                 }}
-            }
 
             if (reponse == 0) {
                 boolean flag = true;
@@ -764,10 +767,10 @@ public class JoueurHumain //initialisation de la classe joueur humain
                         System.out.println("Coordonnées bateau X:" + MapDeBateaux.get(choix).getCoordonneeDebutX() + " Y:" + MapDeBateaux.get(choix).getCoordonneeDebutY());
                     }
                 }
-            }
+            }}
 
 
-        }
+
             if (choix == 6 || choix == 7 || choix == 8 || choix == 9) { //Sous marin 1,2,3 et 4
                 System.out.print("Souhaitez vous deplacer le bateau vers le haut, le bas, à droite ou à gauche ? Repondez pour haut 1, pour bas 0, pour droite 2 et pour gauche 3\n");
                 reponse = scan.nextInt();

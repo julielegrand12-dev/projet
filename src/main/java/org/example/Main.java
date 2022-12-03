@@ -21,10 +21,7 @@ public class Main {
         System.out.println("Jeu réalisé par Julie Legrand - Ludivine Fulop - Sara Suleiman");
 
         //Appel de fonctions dans les classes
-        //J.setMapDeCasesHumain(mapDeCases);
-       // J.setMapDeBateauxHumain(mapDeBateaux);
-        //J.PlacementCasesHumain(mapDeCases, mapDeBateaux);
-       // J.PlacementBateauxHumain(mapDeBateaux);
+
      /*  O.PlacementCasesHumain(mapDeCases,mapDeBateaux);
         O.PlacementBateauxHumain(mapDeBateaux);
        O.setMapDeBateauxOrdi(mapDeBateaux);
@@ -48,9 +45,14 @@ public class Main {
         /*for(Integer i : mapDeCases.keySet()){
             System.out.println("Case n."+i+ " de Coordonnée X = "+ mapDeCases.get(i).getX() + " "  + " et coordonnée Y = " + mapDeCases.get(i).getY() + "   " + mapDeCases.get(i).getGetID());
         }*/
-
+        JoueurHumain JoueurH = new JoueurHumain("Personne", 0);
+        JoueurOrdi JoueurO = new JoueurOrdi("Ordinateur", 0);
+        JoueurH.setMapDeCasesHumain(mapDeCases);
+        JoueurH.setMapDeBateauxHumain(mapDeBateaux);
+        JoueurH.PlacementCasesHumain(mapDeCases, mapDeBateaux);
+        JoueurH.PlacementBateauxHumain(mapDeBateaux);
         //Appel des menus
-      M.MenuDebut();
-       // M.MenuBateau();
+     // M.MenuDebut();
+        M.MenuBateau(JoueurH,JoueurO);
   }
 }

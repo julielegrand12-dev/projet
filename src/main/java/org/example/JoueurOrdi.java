@@ -63,14 +63,8 @@ public class JoueurOrdi {
         List<Integer> lesTailles = new ArrayList<>(List.of(7,5,5,3,3,3,1,1,1,1));
         // List<String> lesNoms = new ArrayList<>(List.of("Cuirasse","Croiseur","Croiseur", "Destroyer","Destroyer","Destroyer","Sous-marin","Sous-marin","Sous-marin","Sous-marin","Sous-marin"));
         ArrayList<Case> listeCases = new ArrayList<Case>();
-        List<Integer> NoDoublonX = new ArrayList<>();
-        List<Integer> NoDoublonY = new ArrayList<>();
         int y=0;
         int x=0;
-        int compx = x;
-        int compy = y;
-        NoDoublonX.add(0);
-        NoDoublonY.add(0);
         //On boucle 10 fois pour les 10 bateaux
         for (int i = 0; i< 10; i++) {
             int int_random = alea.nextInt(2);
@@ -84,10 +78,6 @@ public class JoueurOrdi {
 
             if (int_random == 0) {
                 Horizontal = true;
-                // dans ce cas y reste le meme et x varie
-                // il faut s'assurer que la taille du bateau ne dépasse pas de la  grille
-                // x = alea.nextInt(limite++) +1;
-                // y = alea.nextInt(16)+1;
                 x = (int) (Math.random()*(15-limite))+1;
                 y = (int)(Math.random()*(15))+1;
 
@@ -96,7 +86,7 @@ public class JoueurOrdi {
                         while(listeCases.get(w).getX() == x  + a && listeCases.get(w).getY() == y){
                             x = (int) (Math.random()*(15-limite))+1;
                             y = (int)(Math.random()*(15))+1;
-                            System.out.println("\n\nerrorororororororo");
+                            System.out.println("\n\nErreur");
                             a=0;
                             break;
 
@@ -215,10 +205,6 @@ public class JoueurOrdi {
                         System.out.println("Nouvelle case de coordonnée: X :" + c.getX() + " & Y:" + c.getY());
                         listeCases.add(c);
                     }
-                    //NoDoublonX.add(x);
-                    //NoDoublonY.add(y);
-
-
                 }
             }
             if (lesTailles.get(i)== 3){
@@ -234,8 +220,6 @@ public class JoueurOrdi {
                         System.out.println("Nouvelle case de coordonnée: X :" + c.getX() + " & Y:" + c.getY());
                         listeCases.add(c);
                     }
-                    //NoDoublonX.add(x);
-                    //NoDoublonY.add(y);
                 }
             }
             if (lesTailles.get(i)== 1){
@@ -251,9 +235,6 @@ public class JoueurOrdi {
                         System.out.println("Nouvelle case de coordonnée: X :" + c.getX() + " & Y:" + c.getY());
                         listeCases.add(c);
                     }
-                    //NoDoublonX.add(x);
-                    //NoDoublonY.add(y);
-
                 }
             }
 
