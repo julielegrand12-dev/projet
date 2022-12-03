@@ -7,7 +7,7 @@ public class Menu
     private int choix=0;
     private Scanner scan = new Scanner(System.in);
     private boolean test=false;
-    Jeu j= new Jeu('0', '0');
+    Jeu jeu= new Jeu('0', '0');
     private String pseudo;
     private Scanner scan1 = new Scanner(System.in);
 
@@ -21,7 +21,7 @@ public class Menu
 
         JoueurHumain JoueurH = new JoueurHumain("Personne", 0);
         JoueurOrdi JoueurO = new JoueurOrdi("Ordinateur", 0);
-         HashMap<Integer, Case> mapDeCasesHumain = new HashMap<Integer, Case>();
+        HashMap<Integer, Case> mapDeCasesHumain = new HashMap<Integer, Case>();
          HashMap<Integer, Bateau> mapDeBateauxHumain = new HashMap<>();
        HashMap<Integer, Case> mapDeCasesOrdi = new HashMap<Integer, Case>();
         HashMap<Integer, Bateau> mapDeBateauxOrdi = new HashMap<>();
@@ -58,15 +58,17 @@ public class Menu
                 JoueurH.setPseudo(pseudo);
                 System.out.println("Bonjour " + JoueurH.getPseudo() + "\n");
                 System.out.println("Votre premier plateau "+JoueurH.getPseudo()+"(permet de positionner et visualiser les navires):\n");
-                j.plateauHumainNavires(JoueurH,JoueurO);
-                System.out.println("Votre deuxieme plateau plateau "+JoueurH.getPseudo()+"(pour visualiser les degats causes de l'adversaire):\n");
-                j.plateauHumainDommages(JoueurH,JoueurO);
+                jeu.plateauHumainNavires(JoueurH,JoueurO);
 
-                System.out.println("Bonjour Joueur 2\n");
-                System.out.println("Votre premier plateau Joueur 2 (permet de positionner et visualiser les navires):\n");
-                j.plateauOrdiNavires(JoueurH,JoueurO);
-                System.out.println("Votre deuxieme plateau plateau Joueur 2 (pour visualiser les degats causes de l'adversaire):\n");
-                j.plateauOrdiDommages(JoueurH,JoueurO);
+               // System.out.println("Votre deuxieme plateau plateau "+JoueurH.getPseudo()+"(pour visualiser les degats causes de l'adversaire):\n");
+               // jeu.plateauHumainDommages(JoueurH,JoueurO);
+               // MenuBateau(JoueurH,JoueurO);
+
+                //System.out.println("Bonjour Joueur 2\n");
+                //System.out.println("Votre premier plateau Joueur 2 (permet de positionner et visualiser les navires):\n");
+                //jeu.plateauOrdiNavires(JoueurH,JoueurO);
+               // System.out.println("Votre deuxieme plateau plateau Joueur 2 (pour visualiser les degats causes de l'adversaire):\n");
+                //jeu.plateauOrdiDommages(JoueurH,JoueurO);
                 //MenuBateau(JoueurH,JoueurO);
                 break;
             case 2 : System.out.println("Redemarrer une partie\n");
@@ -82,7 +84,7 @@ public class Menu
         }
     }
 
-    public void MenuBateau(JoueurHumain JoueurH, JoueurOrdi JoueurO)
+    public void MenuBateau(JoueurHumain JoueurH, JoueurOrdi JoueurO,Plateau Ph)
     {
         HashMap<Integer, Case> mapDeCasesHumain = new HashMap<Integer, Case>();
         HashMap<Integer, Bateau> mapDeBateauxHumain = new HashMap<>();
@@ -111,11 +113,13 @@ public class Menu
         switch(choix)
         {case 1 :
                 System.out.println(JoueurH.getMapDeCasesHumain());
+                Ph.PlateauDommage(JoueurH,JoueurO,Ph);
                 mapDeBateauxHumain.get(9).AttaqueHumain(JoueurO,JoueurH);
                 break;
 
             case 2:
                 JoueurH.DeplacerBateauHumain(mapDeBateauxHumain, mapDeCasesHumain);
+                Ph.PlateauJoueur(JoueurH,JoueurO,Ph);
                 break;
 
             case 3 : System.out.println("Quitter\n");

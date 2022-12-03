@@ -4,52 +4,52 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.ArrayList;
-import java.util.List;
+
 import java.awt.event.*;
-import java.awt.BorderLayout;
-import java.awt.KeyEventDispatcher;
-import java.awt.KeyboardFocusManager;
-import java.awt.event.KeyEvent;
+
 
 
 
 public class Plateau extends JPanel implements ActionListener  {
 
-    private HashMap<Integer, Case> mapDeCases = new HashMap<Integer, Case>();
-    private HashMap<Integer, Bateau> mapDeBateaux = new HashMap<>();
-    private JFrame fen;
-    private JPanel panel2;
-    private JPanel panel1;
-    private JLabel lab;
+    private HashMap<Integer, Case> mapDeCasesH = new HashMap<Integer, Case>();
+    private HashMap<Integer, Bateau> mapDeBateauxH = new HashMap<>();
+
+    static JFrame frame2;
     static JFrame frame;
     ArrayList<JButton> lesBoutons = new ArrayList<JButton>(); // liste de boutons
     HashMap<Integer, Case> MapDeCasesDegat = new HashMap<Integer, Case>(); //hashmap
     ArrayList<Case> listeCasesDeg = new ArrayList<Case>();
 
+    JButton btn[];
 
 
 
-    public void PlateauDommage(JoueurHumain JoueurH,JoueurOrdi JoueurO)
+
+
+    public void PlateauDommage(JoueurHumain JoueurH,JoueurOrdi JoueurO,Plateau Ph)
     {
+      /*  mapDeBateauxH = JoueurH.getMapDeBateauxHumain();
+        mapDeCasesH = JoueurH.getMapDeCasesHumain();
+        mapDeBateauxH.get(9).AttaqueHumain(JoueurO,JoueurH);*/
 
 
-        frame = new JFrame("PLATEAU DOMMAGE ADVERSAIRE");
+
+        frame2 = new JFrame("PLATEAU DOMMAGE ADVERSAIRE");
         // créer un objet
         Plateau obj = new Plateau();
         // créer un panneau
-        JPanel panel = new JPanel();
+        JPanel panel2 = new JPanel();
         JButton btn[] = new JButton[225];
-        int test=43;
 
-        char c = 'a';
         for(int i=0;i<225;i++)
         {
 
             int cpt=1;
             int tempo = i+1;
-            btn[i] =new JButton("  ");
+            btn[i] =new JButton(" ");
             btn[i].addActionListener(obj);
-            panel.add(btn[i]);
+            panel2.add(btn[i]);
 
             while(tempo>15)
             {
@@ -61,23 +61,17 @@ public class Plateau extends JPanel implements ActionListener  {
         }
 
 
-        for (int k = 0; k<224;k++)
-        {
-            //System.out.println(k + " Avec X = " + listeCasesDeg.get(k).getX() + " et Y = " + listeCasesDeg.get(k).getY() );
-            //MapDeCasesDegat.put(k, listeCasesDeg.get(k));
-        }
 
 
-
-        frame.add(panel);
-        frame.setSize(700, 700);
-        frame.show();
+        frame2.add(panel2);
+        frame2.setSize(700, 700);
+        frame2.show();
 
 
     }
 
 
-    public void PlateauJoueur(JoueurHumain JoueurH,JoueurOrdi JoueurO)
+    public void PlateauJoueur(JoueurHumain JoueurH,JoueurOrdi JoueurO,Plateau Ph)
     {
 
         //------------------------------------------------------------------------------
@@ -158,7 +152,7 @@ public class Plateau extends JPanel implements ActionListener  {
         frame.setSize(700, 700);
         frame.show();
 
-        M.MenuBateau(JoueurH,JoueurO);
+        M.MenuBateau(JoueurH,JoueurO,Ph);
     }
 
 
@@ -167,7 +161,8 @@ public class Plateau extends JPanel implements ActionListener  {
     public void actionPerformed(ActionEvent e)
     {
         String s = e.getActionCommand();
-        if(s.equals(" "))
+        Object source=e.getSource();
+        if(s.equals("  "))
         {
             frame.setBackground(Color.BLACK);
             // Créer une boîte de dialogue
@@ -181,17 +176,17 @@ public class Plateau extends JPanel implements ActionListener  {
             // Définir la visibilité de la boîte de dialogue
             d.setVisible(true);
         }
+
+
         if(s.equals("Sauvegarder la partie"))
         {
-            System.out.println("SSSSSSSSSSSAAAAAAAAAAAAAAAAAUUUUUUUUUUUUUUUUVVVVVVVVVVVVVVVv");
+            System.out.println("Lancement sauvegarde");
             Sauvegarde S = new Sauvegarde();
            // S.SauvegarderJeuHumain(JoueurH);
         }
     }
 
 
-
-//faire en appuyant sur un bouton du clavier la sauvegarde pour recuperer
 
     private void setBackgroud(Color blue) {
     }
@@ -200,6 +195,8 @@ public class Plateau extends JPanel implements ActionListener  {
 
 
     }
+
+
 
 
 
