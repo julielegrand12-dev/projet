@@ -32,12 +32,10 @@ public class Cuirasse extends Bateau {
 
     public void AttaqueOrdi(JoueurOrdi Ordi, JoueurHumain Joueur) {
 
-        System.out.println("Saisissez la coordonnée que vous souhaitez attaquer");
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Saisissez X:");
-        int choixX = scan.nextInt();
-        System.out.println("Saisissez Y:");
-        int choixY = scan.nextInt();
+        System.out.println("L'ordinateur sélectionne les coordonnées qu'il souhaite attaquer");
+        int choixX = (int) (Math.random() * (15)) + 1;
+        int choixY = (int) (Math.random() * (15)) + 1;
+        System.out.println("Coordonnées séléctionnées : X = "+ choixX + "| Y = " + choixY) ;
         HashMap<Integer, Case> mapDeCases = new HashMap<Integer, Case>();
         HashMap<Integer, Bateau> mapDeBateaux = new HashMap<>();
         mapDeBateaux = Joueur.getMapDeBateauxHumain();

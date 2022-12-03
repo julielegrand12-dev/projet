@@ -8,7 +8,6 @@ public class Main {
 
         //Appel objets d'une classe
 
-
         ArrayList<Case> mapdecaseseclairees = new ArrayList<Case>();
         Menu M = new Menu('0');
 

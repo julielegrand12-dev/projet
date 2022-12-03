@@ -108,7 +108,7 @@ public class Menu
                 break;
 
             case 2:
-                JoueurH.DeplacerBateau(mapDeBateaux, mapDeCases);
+                JoueurH.DeplacerBateauHumain(mapDeBateaux, mapDeCases);
                 break;
 
             case 3 : System.out.println("Quitter\n");

@@ -182,8 +182,6 @@ public class JoueurHumain //initialisation de la classe joueur humain
                 }
 
             }
-            test = 1;
-
             //Case C  = new Case(x,y);
             int compte = i;
             compte = compte + 1;
@@ -264,14 +262,10 @@ public class JoueurHumain //initialisation de la classe joueur humain
                 }
             }
 
-
-// continuer cette fonction pour bien prendre en compte l'absence de voisins et le non chevauchement
         }
         for (int i = 0; i < listeCases.size(); i++) {
             //System.out.println(i + " Avec X = " + listeCases.get(i).getX() + " et Y = " + listeCases.get(i).getY() + "\n et d'ID = " + listeCases.get(i).getGetID());
             MapDeCases.put(i, listeCases.get(i));
-
-
         }
         setMapDeBateauxHumain(MapDeBateaux);
         setMapDeCasesHumain(MapDeCases);
@@ -284,12 +278,11 @@ public class JoueurHumain //initialisation de la classe joueur humain
             System.out.println("Bateau n." + TY + " de nom = " + mapDeBateauxHumain.get(TY).getNom_navire() + " D'id : " + mapDeBateauxHumain.get(TY).getId_navire() + " de taille = " + mapDeBateauxHumain.get(TY).getTaille_navire() + "\n, de direction horizontale : " + mapDeBateauxHumain.get(TY).isHorizontal() + "\n, de coordonnées debut x = " + mapDeBateauxHumain.get(TY).getCoordonneeDebutX() + " et y = " + mapDeBateauxHumain.get(TY).getCoordonneeDebutY() + "\n\n");
 
         }
-
         return MapDeBateaux;
     }
 
 
-    void DeplacerBateau(HashMap<Integer, Bateau> MapDeBateaux, HashMap<Integer, Case> MapDeCases) {
+    void DeplacerBateauHumain(HashMap<Integer, Bateau> MapDeBateaux, HashMap<Integer, Case> MapDeCases) {
         Integer choix = 0;
         int x = 0;
         int reponse = 0;
@@ -388,7 +381,9 @@ public class JoueurHumain //initialisation de la classe joueur humain
                     }
                 }
 
-                if (choix == 3 || choix == 4 || choix == 5) { int w = 0, z = 0;
+                if (choix == 3 || choix == 4 || choix == 5) {
+                    int w = 0;
+                    int z = 0;
                     if (choix == 3) {w = 17; z = 19;}
                     if (choix == 4) {w = 20;z = 22;}
                     if (choix == 5) {w = 23;z = 25;}
