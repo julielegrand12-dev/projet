@@ -320,7 +320,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
                 if (choix == 0) //Cuirasse
                 {
                     for (Integer a : MapDeCases.keySet()) {
-                        if (MapDeCases.get(6).getX() + 1 >= 16 || MapDeCases.get(6).getX() + 1 == MapDeCases.get(a).getX()) {
+                        if (MapDeCases.get(6).getX() + 1 >= 16 || (MapDeCases.get(6).getX() + 1 == MapDeCases.get(a).getX() &&  MapDeCases.get(6).getY() == MapDeCases.get(a).getY())) {
                             drapeau = true;
                             break;
                         }
@@ -352,7 +352,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
                     if (choix == 1) {w = 7; z = 11;}
                     if (choix == 2) {w = 12;z = 16;}
                     for (Integer a : MapDeCases.keySet()) {
-                        if (MapDeCases.get(z).getX() + 1 >= 16 || MapDeCases.get(z).getX() + 1 == MapDeCases.get(a).getX()) {
+                        if (MapDeCases.get(z).getX() + 1 >= 16 || (MapDeCases.get(z).getX() + 1 == MapDeCases.get(a).getX() &&  MapDeCases.get(z).getY() == MapDeCases.get(a).getY())) {
                             drapeau = true;
                             break;
                         }
@@ -388,7 +388,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
                     if (choix == 4) {w = 20;z = 22;}
                     if (choix == 5) {w = 23;z = 25;}
                     for (Integer a : MapDeCases.keySet()) {
-                        if (MapDeCases.get(z).getX() + 1 >= 16|| MapDeCases.get(z).getX() + 1 == MapDeCases.get(a).getX()) {
+                        if (MapDeCases.get(z).getX() + 1 >= 16|| (MapDeCases.get(z).getX() + 1 == MapDeCases.get(a).getX() &&  MapDeCases.get(z).getY() == MapDeCases.get(a).getY())) {
                             drapeau = true;
                             break;
                         }
@@ -425,7 +425,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
                 if (choix == 0) //Cuirasse
                 {
                     for (Integer a : MapDeCases.keySet()) {
-                        if (MapDeCases.get(0).getX() - 1 <= 0 || MapDeCases.get(0).getX() - 1 == MapDeCases.get(a).getX()) {
+                        if (MapDeCases.get(0).getX() - 1 <= 0 || (MapDeCases.get(0).getX() - 1 == MapDeCases.get(a).getX() &&  MapDeCases.get(0).getY() == MapDeCases.get(a).getY())) {
                             drapeau = true;
                             break;
                         }
@@ -458,7 +458,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
                     if (choix == 1) {w = 7;z = 11;}
                     if (choix == 2) {w = 12;z = 16;}
                     for (Integer a : MapDeCases.keySet()) {
-                        if (MapDeCases.get(w).getX() - 1 <= 0 ||  MapDeCases.get(w).getX() - 1 == MapDeCases.get(a).getX()) {
+                        if (MapDeCases.get(w).getX() - 1 <= 0 || ( MapDeCases.get(w).getX() - 1 == MapDeCases.get(a).getX()&&  MapDeCases.get(w).getY() == MapDeCases.get(a).getY())  ) {
                             drapeau = true;
                             break;
                         }
@@ -494,7 +494,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
                     if (choix == 4) {w = 20;z = 22;}
                     if (choix == 5) {w = 23;z = 25;}
                     for (Integer a : MapDeCases.keySet()) {
-                        if (MapDeCases.get(w).getX() - 1 <= 0 || MapDeCases.get(w).getX() - 1 == MapDeCases.get(a).getX()) {
+                        if (MapDeCases.get(w).getX() - 1 <= 0 || (MapDeCases.get(w).getX() - 1 == MapDeCases.get(a).getX() &&  MapDeCases.get(w).getY() == MapDeCases.get(a).getY())) {
                             drapeau = true;
                             break;
                         }
@@ -534,7 +534,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
                 if (choix == 0) //Cuirasse
                 {
                     for (Integer a : MapDeCases.keySet()) {
-                        if (MapDeCases.get(0).getY() - 1 <= 0 || MapDeCases.get(0).getY() - 1 == MapDeCases.get(a).getY()) {
+                        if (MapDeCases.get(0).getY() - 1 <= 0 || (MapDeCases.get(0).getY() - 1 == MapDeCases.get(a).getY() &&  MapDeCases.get(0).getX() == MapDeCases.get(a).getX()) ){
                             drapeau = true;
                             break;
                         }
@@ -565,7 +565,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
                     if (choix == 1) {w = 7;z = 11;}
                     if (choix == 2) {w = 12;z = 16;}
                     for (Integer a : MapDeCases.keySet()) {
-                        if (MapDeCases.get(w).getY() - 1 <= 0 ||  MapDeCases.get(w).getY() - 1 == MapDeCases.get(a).getY()) {
+                        if (MapDeCases.get(w).getY() - 1 <= 0 || ( MapDeCases.get(w).getY() - 1 == MapDeCases.get(a).getY() &&  MapDeCases.get(w).getX() == MapDeCases.get(a).getX())) {
                             drapeau = true;
                             break;
                         }
@@ -601,7 +601,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
                     if (choix == 4) {w = 20;z = 22;}
                     if (choix == 5) {w = 23;z = 25;}
                     for (Integer a : MapDeCases.keySet()) {
-                        if (MapDeCases.get(w).getY() - 1 <= 0 || MapDeCases.get(w).getY() - 1 == MapDeCases.get(a).getY()) {
+                        if (MapDeCases.get(w).getY() - 1 <= 0 || (MapDeCases.get(w).getY() - 1 == MapDeCases.get(a).getY() &&  MapDeCases.get(w).getX() == MapDeCases.get(a).getX())) {
                             drapeau = true;
                             break;
                         }
@@ -636,7 +636,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
                 if (choix == 0) //Cuirasse
                 {
                     for (Integer a : MapDeCases.keySet()) {
-                        if (MapDeCases.get(6).getY() + 1 >= 16 || MapDeCases.get(6).getY() + 1 == MapDeCases.get(a).getY()) {
+                        if (MapDeCases.get(6).getY() + 1 >= 16 || (MapDeCases.get(6).getY() + 1 == MapDeCases.get(a).getY() &&  MapDeCases.get(6).getX() == MapDeCases.get(a).getX())) {
                             drapeau = true;
                             break;
                         }
@@ -669,7 +669,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
                     if (choix == 1) {w = 7;z = 11;}
                     if (choix == 2) {w = 12;z = 16;}
                     for (Integer a : MapDeCases.keySet()) {
-                        if (MapDeCases.get(z).getY() + 1 >= 16 || MapDeCases.get(z).getY() + 1 == MapDeCases.get(a).getY()) {
+                        if (MapDeCases.get(z).getY() + 1 >= 16 || (MapDeCases.get(z).getY() + 1 == MapDeCases.get(a).getY() &&  MapDeCases.get(z).getX() == MapDeCases.get(a).getX())) {
                             drapeau = true;
                             break;
                         }
@@ -705,7 +705,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
                     if (choix == 4) {w = 20;z = 22;}
                     if (choix == 5) {w = 23;z = 25;}
                     for (Integer a : MapDeCases.keySet()) {
-                        if (MapDeCases.get(z).getY() + 1 >= 16 || MapDeCases.get(z).getY() + 1 == MapDeCases.get(a).getY()) {
+                        if (MapDeCases.get(z).getY() + 1 >= 16 || (MapDeCases.get(z).getY() + 1 == MapDeCases.get(a).getY()&&  MapDeCases.get(z).getX() == MapDeCases.get(a).getX())) {
                             drapeau = true;
                             break;
                         }
@@ -749,7 +749,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
                 boolean flag =false;
                 if(reponse == 1){
                 for (Integer a : MapDeCases.keySet()) {
-                    if (MapDeCases.get(w).getY() -1 <= 1 || MapDeCases.get(w).getY() -1 == MapDeCases.get(a).getY()) {
+                    if (MapDeCases.get(w).getY() -1 <= 1 ||( MapDeCases.get(w).getY() -1 == MapDeCases.get(a).getY() &&  MapDeCases.get(w).getX() == MapDeCases.get(a).getX())) {
                         drapeau = true;
                         break;
                     }
@@ -775,7 +775,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
             }
             if(reponse == 2){
                 for (Integer a : MapDeCases.keySet()) {
-                    if (MapDeCases.get(w).getX() +1 >= 16 || MapDeCases.get(w).getX() +1 == MapDeCases.get(a).getY()) {
+                    if (MapDeCases.get(w).getX() +1 >= 16 || (MapDeCases.get(w).getX() +1 == MapDeCases.get(a).getX() &&  MapDeCases.get(w).getY() == MapDeCases.get(a).getY())) {
                         drapeau = true;
                         break;
                     }
@@ -799,15 +799,15 @@ public class JoueurHumain //initialisation de la classe joueur humain
                     System.out.println("Coordonnées bateau X:" + MapDeBateaux.get(choix).getCoordonneeDebutX() + " Y:" + MapDeBateaux.get(choix).getCoordonneeDebutY());
                 }
             }
-                if(reponse == 1){
+                if(reponse == 0){
                     for (Integer a : MapDeCases.keySet()) {
-                        if (MapDeCases.get(w).getY() -1 >= 16 || MapDeCases.get(w).getY() -1 == MapDeCases.get(a).getY()) {
+                        if (MapDeCases.get(w).getY() +1 >= 16 || (MapDeCases.get(w).getY() +1 == MapDeCases.get(a).getY() &&  MapDeCases.get(w).getX() == MapDeCases.get(a).getX())) {
                             drapeau = true;
                             break;
                         }
                     }
                     if (drapeau == false) {
-                        Case c = new Case(MapDeCases.get(w).getX(), MapDeCases.get(w).getY() -1, 1);
+                        Case c = new Case(MapDeCases.get(w).getX(), MapDeCases.get(w).getY() +1, 1);
                         MapDeCases.replace(w, c);
                         System.out.println("Coordonnée Case X:" + MapDeCases.get(w).getX() + " Y:" + MapDeCases.get(w).getY());
                         flag = false;
@@ -817,7 +817,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
                     }
 
                     if (flag == false) {
-                        Bateau b = new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(), MapDeBateaux.get(choix).isHorizontal(), MapDeBateaux.get(choix).getCoordonneeDebutX(), MapDeBateaux.get(choix).getCoordonneeDebutY() -1);
+                        Bateau b = new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(), MapDeBateaux.get(choix).isHorizontal(), MapDeBateaux.get(choix).getCoordonneeDebutX(), MapDeBateaux.get(choix).getCoordonneeDebutY() +1);
                         MapDeBateaux.replace(choix, b);
                         setMapDeBateauxHumain(MapDeBateaux);
                         System.out.println("Coordonnées bateau X:" + MapDeBateaux.get(choix).getCoordonneeDebutX() + " Y:" + MapDeBateaux.get(choix).getCoordonneeDebutY());
@@ -827,7 +827,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
                 }
                 if(reponse == 3){
                     for (Integer a : MapDeCases.keySet()) {
-                        if (MapDeCases.get(w).getX() -1 <= 0 || MapDeCases.get(w).getX() -1 == MapDeCases.get(a).getY()) {
+                        if (MapDeCases.get(w).getX() -1 <= 0 || (MapDeCases.get(w).getX() -1 == MapDeCases.get(a).getX() &&  MapDeCases.get(w).getY() == MapDeCases.get(a).getY())) {
                             drapeau = true;
                             break;
                         }
