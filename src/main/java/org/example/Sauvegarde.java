@@ -1,22 +1,22 @@
 package org.example;
+import java.io.*;
 import java.util.HashMap;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 
+import static java.lang.System.in;
+import static java.lang.System.out;
+import java.io.Serializable;
 
-
-public class Sauvegarde {
+public class Sauvegarde implements Serializable {
 
 
     void SauvegarderJeuHumain(JoueurHumain J) {
 
 
-        System.out.println("JEU - SAUVEGARDE HUMAIN");
+        out.println("JEU - SAUVEGARDE HUMAIN");
 
         for (Object i : J.getMapDeCasesHumain().keySet()) {
-            System.out.println("Case n." + i + " de Coordonnée X = " + J.getMapDeCasesHumain().get(i).getX() + " " + " et coordonnée Y = " + J.getMapDeCasesHumain().get(i).getY() + "   " + J.getMapDeCasesHumain().get(i).getGetID());
+            out.println("Case n." + i + " de Coordonnée X = " + J.getMapDeCasesHumain().get(i).getX() + " " + " et coordonnée Y = " + J.getMapDeCasesHumain().get(i).getY() + "   " + J.getMapDeCasesHumain().get(i).getGetID());
         }
 
         FileOutputStream monfichierID = null;
@@ -33,11 +33,26 @@ public class Sauvegarde {
             monfichierY = new FileOutputStream("SauvegardeY.dat");
             monfichierpseudo = new FileOutputStream("Sauvegardepseudo.dat");
             monfichierscore = new FileOutputStream("Sauvegardescore.dat");
+            FileOutputStream monfichiermapdecases=new FileOutputStream("SauvegardeMapDeCases.dat");
+           // FileOutputStream fos=new FileOutputStream(monfichiermapdecases);
+            ObjectOutputStream oos=new ObjectOutputStream(monfichiermapdecases);
+
+            oos.writeObject(J.getMapDeCasesHumain());
+            oos.flush();
+            oos.close();
+            monfichiermapdecases.close();
+
+            FileOutputStream monfichiermapdebateaux=new FileOutputStream("SauvegardeMapDebateaux.dat");
+            // FileOutputStream fos=new FileOutputStream(monfichiermapdecases);
+            ObjectOutputStream oob=new ObjectOutputStream(monfichiermapdebateaux);
+
+            oob.writeObject(J.getMapDeBateauxHumain());
+            oob.flush();
+            oob.close();
+            monfichiermapdebateaux.close();
 
             for (Object j : J.getMapDeCasesHumain().keySet()) {
                 monfichierID.write(J.getMapDeCasesHumain().get(j).getGetID());
-
-
             }
 
             for (Object j : J.getMapDeCasesHumain().keySet()) {
@@ -54,7 +69,7 @@ public class Sauvegarde {
 
 
         } catch (IOException e) {
-            System.out.println("impossible d'ecrire dans le fichier : " + e.toString());
+            out.println("impossible d'ecrire dans le fichier : " + e.toString());
 
         } finally {
             try {
@@ -74,10 +89,10 @@ public class Sauvegarde {
     void SauvegarderJeuOrdi(JoueurOrdi O) {
 
 
-        System.out.println("JEU - SAUVEGARDE HUMAIN");
+        out.println("JEU - SAUVEGARDE ORDI");
 
         for (Object i : O.getMapDeCasesOrdi().keySet()) {
-            System.out.println("Case n." + i + " de Coordonnée X = " + O.getMapDeCasesOrdi().get(i).getX() + " " + " et coordonnée Y = " + O.getMapDeCasesOrdi().get(i).getY() + "   " + O.getMapDeCasesOrdi().get(i).getGetID());
+            out.println("Case n." + i + " de Coordonnée X = " + O.getMapDeCasesOrdi().get(i).getX() + " " + " et coordonnée Y = " + O.getMapDeCasesOrdi().get(i).getY() + "   " + O.getMapDeCasesOrdi().get(i).getGetID());
         }
 
         FileOutputStream monfichierID = null;
@@ -94,11 +109,26 @@ public class Sauvegarde {
             monfichierY = new FileOutputStream("SauvegardeYO.dat");
             monfichierpseudo = new FileOutputStream("SauvegardepseudoO.dat");
             monfichierscore = new FileOutputStream("SauvegardescoreO.dat");
+            FileOutputStream monfichiermapdecases=new FileOutputStream("SauvegardeMapDeCasesO.dat");
+            // FileOutputStream fos=new FileOutputStream(monfichiermapdecases);
+            ObjectOutputStream oos=new ObjectOutputStream(monfichiermapdecases);
+
+            oos.writeObject(O.getMapDeCasesOrdi());
+            oos.flush();
+            oos.close();
+            monfichiermapdecases.close();
+
+            FileOutputStream monfichiermapdebateaux=new FileOutputStream("SauvegardeMapDebateauxO.dat");
+            // FileOutputStream fos=new FileOutputStream(monfichiermapdecases);
+            ObjectOutputStream oob=new ObjectOutputStream(monfichiermapdebateaux);
+
+            oob.writeObject(O.getMapDeBateauxOrdi());
+            oob.flush();
+            oob.close();
+            monfichiermapdebateaux.close();
 
             for (Object j : O.getMapDeCasesOrdi().keySet()) {
                 monfichierID.write(O.getMapDeCasesOrdi().get(j).getGetID());
-
-
             }
 
             for (Object j : O.getMapDeCasesOrdi().keySet()) {
@@ -109,13 +139,13 @@ public class Sauvegarde {
 
             }
 
-            monfichierpseudo.write("Ordi".getBytes());
+            monfichierpseudo.write(O.getPseudo().getBytes());
 
 
 
 
         } catch (IOException e) {
-            System.out.println("impossible d'ecrire dans le fichier : " + e.toString());
+            out.println("impossible d'ecrire dans le fichier : " + e.toString());
 
         } finally {
             try {
@@ -135,9 +165,8 @@ public class Sauvegarde {
 
 
 
-    void RecupererJeuHumain() {
-        System.out.println("RECUP SAUVEGARDE 1");
-        JoueurHumain J = new JoueurHumain("Elo", 0);
+    void RecupererJeuHumain( JoueurHumain J ) {
+        out.println("RECUP SAUVEGARDE 1");
         HashMap<Integer, Case> mapDeCasesSauv = new HashMap<>();
         ArrayList<Case> listeCases = new ArrayList<>();
         int []TableauX = new int [30];
@@ -157,8 +186,33 @@ public class Sauvegarde {
             monfichierY = new FileInputStream("SauvegardeY.dat");
             monfichierpseudo = new FileInputStream("Sauvegardepseudo.dat");
             monfichierscore = new FileInputStream("Sauvegardescore.dat");
-            System.out.println("RECUP SAUVEGARDE 2");
+            out.println("RECUP SAUVEGARDE 2");
+            FileInputStream toRead=new FileInputStream("SauvegardeMapDeCases.dat");
+            ObjectInputStream ois=new ObjectInputStream(toRead);
 
+            HashMap<Integer, Case> mapInFile=(HashMap<Integer,Case>)ois.readObject();
+
+
+            //print All data in MAP
+            for(Object k : mapInFile.keySet()){
+                System.out.println(mapInFile.get(k).getX());
+            }J.setMapDeCasesHumain(mapInFile);
+            ois.close();
+            toRead.close();
+
+
+            FileInputStream toRead2=new FileInputStream("SauvegardeMapDebateaux.dat");
+            ObjectInputStream oob=new ObjectInputStream(toRead2);
+
+            HashMap<Integer, Bateau> mapBInFile=(HashMap<Integer,Bateau>)oob.readObject();
+
+
+            //print All data in MAP
+            for(Object k : mapBInFile.keySet()){
+                System.out.println(mapBInFile.get(k).getCoordonneeDebutX());
+            }J.setMapDeBateauxHumain(mapBInFile);
+            oob.close();
+            toRead2.close();
 
             while (true) {
 
@@ -176,7 +230,7 @@ public class Sauvegarde {
                 {
                       TableauY[c] = monfichierY.read();
                 }
-                System.out.println("RECUP SAUVEGARDE 3");
+                out.println("RECUP SAUVEGARDE 3");
 
                 for(int d=0; d<=TableauY.length-1;d++)
                 {
@@ -184,7 +238,7 @@ public class Sauvegarde {
                     Case c = new Case(TableauX[d], TableauY[d], TableauID[d]);
                     listeCases.add(c);
                 }
-                System.out.println("RECUP SAUVEGARDE 4");
+                out.println("RECUP SAUVEGARDE 4");
 
 
                // int valID = monfichierID.read();
@@ -218,7 +272,9 @@ public class Sauvegarde {
                 break;
             }
         } catch (IOException e) {
-            System.out.println("impossible de lire le fichier : " + e.toString());
+            out.println("impossible de lire le fichier : " + e.toString());
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         } finally {
             try {
                 monfichierID.close();
@@ -227,19 +283,20 @@ public class Sauvegarde {
                 monfichierpseudo.close();
                 monfichierscore.close();
 
+
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
-            System.out.println("lecture de fichier terminee");
+            out.println("lecture de fichier terminee");
         }
-        System.out.println("pseudo :" + J.getPseudo());
-        System.out.println("score :" + J.getScore());
+        out.println("pseudo :" + J.getPseudo());
+        out.println("score :" + J.getScore());
         for (int i = 0; i < listeCases.size(); i++) {
 
             mapDeCasesSauv.put(i, listeCases.get(i));
 
         }
-        J.setMapDeCasesHumain(mapDeCasesSauv);
+      //  J.setMapDeCasesHumain(mapDeCasesSauv);
 
 
 
@@ -254,15 +311,14 @@ public class Sauvegarde {
 
             
 
-    JoueurHumain Ju = new JoueurHumain("Juju", 1);
-            Ju.setMapDeCasesHumain(mapDeCasesSauv);
+
+            J.setMapDeCasesHumain(mapDeCasesSauv);
 
   
     }
 
-    void RecupererJeuOrdi() {
-        System.out.println("RECUP SAUVEGARDE 1");
-        JoueurOrdi J = new JoueurOrdi("Elo", 0);
+    void RecupererJeuOrdi(JoueurOrdi O) {
+        out.println("RECUP SAUVEGARDE 1");
         HashMap<Integer, Case> mapDeCasesSauv = new HashMap<>();
         ArrayList<Case> listeCases = new ArrayList<>();
         int []TableauX = new int [30];
@@ -282,8 +338,33 @@ public class Sauvegarde {
             monfichierY = new FileInputStream("SauvegardeYO.dat");
             monfichierpseudo = new FileInputStream("SauvegardepseudoO.dat");
             monfichierscore = new FileInputStream("SauvegardescoreO.dat");
-            System.out.println("RECUP SAUVEGARDE 2");
+            out.println("RECUP SAUVEGARDE 2");
+            FileInputStream toRead=new FileInputStream("SauvegardeMapDeCasesO.dat");
+            ObjectInputStream ois=new ObjectInputStream(toRead);
 
+            HashMap<Integer, Case> mapInFile=(HashMap<Integer,Case>)ois.readObject();
+
+
+            //print All data in MAP
+            for(Object k : mapInFile.keySet()){
+                System.out.println(mapInFile.get(k).getX());
+            }O.setMapDeCasesOrdi(mapInFile);
+            ois.close();
+            toRead.close();
+
+
+            FileInputStream toRead2=new FileInputStream("SauvegardeMapDebateauxO.dat");
+            ObjectInputStream oob=new ObjectInputStream(toRead2);
+
+            HashMap<Integer, Bateau> mapBInFile=(HashMap<Integer,Bateau>)oob.readObject();
+
+
+            //print All data in MAP
+            for(Object k : mapBInFile.keySet()){
+                System.out.println(mapBInFile.get(k).getCoordonneeDebutX());
+            }O.setMapDeBateauxOrdi(mapBInFile);
+            oob.close();
+            toRead2.close();
 
             while (true) {
 
@@ -301,7 +382,7 @@ public class Sauvegarde {
                 {
                     TableauY[c] = monfichierY.read();
                 }
-                System.out.println("RECUP SAUVEGARDE 3");
+                out.println("RECUP SAUVEGARDE 3");
 
                 for(int d=0; d<=TableauY.length-1;d++)
                 {
@@ -309,7 +390,7 @@ public class Sauvegarde {
                     Case c = new Case(TableauX[d], TableauY[d], TableauID[d]);
                     listeCases.add(c);
                 }
-                System.out.println("RECUP SAUVEGARDE 4");
+                out.println("RECUP SAUVEGARDE 4");
 
 
                 // int valID = monfichierID.read();
@@ -336,14 +417,16 @@ public class Sauvegarde {
 
                 byte[] b = monfichierpseudo.readAllBytes();
                 String valP = new String(b);
-                J.setPseudo(valP);
+                O.setPseudo(valP);
                 //SCORE
                 int valS = monfichierscore.read();
-                J.setScore(valS);
+                O.setScore(valS);
                 break;
             }
         } catch (IOException e) {
-            System.out.println("impossible de lire le fichier : " + e.toString());
+            out.println("impossible de lire le fichier : " + e.toString());
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         } finally {
             try {
                 monfichierID.close();
@@ -352,19 +435,20 @@ public class Sauvegarde {
                 monfichierpseudo.close();
                 monfichierscore.close();
 
+
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
-            System.out.println("lecture de fichier terminee");
+            out.println("lecture de fichier terminee");
         }
-        System.out.println("pseudo :" + J.getPseudo());
-        System.out.println("score :" + J.getScore());
+        out.println("pseudo :" + O.getPseudo());
+        out.println("score :" + O.getScore());
         for (int i = 0; i < listeCases.size(); i++) {
 
             mapDeCasesSauv.put(i, listeCases.get(i));
 
         }
-        J.setMapDeCasesOrdi(mapDeCasesSauv);
+        //  J.setMapDeCasesHumain(mapDeCasesSauv);
 
 
 
@@ -379,10 +463,10 @@ public class Sauvegarde {
 
 
 
-        JoueurHumain Ju = new JoueurHumain("Juju", 1);
-        Ju.setMapDeCasesHumain(mapDeCasesSauv);
 
-       // pat.PlateauJoueur();
+        O.setMapDeCasesOrdi(mapDeCasesSauv);
+
+
     }
 
 

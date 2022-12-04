@@ -24,6 +24,7 @@ public class Menu
          HashMap<Integer, Bateau> mapDeBateauxHumain = new HashMap<>();
        HashMap<Integer, Case> mapDeCasesOrdi = new HashMap<Integer, Case>();
         HashMap<Integer, Bateau> mapDeBateauxOrdi = new HashMap<>();
+        Plateau Ph = new Plateau();
         int x=6;
 
         System.out.println("Veuillez faire un choix"); //Nous affichons les choix possibles
@@ -39,19 +40,19 @@ public class Menu
                 x=1;}
         }while(x!=0 ); }while(choix!=1 && choix!=2 && choix!=3 && choix!=4);
 
-        JoueurH.setMapDeCasesHumain(mapDeCasesHumain);
-        JoueurH.setMapDeBateauxHumain(mapDeBateauxHumain);
-        JoueurH.PlacementCasesHumain(mapDeCasesHumain, mapDeBateauxHumain);
-        JoueurH.PlacementBateauxHumain(mapDeBateauxHumain);
-
-        JoueurO.setMapDeCasesOrdi(mapDeCasesOrdi);
-        JoueurO.setMapDeBateauxOrdi(mapDeBateauxOrdi);
-        JoueurO.PlacementCasesOrdi(mapDeCasesOrdi, mapDeBateauxOrdi);
-        JoueurO.PlacementBateauxOrdi(mapDeBateauxOrdi);
 
         switch(choix)
         {
             case 1 :
+                JoueurH.setMapDeCasesHumain(mapDeCasesHumain);
+                JoueurH.setMapDeBateauxHumain(mapDeBateauxHumain);
+                JoueurH.PlacementCasesHumain(mapDeCasesHumain, mapDeBateauxHumain);
+                JoueurH.PlacementBateauxHumain(mapDeBateauxHumain);
+
+                JoueurO.setMapDeCasesOrdi(mapDeCasesOrdi);
+                JoueurO.setMapDeBateauxOrdi(mapDeBateauxOrdi);
+                JoueurO.PlacementCasesOrdi(mapDeCasesOrdi, mapDeBateauxOrdi);
+                JoueurO.PlacementBateauxOrdi(mapDeBateauxOrdi);
                 System.out.println("Veuillez selectionner votre pseudo:\n");
                 pseudo= scan1.nextLine();
                 JoueurH.setPseudo(pseudo);
@@ -72,8 +73,11 @@ public class Menu
                 break;
             case 2 : System.out.println("Redemarrer une partie\n");
                 Sauvegarde S = new Sauvegarde();
-                S.RecupererJeuHumain();
-                S.RecupererJeuOrdi();
+                S.RecupererJeuHumain(JoueurH);
+                S.RecupererJeuOrdi(JoueurO);
+                jeu.plateauHumainNavires(JoueurH,JoueurO);
+
+
                 break;
             case 3 : System.out.println("Aide\n");
                 break;

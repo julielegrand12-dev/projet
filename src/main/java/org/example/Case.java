@@ -1,6 +1,8 @@
 package org.example;
 
-public class Case {
+import java.io.Serializable;
+
+public class Case implements Serializable {
     // attribut
 
     private int x_ligne; //coordonnées x

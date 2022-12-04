@@ -1,11 +1,12 @@
 package org.example;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-public class Bateau {
+public class Bateau implements Serializable {
 
     // attribut
     private int id_navire  ;
