@@ -308,12 +308,6 @@ public class Sauvegarde implements Serializable {
 
     Plateau pat = new Plateau();
 
-
-            
-
-
-            J.setMapDeCasesHumain(mapDeCasesSauv);
-
   
     }
 
@@ -460,11 +454,6 @@ public class Sauvegarde implements Serializable {
 
         Plateau pat = new Plateau();
 
-
-
-
-
-        O.setMapDeCasesOrdi(mapDeCasesSauv);
 
 
     }
