@@ -45,12 +45,18 @@ public class Main {
         /*for(Integer i : mapDeCases.keySet()){
             System.out.println("Case n."+i+ " de Coordonnée X = "+ mapDeCases.get(i).getX() + " "  + " et coordonnée Y = " + mapDeCases.get(i).getY() + "   " + mapDeCases.get(i).getGetID());
         }*/
-       /* JoueurHumain JoueurH = new JoueurHumain("Personne", 0);
+    /*   JoueurHumain JoueurH = new JoueurHumain("Personne", 0);
         JoueurOrdi JoueurO = new JoueurOrdi("Ordinateur", 0);
         JoueurH.setMapDeCasesHumain(mapDeCases);
         JoueurH.setMapDeBateauxHumain(mapDeBateaux);
         JoueurH.PlacementCasesHumain(mapDeCases, mapDeBateaux);
-        JoueurH.PlacementBateauxHumain(mapDeBateaux);*/
+        JoueurH.PlacementBateauxHumain(mapDeBateaux);
+        mapDeCases.get(0).CaseTouche();
+        System.out.println(mapDeBateaux.get(0).getlesCases().get(0).EtatCase());
+
+        JoueurH.DeplacerBateauHumain(mapDeBateaux,mapDeCases);
+        */
+
 
 
        /* for(Integer i :mapDeBateaux.keySet()){
@@ -58,7 +64,7 @@ public class Main {
             System.out.println("liste de cases avec x = " +mapDeBateaux.get(i).getlesCases().get(da).getX() + "bateau " + mapDeBateaux.get(i).getNom_navire());
         }}*/
         //Appel des menus
-      M.MenuDebut();
+     M.MenuDebut();
         //M.MenuBateau(JoueurH,JoueurO);
   }
 }
