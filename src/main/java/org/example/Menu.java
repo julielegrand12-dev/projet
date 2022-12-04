@@ -93,7 +93,7 @@ public class Menu
         HashMap<Integer, Bateau> mapDeBateauxHumain = new HashMap<>();
         HashMap<Integer, Case> mapDeCasesOrdi = new HashMap<Integer, Case>();
         HashMap<Integer, Bateau> mapDeBateauxOrdi = new HashMap<>();
-        //Déclaration HashMap
+
         int x=6;
 
         System.out.println("Veuillez faire un choix"); //Nous affichons les choix possibles
@@ -115,7 +115,37 @@ public class Menu
 
         switch(choix)
         {case 1 :
-                System.out.println(JoueurH.getMapDeCasesHumain());
+            /*ArrayList<Case> mapdecaseseclairees = new ArrayList<Case>();
+            int choixbateau =12;
+            System.out.println("Veuillez faire un choix"); //Nous affichons les choix possibles
+            System.out.println("1- Tirer avec le cuirasse d'id 0\n");
+            System.out.println("2- Tirer avec le croiseur d'id 1\n");
+            System.out.println("3- Tirer avec le croiseur d'id 2\n");
+            System.out.println("2- Tirer avec le destroyer d'id 3\n");
+            System.out.println("3- Tirer avec le destroyer d'id 4\n");
+            System.out.println("2- Tirer avec le destroyer d'id 5\n");
+            System.out.println("3- Tirer avec le sous-marin d'id 6\n");
+            System.out.println("3- Tirer avec le sous-marin d'id 7\n");
+            System.out.println("3- Tirer avec le sous-marin d'id 8\n");
+            System.out.println("3- Tirer avec le sous-marin d'id 9\n");
+
+            do             //blindage exception pour le choix du menu bateau
+            {do{try
+            {choixbateau = Integer.parseInt(scan.nextLine());
+                x=0;} catch (Exception e) {System.out.println("L'entrée doit être un chiffre compris entre 1 et 9.");
+                x=1;}
+            }while(x!=0 ); }while((choixbateau!= 1) && (choixbateau != 2) && (choixbateau != 3) && (choixbateau != 4) && (choixbateau != 5) && (choixbateau != 6) && (choixbateau != 7) && (choixbateau != 8) && (choixbateau != 9));
+
+            if(choixbateau==3 || choixbateau==4 ||choixbateau==5 )
+            {
+                mapDeBateauxHumain.get(choixbateau).AttaqueHumainDestroyer(JoueurO,JoueurH,mapdecaseseclairees);
+            }
+            else
+            {
+                mapDeBateauxHumain.get(choixbateau).AttaqueHumain(JoueurO,JoueurH);
+            }
+
+               */ System.out.println(JoueurH.getMapDeCasesHumain());
                 Ph.PlateauDommage(JoueurH,JoueurO,Ph);
             //mapDeBateauxHumain.get(9).AttaqueHumain(JoueurO,JoueurH);
 
