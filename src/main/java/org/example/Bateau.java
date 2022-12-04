@@ -1,7 +1,9 @@
 package org.example;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 public class Bateau {
 
@@ -9,8 +11,7 @@ public class Bateau {
     private int id_navire  ;
     private int  coordonneeDebutX ;
     private int coordonneeDebutY ;
-    private int coordoX;
-    private int coordoY;
+
     private String nom_navire ;
     private ArrayList<Case> lesCases;
     private int taille_navire ; // le nb de case du bateau
@@ -74,165 +75,35 @@ public class Bateau {
         return lesCases;
     }
 
-    public void setlesCases(Case[][] lesCases) {
-        Bateau.this.lesCases = Bateau.this.lesCases;
+    public void setLesCases(ArrayList<Case> lesCases) {
+        this.lesCases = lesCases;
     }
 
     //methodes et constructeurs
 
-    public boolean BateauACouler(HashMap<Integer, Case> MapDeCases, int choix){
+    public boolean BateauACouler(HashMap<Integer, Case> MapDeCases, int choix, HashMap<Integer,Bateau> MapDeBateaux){
         boolean flag = false;
-        if (choix == 0) {
-            for (int i = 0; i < 7; i++) {
-                if (MapDeCases.get(i).EtatCase()) {
-                   flag =true;
-                }
+        int compte = 0;
+        for(int da =0;da<MapDeBateaux.get(choix).getlesCases().size();da++){
+            if(MapDeBateaux.get(choix).getlesCases().get(da).EtatCase() == true){
+                flag =true;
+                compte =compte +1;
             }
         }
-        if (choix == 1) {
-            for (int i = 7; i < 12; i++) {
-                if (MapDeCases.get(i).EtatCase()) {
-                   flag=true;
-                }
-            }
-        }
-        if (choix == 2) {
-            for (int i = 12; i < 17; i++) {
-                if (MapDeCases.get(i).EtatCase()) {
-                    flag = true;
-                }
-            }
-        }
-        if (choix == 3) {
-            for (int i = 17; i < 20; i++) {
-                if (MapDeCases.get(i).EtatCase()) {
-                    flag = true;
-                }
-            }
-        }
-        if (choix == 4) {
-            for (int i = 20; i < 23; i++) {
-                if (MapDeCases.get(i).EtatCase()) {
-                   flag = true;
-                }
-            }
-        }
-        if (choix == 5) {
-            for (int i = 23; i < 26; i++) {
-                if (MapDeCases.get(i).EtatCase()) {
-                    flag = true;
-                }
-            }
-        }
-        if (choix == 6) {
-            for (int i = 26; i < 27; i++) {
-                if (MapDeCases.get(i).EtatCase()) {
-                   flag = true;
-                }
-            }
-        }
-        if (choix == 7) {
-            for (int i = 27; i < 28; i++) {
-                if (MapDeCases.get(i).EtatCase()) {
-                    flag = true;
-                }
-            }
-        }
-        if (choix == 8) {
-            for (int i = 28; i < 29; i++) {
-                if (MapDeCases.get(i).EtatCase()) {
-                    flag = true;
-                }
-            }
-        }
-        if (choix == 9) {
-            for (int i = 29; i < 30; i++) {
-                if (MapDeCases.get(i).EtatCase()) {
-                    flag = true;
-                }
-            }
-    }if(flag == true){ return true ;}
+    if(compte == MapDeBateaux.get(choix).getlesCases().size()){ return true ;}
         else{return false;}
     }
 
-    public boolean flotteACouler(HashMap<Integer, Case> MapDeCases) {
-        boolean B0 = false, B1 = false, B2 = false, B3 = false, B4 = false, B5 = false, B6 = false, B7 = false, B8 = false, B9 = false;
-        for(int a=0; a<=9; a++){
-        if (a == 0) {
-            for (int i = 0; i < 7; i++) {
-                if (MapDeCases.get(i).EtatCase()) {
-                    B0 = true;
-                }
-            }
-        }
-        if (a == 1) {
-            for (int i = 7; i < 12; i++) {
-                if (MapDeCases.get(i).EtatCase()) {
-                    B1 = true;
-                }
-            }
-        }
-        if (a == 2) {
-            for (int i = 12; i < 17; i++) {
-                if (MapDeCases.get(i).EtatCase()) {
-                    B2 = true;
-                }
-            }
-        }
-        if (a == 3) {
-            for (int i = 17; i < 20; i++) {
-                if (MapDeCases.get(i).EtatCase()) {
-                    B3 = true;
-                }
-            }
-        }
-        if (a == 4) {
-            for (int i = 20; i < 23; i++) {
-                if (MapDeCases.get(i).EtatCase()) {
-                    B4 = true;
-                }
-            }
-        }
-        if (a == 5) {
-            for (int i = 23; i < 26; i++) {
-                if (MapDeCases.get(i).EtatCase()) {
-                    B5 = true;
-                }
-            }
-        }
-        if (a == 6) {
-            for (int i = 26; i < 27; i++) {
-                if (MapDeCases.get(i).EtatCase()) {
-                    B6 = true;
-                }
-            }
-        }
-        if (a == 7) {
-            for (int i = 27; i < 28; i++) {
-                if (MapDeCases.get(i).EtatCase()) {
-                    B7 = true;
-                }
-            }
-        }
-        if (a == 8) {
-            for (int i = 28; i < 29; i++) {
-                if (MapDeCases.get(i).EtatCase()) {
-                    B8 = true;
-                }
-            }
-        }
-        if (a == 9) {
-            for (int i = 29; i < 30; i++) {
-                if (MapDeCases.get(i).EtatCase()) {
-                    B9 = true;
-                }
-            }
-        }}
-        if(B0 == true && B1 == true&& B2 ==true && B3 == true&& B4 == true && B5 == true && B6 == true && B7 == true  && B8 == true && B9 == true){
+    public boolean flotteACouler(HashMap<Integer, Case> MapDeCases,HashMap<Integer,Bateau> MapDeBateaux) {
+        int compte =0;
+        for(int i = 0;i<10;i++){
+        for(int da =0;da<MapDeBateaux.get(i).getlesCases().size();da++){
+            if(MapDeBateaux.get(i).getlesCases().get(da).EtatCase() == true){
+                compte =compte +1;
+            }}}
+        if(compte== 30){
             return true;
-        }else{
-            return false;
-        }
+        }else{return false;}
     }
 
 
