@@ -22,12 +22,27 @@ public class Plateau extends JPanel implements ActionListener  {
     ArrayList<Case> listeCasesDeg = new ArrayList<Case>();
 
     JButton btn[];
+    private boolean sauvegarde;
+    private JoueurHumain joueurHS;
+    private JoueurOrdi joueurOS;
 
+    public JoueurHumain getJoueurHS() {
+        return joueurHS;
+    }
 
+    public void setJoueurHS(JoueurHumain joueurHS) {
+        this.joueurHS = joueurHS;
+    }
 
+    public JoueurOrdi getJoueurOS() {
+        return joueurOS;
+    }
 
+    public void setJoueurOS(JoueurOrdi joueurOS) {
+        this.joueurOS = joueurOS;
+    }
 
-    public void PlateauDommage(JoueurHumain JoueurH,JoueurOrdi JoueurO,Plateau Ph)
+    public void PlateauDommage(JoueurHumain JoueurH, JoueurOrdi JoueurO, Plateau Ph)
     {
       /*  mapDeBateauxH = JoueurH.getMapDeBateauxHumain();
         mapDeCasesH = JoueurH.getMapDeCasesHumain();
@@ -76,7 +91,8 @@ public class Plateau extends JPanel implements ActionListener  {
 
         //------------------------------------------------------------------------------
 
-        System.out.println("Nouvelle partie");
+        joueurHS = JoueurH;
+        joueurOS = JoueurO;
 
 
         frame = new JFrame("PLATEAU NAVIRE");
@@ -136,11 +152,11 @@ public class Plateau extends JPanel implements ActionListener  {
             }
 
 
-        for (int k = 0; k<224;k++)
-        {
-       // System.out.println(k + " Avec X = " + listeCasesDeg.get(k).getX() + " et Y = " + listeCasesDeg.get(k).getY() );
-        //MapDeCasesDegat.put(k, listeCasesDeg.get(k));
-        }
+
+
+
+
+
         panel.add(boutonSauv);
         boutonSauv.addActionListener(this);
         Menu M = new Menu('0');
@@ -160,6 +176,7 @@ public class Plateau extends JPanel implements ActionListener  {
     @Override
     public void actionPerformed(ActionEvent e)
     {
+
         String s = e.getActionCommand();
         Object source=e.getSource();
         if(s.equals("  "))
@@ -182,7 +199,8 @@ public class Plateau extends JPanel implements ActionListener  {
         {
             System.out.println("Lancement sauvegarde");
             Sauvegarde S = new Sauvegarde();
-           // S.SauvegarderJeuHumain(JoueurH);
+            S.SauvegarderJeuHumain(joueurHS);
+            S.SauvegarderJeuOrdi(joueurOS);
         }
     }
 
@@ -193,8 +211,7 @@ public class Plateau extends JPanel implements ActionListener  {
 
 
 
-
-    }
+}
 
 
 
