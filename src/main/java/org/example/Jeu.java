@@ -38,14 +38,14 @@ public class Jeu {
     public void plateauHumainNavires (JoueurHumain JoueurH,JoueurOrdi JoueurO)
     {
     Plateau Ph = new Plateau();
-    Ph.PlateauDommage(JoueurH,JoueurO,Ph);
+    //Ph.PlateauDommage(JoueurH,JoueurO,Ph);
     Ph.PlateauJoueur(JoueurH,JoueurO,Ph);
     }
 
-    public void plateauHumainDommages (JoueurHumain JoueurH,JoueurOrdi JoueurO)
+    public void plateauHumainDommages (JoueurHumain JoueurH,JoueurOrdi JoueurO,Plateau Ph)
     {
         Plateau Pd = new Plateau();
-        //Pd.PlateauDommage(JoueurH,JoueurO);
+        Pd.PlateauDommage(JoueurH,JoueurO,Ph);
 
     }
 

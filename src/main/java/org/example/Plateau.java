@@ -6,13 +6,12 @@ import java.util.HashMap;
 import java.util.ArrayList;
 
 import java.awt.event.*;
-
-
+import java.util.Scanner;
 
 
 public class Plateau extends JPanel implements ActionListener  {
 
-    private HashMap<Integer, Case> mapDeCasesH = new HashMap<Integer, Case>();
+
     private HashMap<Integer, Bateau> mapDeBateauxH = new HashMap<>();
 
     static JFrame frame2;
@@ -42,11 +41,21 @@ public class Plateau extends JPanel implements ActionListener  {
         this.joueurOS = joueurOS;
     }
 
+
     public void PlateauDommage(JoueurHumain JoueurH, JoueurOrdi JoueurO, Plateau Ph)
     {
-      /*  mapDeBateauxH = JoueurH.getMapDeBateauxHumain();
-        mapDeCasesH = JoueurH.getMapDeCasesHumain();
-        mapDeBateauxH.get(9).AttaqueHumain(JoueurO,JoueurH);*/
+
+        HashMap<Integer, Bateau> mapDeBateauxHumain = new HashMap<>();
+        HashMap<Integer, Case> mapDeCasesOrdi = new HashMap<Integer, Case>();
+
+
+        System.out.println("Saisissez la coordonnée que vous souhaitez attaquer");
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Saisissez X:");
+        int choixX = scan.nextInt();
+        System.out.println("Saisissez Y:");
+        int choixY = scan.nextInt();
+
 
 
 
@@ -74,13 +83,29 @@ public class Plateau extends JPanel implements ActionListener  {
             Case ca = new Case(tempo,cpt,0);
             listeCasesDeg.add(ca);
         }
+        mapDeBateauxHumain = JoueurH.getMapDeBateauxHumain();
+        mapDeCasesOrdi = JoueurH.getMapDeCasesHumain();
 
 
+        //if joueur actuel = joueur humain else inverser
+        //ID du bateau avec lequel il attaque
+        //if etat = treu gris
+        mapDeBateauxHumain.get(9).AttaqueHumain(JoueurO,JoueurH,choixX, choixY);
+        for(int i=0; i<mapDeCasesOrdi.size(); i++)
+        {
+            if(JoueurO.getMapDeCasesOrdi().get(i).EtatCase())
+            {
+                btn[i].setBackground(Color.BLACK);
+            }
 
-
+        }
         frame2.add(panel2);
         frame2.setSize(700, 700);
         frame2.show();
+        Menu M = new Menu('0');
+        M.MenuBateau(JoueurH,JoueurO,Ph);
+
+
 
 
     }

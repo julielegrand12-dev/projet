@@ -118,7 +118,7 @@ public class Bateau {
     }
     public void genererBateaux(){}
 
-    public void AttaqueHumain(JoueurOrdi o, JoueurHumain j){}
+    public void AttaqueHumain(JoueurOrdi o, JoueurHumain j, int choixX, int choixY){}
 
     public ArrayList<Case> AttaqueHumainDestroyer(JoueurOrdi o, JoueurHumain j, ArrayList<Case> mapdecaseseclarees ){return mapdecaseseclarees;}
     public ArrayList<Case> AttaqueOrdiDestroyer(JoueurOrdi o, JoueurHumain j, ArrayList<Case> mapdecaseseclarees ){return mapdecaseseclarees;}

@@ -113,7 +113,8 @@ public class Menu
         {case 1 :
                 System.out.println(JoueurH.getMapDeCasesHumain());
                 Ph.PlateauDommage(JoueurH,JoueurO,Ph);
-                mapDeBateauxHumain.get(9).AttaqueHumain(JoueurO,JoueurH);
+            //mapDeBateauxHumain.get(9).AttaqueHumain(JoueurO,JoueurH);
+
                 break;
 
             case 2:
