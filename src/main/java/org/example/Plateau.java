@@ -49,14 +49,12 @@ public class Plateau extends JPanel implements ActionListener  {
         HashMap<Integer, Case> mapDeCasesOrdi = new HashMap<Integer, Case>();
 
 
-        System.out.println("Saisissez la coordonnée que vous souhaitez attaquer");
+        /*System.out.println("Saisissez la coordonnée que vous souhaitez attaquer");
         Scanner scan = new Scanner(System.in);
         System.out.println("Saisissez X:");
         int choixX = scan.nextInt();
         System.out.println("Saisissez Y:");
-        int choixY = scan.nextInt();
-
-
+        int choixY = scan.nextInt();*/
 
 
         frame2 = new JFrame("PLATEAU DOMMAGE ADVERSAIRE");
@@ -90,7 +88,7 @@ public class Plateau extends JPanel implements ActionListener  {
         //if joueur actuel = joueur humain else inverser
         //ID du bateau avec lequel il attaque
         //if etat = treu gris
-        mapDeBateauxHumain.get(9).AttaqueHumain(JoueurO,JoueurH,choixX, choixY);
+        //mapDeBateauxHumain.get(9).AttaqueHumain(JoueurO,JoueurH,choixX, choixY);
         for(int i=0; i<mapDeCasesOrdi.size(); i++)
         {
             if(JoueurO.getMapDeCasesOrdi().get(i).EtatCase())
@@ -103,7 +101,7 @@ public class Plateau extends JPanel implements ActionListener  {
         frame2.setSize(700, 700);
         frame2.show();
         Menu M = new Menu('0');
-        M.MenuBateau(JoueurH,JoueurO,Ph);
+        //M.MenuBateau(JoueurH,JoueurO,Ph);
 
 
 
@@ -193,7 +191,7 @@ public class Plateau extends JPanel implements ActionListener  {
         frame.setSize(700, 700);
         frame.show();
 
-        M.MenuBateau(JoueurH,JoueurO,Ph);
+       // M.MenuBateau(JoueurH,JoueurO,Ph);
     }
 
 

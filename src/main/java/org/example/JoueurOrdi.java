@@ -987,7 +987,7 @@ public class JoueurOrdi {
                     // Case c = new Case(MapDeCases.get(w).getX(), MapDeCases.get(w).getY() -1, 1);
 
                     // MapDeCases.replace(w, c);
-                    MapDeBateaux.get(choix).getlesCases().get(0).setY(MapDeBateaux.get(choix).getlesCases().get(i).getY()-1);
+                    MapDeBateaux.get(choix).getlesCases().get(0).setY(MapDeBateaux.get(choix).getlesCases().get(0).getY()-1);
                     lesCases.add(MapDeBateaux.get(choix).getlesCases().get(i));
                     System.out.println("Coordonnée Case X:" + MapDeCases.get(w).getX() + " Y:" + MapDeCases.get(w).getY());
                     flag = false;
@@ -1046,7 +1046,7 @@ public class JoueurOrdi {
                 if (drapeau == false) {
                     //  Case c = new Case(MapDeCases.get(w).getX()+1, MapDeCases.get(w).getY() , 1);
                     //  MapDeCases.replace(w, c);
-                    MapDeBateaux.get(choix).getlesCases().get(0).setX(MapDeBateaux.get(choix).getlesCases().get(i).getX()+1);
+                    MapDeBateaux.get(choix).getlesCases().get(0).setX(MapDeBateaux.get(choix).getlesCases().get(0).getX()+1);
                     lesCases.add(MapDeBateaux.get(choix).getlesCases().get(i));
                     System.out.println("Coordonnée Case X:" + MapDeCases.get(w).getX() + " Y:" + MapDeCases.get(w).getY());
                     flag = false;
@@ -1104,7 +1104,7 @@ public class JoueurOrdi {
                 if (drapeau == false) {
                     //  Case c = new Case(MapDeCases.get(w).getX(), MapDeCases.get(w).getY() +1, 1);
                     // MapDeCases.replace(w, c);
-                    MapDeBateaux.get(choix).getlesCases().get(0).setY(MapDeBateaux.get(choix).getlesCases().get(i).getY()+1);
+                    MapDeBateaux.get(choix).getlesCases().get(0).setY(MapDeBateaux.get(choix).getlesCases().get(0).getY()+1);
                     lesCases.add(MapDeBateaux.get(choix).getlesCases().get(i));
                     System.out.println("Coordonnée Case X:" + MapDeCases.get(w).getX() + " Y:" + MapDeCases.get(w).getY());
                     flag = false;
@@ -1162,7 +1162,7 @@ public class JoueurOrdi {
                 if (drapeau == false) {
                     // Case c = new Case(MapDeCases.get(w).getX()-1, MapDeCases.get(w).getY() , 1);
                     // MapDeCases.replace(w, c);
-                    MapDeBateaux.get(choix).getlesCases().get(0).setX(MapDeBateaux.get(choix).getlesCases().get(i).getX()-1);
+                    MapDeBateaux.get(choix).getlesCases().get(0).setX(MapDeBateaux.get(choix).getlesCases().get(0).getX()-1);
                     lesCases.add(MapDeBateaux.get(choix).getlesCases().get(i));
                     System.out.println("Coordonnée Case X:" + MapDeCases.get(w).getX() + " Y:" + MapDeCases.get(w).getY());
                     flag = false;
