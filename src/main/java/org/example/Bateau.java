@@ -22,7 +22,6 @@ public class Bateau implements Serializable {
 
     // dans le cas 'un navire horizontal,ce sont les colonnes y qui determinent la taille
 
-
     public int getCoordonneeDebutX() {
         return coordonneeDebutX;
     }
@@ -106,8 +105,6 @@ public class Bateau implements Serializable {
             return true;
         }else{return false;}
     }
-
-
 
     public Bateau( int taille_navire,int id_navire, String nom_navire, boolean Horizontal, int coordonneeDebutX, int coordonneeDebutY){
         this.id_navire = id_navire ;
