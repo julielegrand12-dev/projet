@@ -92,7 +92,7 @@ public class Sauvegarde implements Serializable {
         out.println("JEU - SAUVEGARDE ORDI");
 
         for (Object i : O.getMapDeCasesOrdi().keySet()) {
-            out.println("Case n." + i + " de Coordonnée X = " + O.getMapDeCasesOrdi().get(i).getX() + " " + " et coordonnée Y = " + O.getMapDeCasesOrdi().get(i).getY() + "   " + O.getMapDeCasesOrdi().get(i).getGetID());
+            out.println("Case n." + i + " de Coordonnée X = " + O.getMapDeCasesOrdi().get(i).getX() + " " + " et coordonnée Y = " + O.getMapDeCasesOrdi().get(i).getY() + "   " + O.getMapDeCasesOrdi().get(i).getGetID()+"   " + O.getMapDeCasesOrdi().get(i).EtatCase());
         }
 
         FileOutputStream monfichierID = null;
