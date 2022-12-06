@@ -18,6 +18,7 @@ public class Cuirasse extends Bateau {
         Scanner scan = new Scanner(System.in);
         System.out.println("Saisissez X:");
         int choixX = scan.nextInt();
+        // REGLER PARAMETRERE ATTAQUE
         System.out.println("Saisissez Y:");
         int choixY = scan.nextInt();
         HashMap<Integer, Case> mapDeCases = new HashMap<Integer, Case>();

@@ -109,22 +109,19 @@ public class Sauvegarde implements Serializable {
             monfichierY = new FileOutputStream("SauvegardeYO.dat");
             monfichierpseudo = new FileOutputStream("SauvegardepseudoO.dat");
             monfichierscore = new FileOutputStream("SauvegardescoreO.dat");
-            FileOutputStream monfichiermapdecases=new FileOutputStream("SauvegardeMapDeCasesO.dat");
-            // FileOutputStream fos=new FileOutputStream(monfichiermapdecases);
-            ObjectOutputStream oos=new ObjectOutputStream(monfichiermapdecases);
 
-            oos.writeObject(O.getMapDeCasesOrdi());
-            oos.flush();
-            oos.close();
+            FileOutputStream monfichiermapdecases=new FileOutputStream("SauvegardeMapDeCasesO.dat");
+            ObjectOutputStream mapC=new ObjectOutputStream(monfichiermapdecases);
+            mapC.writeObject(O.getMapDeCasesOrdi());
+            mapC.flush();
+            mapC.close();
             monfichiermapdecases.close();
 
             FileOutputStream monfichiermapdebateaux=new FileOutputStream("SauvegardeMapDebateauxO.dat");
-            // FileOutputStream fos=new FileOutputStream(monfichiermapdecases);
-            ObjectOutputStream oob=new ObjectOutputStream(monfichiermapdebateaux);
-
-            oob.writeObject(O.getMapDeBateauxOrdi());
-            oob.flush();
-            oob.close();
+            ObjectOutputStream mapB=new ObjectOutputStream(monfichiermapdebateaux);
+            mapB.writeObject(O.getMapDeBateauxOrdi());
+            mapB.flush();
+            mapB.close();
             monfichiermapdebateaux.close();
 
             for (Object j : O.getMapDeCasesOrdi().keySet()) {
@@ -187,81 +184,27 @@ public class Sauvegarde implements Serializable {
             monfichierpseudo = new FileInputStream("Sauvegardepseudo.dat");
             monfichierscore = new FileInputStream("Sauvegardescore.dat");
             out.println("RECUP SAUVEGARDE 2");
+
             FileInputStream toRead=new FileInputStream("SauvegardeMapDeCases.dat");
-            ObjectInputStream ois=new ObjectInputStream(toRead);
-
-            HashMap<Integer, Case> mapInFile=(HashMap<Integer,Case>)ois.readObject();
-
-
-            //print All data in MAP
-            for(Object k : mapInFile.keySet()){
-                System.out.println(mapInFile.get(k).getX());
-            }J.setMapDeCasesHumain(mapInFile);
-            ois.close();
+            ObjectInputStream mapC=new ObjectInputStream(toRead);
+            HashMap<Integer, Case> mapInFile=(HashMap<Integer,Case>)mapC.readObject();
+            mapC.close();
             toRead.close();
 
 
             FileInputStream toRead2=new FileInputStream("SauvegardeMapDebateaux.dat");
             ObjectInputStream oob=new ObjectInputStream(toRead2);
-
             HashMap<Integer, Bateau> mapBInFile=(HashMap<Integer,Bateau>)oob.readObject();
 
-
-            //print All data in MAP
-            for(Object k : mapBInFile.keySet()){
-                System.out.println(mapBInFile.get(k).getCoordonneeDebutX());
-            }J.setMapDeBateauxHumain(mapBInFile);
             oob.close();
             toRead2.close();
 
             while (true) {
 
-
-
-                for(int a=0; a<= TableauID.length-1;a++)
-                {
-                     TableauID[a] = monfichierID.read();
-                }
-                for(int b=0; b<= TableauX.length-1;b++)
-                {
-                      TableauX[b] = monfichierX.read();
-                }
-                for(int c=0; c<= TableauY.length-1;c++)
-                {
-                      TableauY[c] = monfichierY.read();
-                }
                 out.println("RECUP SAUVEGARDE 3");
 
-                for(int d=0; d<=TableauY.length-1;d++)
-                {
-
-                    Case c = new Case(TableauX[d], TableauY[d], TableauID[d]);
-                    listeCases.add(c);
-                }
                 out.println("RECUP SAUVEGARDE 4");
 
-
-               // int valID = monfichierID.read();
-
-                // System.out.print(" " + valID);
-
-              /*  if (valID == -1) {
-                    break;
-                }  */
-
-                   /*  int valX = monfichierID.read();
-                     System.out.print(" " + valX);
-                     if (valX == -1) {
-                         break;
-                     }
-
-                     int valY = monfichierY.read();
-                     System.out.print(" " + valY);
-                     if (valY == -1) {
-                         break;
-                     }    */
-                     
-                 //PSEUDO
 
                 byte[] b = monfichierpseudo.readAllBytes();
                 String valP = new String(b);
@@ -291,20 +234,6 @@ public class Sauvegarde implements Serializable {
         }
         out.println("pseudo :" + J.getPseudo());
         out.println("score :" + J.getScore());
-        for (int i = 0; i < listeCases.size(); i++) {
-
-            mapDeCasesSauv.put(i, listeCases.get(i));
-
-        }
-      //  J.setMapDeCasesHumain(mapDeCasesSauv);
-
-
-
-
-        /*    for (Object i : J.getMapDeCasesHumain().keySet()) {
-                System.out.println("Case n." + i + " de Coordonnée X = " + mapDeCasesSauv.get(i).getX() + " " + " et coordonnée Y = " + J.getMapDeCases().get(i).getY() + "   " + J.getMapDeCases().get(i).getGetID());
-            } */
-    
 
     Plateau pat = new Plateau();
 
@@ -339,7 +268,6 @@ public class Sauvegarde implements Serializable {
             HashMap<Integer, Case> mapInFile=(HashMap<Integer,Case>)ois.readObject();
 
 
-            //print All data in MAP
             for(Object k : mapInFile.keySet()){
                 System.out.println(mapInFile.get(k).getX());
             }O.setMapDeCasesOrdi(mapInFile);
@@ -352,8 +280,6 @@ public class Sauvegarde implements Serializable {
 
             HashMap<Integer, Bateau> mapBInFile=(HashMap<Integer,Bateau>)oob.readObject();
 
-
-            //print All data in MAP
             for(Object k : mapBInFile.keySet()){
                 System.out.println(mapBInFile.get(k).getCoordonneeDebutX());
             }O.setMapDeBateauxOrdi(mapBInFile);
@@ -386,28 +312,6 @@ public class Sauvegarde implements Serializable {
                 }
                 out.println("RECUP SAUVEGARDE 4");
 
-
-                // int valID = monfichierID.read();
-
-                // System.out.print(" " + valID);
-
-              /*  if (valID == -1) {
-                    break;
-                }  */
-
-                   /*  int valX = monfichierID.read();
-                     System.out.print(" " + valX);
-                     if (valX == -1) {
-                         break;
-                     }
-
-                     int valY = monfichierY.read();
-                     System.out.print(" " + valY);
-                     if (valY == -1) {
-                         break;
-                     }    */
-
-                //PSEUDO
 
                 byte[] b = monfichierpseudo.readAllBytes();
                 String valP = new String(b);
