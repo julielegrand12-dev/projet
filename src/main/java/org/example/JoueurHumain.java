@@ -343,6 +343,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
         ArrayList<Case> lesCases = new ArrayList<>();
         Scanner scan1 = new Scanner(System.in);
         Scanner scan = new Scanner(System.in);
+        boolean casetouche = false;
 
         //affichage de départ
         System.out.println("Vous avez choisi de déplacer votre bateau\n");
