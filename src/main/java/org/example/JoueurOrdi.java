@@ -386,7 +386,7 @@ public class JoueurOrdi {
                             //  MapDeCases.replace(i, c);
                             MapDeBateaux.get(choix).getlesCases().get(i).setX(MapDeBateaux.get(choix).getlesCases().get(i).getX()+1);
                             lesCases.add(MapDeBateaux.get(choix).getlesCases().get(i));
-                            System.out.println("Coordonnées Case X :" + MapDeCases.get(i).getX() + " Y:" + MapDeCases.get(i).getY());
+                            System.out.println("Coordonnées Case X :" + MapDeBateaux.get(choix).getlesCases().get(i).getX() + " Y:" + MapDeBateaux.get(choix).getlesCases().get(i).getY());
                             flag = false;
                         }
                         setMapDeCasesOrdi(MapDeCases);
@@ -425,7 +425,7 @@ public class JoueurOrdi {
                         //  MapDeCases.replace(i, c);
                         MapDeBateaux.get(choix).getlesCases().get(i).setX(MapDeBateaux.get(choix).getlesCases().get(i).getX()-1);
                         lesCases.add(MapDeBateaux.get(choix).getlesCases().get(i));
-                        System.out.println("Coordonnées Case X :" + MapDeCases.get(i).getX() + " Y:" + MapDeCases.get(i).getY());
+                        System.out.println("Coordonnées Case X :" + MapDeBateaux.get(choix).getlesCases().get(i).getX() + " Y:" + MapDeBateaux.get(choix).getlesCases().get(i).getY());
                         flag = false;
                     }
                     setMapDeCasesOrdi(MapDeCases);
@@ -468,7 +468,7 @@ public class JoueurOrdi {
                             //MapDeCases.replace(i, c);
                             MapDeBateaux.get(choix).getlesCases().get(i).setY(MapDeBateaux.get(choix).getlesCases().get(i).getY()-1);
                             lesCases.add(MapDeBateaux.get(choix).getlesCases().get(i));
-                            System.out.println("Coordonnées Case X :" + MapDeCases.get(i).getX() + " Y:" + MapDeCases.get(i).getY());
+                            System.out.println("Coordonnées Case X :" + MapDeBateaux.get(choix).getlesCases().get(i).getX() + " Y:" + MapDeBateaux.get(choix).getlesCases().get(i).getY());
                             flag = false;
                         }
                         setMapDeCasesOrdi(MapDeCases);
@@ -504,7 +504,7 @@ public class JoueurOrdi {
                             // Case c = new Case(MapDeBateaux.get(choix).getlesCases().get(i).getX(), MapDeBateaux.get(choix).getlesCases().get(i).getY() + 1, MapDeBateaux.get(choix).getlesCases().get(i).getGetID());
                             // MapDeCases.replace(i, c);
                             lesCases.add(MapDeBateaux.get(choix).getlesCases().get(i));
-                            System.out.println("Coordonnées Case X :" + MapDeCases.get(i).getX() + " Y:" + MapDeCases.get(i).getY());
+                            System.out.println("Coordonnées Case X :" + MapDeBateaux.get(choix).getlesCases().get(i).getX() + " Y:" + MapDeBateaux.get(choix).getlesCases().get(i).getY());
                             flag = false;
                         }
                         setMapDeCasesOrdi(MapDeCases);
@@ -548,8 +548,8 @@ public class JoueurOrdi {
 
                     // MapDeCases.replace(w, c);
                     MapDeBateaux.get(choix).getlesCases().get(0).setY(MapDeBateaux.get(choix).getlesCases().get(0).getY()-1);
-                    lesCases.add(MapDeBateaux.get(choix).getlesCases().get(i));
-                    System.out.println("Coordonnée Case X:" + MapDeCases.get(w).getX() + " Y:" + MapDeCases.get(w).getY());
+                    lesCases.add(MapDeBateaux.get(choix).getlesCases().get(0));
+                    System.out.println("Coordonnée Case X:" + MapDeBateaux.get(choix).getlesCases().get(i).getX() + " Y:" + MapDeBateaux.get(choix).getlesCases().get(i).getY());
                     flag = false;
                     setMapDeCasesOrdi(MapDeCases);
 
@@ -583,8 +583,8 @@ public class JoueurOrdi {
                     //  Case c = new Case(MapDeCases.get(w).getX()+1, MapDeCases.get(w).getY() , 1);
                     //  MapDeCases.replace(w, c);
                     MapDeBateaux.get(choix).getlesCases().get(0).setX(MapDeBateaux.get(choix).getlesCases().get(0).getX()+1);
-                    lesCases.add(MapDeBateaux.get(choix).getlesCases().get(i));
-                    System.out.println("Coordonnée Case X:" + MapDeCases.get(w).getX() + " Y:" + MapDeCases.get(w).getY());
+                    lesCases.add(MapDeBateaux.get(choix).getlesCases().get(0));
+                    System.out.println("Coordonnée Case X:" + MapDeBateaux.get(choix).getlesCases().get(i).getX() + " Y:" + MapDeBateaux.get(choix).getlesCases().get(i).getY());
                     flag = false;
                     setMapDeCasesOrdi(MapDeCases);
 
@@ -617,8 +617,8 @@ public class JoueurOrdi {
                     //  Case c = new Case(MapDeCases.get(w).getX(), MapDeCases.get(w).getY() +1, 1);
                     // MapDeCases.replace(w, c);
                     MapDeBateaux.get(choix).getlesCases().get(0).setY(MapDeBateaux.get(choix).getlesCases().get(0).getY()+1);
-                    lesCases.add(MapDeBateaux.get(choix).getlesCases().get(i));
-                    System.out.println("Coordonnée Case X:" + MapDeCases.get(w).getX() + " Y:" + MapDeCases.get(w).getY());
+                    lesCases.add(MapDeBateaux.get(choix).getlesCases().get(0));
+                    System.out.println("Coordonnée Case X:" + MapDeBateaux.get(choix).getlesCases().get(i).getX() + " Y:" +MapDeBateaux.get(choix).getlesCases().get(i).getY());
                     flag = false;
                     setMapDeCasesOrdi(MapDeCases);
                 } else {
@@ -651,8 +651,8 @@ public class JoueurOrdi {
                     // Case c = new Case(MapDeCases.get(w).getX()-1, MapDeCases.get(w).getY() , 1);
                     // MapDeCases.replace(w, c);
                     MapDeBateaux.get(choix).getlesCases().get(0).setX(MapDeBateaux.get(choix).getlesCases().get(0).getX()-1);
-                    lesCases.add(MapDeBateaux.get(choix).getlesCases().get(i));
-                    System.out.println("Coordonnée Case X:" + MapDeCases.get(w).getX() + " Y:" + MapDeCases.get(w).getY());
+                    lesCases.add(MapDeBateaux.get(choix).getlesCases().get(0));
+                    System.out.println("Coordonnée Case X:" + MapDeBateaux.get(choix).getlesCases().get(i).getX() + " Y:" + MapDeBateaux.get(choix).getlesCases().get(i).getY());
                     flag = false;
                     setMapDeCasesOrdi(MapDeCases);
                     System.out.println(lesCases.size());

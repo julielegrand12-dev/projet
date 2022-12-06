@@ -403,7 +403,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
 
                             MapDeBateaux.get(choix).getlesCases().get(i).setX(MapDeBateaux.get(choix).getlesCases().get(i).getX()+1);
                             lesCases.add(MapDeBateaux.get(choix).getlesCases().get(i));
-                            System.out.println("Coordonnées Case X :" + MapDeCases.get(i).getX() + " Y:" + MapDeCases.get(i).getY());
+                            System.out.println("Coordonnées Case X :" + MapDeBateaux.get(choix).getlesCases().get(i).getX() + " Y:" + MapDeBateaux.get(choix).getlesCases().get(i).getY());
                             flag = false;
                         }
                         setMapDeCasesHumain(MapDeCases);
@@ -438,7 +438,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
 
                             MapDeBateaux.get(choix).getlesCases().get(i).setX(MapDeBateaux.get(choix).getlesCases().get(i).getX()-1);
                             lesCases.add(MapDeBateaux.get(choix).getlesCases().get(i));
-                            System.out.println("Coordonnées Case X :" + MapDeCases.get(i).getX() + " Y:" + MapDeCases.get(i).getY());
+                            System.out.println("Coordonnées Case X :" + MapDeBateaux.get(choix).getlesCases().get(i).getX() + " Y:" + MapDeBateaux.get(choix).getlesCases().get(i).getY());
                             flag = false;
                         }
                         setMapDeCasesHumain(MapDeCases);
@@ -478,7 +478,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
 
                             MapDeBateaux.get(choix).getlesCases().get(i).setY(MapDeBateaux.get(choix).getlesCases().get(i).getY()-1);
                             lesCases.add(MapDeBateaux.get(choix).getlesCases().get(i));
-                            System.out.println("Coordonnées Case X :" + MapDeCases.get(i).getX() + " Y:" + MapDeCases.get(i).getY());
+                            System.out.println("Coordonnées Case X :" + MapDeBateaux.get(choix).getlesCases().get(i).getX() + " Y:" + MapDeBateaux.get(choix).getlesCases().get(i).getY());
                             flag = false;
                         }
                         setMapDeCasesHumain(MapDeCases);
@@ -514,7 +514,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
                            // Case c = new Case(MapDeBateaux.get(choix).getlesCases().get(i).getX(), MapDeBateaux.get(choix).getlesCases().get(i).getY() + 1, MapDeBateaux.get(choix).getlesCases().get(i).getGetID());
                            // MapDeCases.replace(i, c);
                             lesCases.add(MapDeBateaux.get(choix).getlesCases().get(i));
-                            System.out.println("Coordonnées Case X :" + MapDeCases.get(i).getX() + " Y:" + MapDeCases.get(i).getY());
+                            System.out.println("Coordonnées Case X :" + MapDeBateaux.get(choix).getlesCases().get(i).getX() + " Y:" + MapDeBateaux.get(choix).getlesCases().get(i).getY());
                             flag = false;
                         }
                         setMapDeCasesHumain(MapDeCases);
@@ -559,7 +559,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
                    // MapDeCases.replace(w, c);
                     MapDeBateaux.get(choix).getlesCases().get(0).setY(MapDeBateaux.get(choix).getlesCases().get(i).getY()-1);
                     lesCases.add(MapDeBateaux.get(choix).getlesCases().get(i));
-                    System.out.println("Coordonnée Case X:" + MapDeCases.get(w).getX() + " Y:" + MapDeCases.get(w).getY());
+                    System.out.println("Coordonnée Case X:" + MapDeBateaux.get(choix).getlesCases().get(i).getX() + " Y:" + MapDeBateaux.get(choix).getlesCases().get(i).getY());
                     flag = false;
                     setMapDeCasesHumain(MapDeCases);
 
@@ -591,7 +591,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
                   //  MapDeCases.replace(w, c);
                     MapDeBateaux.get(choix).getlesCases().get(0).setX(MapDeBateaux.get(choix).getlesCases().get(i).getX()+1);
                     lesCases.add(MapDeBateaux.get(choix).getlesCases().get(i));
-                    System.out.println("Coordonnée Case X:" + MapDeCases.get(w).getX() + " Y:" + MapDeCases.get(w).getY());
+                    System.out.println("Coordonnée Case X:" + MapDeBateaux.get(choix).getlesCases().get(i).getX() + " Y:" + MapDeBateaux.get(choix).getlesCases().get(i).getY());
                     flag = false;
                     setMapDeCasesHumain(MapDeCases);
 
@@ -622,7 +622,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
                        // MapDeCases.replace(w, c);
                         MapDeBateaux.get(choix).getlesCases().get(0).setY(MapDeBateaux.get(choix).getlesCases().get(i).getY()+1);
                         lesCases.add(MapDeBateaux.get(choix).getlesCases().get(i));
-                        System.out.println("Coordonnée Case X:" + MapDeCases.get(w).getX() + " Y:" + MapDeCases.get(w).getY());
+                        System.out.println("Coordonnée Case X:" + MapDeBateaux.get(choix).getlesCases().get(i).getX() + " Y:" + MapDeBateaux.get(choix).getlesCases().get(i).getY());
                         flag = false;
                         setMapDeCasesHumain(MapDeCases);
                     } else {
@@ -653,7 +653,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
                        // MapDeCases.replace(w, c);
                         MapDeBateaux.get(choix).getlesCases().get(0).setX(MapDeBateaux.get(choix).getlesCases().get(i).getX()-1);
                         lesCases.add(MapDeBateaux.get(choix).getlesCases().get(i));
-                        System.out.println("Coordonnée Case X:" + MapDeCases.get(w).getX() + " Y:" + MapDeCases.get(w).getY());
+                        System.out.println("Coordonnée Case X:" + MapDeBateaux.get(choix).getlesCases().get(i).getX() + " Y:" + MapDeBateaux.get(choix).getlesCases().get(i).getY());
                         flag = false;
                         setMapDeCasesHumain(MapDeCases);
                         System.out.println(lesCases.size());

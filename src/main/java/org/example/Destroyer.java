@@ -29,43 +29,17 @@ public class Destroyer extends Bateau{
         this.premFois = true;
         this.premFoisordi = true;
     }
-    public ArrayList<Case> AttaqueHumainDestroyer(JoueurOrdi Ordi, JoueurHumain Joueur, ArrayList<Case>mapCasesEclairees) {
+    public ArrayList<Case> AttaqueHumainDestroyer(JoueurOrdi Ordi, JoueurHumain Joueur, ArrayList<Case>mapCasesEclairees,int choixX, int choixY) {
 
         HashMap<Integer, Case> mapDeCases = new HashMap<Integer, Case>();
         HashMap<Integer, Bateau> mapDeBateaux = new HashMap<>();
         mapDeCases = Ordi.getMapDeCasesOrdi();
         boolean Flag = false;
        // REGLER ATTAQUE PARAMETRE
-        boolean flag = true;
-        int choixX=99, choixY=99;
         Scanner scan = new Scanner(System.in);
         System.out.println(premFois);
         if (premFois == true){
 
-
-            System.out.println("Saisissez la coordonnée que vous souhaitez afficher");
-
-            while (flag == true) {
-                System.out.println("Saisissez X:");
-                try {
-                   choixX = scan.nextInt();
-                   flag = false;
-                }
-                catch (java.util.InputMismatchException e) {
-                    scan.nextLine();
-                    flag = true;
-                }}
-
-                while (flag == true) {
-                    System.out.println("Saisissez Y:");
-                    try {
-                        choixY = scan.nextInt();
-                        flag = false;
-                    }
-                    catch (java.util.InputMismatchException e) {
-                         scan.nextLine();
-                        flag = true;
-                    }}
 
 
             for (Integer TY : mapDeCases.keySet()) {

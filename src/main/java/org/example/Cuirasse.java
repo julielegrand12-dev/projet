@@ -12,15 +12,8 @@ public class Cuirasse extends Bateau {
         super(taille_navire, id_navire, nom_navire, Horizontal, coordonneeDebutX, coordonneeDebutY);
     }
 
-    public void AttaqueHumain(JoueurOrdi Ordi, JoueurHumain Joueur) {
+    public void AttaqueHumain(JoueurOrdi Ordi, JoueurHumain Joueur,int choixX,int choixY) {
 
-        System.out.println("Saisissez la coordonnée que vous souhaitez attaquer");
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Saisissez X:");
-        int choixX = scan.nextInt();
-        // REGLER PARAMETRERE ATTAQUE
-        System.out.println("Saisissez Y:");
-        int choixY = scan.nextInt();
         HashMap<Integer, Case> mapDeCases = new HashMap<Integer, Case>();
         HashMap<Integer, Bateau> mapDeBateaux = new HashMap<>();
         mapDeBateaux = Ordi.getMapDeBateauxOrdi();
