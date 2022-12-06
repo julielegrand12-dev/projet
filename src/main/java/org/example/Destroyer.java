@@ -35,6 +35,7 @@ public class Destroyer extends Bateau{
         HashMap<Integer, Bateau> mapDeBateaux = new HashMap<>();
         mapDeCases = Ordi.getMapDeCasesOrdi();
         boolean Flag = false;
+       // REGLER ATTAQUE PARAMETRE
         boolean flag = true;
         int choixX=99, choixY=99;
         Scanner scan = new Scanner(System.in);
