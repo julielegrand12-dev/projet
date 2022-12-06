@@ -229,8 +229,6 @@ public class Menu
         }
     }while(b.flotteACouler(mapDeCasesHumain,mapDeBateauxHumain)!=true || b.flotteACouler(mapDeCasesOrdi, mapDeBateauxOrdi)!=true);
 
-        System.out.println(b.flotteACouler(mapDeCasesHumain,mapDeBateauxHumain));
-        System.out.println(b.flotteACouler(mapDeCasesOrdi,mapDeBateauxOrdi));
 
     }
 }

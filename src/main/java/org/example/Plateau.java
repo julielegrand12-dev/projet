@@ -11,9 +11,7 @@ import java.util.Scanner;
 
 public class Plateau extends JPanel implements ActionListener  {
 
-
     private HashMap<Integer, Bateau> mapDeBateauxH = new HashMap<>();
-
     static JFrame frame2;
     static JFrame frame;
     ArrayList<JButton> lesBoutons = new ArrayList<JButton>(); // liste de boutons
@@ -102,10 +100,6 @@ public class Plateau extends JPanel implements ActionListener  {
         frame2.show();
         Menu M = new Menu('0');
         //M.MenuBateau(JoueurH,JoueurO,Ph);
-
-
-
-
     }
 
 

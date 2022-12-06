@@ -365,6 +365,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
         int i=0;
         boolean drapeau = false;
         ArrayList<Case> lesCases = new ArrayList<>();
+        boolean casetouche= false;
 
         //affichage de départ
         System.out.println("Vous avez choisi de déplacer votre bateau\n");
@@ -375,9 +376,12 @@ public class JoueurHumain //initialisation de la classe joueur humain
         }
         System.out.println("Veuillez selectionner le bateau souhaite dans la liste ci-dessus:\n");
 
-        choix = scan1.nextInt();
-        boolean casetouche= false;
-
+        do             //blindage exception pour le choix du menu bateau
+        {do{try
+        {choix = Integer.parseInt(scan.nextLine());
+            x=0;} catch (Exception e) {System.out.println("L'entrée doit être un chiffre compris entre 0 et 9.");
+            x=1;}
+        }while(x!=0 ); }while((choix!= 0) && (choix!= 1) && (choix != 2) && (choix != 3) && (choix != 4) && (choix != 5) && (choix != 6) && (choix != 7) && (choix != 8) && (choix != 9));
 
         //on blinde l'entrée pour que le choix reste compris entre 0 et 9
         while (choix < 0 || choix > 9) {
