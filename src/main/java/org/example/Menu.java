@@ -62,7 +62,9 @@ public class Menu
                 System.out.println("Bonjour " + JoueurH.getPseudo() + "\n");
                 System.out.println("Votre premier plateau "+JoueurH.getPseudo()+"(permet de positionner et visualiser les navires):\n");
                 jeu.plateauHumainNavires(JoueurH,JoueurO);
+                jeu.plateauOrdiNavires(JoueurH,JoueurO);
                 MenuBateau(JoueurH,JoueurO,Ph);
+
                // System.out.println("Votre deuxieme plateau plateau "+JoueurH.getPseudo()+"(pour visualiser les degats causes de l'adversaire):\n");
                // jeu.plateauHumainDommages(JoueurH,JoueurO);
                // MenuBateau(JoueurH,JoueurO);
@@ -98,6 +100,8 @@ public class Menu
 
         int x=6;
         int compteur=0;
+        int xB=0;
+        int yB=0;
 
         do
         {
@@ -129,13 +133,13 @@ public class Menu
             System.out.println("1- Tirer avec le cuirasse d'id 0\n");
             System.out.println("2- Tirer avec le croiseur d'id 1\n");
             System.out.println("3- Tirer avec le croiseur d'id 2\n");
-            System.out.println("2- Tirer avec le destroyer d'id 3\n");
-            System.out.println("3- Tirer avec le destroyer d'id 4\n");
-            System.out.println("2- Tirer avec le destroyer d'id 5\n");
-            System.out.println("3- Tirer avec le sous-marin d'id 6\n");
-            System.out.println("3- Tirer avec le sous-marin d'id 7\n");
-            System.out.println("3- Tirer avec le sous-marin d'id 8\n");
-            System.out.println("3- Tirer avec le sous-marin d'id 9\n");
+            System.out.println("4- Tirer avec le destroyer d'id 3\n");
+            System.out.println("5- Tirer avec le destroyer d'id 4\n");
+            System.out.println("6- Tirer avec le destroyer d'id 5\n");
+            System.out.println("7- Tirer avec le sous-marin d'id 6\n");
+            System.out.println("8- Tirer avec le sous-marin d'id 7\n");
+            System.out.println("9- Tirer avec le sous-marin d'id 8\n");
+            System.out.println("10- Tirer avec le sous-marin d'id 9\n");
 
             do             //blindage exception pour le choix du menu bateau
             {do{try
@@ -144,13 +148,31 @@ public class Menu
                 x=1;}
             }while(x!=0 ); }while((choixbateau!= 1) && (choixbateau != 2) && (choixbateau != 3) && (choixbateau != 4) && (choixbateau != 5) && (choixbateau != 6) && (choixbateau != 7) && (choixbateau != 8) && (choixbateau != 9));
 
-            if(choixbateau==3 || choixbateau==4 ||choixbateau==5 )
+            if(choixbateau==3 || choixbateau==4 ||choixbateau==5)
             {
                 mapDeBateauxHumain.get(choixbateau).AttaqueHumainDestroyer(JoueurO,JoueurH,mapdecaseseclairees);
             }
             else
             {
-                mapDeBateauxHumain.get(choixbateau).AttaqueHumain(JoueurO,JoueurH, 2, 2);
+                System.out.println("Saissisez X:\n");
+
+                do
+                {do{try
+                {xB = Integer.parseInt(scan.nextLine());
+                    x=0;} catch (Exception e) {System.out.println("L'entrée doit être un chiffre compris entre 0 et 15.");
+                    x=1;}
+                }while(x!=0 ); }while(xB<0 || xB>15);
+
+                System.out.println("Saissisez Y:\n");
+
+                do
+                {do{try
+                {yB = Integer.parseInt(scan.nextLine());
+                    x=0;} catch (Exception e) {System.out.println("L'entrée doit être un chiffre compris entre 0 et 15.");
+                    x=1;}
+                }while(x!=0 ); }while(yB<0 ||yB>15);
+
+                mapDeBateauxHumain.get(choixbateau).AttaqueHumain(JoueurO,JoueurH, xB, yB);
             }
 
                 Ph.PlateauDommage(JoueurH,JoueurO,Ph);
@@ -175,15 +197,14 @@ public class Menu
             mapDeCasesOrdi = JoueurO.getMapDeCasesOrdi();
 
             Random r = new Random();
-            //int n = r.nextInt(2);
-            int n=0;
+            int n = r.nextInt(2);
 
             System.out.println("Joueur Ordinateur - A votre tour"); //Nous affichons les choix possibles
         System.out.println("1- Tirer\n");
         System.out.println("2- Déplacer un bateau de sa flotte\n");
 
-        //if(n==0) {System.out.println("L'odinateur a choisi: 1 - Tirer\n");}
-        //else if(n==1) {System.out.println("L'odinateur a choisi: 2 - Deplacer un bateau de sa flotte\n");}
+        if(n==0) {System.out.println("L'odinateur a choisi: 1 - Tirer\n");}
+        else if(n==1) {System.out.println("L'odinateur a choisi: 2 - Deplacer un bateau de sa flotte\n");}
 
         switch(n)
         {
@@ -191,22 +212,22 @@ public class Menu
 
             ArrayList<Case> mapdecaseseclairees = new ArrayList<Case>();
 
-            System.out.println("Veuillez faire un choix"); //Nous affichons les choix possibles
-            System.out.println("1- Tirer avec le cuirasse d'id 0\n");
-            System.out.println("2- Tirer avec le croiseur d'id 1\n");
-            System.out.println("3- Tirer avec le croiseur d'id 2\n");
-            System.out.println("2- Tirer avec le destroyer d'id 3\n");
-            System.out.println("3- Tirer avec le destroyer d'id 4\n");
-            System.out.println("2- Tirer avec le destroyer d'id 5\n");
-            System.out.println("3- Tirer avec le sous-marin d'id 6\n");
-            System.out.println("3- Tirer avec le sous-marin d'id 7\n");
-            System.out.println("3- Tirer avec le sous-marin d'id 8\n");
-            System.out.println("3- Tirer avec le sous-marin d'id 9\n");
+                System.out.println("Veuillez faire un choix"); //Nous affichons les choix possibles
+                System.out.println("1- Tirer avec le cuirasse d'id 0\n");
+                System.out.println("2- Tirer avec le croiseur d'id 1\n");
+                System.out.println("3- Tirer avec le croiseur d'id 2\n");
+                System.out.println("4- Tirer avec le destroyer d'id 3\n");
+                System.out.println("5- Tirer avec le destroyer d'id 4\n");
+                System.out.println("6- Tirer avec le destroyer d'id 5\n");
+                System.out.println("7- Tirer avec le sous-marin d'id 6\n");
+                System.out.println("8- Tirer avec le sous-marin d'id 7\n");
+                System.out.println("9- Tirer avec le sous-marin d'id 8\n");
+                System.out.println("10- Tirer avec le sous-marin d'id 9\n");
 
                 Random v = new Random();
                 int j = v.nextInt(10);
 
-            if(j==3 || j==4 ||j==5 )
+            if(j==3 || j==4 ||j==5)
             {
                 mapDeBateauxOrdi.get(j).AttaqueOrdiDestroyer(JoueurO,JoueurH,mapdecaseseclairees);
             }
