@@ -8,12 +8,11 @@ public class Menu
 {
     private int choix=0;
     private Scanner scan = new Scanner(System.in);
-    private boolean test=false;
-    Jeu jeu= new Jeu('0', '0');
+
     private String pseudo;
     private Scanner scan1 = new Scanner(System.in);
     Bateau b=new Bateau();
-    Plateau Ph = new Plateau();
+
 
     public Menu(int choix)
     {
@@ -27,7 +26,7 @@ public class Menu
          HashMap<Integer, Bateau> mapDeBateauxHumain = new HashMap<>();
        HashMap<Integer, Case> mapDeCasesOrdi = new HashMap<Integer, Case>();
         HashMap<Integer, Bateau> mapDeBateauxOrdi = new HashMap<>();
-        Plateau Ph = new Plateau();
+        Elliot E = new Elliot();
         int x=6;
 
         System.out.println("Veuillez faire un choix"); //Nous affichons les choix possibles
@@ -61,27 +60,18 @@ public class Menu
                 JoueurH.setPseudo(pseudo);
                 System.out.println("Bonjour " + JoueurH.getPseudo() + "\n");
                 System.out.println("Votre premier plateau "+JoueurH.getPseudo()+"(permet de positionner et visualiser les navires):\n");
-                jeu.plateauHumainNavires(JoueurH,JoueurO);
-                jeu.plateauOrdiNavires(JoueurH,JoueurO);
-                MenuBateau(JoueurH,JoueurO,Ph);
 
-               // System.out.println("Votre deuxieme plateau plateau "+JoueurH.getPseudo()+"(pour visualiser les degats causes de l'adversaire):\n");
-               // jeu.plateauHumainDommages(JoueurH,JoueurO);
-               // MenuBateau(JoueurH,JoueurO);
 
-                //System.out.println("Bonjour Joueur 2\n");
-                //System.out.println("Votre premier plateau Joueur 2 (permet de positionner et visualiser les navires):\n");
-                //jeu.plateauOrdiNavires(JoueurH,JoueurO);
-               // System.out.println("Votre deuxieme plateau plateau Joueur 2 (pour visualiser les degats causes de l'adversaire):\n");
-                //jeu.plateauOrdiDommages(JoueurH,JoueurO);
-                //MenuBateau(JoueurH,JoueurO);
+                E.PlateauJoueur(JoueurH,JoueurO,E);
+                MenuBateau(JoueurH,JoueurO,E);
+
                 break;
             case 2 : System.out.println("Redemarrer une partie\n");
                 Sauvegarde S = new Sauvegarde();
                 S.RecupererJeuHumain(JoueurH);
                 S.RecupererJeuOrdi(JoueurO);
-                jeu.plateauHumainNavires(JoueurH,JoueurO);
-                MenuBateau(JoueurH,JoueurO,Ph);
+                E.PlateauJoueur(JoueurH,JoueurO,E);
+                MenuBateau(JoueurH,JoueurO,E);
                 break;
             case 3 : System.out.println("Aide\n");
                 break;
@@ -91,7 +81,7 @@ public class Menu
         }
     }
 
-    public void MenuBateau(JoueurHumain JoueurH, JoueurOrdi JoueurO,Plateau Ph)
+    public void MenuBateau(JoueurHumain JoueurH, JoueurOrdi JoueurO,Elliot E)
     {
         HashMap<Integer, Case> mapDeCasesHumain = new HashMap<Integer, Case>();
         HashMap<Integer, Bateau> mapDeBateauxHumain = new HashMap<>();
@@ -175,14 +165,14 @@ public class Menu
                 mapDeBateauxHumain.get(choixbateau).AttaqueHumain(JoueurO,JoueurH, xB, yB);
             }
 
-                Ph.PlateauDommage(JoueurH,JoueurO,Ph);
+
                 compteur++;
             break;
 
             case 2:
 
                 JoueurH.DeplacerBateauHumain(mapDeBateauxHumain, mapDeCasesHumain);
-                Ph.PlateauJoueur(JoueurH,JoueurO,Ph);
+                E.PlateauJoueur(JoueurH,JoueurO,E);
                 compteur++;
                 break;
 
@@ -236,13 +226,13 @@ public class Menu
                 mapDeBateauxOrdi.get(j).AttaqueOrdi(JoueurO,JoueurH);
             }
 
-            Ph.PlateauDommage(JoueurH,JoueurO,Ph);
+
             compteur++;
             break;
 
             case 1:
             JoueurO.DeplacerBateauOrdi(mapDeBateauxOrdi, mapDeCasesOrdi);
-            Ph.PlateauJoueur(JoueurH,JoueurO,Ph);
+            E.PlateauJoueur(JoueurH,JoueurO,E);
             compteur++;
             break;
 
@@ -251,5 +241,14 @@ public class Menu
     }while(b.flotteACouler(mapDeCasesHumain,mapDeBateauxHumain)!=true || b.flotteACouler(mapDeCasesOrdi, mapDeBateauxOrdi)!=true);
 
 
+    }
+
+    public int x(int a)
+    {
+        return a ;
+    }
+    public int y(int b)
+    {
+        return b;
     }
 }

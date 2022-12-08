@@ -188,6 +188,7 @@ public class Sauvegarde implements Serializable {
             FileInputStream toRead=new FileInputStream("SauvegardeMapDeCases.dat");
             ObjectInputStream mapC=new ObjectInputStream(toRead);
             HashMap<Integer, Case> mapInFile=(HashMap<Integer,Case>)mapC.readObject();
+            J.setMapDeCasesHumain(mapInFile);
             mapC.close();
             toRead.close();
 
@@ -195,6 +196,7 @@ public class Sauvegarde implements Serializable {
             FileInputStream toRead2=new FileInputStream("SauvegardeMapDebateaux.dat");
             ObjectInputStream oob=new ObjectInputStream(toRead2);
             HashMap<Integer, Bateau> mapBInFile=(HashMap<Integer,Bateau>)oob.readObject();
+            J.setMapDeBateauxHumain(mapBInFile);
 
             oob.close();
             toRead2.close();
@@ -235,7 +237,7 @@ public class Sauvegarde implements Serializable {
         out.println("pseudo :" + J.getPseudo());
         out.println("score :" + J.getScore());
 
-    Plateau pat = new Plateau();
+
 
   
     }
@@ -346,17 +348,12 @@ public class Sauvegarde implements Serializable {
             mapDeCasesSauv.put(i, listeCases.get(i));
 
         }
-        //  J.setMapDeCasesHumain(mapDeCasesSauv);
 
 
 
 
-        /*    for (Object i : J.getMapDeCasesHumain().keySet()) {
-                System.out.println("Case n." + i + " de Coordonnée X = " + mapDeCasesSauv.get(i).getX() + " " + " et coordonnée Y = " + J.getMapDeCases().get(i).getY() + "   " + J.getMapDeCases().get(i).getGetID());
-            } */
 
 
-        Plateau pat = new Plateau();
 
 
 
@@ -365,32 +362,7 @@ public class Sauvegarde implements Serializable {
 
     public int testsauv()
     {
-       /* int []TableauX = new int [30];
-        int a =0;
-        FileInputStream monfichierX = null;
-        try {
-            monfichierX = new FileInputStream("SauvegardeX.dat");
 
-
-                // TableauX[a] = monfichierX.read();
-
-            if(monfichierX)
-            {
-                System.out.println("fichier est nulle");
-                return 0;
-
-            }
-            else
-            {
-                return 1;
-            }
-
-    } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }    */
         return 0;
 }}
 
