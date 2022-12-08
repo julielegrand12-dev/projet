@@ -4,246 +4,101 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.ArrayList;
-
+import java.awt.Graphics;
 import java.awt.event.*;
-import java.util.Scanner;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseAdapter;
 
 
-public class Plateau extends JPanel implements ActionListener  {
 
-    private HashMap<Integer, Bateau> mapDeBateauxH = new HashMap<>();
-    static JFrame frame2;
-    static JFrame frame;
-    ArrayList<JButton> lesBoutons = new ArrayList<JButton>(); // liste de boutons
-    HashMap<Integer, Case> MapDeCasesDegat = new HashMap<Integer, Case>(); //hashmap
-    ArrayList<Case> listeCasesDeg = new ArrayList<Case>();
+public class Plateau extends JPanel   {
 
-    JButton btn[];
-    private boolean sauvegarde;
-    private JoueurHumain joueurHS;
-    private JoueurOrdi joueurOS;
 
-    public JoueurHumain getJoueurHS() {
-        return joueurHS;
+
+
+private JoueurHumain eva ;
+    public Plateau(JoueurHumain Jou){
+        eva = Jou;
+
     }
 
-    public void setJoueurHS(JoueurHumain joueurHS) {
-        this.joueurHS = joueurHS;
-    }
-
-    public JoueurOrdi getJoueurOS() {
-        return joueurOS;
-    }
-
-    public void setJoueurOS(JoueurOrdi joueurOS) {
-        this.joueurOS = joueurOS;
-    }
-
-
-    public void PlateauDommage(JoueurHumain JoueurH, JoueurOrdi JoueurO, Plateau Ph)
+    public void paint (Graphics g)
     {
 
-        HashMap<Integer, Bateau> mapDeBateauxHumain = new HashMap<>();
-        HashMap<Integer, Case> mapDeCasesOrdi = new HashMap<Integer, Case>();
 
-
-        /*System.out.println("Saisissez la coordonnée que vous souhaitez attaquer");
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Saisissez X:");
-        int choixX = scan.nextInt();
-        System.out.println("Saisissez Y:");
-        int choixY = scan.nextInt();*/
-
-
-        frame2 = new JFrame("PLATEAU DOMMAGE ADVERSAIRE");
-        // créer un objet
-        Plateau obj = new Plateau();
-        // créer un panneau
-        JPanel panel2 = new JPanel();
-        JButton btn[] = new JButton[225];
-
-        for(int i=0;i<225;i++)
-        {
-
-            int cpt=1;
-            int tempo = i+1;
-            btn[i] =new JButton(" ");
-            btn[i].addActionListener(obj);
-            panel2.add(btn[i]);
-
-            while(tempo>15)
-            {
-                tempo = tempo-15;
-                cpt++;
-            }
-            Case ca = new Case(tempo,cpt,0);
-            listeCasesDeg.add(ca);
+        int j = 60;
+        for (char c = 'A'; c <= 'O'; c++) {
+            g.drawString(String.valueOf(c), j, 45);
+            j = j + 31;
         }
-        mapDeBateauxHumain = JoueurH.getMapDeBateauxHumain();
-        mapDeCasesOrdi = JoueurH.getMapDeCasesHumain();
-
-
-        //if joueur actuel = joueur humain else inverser
-        //ID du bateau avec lequel il attaque
-        //if etat = treu gris
-        //mapDeBateauxHumain.get(9).AttaqueHumain(JoueurO,JoueurH,choixX, choixY);
-        for(int i=0; i<mapDeCasesOrdi.size(); i++)
-        {
-            if(JoueurO.getMapDeCasesOrdi().get(i).EtatCase())
-            {
-                btn[i].setBackground(Color.BLACK);
-            }
+        int k = 67;
+        for (int d = 0; d <= 14; d++) {
+            g.drawString(String.valueOf(d), 30, k);
+            k = k + 31;
 
         }
-        frame2.add(panel2);
-        frame2.setSize(700, 700);
-        frame2.show();
-        Menu M = new Menu('0');
-        //M.MenuBateau(JoueurH,JoueurO,Ph);
-    }
+        int l = 610;
+        for (char c = 'A'; c <= 'O'; c++) {
+            g.drawString(String.valueOf(c), l, 45);
+            l = l + 31;
+        }
+        int m = 67;
+        for (int d = 1; d <= 15; d++) {
+            g.drawString(String.valueOf(d), 580, m);
+            m = m + 31;
+
+        }
 
 
-    public void PlateauJoueur(JoueurHumain JoueurH,JoueurOrdi JoueurO,Plateau Ph)
-    {
-
-        //------------------------------------------------------------------------------
-
-        joueurHS = JoueurH;
-        joueurOS = JoueurO;
-
-
-        frame = new JFrame("PLATEAU NAVIRE");
-        // créer un objet
-        Plateau obj = new Plateau();
-        // créer un panneau
-        JPanel panel = new JPanel();
-
-        JButton btn[] = new JButton[225];
-        JButton boutonSauv = new JButton("Sauvegarder la partie");
-        int test=43;
-
-            char c = 'a';
-        for(int i=0;i<225;i++)
-        {
-
-                int cpt=1;
-                int tempo = i+1;
-                btn[i] =new JButton("  ");
-                btn[i].addActionListener(obj);
-                panel.add(btn[i]);
-
-                while(tempo>15)
-                {
-                    tempo = tempo-15;
-                    cpt++;
-                }
-                    Case ca = new Case(tempo,cpt,0);
-                    listeCasesDeg.add(ca);
-
-                    for(int j=0;j<30;j++)
-                    {
-                        if((listeCasesDeg.get(i).getX() == JoueurH.getMapDeCasesHumain().get(j).getX())&&(listeCasesDeg.get(i).getY() == JoueurH.getMapDeCasesHumain().get(j).getY()))
-                        {
-                            if(JoueurH.getMapDeCasesHumain().get(j).getGetID()==1)
-                            {
-                                btn[i].setBackground(Color.YELLOW);
-                            }
-                            if(JoueurH.getMapDeCasesHumain().get(j).getGetID()==3)
-                            {
-                                btn[i].setBackground(Color.ORANGE);
-                            }
-                            if(JoueurH.getMapDeCasesHumain().get(j).getGetID()==5)
-                            {
-                                btn[i].setBackground(Color.PINK);
-                            }
-                            if(JoueurH.getMapDeCasesHumain().get(j).getGetID()==7)
-                            {
-                                btn[i].setBackground(Color.RED);
-                            }
-
-                        }
-                    }
-
-
+        for (Integer i : eva.getMapDeCasesHumain().keySet()) {
+            if (eva.getMapDeCasesHumain().get(i).getGetID() == 1) {
+                g.setColor(Color.YELLOW);
+                g.fillRect(eva.getMapDeCasesHumain().get(i).getX() * 31 + 50, eva.getMapDeCasesHumain().get(i).getY() * 31 + 50, 31, 31);
 
             }
+            if (eva.getMapDeCasesHumain().get(i).getGetID() == 3) {
+                g.setColor(Color.ORANGE);
+                g.fillRect(eva.getMapDeCasesHumain().get(i).getX() * 31 + 50, eva.getMapDeCasesHumain().get(i).getY() * 31 + 50, 31, 31);
+
+            }
+            if (eva.getMapDeCasesHumain().get(i).getGetID() == 5) {
+                g.setColor(Color.PINK);
+                g.fillRect(eva.getMapDeCasesHumain().get(i).getX() * 31 + 50, eva.getMapDeCasesHumain().get(i).getY() * 31 + 50, 31, 31);
+
+            }
+            if (eva.getMapDeCasesHumain().get(i).getGetID() == 7) {
+                g.setColor(Color.RED);
+                g.fillRect(eva.getMapDeCasesHumain().get(i).getX() * 31 + 50, eva.getMapDeCasesHumain().get(i).getY() * 31 + 50, 31, 31);
+
+            }
+            if (eva.getMapDeCasesHumain().get(i).EtatCase() == true) {
+                g.setColor(Color.BLACK);
+                g.fillRect(eva.getMapDeCasesHumain().get(i).getX() * 31 + 50, eva.getMapDeCasesHumain().get(i).getY() * 31 + 50, 31, 31);
+
+            }
+            //pareil pour ordinateur
+        /*   if (joueurHS.getMapDeCasesHumain().get(i).EtatCase() == true) {
+               g.setColor(Color.BLACK);
+               g.fillRect(joueurHS.getMapDeCasesHumain().get(i).getX() * 31 + 600, joueurHS.getMapDeCasesHumain().get(i).getY() * 31 + 600, 31, 31);
+
+           }*/
 
 
-
-
-
-
-
-        panel.add(boutonSauv);
-        boutonSauv.addActionListener(this);
-        Menu M = new Menu('0');
-
-
-
-//------------------------------------------------------------------------------
-        frame.add(panel);
-        frame.setSize(700, 700);
-        frame.show();
-
-       // M.MenuBateau(JoueurH,JoueurO,Ph);
-    }
-
-
-
-    @Override
-    public void actionPerformed(ActionEvent e)
-    {
-
-        String s = e.getActionCommand();
-        Object source=e.getSource();
-        if(s.equals("  "))
-        {
-            frame.setBackground(Color.BLACK);
-            // Créer une boîte de dialogue
-            JDialog d = new JDialog(frame, "Boite de dialogue");
-            // Créer une étiquette
-            JLabel l = new JLabel("Ceci est une boite de dialogue.");
-            // Ajouter l'étiquette à la boîte de dialogue
-            d.add(l);
-            // Définir la taille de la boîte de dialogue
-            d.setSize(200, 100);
-            // Définir la visibilité de la boîte de dialogue
-            d.setVisible(true);
         }
-
-
-        if(s.equals("Sauvegarder la partie"))
-        {
-            System.out.println("Lancement sauvegarde");
-            Sauvegarde S = new Sauvegarde();
-            S.SauvegarderJeuHumain(joueurHS);
-            S.SauvegarderJeuOrdi(joueurOS);
+        g.setColor(Color.BLACK);
+        for (int i = 50; i < 520; i++) {
+            g.drawLine(i, 50, i, 515);
+            g.drawLine(50, i, 515, i);
+            g.drawLine(600, i, 1070, i);
+            i = i + 30;
         }
+        for (int i = 600; i < 1070; i++) {
+            g.drawLine(i, 50, i, 515);
+            // g.drawLine(6, i, 515, i);
+            i = i + 30;
+        }
+        g.setColor(Color.BLACK);
+
     }
-
-
-
-    private void setBackgroud(Color blue) {
-    }
-
-
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

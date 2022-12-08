@@ -36,6 +36,13 @@ public class JoueurHumain //initialisation de la classe joueur humain
         this.score = score;
     }
 
+    public JoueurHumain(String pseudo, int score, HashMap<Integer, Case> mapDeCasesHumain, HashMap<Integer, Bateau> mapDeBateauxHumain) {
+        this.pseudo = pseudo;
+        this.score = score;
+        this.mapDeCasesHumain = mapDeCasesHumain;
+        this.mapDeBateauxHumain = mapDeBateauxHumain;
+    }
+
     //Déclaration des getters
     public String getPseudo() {
         return pseudo;
