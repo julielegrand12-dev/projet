@@ -29,17 +29,43 @@ public class Destroyer extends Bateau{
         this.premFois = true;
         this.premFoisordi = true;
     }
-    public ArrayList<Case> AttaqueHumainDestroyer(JoueurOrdi Ordi, JoueurHumain Joueur, ArrayList<Case>mapCasesEclairees,int choixX, int choixY) {
+    public ArrayList<Case> AttaqueHumainDestroyer(JoueurOrdi Ordi, JoueurHumain Joueur, ArrayList<Case>mapCasesEclairees) {
 
         HashMap<Integer, Case> mapDeCases = new HashMap<Integer, Case>();
         HashMap<Integer, Bateau> mapDeBateaux = new HashMap<>();
         mapDeCases = Ordi.getMapDeCasesOrdi();
         boolean Flag = false;
        // REGLER ATTAQUE PARAMETRE
+        boolean flag = true;
+        int choixX=99, choixY=99;
         Scanner scan = new Scanner(System.in);
         System.out.println(premFois);
         if (premFois == true){
 
+
+            System.out.println("Saisissez la coordonnée que vous souhaitez afficher");
+
+            while (flag == true) {
+                System.out.println("Saisissez X:");
+                try {
+                   choixX = scan.nextInt();
+                   flag = false;
+                }
+                catch (java.util.InputMismatchException e) {
+                    scan.nextLine();
+                    flag = true;
+                }}
+
+                while (flag == true) {
+                    System.out.println("Saisissez Y:");
+                    try {
+                        choixY = scan.nextInt();
+                        flag = false;
+                    }
+                    catch (java.util.InputMismatchException e) {
+                         scan.nextLine();
+                        flag = true;
+                    }}
 
 
             for (Integer TY : mapDeCases.keySet()) {
@@ -78,7 +104,7 @@ public class Destroyer extends Bateau{
     return mapCasesEclairees;}
 
 
-    public ArrayList<Case> AttaqueOrdiDestroyer(JoueurOrdi Ordi, JoueurHumain Joueur, ArrayList<Case>mapCasesEclairees) {
+    public void AttaqueOrdiDestroyer(JoueurOrdi Ordi, JoueurHumain Joueur, HashMap<Integer,Case>mapCasesEclairees, JoueurHumain JoueurAttaque) {
 
         /*System.out.println("Avec quelle bateau souhaitez-vous attaquer ? \n Saisissez son numéro : ");
         Scanner scan = new Scanner(System.in);
@@ -102,31 +128,31 @@ public class Destroyer extends Bateau{
             for (Integer TY : mapDeCases.keySet()) {
                 if (mapDeCases.get(TY).getX() == choixX && mapDeCases.get(TY).getY() == choixY) {
                     Case c = new Case(mapDeCases.get(TY).getX(),mapDeCases.get(TY).getY(),mapDeCases.get(TY).getGetID());
-                    mapCasesEclairees.add(c);
+                    mapCasesEclairees.put(mapCasesEclairees.size()-1, c);
                     System.out.println(c.getX() +" " + c.getY() + " "  + c.getGetID());
                 }
                 if (mapDeCases.get(TY).getX() == choixX  && mapDeCases.get(TY).getY() == choixY -1) {
                     Case c = new Case(mapDeCases.get(TY).getX(),mapDeCases.get(TY).getY(),mapDeCases.get(TY).getGetID());
-                    mapCasesEclairees.add(c);
+                    mapCasesEclairees.put(mapCasesEclairees.size()-1, c);
                     System.out.println(c.getX() +" " + c.getY() + " "  + c.getGetID());
                 } if (mapDeCases.get(TY).getX() == choixX +1 && mapDeCases.get(TY).getY() == choixY -1) {
                     Case c = new Case(mapDeCases.get(TY).getX(),mapDeCases.get(TY).getY(),mapDeCases.get(TY).getGetID());
-                    mapCasesEclairees.add(c);
+                    mapCasesEclairees.put(mapCasesEclairees.size()-1, c);
                     System.out.println(c.getX() +" " + c.getY() + " "  + c.getGetID());
                 }
                 if (mapDeCases.get(TY).getX() == choixX +1 && mapDeCases.get(TY).getY() == choixY) {
                     Case c = new Case(mapDeCases.get(TY).getX(),mapDeCases.get(TY).getY(),mapDeCases.get(TY).getGetID());
-                    mapCasesEclairees.add(c);
+                    mapCasesEclairees.put(mapCasesEclairees.size()-1, c);
                     System.out.println(c.getX() +" " + c.getY() + " "  + c.getGetID());
                 }
                 setPremFoisordi(premFoisordi = false);
+                JoueurAttaque.setMapDeCasesHumain(mapCasesEclairees);
             }}
-            else{
-                lesCondtions(mapDeCases,choixX,choixY,Flag);
+        else{
+            lesCondtions(mapDeCases,choixX,choixY,Flag);
 
-            }
-
-        return mapCasesEclairees;}
+        }
+    }
 
     void lesCondtions(HashMap<Integer, Case> mapDeCases,int choixX, int choixY,boolean Flag){
 

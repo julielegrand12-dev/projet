@@ -12,7 +12,9 @@ import java.util.HashMap;
 public class Elliot {
 
 
-    public void PlateauJoueur(JoueurHumain JoueurH, JoueurOrdi JoueurO, Elliot E) {
+
+
+    public void PlateauJoueur(JoueurHumain JoueurH, JoueurOrdi JoueurO, Elliot E, int tour) {
 
 
         JButton btn = new JButton("Sauvegarder la partie");
@@ -65,9 +67,7 @@ public class Elliot {
                     h=h+30;
                     cpt2++;
                 }
-
-
-                  //  JoueurH.getMapDeBateauxHumain().get(9).AttaqueHumain(JoueurO,JoueurH, a, b);
+                    JoueurH.getMapDeBateauxHumain().get(9).AttaqueHumain(JoueurO,JoueurH, cpt2, cpt);
 
 
 
@@ -96,7 +96,11 @@ public class Elliot {
 
 
         JFrame f = new JFrame("PLATEAU");
-        f.getContentPane().add(new Plateau(JoueurH));
+
+            f.getContentPane().add(new Plateau(JoueurH,JoueurO));
+
+
+
         f.setSize(1200, 1200);
         f.setVisible(true);
 

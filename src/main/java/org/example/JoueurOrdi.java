@@ -73,14 +73,14 @@ public class JoueurOrdi {
 
             if (int_random == 0) {
                 Horizontal = true;
-                x = (int) (Math.random()*(15-limite))+1;
-                y = (int)(Math.random()*(15))+1;
+                x = (int) (Math.random()*(14-limite))+1;
+                y = (int)(Math.random()*(14))+1;
 
                 for (int a=0;a<=taille_bateau;a++){
                     for (int w=0;w<listeCases.size();w++){
                         while(listeCases.get(w).getX() == x  + a && listeCases.get(w).getY() == y){
-                            x = (int) (Math.random()*(15-limite))+1;
-                            y = (int)(Math.random()*(15))+1;
+                            x = (int) (Math.random()*(14-limite))+1;
+                            y = (int)(Math.random()*(14))+1;
                             System.out.println("\n\nErreur");
                             a=0;
                             break;
@@ -113,19 +113,17 @@ public class JoueurOrdi {
             }
             else {
                 Horizontal = false;
-                // x reste la meme et y varie
-                //x = alea.nextInt(16)+1;
-                //y = alea.nextInt(limite++)+1;
 
-                x = (int) (Math.random() * (15)) + 1;
-                y = (int) (Math.random() * (15 - limite)) + 1;
+
+                x = (int) (Math.random() * (14)) + 1;
+                y = (int) (Math.random() * (14 - limite)) + 1;
                 //System.out.println("X  : " + x + " Y : " + y);
                 for (int a = 0; a <= taille_bateau; a++) {
                     for (int w = 0; w < listeCases.size(); w++) {
                         while (listeCases.get(w).getX() == x && listeCases.get(w).getY() == y + a) {
 
-                            x = (int) (Math.random() * (15)) + 1;
-                            y = (int) (Math.random() * (15 - limite)) + 1;
+                            x = (int) (Math.random() * (14)) + 1;
+                            y = (int) (Math.random() * (14 - limite)) + 1;
                             System.out.println("\n\nERRor");
                             a = 0;
                             break;

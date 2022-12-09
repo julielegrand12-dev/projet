@@ -27,6 +27,7 @@ public class Menu
        HashMap<Integer, Case> mapDeCasesOrdi = new HashMap<Integer, Case>();
         HashMap<Integer, Bateau> mapDeBateauxOrdi = new HashMap<>();
         Elliot E = new Elliot();
+        Elliot EO = new Elliot();
         int x=6;
 
         System.out.println("Veuillez faire un choix"); //Nous affichons les choix possibles
@@ -62,16 +63,16 @@ public class Menu
                 System.out.println("Votre premier plateau "+JoueurH.getPseudo()+"(permet de positionner et visualiser les navires):\n");
 
 
-                E.PlateauJoueur(JoueurH,JoueurO,E);
-                MenuBateau(JoueurH,JoueurO,E);
+                E.PlateauJoueur(JoueurH,JoueurO,E,0);
+                MenuBateau(JoueurH,JoueurO,E,EO);
 
                 break;
             case 2 : System.out.println("Redemarrer une partie\n");
                 Sauvegarde S = new Sauvegarde();
                 S.RecupererJeuHumain(JoueurH);
                 S.RecupererJeuOrdi(JoueurO);
-                E.PlateauJoueur(JoueurH,JoueurO,E);
-                MenuBateau(JoueurH,JoueurO,E);
+                E.PlateauJoueur(JoueurH,JoueurO,E,0);
+                MenuBateau(JoueurH,JoueurO,E,EO);
                 break;
             case 3 : System.out.println("Aide\n");
                 break;
@@ -81,7 +82,7 @@ public class Menu
         }
     }
 
-    public void MenuBateau(JoueurHumain JoueurH, JoueurOrdi JoueurO,Elliot E)
+    public void MenuBateau(JoueurHumain JoueurH, JoueurOrdi JoueurO,Elliot E, Elliot EO)
     {
         HashMap<Integer, Case> mapDeCasesHumain = new HashMap<Integer, Case>();
         HashMap<Integer, Bateau> mapDeBateauxHumain = new HashMap<>();
@@ -162,7 +163,7 @@ public class Menu
                     x=1;}
                 }while(x!=0 ); }while(yB<0 ||yB>15);
 
-                mapDeBateauxHumain.get(choixbateau).AttaqueHumain(JoueurO,JoueurH, xB, yB);
+                //mapDeBateauxHumain.get(choixbateau).AttaqueHumain(JoueurO,JoueurH, xB, yB);
             }
 
 
@@ -172,7 +173,7 @@ public class Menu
             case 2:
 
                 JoueurH.DeplacerBateauHumain(mapDeBateauxHumain, mapDeCasesHumain);
-                E.PlateauJoueur(JoueurH,JoueurO,E);
+                E.PlateauJoueur(JoueurH,JoueurO,E,compteur);
                 compteur++;
                 break;
 
@@ -232,7 +233,9 @@ public class Menu
 
             case 1:
             JoueurO.DeplacerBateauOrdi(mapDeBateauxOrdi, mapDeCasesOrdi);
-            E.PlateauJoueur(JoueurH,JoueurO,E);
+
+          //  E.PlateauOrdi(JoueurH,JoueurO,E);
+            E.PlateauJoueur(JoueurH,JoueurO,E,compteur);
             compteur++;
             break;
 
