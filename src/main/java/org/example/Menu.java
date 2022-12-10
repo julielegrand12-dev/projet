@@ -170,6 +170,7 @@ public class Menu
                 compteur++;
             break;
 
+
             case 2:
 
                 JoueurH.DeplacerBateauHumain(mapDeBateauxHumain, mapDeCasesHumain);
