@@ -10,11 +10,27 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Elliot {
+    public int getA() {
+        return a;
+    }
+
+    public int getB() {
+        return b;
+    }
+
+    public void setA(int a) {
+        this.a = a;
+    }
+
+    public void setB(int b) {
+        this.b = b;
+    }
+
+    private int a;
+    private int b;
 
 
-
-
-    public void PlateauJoueur(JoueurHumain JoueurH, JoueurOrdi JoueurO, Elliot E, int tour) {
+    public void PlateauJoueur(JoueurHumain JoueurH, JoueurOrdi JoueurO, Elliot E) {
 
 
         JButton btn = new JButton("Sauvegarder la partie");
@@ -40,16 +56,17 @@ public class Elliot {
                 int cpt=1;
                  int cpt2=1;
                 int a=0,b=0;
-                Menu m = new Menu(0);
+                Menu m = new Menu(0,0);
 
                 for(int u=45;u<=500;u++)
                 {
 
                     if(e.getY()<u+30 && e.getY()>u)
                     {
-                        b=cpt;
+                        //b=cpt;
+                        setB(cpt);
                         System.out.println("Y cpt " + cpt);
-                        m.y(cpt);
+                        m.coordoy(cpt);
 
                     }
                     u=u+30;
@@ -60,14 +77,16 @@ public class Elliot {
 
                     if(e.getX()<h+30 && e.getX()>h)
                     {
-                        a=cpt;
+                        setA(cpt2);
+                        //a=cpt2;
                         System.out.println("X cpt " + cpt2);
-                        m.x(cpt2);
+                       m.coordoX(cpt2);
                     }
                     h=h+30;
                     cpt2++;
+
                 }
-                    JoueurH.getMapDeBateauxHumain().get(9).AttaqueHumain(JoueurO,JoueurH, cpt2, cpt);
+                  // JoueurH.getMapDeBateauxHumain().get(3).AttaqueHumain(JoueurO,JoueurH, a, b);
 
 
 

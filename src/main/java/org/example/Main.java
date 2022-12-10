@@ -1,24 +1,19 @@
 package org.example;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         //Appel objets d'une classe
-
         ArrayList<Case> mapdecaseseclairees = new ArrayList<Case>();
-        Menu M = new Menu('0');
-
+        Menu M = new Menu(0,0);
 
         //Déclaration HashMap
         HashMap<Integer, Case> mapDeCases = new HashMap<Integer, Case>();
         HashMap<Integer, Bateau> mapDeBateaux = new HashMap<>();
-
-        //Affichage du début
-        System.out.println("JEU - BATAILLE NAVALE");
-        System.out.println("Jeu réalisé par Julie Legrand - Ludivine Fulop - Sara Suleiman");
 
         //Appel de fonctions dans les classes
 
@@ -64,7 +59,8 @@ public class Main {
             System.out.println("liste de cases avec x = " +mapDeBateaux.get(i).getlesCases().get(da).getX() + "bateau " + mapDeBateaux.get(i).getNom_navire());
         }}*/
         //Appel des menus
-     M.MenuDebut();
+        //Ph.MenuDebutGraph();
+        M.MenuDebut();
         //M.MenuBateau(JoueurH,JoueurO);
   }
 }
