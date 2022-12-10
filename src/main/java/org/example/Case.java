@@ -10,6 +10,7 @@ public class Case implements Serializable {
     private boolean EtatCase; //etat de la case
     private int ID; //identifiant de la case
 
+    private boolean caseEclairee ;
     public Case() {
     }
 
@@ -43,6 +44,7 @@ public class Case implements Serializable {
         this.y_colonne = y;
         this.ID = id; // initialise à 0
         this.EtatCase = false ; // initialise à 'pas coulé'
+        this.caseEclairee = false;
     }
     public boolean EtatCase() {
         return this.EtatCase ;
@@ -53,5 +55,10 @@ public class Case implements Serializable {
     public void NewBateau(int ID){
         this.ID =  ID;
     }
+
+    public void ONCaseEclairee(){ this.caseEclairee =  true;}
+    public boolean getCaseEclairee(){return this.caseEclairee;}
+
+    public void OFFCaseEclairee(){ this.caseEclairee = false;}
 
 }
