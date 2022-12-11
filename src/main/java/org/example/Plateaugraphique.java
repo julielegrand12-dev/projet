@@ -6,10 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
-import java.util.HashMap;
 
-public class Elliot {
+public class Plateaugraphique {
     public int getA() {
         return a;
     }
@@ -28,9 +26,10 @@ public class Elliot {
 
     private int a;
     private int b;
+    private JFrame f = new JFrame("PLATEAU");
 
 
-    public void PlateauJoueur(JoueurHumain JoueurH, JoueurOrdi JoueurO, Elliot E) {
+    public void PlateauJoueur(JoueurHumain JoueurH, JoueurOrdi JoueurO, Plateaugraphique E) {
 
 
         JButton btn = new JButton("Sauvegarder la partie");
@@ -122,5 +121,10 @@ public class Elliot {
         f.setResizable(false);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+    }
+
+    public void MiseajourGrap(JoueurHumain JoueurH, JoueurOrdi JoueurO,Plateaugraphique E)
+    {
+        f.setSize(1200+1, 1200);
     }
 }

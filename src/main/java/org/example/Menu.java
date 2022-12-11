@@ -38,7 +38,7 @@ public class Menu extends JPanel
     private Scanner scan = new Scanner(System.in);
     private Scanner scan1 = new Scanner(System.in);
     Bateau b=new Bateau();
-    Elliot E = new Elliot();
+    Plateaugraphique E = new Plateaugraphique();
 
     /** Dans cette fonction, on créé le menu de notre jeu. Notre menu ci-dessous appelle la classe GraphismeMenu afin d'avoir le visuel. A l'aide de getters de la classe GraphismeMenu nous déclenchons des actions en fonction de ce que l'utilisateur souhaite. */
     public void MenuDebut()  {
@@ -49,6 +49,7 @@ public class Menu extends JPanel
         HashMap<Integer, Bateau> mapDeBateauxHumain = new HashMap<>();
         HashMap<Integer, Case> mapDeCasesOrdi = new HashMap<Integer, Case>();
         HashMap<Integer, Bateau> mapDeBateauxOrdi = new HashMap<>();
+        Plateaugraphique E = new Plateaugraphique();
         GraphismeMenu GM = new GraphismeMenu();
         int x=6;
 
@@ -78,6 +79,8 @@ public class Menu extends JPanel
         System.out.println(ANSI_BLUE +"Veuillez selectionner votre pseudo:\n"+ ANSI_RESET);
         pseudo= scan1.nextLine();
         JoueurH.setPseudo(pseudo);
+        System.out.println("Bonjour " + JoueurH.getPseudo() + "\n");
+        System.out.println("Votre premier plateau "+JoueurH.getPseudo()+"(permet de positionner et visualiser les navires):\n");
         E.PlateauJoueur(JoueurH,JoueurO,E);
         MenuBateau(JoueurH,JoueurO,E);
         }
@@ -94,7 +97,7 @@ public class Menu extends JPanel
         }
     }
 
-    public void MenuBateau(JoueurHumain JoueurH, JoueurOrdi JoueurO, Elliot E)
+    public void MenuBateau(JoueurHumain JoueurH, JoueurOrdi JoueurO, Plateaugraphique E)
     {
         HashMap<Integer, Case> mapDeCasesHumain = new HashMap<Integer, Case>();
         HashMap<Integer, Bateau> mapDeBateauxHumain = new HashMap<>();
@@ -186,7 +189,7 @@ public class Menu extends JPanel
            else if(GM.getEnvoi()==2)
            {
                     JoueurH.DeplacerBateauHumain(mapDeBateauxHumain, mapDeCasesHumain);
-                    E.PlateauJoueur(JoueurH,JoueurO,E);
+               E.MiseajourGrap(JoueurH,JoueurO,E);
                if( JoueurH.isPasDeplacer() == true ){
                    JoueurH.DeplacerBateauHumain(mapDeBateauxHumain, mapDeCasesHumain);
                }
@@ -238,7 +241,7 @@ public class Menu extends JPanel
 
             case 1:
             JoueurO.DeplacerBateauOrdi(mapDeBateauxOrdi, mapDeCasesOrdi);
-            E.PlateauJoueur(JoueurH,JoueurO,E);
+            E.MiseajourGrap(JoueurH,JoueurO,E);
                if( JoueurO.isPasDeplacer() == true ){
                    JoueurO.DeplacerBateauOrdi(mapDeBateauxOrdi, mapDeCasesOrdi);
                }
