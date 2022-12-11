@@ -43,7 +43,6 @@ public class Menu extends JPanel
         HashMap<Integer, Bateau> mapDeBateauxHumain = new HashMap<>();
         HashMap<Integer, Case> mapDeCasesOrdi = new HashMap<Integer, Case>();
         HashMap<Integer, Bateau> mapDeBateauxOrdi = new HashMap<>();
-        Elliot E = new Elliot();
         GraphismeMenu GM = new GraphismeMenu();
         int x=6;
 
@@ -97,6 +96,7 @@ public class Menu extends JPanel
         HashMap<Integer, Bateau> mapDeBateauxHumain = new HashMap<>();
         HashMap<Integer, Case> mapDeCasesOrdi = new HashMap<Integer, Case>();
         HashMap<Integer, Bateau> mapDeBateauxOrdi = new HashMap<>();
+        GraphismeMenu GM = new GraphismeMenu();
 
         mapDeBateauxHumain = JoueurH.getMapDeBateauxHumain();
         mapDeCasesHumain = JoueurH.getMapDeCasesHumain();
@@ -112,46 +112,45 @@ public class Menu extends JPanel
         {
         if(compteur%2==0)
         {
-            System.out.println("Veuillez faire un choix"); //Nous affichons les choix possibles
-            System.out.println("1- Tirer\n");
-            System.out.println("2- Déplacer un bateau de sa flotte\n");
-
-            do             //blindage exception pour le choix du menu bateau
-            {do{try
-            {choix = Integer.parseInt(scan.nextLine());
-                x=0;} catch (Exception e) {System.out.println("L'entrée doit être un chiffre compris entre 1 et 3.");
-                x=1;}
-            }while(x!=0 ); }while(choix!=1 && choix!=2);
 
             mapDeBateauxHumain = JoueurH.getMapDeBateauxHumain();
             mapDeCasesHumain = JoueurH.getMapDeCasesHumain();
             mapDeBateauxOrdi = JoueurO.getMapDeBateauxOrdi();
             mapDeCasesOrdi = JoueurO.getMapDeCasesOrdi();
 
-            switch(choix)
-            {
-                case 1:
+            GM.MenuBateauGraph();
 
+            while(GM.getEnvoi()==0)
+            {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+           if(GM.getEnvoi()==1)
+           {
                    ArrayList<Case> mapdecaseseclairees = new ArrayList<Case>();
                     int choixbateau =12;
                     System.out.println("Veuillez faire un choix"); //Nous affichons les choix possibles
-                    System.out.println("1- Tirer avec le cuirasse d'id 0\n");
-                    System.out.println("2- Tirer avec le croiseur d'id 1\n");
-                    System.out.println("3- Tirer avec le croiseur d'id 2\n");
-                    System.out.println("4- Tirer avec le destroyer d'id 3\n");
-                    System.out.println("5- Tirer avec le destroyer d'id 4\n");
-                    System.out.println("6- Tirer avec le destroyer d'id 5\n");
-                    System.out.println("7- Tirer avec le sous-marin d'id 6\n");
-                    System.out.println("8- Tirer avec le sous-marin d'id 7\n");
-                    System.out.println("9- Tirer avec le sous-marin d'id 8\n");
-                    System.out.println("10- Tirer avec le sous-marin d'id 9\n");
+                    System.out.println("0- Tirer avec le cuirasse d'id 0\n");
+                    System.out.println("1- Tirer avec le croiseur d'id 1\n");
+                    System.out.println("2- Tirer avec le croiseur d'id 2\n");
+                    System.out.println("3- Tirer avec le destroyer d'id 3\n");
+                    System.out.println("4- Tirer avec le destroyer d'id 4\n");
+                    System.out.println("5- Tirer avec le destroyer d'id 5\n");
+                    System.out.println("6- Tirer avec le sous-marin d'id 6\n");
+                    System.out.println("7- Tirer avec le sous-marin d'id 7\n");
+                    System.out.println("8- Tirer avec le sous-marin d'id 8\n");
+                    System.out.println("9- Tirer avec le sous-marin d'id 9\n");
 
                     do             //blindage exception pour le choix du menu bateau
                     {do{try
                     {choixbateau = Integer.parseInt(scan.nextLine());
                         x=0;} catch (Exception e) {System.out.println("L'entrée doit être un chiffre compris entre 1 et 9.");
                         x=1;}
-                    }while(x!=0 ); }while((choixbateau!= 1) && (choixbateau != 2) && (choixbateau != 3) && (choixbateau != 4) && (choixbateau != 5) && (choixbateau != 6) && (choixbateau != 7) && (choixbateau != 8) && (choixbateau != 9));
+                    }while(x!=0 ); }while((choixbateau!= 0) && (choixbateau != 2) && (choixbateau != 3) && (choixbateau != 4) && (choixbateau != 5) && (choixbateau != 6) && (choixbateau != 7) && (choixbateau != 8) && (choixbateau != 9) && (choixbateau!= 1));
 
                     while(E.getA()==0)
                     {
@@ -164,91 +163,18 @@ public class Menu extends JPanel
                     mapDeBateauxHumain.get(choixbateau).AttaqueHumain(JoueurO,JoueurH, E.getA(), E.getB());
                     E.setA(0);
                     E.setB(0);
+                    GM.setEnvoi(0);
                     compteur++;
-                    break;
+           }
 
-                case 2:
+           else if(GM.getEnvoi()==2)
+           {
                     JoueurH.DeplacerBateauHumain(mapDeBateauxHumain, mapDeCasesHumain);
                     E.PlateauJoueur(JoueurH,JoueurO,E);
+                    GM.setEnvoi(0);
                     compteur++;
-                    break;
 
             }
-           /* JFrame frame = new JFrame("Menu-Bateau");
-            JLabel label = new JLabel("Menu pour la gestion des bateaux", JLabel.CENTER);
-            frame.add(label);
-
-            // Définition du panel
-            JPanel panel = new JPanel();
-            // Définir les boutons
-            JButton btn1 = new JButton("1 - Tirer");
-            JButton btn2 = new JButton("2 - Deplacer");
-            JButton btn4 = new JButton("3 - Quitter");
-
-            // Ajouter les boutons au frame
-            panel.add(btn1);
-            panel.add(btn2);
-            panel.add(btn4);
-
-            // Ajouter label et panel au frame
-            frame.setLayout(new GridLayout(2, 1));
-            frame.add(label);
-            frame.add(panel);
-
-            frame.pack();
-            frame.setSize(1000, 500);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setVisible(true);
-
-       /* System.out.println("Veuillez faire un choix"); //Nous affichons les choix possibles
-        System.out.println("1- Tirer\n");
-        System.out.println("2- Déplacer un bateau de sa flotte\n");
-
-        do             //blindage exception pour le choix du menu bateau
-        {do{try
-        {choix = Integer.parseInt(scan.nextLine());
-            x=0;} catch (Exception e) {System.out.println("L'entrée doit être un chiffre compris entre 1 et 3.");
-            x=1;}
-        }while(x!=0 ); }while(choix!=1 && choix!=2);
-
-
-
-        switch(choix)
-        {
-            case 1:
-
-                ArrayList<Case> mapdecaseseclairees = new ArrayList<Case>();
-            int choixbateau =12;
-            int x=13;
-
-            System.out.println("Veuillez faire un choix"); //Nous affichons les choix possibles
-            System.out.println("1- Tirer avec le cuirasse d'id 0\n");
-            System.out.println("2- Tirer avec le croiseur d'id 1\n");
-            System.out.println("3- Tirer avec le croiseur d'id 2\n");
-            System.out.println("4- Tirer avec le destroyer d'id 3\n");
-            System.out.println("5- Tirer avec le destroyer d'id 4\n");
-            System.out.println("6- Tirer avec le destroyer d'id 5\n");
-            System.out.println("7- Tirer avec le sous-marin d'id 6\n");
-            System.out.println("8- Tirer avec le sous-marin d'id 7\n");
-            System.out.println("9- Tirer avec le sous-marin d'id 8\n");
-            System.out.println("10- Tirer avec le sous-marin d'id 9\n");
-
-               // mapDeBateauxHumain.get(choixbateau).AttaqueHumain(JoueurO,JoueurH, xB, yB);
-
-                //mapDeBateauxHumain.get(choixbateau).AttaqueHumain(JoueurO,JoueurH, xB, yB);
-            }
-
-
-                compteur++;
-            break;
-
-            case 2:
-
-                JoueurH.DeplacerBateauHumain(mapDeBateauxHumain, mapDeCasesHumain);
-                E.PlateauJoueur(JoueurH,JoueurO,E,compteur);
-                compteur++;
-                break;
-*/
         }
 
         if(compteur%2==1)
@@ -289,12 +215,14 @@ public class Menu extends JPanel
                 int j = v.nextInt(10);
 
                 mapDeBateauxOrdi.get(j).AttaqueOrdi(JoueurO,JoueurH);
+                GM.setEnvoi(0);
             compteur++;
             break;
 
             case 1:
             JoueurO.DeplacerBateauOrdi(mapDeBateauxOrdi, mapDeCasesOrdi);
             E.PlateauJoueur(JoueurH,JoueurO,E);
+            GM.setEnvoi(0);
             compteur++;
             break;
 
