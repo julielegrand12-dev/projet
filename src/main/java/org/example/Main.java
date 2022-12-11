@@ -9,27 +9,30 @@ public class Main {
 
         //Appel objets d'une classe
         ArrayList<Case> mapdecaseseclairees = new ArrayList<Case>();
-        Menu M = new Menu(0,0);
+        Menu M = new Menu();
 
         //Déclaration HashMap
         HashMap<Integer, Case> mapDeCases = new HashMap<Integer, Case>();
         HashMap<Integer, Bateau> mapDeBateaux = new HashMap<>();
 
-        //Appel de fonctions dans les classes
+        M.MenuDebut();
+  }
+}
+//Appel de fonctions dans les classes
 
      /*  O.PlacementCasesHumain(mapDeCases,mapDeBateaux);
         O.PlacementBateauxHumain(mapDeBateaux);
        O.setMapDeBateauxOrdi(mapDeBateaux);
         O.setMapDeCasesOrdi(mapDeCases);*/
 
-        //System.out.print(Cuirasse.getCoordonneeDebutX());
-       //mapDeBateaux.get(0).AttaqueHumain(O,J);
-       // System.out.println(mapDeBateaux.get(1).getNom_navire());
-       // mapDeBateaux.get(1).AttaqueHumain(O,J);
-      //  mapDeBateaux.get(5).AttaqueHumainDestroyer(O,J, mapdecaseseclairees);
+//System.out.print(Cuirasse.getCoordonneeDebutX());
+//mapDeBateaux.get(0).AttaqueHumain(O,J);
+// System.out.println(mapDeBateaux.get(1).getNom_navire());
+// mapDeBateaux.get(1).AttaqueHumain(O,J);
+//  mapDeBateaux.get(5).AttaqueHumainDestroyer(O,J, mapdecaseseclairees);
 
-       // mapDeBateaux.get(5).AttaqueOrdiDestroyer(O,J,mapdecaseseclairees);
-       // mapDeBateaux.get(5).AttaqueOrdiDestroyer(O,J, mapdecaseseclairees);
+// mapDeBateaux.get(5).AttaqueOrdiDestroyer(O,J,mapdecaseseclairees);
+// mapDeBateaux.get(5).AttaqueOrdiDestroyer(O,J, mapdecaseseclairees);
       /*  for (Integer  TY : mapDeCases.keySet()){
         System.out.println(mapDeCases.get(mapDeCases.get(TY)));}
         //J.DeplacerBateau(mapDeBateaux);
@@ -58,9 +61,5 @@ public class Main {
             for(int da =0;da<mapDeBateaux.get(i).getlesCases().size();da++){
             System.out.println("liste de cases avec x = " +mapDeBateaux.get(i).getlesCases().get(da).getX() + "bateau " + mapDeBateaux.get(i).getNom_navire());
         }}*/
-        //Appel des menus
-        //Ph.MenuDebutGraph();
-        M.MenuDebut();
-        //M.MenuBateau(JoueurH,JoueurO);
-  }
-}
+//Appel des menus
+//Ph.MenuDebutGraph();

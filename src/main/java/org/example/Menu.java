@@ -11,119 +11,55 @@ import java.lang.Thread;
 
 public class Menu extends JPanel
 {
-    public void setChoix(int choix) {
-        this.choix = choix;
-    }
     private int choix;
+    private String pseudo;
 
+    public String getPseudo() {
+        return pseudo;
+    }
+
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
+    }
     public int getChoix() {
         return choix;
     }
-    public Menu(int coordoX, int coordoY) {
-        this.coordoX= coordoX;
-        this.coordoY = coordoY;
+
+    public void setChoix(int choix) {
+        this.choix = choix;
     }
 
-    public int getChoixbateau() {
-        return choixbateau;
-    }
-
-    public void setChoixbateau(int choixbateau) {
-        this.choixbateau = choixbateau;
-    }
-
-    private int choixbateau;
     private Scanner scan = new Scanner(System.in);
-
-    private String pseudo;
     private Scanner scan1 = new Scanner(System.in);
     Bateau b=new Bateau();
     Elliot E = new Elliot();
-    private int coordoY;
-    private int coordoX;
-    public int getCoordoX() {
-        return coordoX;
-    }
 
-    public int getCoordoY() {
-        return coordoY;
-    }
-
-    public void setCoordoX(int coordoX) {
-        this.coordoX = coordoX;
-    }
-
-    public void setCoordoY(int coordoY) {
-        this.coordoY = coordoY;
-    }
-
-
-
-    public int coordoy(int coordoY)
-    {
-        return coordoY;
-    }
-
-    public int coordoX(int coordoX)
-    {
-        return coordoX;
-    }
-
+    /** Dans cette fonction, on créé le menu de notre jeu. Notre menu ci-dessous appelle la classe GraphismeMenu afin d'avoir le visuel. A l'aide de getters de la classe GraphismeMenu nous déclenchons des actions en fonction de ce que l'utilisateur souhaite. */
     public void MenuDebut()  {
 
-
-      /* JoueurHumain JoueurH = new JoueurHumain("Personne", 0);
+      JoueurHumain JoueurH = new JoueurHumain("Personne", 0);
         JoueurOrdi JoueurO = new JoueurOrdi("Ordinateur", 0);
         HashMap<Integer, Case> mapDeCasesHumain = new HashMap<Integer, Case>();
         HashMap<Integer, Bateau> mapDeBateauxHumain = new HashMap<>();
         HashMap<Integer, Case> mapDeCasesOrdi = new HashMap<Integer, Case>();
         HashMap<Integer, Bateau> mapDeBateauxOrdi = new HashMap<>();
         Elliot E = new Elliot();
+        GraphismeMenu GM = new GraphismeMenu();
         int x=6;
 
-        JFrame frame = new JFrame("Menu");
-        JLabel label = new JLabel("JEU - BATAILLE NAVALE", JLabel.CENTER);
-        frame.add(label);
+        GM.MenuGraphique();
 
-        // Définition du panel
-        JPanel panel = new JPanel();
-        // Définir les boutons
-        JButton btn1 = new JButton("1 - Jouer une partie");
-        JButton btn2 = new JButton("2 - Charger une partie");
-        JButton btn3 = new JButton("3 - Aide");
-        JButton btn4 = new JButton("4 - Quitter");
-
-        // Ajouter les boutons au frame
-        panel.add(btn1);
-        panel.add(btn2);
-        panel.add(btn3);
-        panel.add(btn4);
-
-        // Ajouter label et panel au frame
-        frame.setLayout(new GridLayout(2, 1));
-        frame.add(label);
-        frame.add(panel);
-
-        frame.pack();
-        frame.setSize(1000, 500);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-
-        btn1.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                String s = actionEvent.getActionCommand();
-                if(s.equals("1 - Jouer une partie"))
-                {
-                    setChoix(1);
-                    System.out.println(getChoix());
-                }
-
+        /**Tant que l'utilisateur n'a pas cliqué sur un bouton le getter reste à 0 et il attend qu'une action soit réalisée.*/
+        while(GM.getEnvoi()==0)
+        {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
-        });
-
-        if(getChoix()==1)
+        }
+        /**Ci-dessous, l'utilisateur a décidé d'appuyer sur le bouton "Jouer une partie" et le getter prend donc la valeur 1.*/
+        if(GM.getEnvoi()==1)
         {
         JoueurH.setMapDeCasesHumain(mapDeCasesHumain);
         JoueurH.setMapDeBateauxHumain(mapDeBateauxHumain);
@@ -140,117 +76,20 @@ public class Menu extends JPanel
         System.out.println("Bonjour " + JoueurH.getPseudo() + "\n");
         System.out.println("Votre premier plateau "+JoueurH.getPseudo()+"(permet de positionner et visualiser les navires):\n");
         E.PlateauJoueur(JoueurH,JoueurO,E);
-        //MenuBateau(JoueurH,JoueurO,E);
+        MenuBateau(JoueurH,JoueurO,E);
         }
 
-
-
-        btn2.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                String s = actionEvent.getActionCommand();
-                if(s.equals("2 - Charger une partie"))
-                {
-                    System.out.println("Redemarrer une partie\n");
-                    Sauvegarde S = new Sauvegarde();
-                    S.RecupererJeuHumain(JoueurH);
-                    S.RecupererJeuOrdi(JoueurO);
-                   E.PlateauJoueur(JoueurH, JoueurO, E);
-                    MenuBateau(JoueurH,JoueurO,E);
-                }
-
-            }
-        });
-
-        btn3.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                String s = actionEvent.getActionCommand();
-                if(s.equals("3 - Aide"))
-                {
-                    System.out.println("Aide\n");
-                }
-
-            }
-        });
-
-        btn4.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                String s = actionEvent.getActionCommand();
-                if(s.equals("4 - Quitter"))
-                {
-                    frame.dispose();
-                }
-
-            }
-        });
-
-*/
-        JoueurHumain JoueurH = new JoueurHumain("Personne", 0);
-        JoueurOrdi JoueurO = new JoueurOrdi("Ordinateur", 0);
-        HashMap<Integer, Case> mapDeCasesHumain = new HashMap<Integer, Case>();
-        HashMap<Integer, Bateau> mapDeBateauxHumain = new HashMap<>();
-        HashMap<Integer, Case> mapDeCasesOrdi = new HashMap<Integer, Case>();
-        HashMap<Integer, Bateau> mapDeBateauxOrdi = new HashMap<>();
-        Elliot EO = new Elliot();
-        int x=6;
-        int choixX=0;
-
-        System.out.println("Veuillez faire un choix"); //Nous affichons les choix possibles
-        System.out.println("1- Jouer une partie\n");
-        System.out.println("2- Charger une partie\n");
-        System.out.println("3- Aide\n");
-        System.out.println("4- Quitter\n");
-
-        do             //blindage exception pour le choix du premier menu
-        {do{try
-        {choixX = Integer.parseInt(scan.nextLine());
-            x=0;} catch (Exception e) {System.out.println("L'entrée doit être un chiffre compris entre 1 et 4.");
-            x=1;}
-        }while(x!=0 ); }while(choixX!=1 && choixX!=2 && choixX!=3 && choixX!=4);
-
-
-        switch(choixX)
+/**Comme vu précédemment, l'utilisateur a appuyé sur un bouton et le getter prend une nouvelle valeur.*/
+        else if(GM.getEnvoi()==2)
         {
-            case 1 :
-                JoueurH.setMapDeCasesHumain(mapDeCasesHumain);
-                JoueurH.setMapDeBateauxHumain(mapDeBateauxHumain);
-                JoueurH.PlacementCasesHumain(mapDeCasesHumain, mapDeBateauxHumain);
-                JoueurH.PlacementBateauxHumain(mapDeBateauxHumain);
-
-                JoueurO.setMapDeCasesOrdi(mapDeCasesOrdi);
-                JoueurO.setMapDeBateauxOrdi(mapDeBateauxOrdi);
-                JoueurO.PlacementCasesOrdi(mapDeCasesOrdi, mapDeBateauxOrdi);
-                JoueurO.PlacementBateauxOrdi(mapDeBateauxOrdi);
-                System.out.println("Veuillez selectionner votre pseudo:\n");
-                pseudo= scan1.nextLine();
-                JoueurH.setPseudo(pseudo);
-                System.out.println("Bonjour " + JoueurH.getPseudo() + "\n");
-                System.out.println("Votre premier plateau "+JoueurH.getPseudo()+"(permet de positionner et visualiser les navires):\n");
-                E.PlateauJoueur(JoueurH,JoueurO,E);
-                MenuBateau(JoueurH,JoueurO,E);
-
-                break;
-            case 2 : System.out.println("Redemarrer une partie\n");
-                Sauvegarde S = new Sauvegarde();
-                S.RecupererJeuHumain(JoueurH);
-                S.RecupererJeuOrdi(JoueurO);
-                E.PlateauJoueur(JoueurH,JoueurO,E);
-                MenuBateau(JoueurH,JoueurO,E);
-                break;
-            case 3 : System.out.println("Aide\n");
-                break;
-            case 4 : System.out.println("Quitter\n");
-                return;
-
+            System.out.println("Redemarrer une partie\n");
+            Sauvegarde S = new Sauvegarde();
+            S.RecupererJeuHumain(JoueurH);
+            S.RecupererJeuOrdi(JoueurO);
+            E.PlateauJoueur(JoueurH, JoueurO, E);
+            MenuBateau(JoueurH,JoueurO,E);
         }
     }
-
-
 
     public void MenuBateau(JoueurHumain JoueurH, JoueurOrdi JoueurO, Elliot E)
     {
@@ -323,11 +162,12 @@ public class Menu extends JPanel
                         }
                     }
                     mapDeBateauxHumain.get(choixbateau).AttaqueHumain(JoueurO,JoueurH, E.getA(), E.getB());
+                    E.setA(0);
+                    E.setB(0);
                     compteur++;
                     break;
 
                 case 2:
-
                     JoueurH.DeplacerBateauHumain(mapDeBateauxHumain, mapDeCasesHumain);
                     E.PlateauJoueur(JoueurH,JoueurO,E);
                     compteur++;
@@ -411,7 +251,6 @@ public class Menu extends JPanel
 */
         }
 
-
         if(compteur%2==1)
         {
             mapDeBateauxHumain = JoueurH.getMapDeBateauxHumain();
@@ -449,26 +288,17 @@ public class Menu extends JPanel
                 Random v = new Random();
                 int j = v.nextInt(10);
 
-            if(j==3 || j==4 ||j==5)
-            {
-                mapDeBateauxOrdi.get(j).AttaqueOrdiDestroyer(JoueurO,JoueurH,mapdecaseseclairees);
-            }
-            else
-            {
                 mapDeBateauxOrdi.get(j).AttaqueOrdi(JoueurO,JoueurH);
-            }
-
-
             compteur++;
             break;
 
             case 1:
             JoueurO.DeplacerBateauOrdi(mapDeBateauxOrdi, mapDeCasesOrdi);
-
-          //  E.PlateauOrdi(JoueurH,JoueurO,E);
             E.PlateauJoueur(JoueurH,JoueurO,E);
             compteur++;
             break;
+
+
         }
         }
         } while(b.flotteACouler(mapDeCasesHumain,mapDeBateauxHumain)!=true || b.flotteACouler(mapDeCasesOrdi, mapDeBateauxOrdi)!=true);

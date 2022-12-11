@@ -12,18 +12,19 @@ import java.lang.Thread;
 public class GraphismeMenu extends JPanel
 {
     private Scanner scan = new Scanner(System.in);
-    private String pseudo;
+
+    public int getEnvoi() {
+        return envoi;
+    }
+
+    public void setEnvoi(int envoi) {
+        this.envoi = envoi;
+    }
+
+    private int envoi=0;
+
     public void MenuGraphique()
     {
-    JoueurHumain JoueurH = new JoueurHumain("Personne", 0);
-    JoueurOrdi JoueurO = new JoueurOrdi("Ordinateur", 0);
-    HashMap<Integer, Case> mapDeCasesHumain = new HashMap<Integer, Case>();
-    HashMap<Integer, Bateau> mapDeBateauxHumain = new HashMap<>();
-    HashMap<Integer, Case> mapDeCasesOrdi = new HashMap<Integer, Case>();
-    HashMap<Integer, Bateau> mapDeBateauxOrdi = new HashMap<>();
-    Elliot E = new Elliot();
-    int x=6;
-
     JFrame frame = new JFrame("Menu");
     JLabel label = new JLabel("JEU - BATAILLE NAVALE", JLabel.CENTER);
         frame.add(label);
@@ -52,38 +53,28 @@ public class GraphismeMenu extends JPanel
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
-        JoueurH.setMapDeCasesHumain(mapDeCasesHumain);
-        JoueurH.setMapDeBateauxHumain(mapDeBateauxHumain);
-        JoueurH.PlacementCasesHumain(mapDeCasesHumain, mapDeBateauxHumain);
-        JoueurH.PlacementBateauxHumain(mapDeBateauxHumain);
+        btn1.addActionListener(new ActionListener() {
 
-        JoueurO.setMapDeCasesOrdi(mapDeCasesOrdi);
-        JoueurO.setMapDeBateauxOrdi(mapDeBateauxOrdi);
-        JoueurO.PlacementCasesOrdi(mapDeCasesOrdi, mapDeBateauxOrdi);
-        JoueurO.PlacementBateauxOrdi(mapDeBateauxOrdi);
-        System.out.println("Veuillez selectionner votre pseudo:\n");
-        pseudo= scan.nextLine();
-        JoueurH.setPseudo(pseudo);
-        System.out.println("Bonjour " + JoueurH.getPseudo() + "\n");
-        System.out.println("Votre premier plateau "+JoueurH.getPseudo()+"(permet de positionner et visualiser les navires):\n");
-        E.PlateauJoueur(JoueurH,JoueurO,E);
-        //MenuBateau(JoueurH,JoueurO,E);
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String s = actionEvent.getActionCommand();
+                if(s.equals("1 - Jouer une partie"))
+                {
+                    setEnvoi(1);
+                }
+
+            }
+        });
 
 
-
-        btn2.addActionListener(new ActionListener() {
+     btn2.addActionListener(new ActionListener() {
 
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             String s = actionEvent.getActionCommand();
             if(s.equals("2 - Charger une partie"))
             {
-                System.out.println("Redemarrer une partie\n");
-                Sauvegarde S = new Sauvegarde();
-                S.RecupererJeuHumain(JoueurH);
-                S.RecupererJeuOrdi(JoueurO);
-                E.PlateauJoueur(JoueurH, JoueurO, E);
-                //MenuBateau(JoueurH,JoueurO,E);
+                setEnvoi(2);
             }
 
         }
@@ -96,7 +87,24 @@ public class GraphismeMenu extends JPanel
             String s = actionEvent.getActionCommand();
             if(s.equals("3 - Aide"))
             {
+                int choix=6;
+                int x=6;
+
+                do {
+
                 System.out.println("Aide\n");
+               System.out.println("Souhaitez-vous quitter le menu? 0: Oui/ 1:Non");
+
+                do
+                {do{try
+                {choix= Integer.parseInt(scan.nextLine());
+                    x=0;} catch (Exception e) {System.out.println("L'entrée doit être 0 ou 1.");
+                    x=1;}
+                }while(x!=0); }while((choix!= 0) && (choix != 1));
+
+                }while(choix==1);
+
+                MenuGraphique();
             }
 
         }
