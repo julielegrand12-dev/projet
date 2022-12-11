@@ -95,6 +95,8 @@ public class GraphismeMenu extends JPanel
                 do {
 
                 System.out.println("Aide\n");
+                Aide a = new Aide();
+                a.AideReglesJeu();
                System.out.println("Souhaitez-vous quitter le menu? 0: Oui/ 1:Non");
 
                 do
