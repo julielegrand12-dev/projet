@@ -6,19 +6,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+/**
+ * Dans cette classe, nous implémentons et stockons les infromations de chaque bateau.
+ */
 public class Bateau implements Serializable {
 
     // attribut
-    private int id_navire  ;
-    private int  coordonneeDebutX ;
-    private int coordonneeDebutY ;
+    private int id_navire;
+    private int coordonneeDebutX;
+    private int coordonneeDebutY;
 
-    private String nom_navire ;
+    private String nom_navire;
     private ArrayList<Case> lesCases;
-    private int taille_navire ; // le nb de case du bateau
-    private boolean Horizontal ; // dans le cas d'un navire vertical, ce sont les lignes x qui déterminent la taille
+    private int taille_navire; // le nb de case du bateau
+    private boolean Horizontal; // dans le cas d'un navire vertical, ce sont les lignes x qui déterminent la taille
 
-    public Bateau() {}
+    public Bateau() {
+    }
 
     // dans le cas 'un navire horizontal,ce sont les colonnes y qui determinent la taille
 
@@ -81,42 +85,53 @@ public class Bateau implements Serializable {
 
     //methodes et constructeurs
 
-    public boolean BateauACouler(HashMap<Integer, Case> MapDeCases, int choix, HashMap<Integer,Bateau> MapDeBateaux){
+    public boolean BateauACouler(HashMap<Integer, Case> MapDeCases, int choix, HashMap<Integer, Bateau> MapDeBateaux) {
         boolean flag = false;
         int compte = 0;
-        for(int da =0;da<MapDeBateaux.get(choix).getlesCases().size();da++){
-            if(MapDeBateaux.get(choix).getlesCases().get(da).EtatCase() == true){
-                flag =true;
-                compte =compte +1;
+        for (int da = 0; da < MapDeBateaux.get(choix).getlesCases().size(); da++) {
+            if (MapDeBateaux.get(choix).getlesCases().get(da).EtatCase() == true) {
+                flag = true;
+                compte = compte + 1;
             }
         }
-    if(compte == MapDeBateaux.get(choix).getlesCases().size()){ return true ;}
-        else{return false;}
-    }
-
-    public boolean flotteACouler(HashMap<Integer, Case> MapDeCases,HashMap<Integer,Bateau> MapDeBateaux) {
-        int compte =0;
-        for(int i = 0;i<10;i++){
-        for(int da =0;da<MapDeBateaux.get(i).getlesCases().size();da++){
-            if(MapDeBateaux.get(i).getlesCases().get(da).EtatCase() == true){
-                compte =compte +1;
-            }}}
-        if(compte==30){
+        if (compte == MapDeBateaux.get(choix).getlesCases().size()) {
             return true;
-        }else{return false;}
+        } else {
+            return false;
+        }
     }
 
-    public Bateau( int taille_navire,int id_navire, String nom_navire, boolean Horizontal, int coordonneeDebutX, int coordonneeDebutY){
-        this.id_navire = id_navire ;
-        this.nom_navire = nom_navire ;
-        this.taille_navire = taille_navire ;
-        this.Horizontal = Horizontal ;
-        this.coordonneeDebutX  = coordonneeDebutX ;
-        this.coordonneeDebutY = coordonneeDebutY ;
+    public boolean flotteACouler(HashMap<Integer, Case> MapDeCases, HashMap<Integer, Bateau> MapDeBateaux) {
+        int compte = 0;
+        for (int i = 0; i < 10; i++) {
+            for (int da = 0; da < MapDeBateaux.get(i).getlesCases().size(); da++) {
+                if (MapDeBateaux.get(i).getlesCases().get(da).EtatCase() == true) {
+                    compte = compte + 1;
+                }
+            }
+        }
+        if (compte == 30) {
+            return true;
+        } else {
+            return false;
+        }
     }
-    public void genererBateaux(){}
 
-    public void AttaqueHumain(JoueurOrdi o, JoueurHumain j, int choixX, int choixY){}
+    public Bateau(int taille_navire, int id_navire, String nom_navire, boolean Horizontal, int coordonneeDebutX, int coordonneeDebutY) {
+        this.id_navire = id_navire;
+        this.nom_navire = nom_navire;
+        this.taille_navire = taille_navire;
+        this.Horizontal = Horizontal;
+        this.coordonneeDebutX = coordonneeDebutX;
+        this.coordonneeDebutY = coordonneeDebutY;
+    }
 
-    public void AttaqueOrdi(JoueurOrdi o, JoueurHumain j) {}
+    public void genererBateaux() {
+    }
+
+    public void AttaqueHumain(JoueurOrdi o, JoueurHumain j, int choixX, int choixY) {
+    }
+
+    public void AttaqueOrdi(JoueurOrdi o, JoueurHumain j) {
+    }
 }

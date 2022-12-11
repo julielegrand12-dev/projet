@@ -9,6 +9,9 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Dans cette classe, nous implémentons le plateau graphique avec les clics: si l'utilisateur clique sur une case nous recupérons la coordonnée.
+ */
 public class Elliot {
     public int getA() {
         return a;
@@ -53,35 +56,31 @@ public class Elliot {
         pan.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                int cpt=1;
-                 int cpt2=1;
-                int a=0,b=0;
+                int cpt = 1;
+                int cpt2 = 1;
+                int a = 0, b = 0;
                 Menu m = new Menu();
 
-                for(int u=45;u<=500;u++)
-                {
+                for (int u = 45; u <= 500; u++) {
 
-                    if(e.getY()<u+30 && e.getY()>u)
-                    {
-                        b=cpt;
+                    if (e.getY() < u + 30 && e.getY() > u) {
+                        b = cpt;
                         setB(cpt);
                         System.out.println("Y cpt " + cpt);
 
 
                     }
-                    u=u+30;
+                    u = u + 30;
                     cpt++;
                 }
-                for(int h=600;h<=1100;h++)
-                {
+                for (int h = 600; h <= 1100; h++) {
 
-                    if(e.getX()<h+30 && e.getX()>h)
-                    {
-                        a=cpt2;
+                    if (e.getX() < h + 30 && e.getX() > h) {
+                        a = cpt2;
                         setA(cpt2);
                         System.out.println("X cpt " + cpt2);
                     }
-                    h=h+30;
+                    h = h + 30;
                     cpt2++;
 
                 }
@@ -111,8 +110,7 @@ public class Elliot {
 
         JFrame f = new JFrame("PLATEAU");
 
-            f.getContentPane().add(new Plateau(JoueurH,JoueurO));
-
+        f.getContentPane().add(new Plateau(JoueurH, JoueurO));
 
 
         f.setSize(1200, 1200);

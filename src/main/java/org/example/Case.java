@@ -2,6 +2,9 @@ package org.example;
 
 import java.io.Serializable;
 
+/**
+ * Dans cette classe, nous implémentons les informations de chaque case de notre jeu (id, son état...).
+ */
 public class Case implements Serializable {
     // attribut
 
@@ -10,7 +13,8 @@ public class Case implements Serializable {
     private boolean EtatCase; //etat de la case
     private int ID; //identifiant de la case
 
-    private boolean caseEclairee ;
+    private boolean caseEclairee;
+
     public Case() {
     }
 
@@ -22,9 +26,11 @@ public class Case implements Serializable {
     public int getY() {
         return this.y_colonne;
     }
+
     public int getGetID() {
         return ID;
     }
+
     public void setGetID(int getID) {
         this.ID = ID;
     }
@@ -39,26 +45,36 @@ public class Case implements Serializable {
 
     // méthodes
 
-    public Case(int x, int y,int id){
-        this.x_ligne = x ;
+    public Case(int x, int y, int id) {
+        this.x_ligne = x;
         this.y_colonne = y;
         this.ID = id; // initialise à 0
-        this.EtatCase = false ; // initialise à 'pas coulé'
+        this.EtatCase = false; // initialise à 'pas coulé'
         this.caseEclairee = false;
     }
+
     public boolean EtatCase() {
-        return this.EtatCase ;
+        return this.EtatCase;
     }
+
     public void CaseTouche() { // Lorsque la case a été touché on passe à boolean true
-        this.EtatCase = true ;
-    }
-    public void NewBateau(int ID){
-        this.ID =  ID;
+        this.EtatCase = true;
     }
 
-    public void ONCaseEclairee(){ this.caseEclairee =  true;}
-    public boolean getCaseEclairee(){return this.caseEclairee;}
+    public void NewBateau(int ID) {
+        this.ID = ID;
+    }
 
-    public void OFFCaseEclairee(){ this.caseEclairee = false;}
+    public void ONCaseEclairee() {
+        this.caseEclairee = true;
+    }
+
+    public boolean getCaseEclairee() {
+        return this.caseEclairee;
+    }
+
+    public void OFFCaseEclairee() {
+        this.caseEclairee = false;
+    }
 
 }

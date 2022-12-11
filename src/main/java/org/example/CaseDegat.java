@@ -1,8 +1,12 @@
 package org.example;
 
-public class CaseDegat extends Case{
+/**
+ * Dans cette classe, nous implémentons les informations de chaque case de notre jeu qui subit un dégat: un bateau à cet endroit a été touché.
+ */
 
-   private boolean destruction;
+public class CaseDegat extends Case {
+
+    private boolean destruction;
 
     // getter et setter
 
@@ -16,10 +20,6 @@ public class CaseDegat extends Case{
 
 
     // méthodes
-
-
-
-
 
 
 }

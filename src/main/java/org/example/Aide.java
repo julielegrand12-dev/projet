@@ -3,8 +3,10 @@ package org.example;
 import javax.swing.*;
 import java.awt.*;
 
-
-public class Aide extends JPanel  {
+/**
+ * Dans cette classe, nous avons les règles du jeu.
+ */
+public class Aide extends JPanel {
     private JFrame fen;
     private JPanel panel1;
     private JPanel panel2;
@@ -13,8 +15,7 @@ public class Aide extends JPanel  {
     private JTextField l3;
     private JLabel l2;
 
-    public void AideReglesJeu()
-    {
+    public void AideReglesJeu() {
         System.out.println("INITIALISATION\n");
         System.out.println("Vous possedez plusieurs bâteaux dont des :");
         System.out.println("1- Les cuirassés - puissance de tir de 9 cases - couleur rouge");
@@ -26,9 +27,10 @@ public class Aide extends JPanel  {
         System.out.println("2- Tirer sur une case du plateau de l'adversaire");
         System.out.println("3- Sauvegarder la partie pour continuer de jouer plus tard : cliquez sur le bouton de sauvegarde\n");
         System.out.println("L'objectif est de couler tous les bateaux de votre adversaire\n");
-        System.out.println("Bonne chance !");}
+        System.out.println("Bonne chance !");
+    }
 //k
 
 
-    }
+}
 
