@@ -8,9 +8,15 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Random;
 import java.lang.Thread;
+import java.io.*;
 
 public class Menu extends JPanel
 {
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PINK = "\u001B[35m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
     private int choix;
     private String pseudo;
 
@@ -69,11 +75,9 @@ public class Menu extends JPanel
         JoueurO.setMapDeBateauxOrdi(mapDeBateauxOrdi);
         JoueurO.PlacementCasesOrdi(mapDeCasesOrdi, mapDeBateauxOrdi);
         JoueurO.PlacementBateauxOrdi(mapDeBateauxOrdi);
-        System.out.println("Veuillez selectionner votre pseudo:\n");
+        System.out.println(ANSI_BLUE +"Veuillez selectionner votre pseudo:\n"+ ANSI_RESET);
         pseudo= scan1.nextLine();
         JoueurH.setPseudo(pseudo);
-        System.out.println("Bonjour " + JoueurH.getPseudo() + "\n");
-        System.out.println("Votre premier plateau "+JoueurH.getPseudo()+"(permet de positionner et visualiser les navires):\n");
         E.PlateauJoueur(JoueurH,JoueurO,E);
         MenuBateau(JoueurH,JoueurO,E);
         }
@@ -81,7 +85,7 @@ public class Menu extends JPanel
 /**Comme vu précédemment, l'utilisateur a appuyé sur un bouton et le getter prend une nouvelle valeur.*/
         else if(GM.getEnvoi()==2)
         {
-            System.out.println("Redemarrer une partie\n");
+            System.out.println(ANSI_BLUE + "Redemarrer une partie\n" + ANSI_RESET);
             Sauvegarde S = new Sauvegarde();
             S.RecupererJeuHumain(JoueurH);
             S.RecupererJeuOrdi(JoueurO);
@@ -112,7 +116,6 @@ public class Menu extends JPanel
         {
         if(compteur%2==0)
         {
-
             mapDeBateauxHumain = JoueurH.getMapDeBateauxHumain();
             mapDeCasesHumain = JoueurH.getMapDeCasesHumain();
             mapDeBateauxOrdi = JoueurO.getMapDeBateauxOrdi();
@@ -134,16 +137,16 @@ public class Menu extends JPanel
                    ArrayList<Case> mapdecaseseclairees = new ArrayList<Case>();
                     int choixbateau =12;
                     System.out.println("Veuillez faire un choix"); //Nous affichons les choix possibles
-                    System.out.println("0- Tirer avec le cuirasse d'id 0\n");
-                    System.out.println("1- Tirer avec le croiseur d'id 1\n");
-                    System.out.println("2- Tirer avec le croiseur d'id 2\n");
+                    System.out.println(ANSI_RED +"0- Tirer avec le cuirasse d'id 0\n"+ANSI_RESET);
+                    System.out.println(ANSI_PINK+"1- Tirer avec le croiseur d'id 1\n"+ANSI_RESET);
+                    System.out.println(ANSI_PINK+"2- Tirer avec le croiseur d'id 2\n"+ANSI_RESET);
                     System.out.println("3- Tirer avec le destroyer d'id 3\n");
                     System.out.println("4- Tirer avec le destroyer d'id 4\n");
                     System.out.println("5- Tirer avec le destroyer d'id 5\n");
-                    System.out.println("6- Tirer avec le sous-marin d'id 6\n");
-                    System.out.println("7- Tirer avec le sous-marin d'id 7\n");
-                    System.out.println("8- Tirer avec le sous-marin d'id 8\n");
-                    System.out.println("9- Tirer avec le sous-marin d'id 9\n");
+                    System.out.println(ANSI_YELLOW+"6- Tirer avec le sous-marin d'id 6\n"+ANSI_RESET);
+                    System.out.println(ANSI_YELLOW+"7- Tirer avec le sous-marin d'id 7\n"+ANSI_RESET);
+                    System.out.println(ANSI_YELLOW+"8- Tirer avec le sous-marin d'id 8\n"+ANSI_RESET);
+                    System.out.println(ANSI_YELLOW+"9- Tirer avec le sous-marin d'id 9\n"+ANSI_RESET);
 
                     do             //blindage exception pour le choix du menu bateau
                     {do{try
@@ -187,35 +190,19 @@ public class Menu extends JPanel
             Random r = new Random();
             int n = r.nextInt(2);
 
-            System.out.println("Joueur Ordinateur - A votre tour"); //Nous affichons les choix possibles
+            System.out.println(ANSI_BLUE+"Joueur Ordinateur - A votre tour\n"+ANSI_RESET); //Nous affichons les choix possibles
 
 
-        if(n==0) {System.out.println("L'odinateur a choisi: 1 - Tirer\n");}
-        else if(n==1) {System.out.println("L'odinateur a choisi: 2 - Deplacer un bateau de sa flotte\n");}
+        if(n==0) {System.out.println("L'ordinateur a choisi: 1 - Tirer\n");}
+        else if(n==1) {System.out.println("L'ordinateur a choisi: 2 - Deplacer un bateau de sa flotte\n");}
 
         switch(n)
         {
             case 0:
-
-            ArrayList<Case> mapdecaseseclairees = new ArrayList<Case>();
-
-                System.out.println("Veuillez faire un choix"); //Nous affichons les choix possibles
-                System.out.println("1- Tirer avec le cuirasse d'id 0\n");
-                System.out.println("2- Tirer avec le croiseur d'id 1\n");
-                System.out.println("3- Tirer avec le croiseur d'id 2\n");
-                System.out.println("4- Tirer avec le destroyer d'id 3\n");
-                System.out.println("5- Tirer avec le destroyer d'id 4\n");
-                System.out.println("6- Tirer avec le destroyer d'id 5\n");
-                System.out.println("7- Tirer avec le sous-marin d'id 6\n");
-                System.out.println("8- Tirer avec le sous-marin d'id 7\n");
-                System.out.println("9- Tirer avec le sous-marin d'id 8\n");
-                System.out.println("10- Tirer avec le sous-marin d'id 9\n");
-
-                Random v = new Random();
-                int j = v.nextInt(10);
-
-                mapDeBateauxOrdi.get(j).AttaqueOrdi(JoueurO,JoueurH);
-                GM.setEnvoi(0);
+            Random v = new Random();
+            int j = v.nextInt(10);
+            mapDeBateauxOrdi.get(j).AttaqueOrdi(JoueurO,JoueurH);
+            GM.setEnvoi(0);
             compteur++;
             break;
 
@@ -225,7 +212,6 @@ public class Menu extends JPanel
             GM.setEnvoi(0);
             compteur++;
             break;
-
 
         }
         }
