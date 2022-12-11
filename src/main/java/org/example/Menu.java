@@ -200,12 +200,12 @@ public class Menu extends JPanel {
                 mapDeCasesOrdi = JoueurO.getMapDeCasesOrdi();
 
                 Random r = new Random();
-                int n = r.nextInt(2);
+                int n = r.nextInt(3);
 
                 System.out.println(ANSI_BLUE + "Joueur Ordinateur - A votre tour\n" + ANSI_RESET); //Nous affichons les choix possibles
 
 
-                if (n == 0) {
+                if (n == 0|| n==2) {
                     System.out.println("L'ordinateur a choisi: 1 - Tirer\n");
                 } else if (n == 1) {
                     System.out.println("L'ordinateur a choisi: 2 - Deplacer un bateau de sa flotte\n");
@@ -228,6 +228,7 @@ public class Menu extends JPanel {
 
                 switch (n) {
                     case 0:
+                    case 2:
                         Random v = new Random();
                         int j = v.nextInt(10);
                         mapDeBateauxOrdi.get(j).AttaqueOrdi(JoueurO, JoueurH);
@@ -244,6 +245,7 @@ public class Menu extends JPanel {
                         GM.setEnvoi(0);
                         compteur++;
                         break;
+
 
                 }
             }
