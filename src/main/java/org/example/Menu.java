@@ -111,9 +111,7 @@ public class Menu extends JPanel
         int xB=0;
         int yB=0;
         int ll=0;
-
-        do
-        {
+        while(b.flotteACouler(mapDeCasesHumain,mapDeBateauxHumain)!=true && b.flotteACouler(mapDeCasesOrdi, mapDeBateauxOrdi)!=true) {
         if(compteur%2==0)
         {
             mapDeBateauxHumain = JoueurH.getMapDeBateauxHumain();
@@ -131,7 +129,7 @@ public class Menu extends JPanel
                     throw new RuntimeException(e);
                 }
             }
-            int nbBateauxTouchesH =1;
+            int nbBateauxTouchesH =0;
             for  (Integer ka : mapDeBateauxHumain.keySet()) {
                 for(int da =0;da<mapDeBateauxHumain.get(ka).getlesCases().size();da++){
                     if(mapDeBateauxHumain.get(ka).getlesCases().get(da).EtatCase() == true){
@@ -187,7 +185,7 @@ public class Menu extends JPanel
            {
                     JoueurH.DeplacerBateauHumain(mapDeBateauxHumain, mapDeCasesHumain);
                     E.PlateauJoueur(JoueurH,JoueurO,E);
-               if( JoueurH.isPasDeplacer() == true ){
+               while( JoueurH.isPasDeplacer() == true ){
                    JoueurH.DeplacerBateauHumain(mapDeBateauxHumain, mapDeCasesHumain);
                }
                     GM.setEnvoi(0);
@@ -204,7 +202,8 @@ public class Menu extends JPanel
             mapDeCasesOrdi = JoueurO.getMapDeCasesOrdi();
 
             Random r = new Random();
-            int n = r.nextInt(2);
+            //int n = r.nextInt(2);
+            int n=1;
             System.out.println(ANSI_BLUE+"Joueur Ordinateur - A votre tour\n"+ANSI_RESET); //Nous affichons les choix possibles
 
 
@@ -239,7 +238,7 @@ public class Menu extends JPanel
             case 1:
             JoueurO.DeplacerBateauOrdi(mapDeBateauxOrdi, mapDeCasesOrdi);
             E.PlateauJoueur(JoueurH,JoueurO,E);
-               if( JoueurO.isPasDeplacer() == true ){
+               while( JoueurO.isPasDeplacer() == true ){
                    JoueurO.DeplacerBateauOrdi(mapDeBateauxOrdi, mapDeCasesOrdi);
                }
             GM.setEnvoi(0);
@@ -248,7 +247,14 @@ public class Menu extends JPanel
 
         }
         }
-        } while(b.flotteACouler(mapDeCasesHumain,mapDeBateauxHumain)!=true || b.flotteACouler(mapDeCasesOrdi, mapDeBateauxOrdi)!=true);
+        System.out.println("LALALALALA " + b.flotteACouler(mapDeCasesOrdi, mapDeBateauxOrdi));
+        }
+        if (b.flotteACouler(mapDeCasesOrdi, mapDeBateauxOrdi)){
+            System.out.println("FIN DE PARTIE\n Le  joueur " + JoueurH.getPseudo() +" a gagné !");
+        }
+        else {
+            System.out.println("FIN DE PARTIE\n Le  joueur " + JoueurO.getPseudo()+ " a gagné !");
+        }
 
 
     }
