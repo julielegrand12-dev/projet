@@ -8,13 +8,14 @@ import java.awt.Graphics;
 import java.awt.event.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
+import java.lang.Thread;
 
 
 
 public class Plateau extends JPanel   {
 
 
-
+    private int a =0;
 
 private JoueurHumain eva ;
     private JoueurOrdi eve ;
@@ -55,7 +56,8 @@ private JoueurHumain eva ;
 
         }
 
-if(eva!=null)
+
+        if(eva!=null)
 {
         for (Integer i : eva.getMapDeCasesHumain().keySet()) {
             if (eva.getMapDeCasesHumain().get(i).getGetID() == 1) {
@@ -82,10 +84,19 @@ if(eva!=null)
                 g.setColor(Color.BLACK);
                 g.fillRect(eva.getMapDeCasesHumain().get(i).getX() * 31 + 19, eva.getMapDeCasesHumain().get(i).getY() * 31 + 19, 31, 31);
 
-            }}}
+            }
+
+        }}
 if(eve!=null){
+
+
+
+
         for (Integer i : eve.getMapDeCasesOrdi().keySet()) {
-            if (eve.getMapDeCasesOrdi().get(i).getGetID() == 1) {
+
+
+
+            if (eve.getMapDeCasesOrdi().get(i).getGetID() == 1 ) {
                 g.setColor(Color.YELLOW);
                 g.fillRect(eve.getMapDeCasesOrdi().get(i).getX() * 31 + 569, eve.getMapDeCasesOrdi().get(i).getY() * 31 + 19, 31, 31);
 
@@ -109,8 +120,29 @@ if(eve!=null){
                 g.setColor(Color.BLACK);
                 g.fillRect(eve.getMapDeCasesOrdi().get(i).getX() * 31 + 569, eve.getMapDeCasesOrdi().get(i).getY() * 31 + 19, 31, 31);
 
-            }}}
+            }
+            if (eve.getMapDeCasesOrdi().get(i).getCaseEclairee() == true) {
+                g.setColor(Color.GREEN);
+                g.fillRect(eve.getMapDeCasesOrdi().get(i).getX() * 31 + 569, eve.getMapDeCasesOrdi().get(i).getY() * 31 + 19, 31, 31);
+            }
 
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+}
         g.setColor(Color.BLACK);
         for (int u = 50; u < 520; u++) {
             g.drawLine(u, 50, u, 515);
@@ -124,6 +156,20 @@ if(eve!=null){
         }
         g.setColor(Color.BLACK);
 
+        try {
+
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        int o=1200;
+        for (Integer i : eve.getMapDeCasesOrdi().keySet())
+        {
+            eve.getMapDeCasesOrdi().get(i).OFFCaseEclairee();
+        }
+
+        setSize(o+1, 1200);
 
 
 }}
