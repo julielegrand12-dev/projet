@@ -92,6 +92,7 @@ public class Menu extends JPanel {
             E.PlateauJoueur(JoueurH, JoueurO, E);
             MenuBateau(JoueurH, JoueurO, E);
         }
+
     }
 
     public void MenuBateau(JoueurHumain JoueurH, JoueurOrdi JoueurO, Elliot E) {
