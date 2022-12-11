@@ -54,6 +54,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
     public JoueurHumain(String pseudo, int score) {
         this.pseudo = pseudo;
         this.score = score;
+        this.pasDeplacer = false;
     }
 
     //Déclaration des getters
@@ -364,7 +365,7 @@ public class JoueurHumain //initialisation de la classe joueur humain
         Scanner scan1 = new Scanner(System.in);
         Scanner scan = new Scanner(System.in);
         boolean casetouche = false;
-        pasDeplacer=false;
+        setPasDeplacer(false);
 
         //affichage de départ
         System.out.println("Vous avez choisi de déplacer votre bateau\n");
@@ -426,7 +427,12 @@ public class JoueurHumain //initialisation de la classe joueur humain
         if (MapDeBateaux.get(choix).isHorizontal() == true) //si le bateau est horizontal
         {
             System.out.print("Souhaitez vous deplacer le bateau vers la droite ou vers la gauche? Repondez pour droite 1 ou pour gauche 0\n");
-            reponse = scan.nextInt();
+            do             //blindage exception pour le choix du menu bateau
+            {do{try
+            {reponse = Integer.parseInt(scan.nextLine());
+                x=0;} catch (Exception e) {System.out.println("L'entrée doit être un chiffre compris entre 0 et 1.");
+                x=1;}
+            }while(x!=0 ); }while((reponse!= 1) && (reponse != 0) );
 
             if (reponse == 1) {
                 boolean flag = true;
@@ -501,7 +507,13 @@ public class JoueurHumain //initialisation de la classe joueur humain
 
         if (MapDeBateaux.get(choix).isHorizontal() == false) {
             System.out.print("Souhaitez vous deplacer le bateau vers le haut ou vers le bas? Repondez pour haut 1 ou pour bas 0\n");
-            reponse = scan.nextInt();
+
+            do             //blindage exception pour le choix du menu bateau
+            {do{try
+            {reponse = Integer.parseInt(scan.nextLine());
+                x=0;} catch (Exception e) {System.out.println("L'entrée doit être un chiffre compris entre 0 et 1.");
+                x=1;}
+            }while(x!=0 ); }while((reponse!= 1) && (reponse != 0) );
 
             if (reponse == 1) {
                 boolean flag = true;
@@ -579,7 +591,13 @@ public class JoueurHumain //initialisation de la classe joueur humain
 
             if (choix == 6 || choix == 7 || choix == 8 || choix == 9) { //Sous marin 1,2,3 et 4
                 System.out.print("Souhaitez vous deplacer le bateau vers le haut, le bas, à droite ou à gauche ? Repondez pour haut 1, pour bas 0, pour droite 2 et pour gauche 3\n");
-                reponse = scan.nextInt();
+
+                do             //blindage exception pour le choix du menu bateau
+                {do{try
+                {reponse = Integer.parseInt(scan.nextLine());
+                    x=0;} catch (Exception e) {System.out.println("L'entrée doit être un chiffre compris entre 0 et 1.");
+                    x=1;}
+                }while(x!=0 ); }while((reponse!= 1) && (reponse != 0) &&(reponse != 2)&&(reponse != 3));
 
                 int w = 0;
                 if (choix == 6) {w = 26;}
@@ -717,7 +735,9 @@ public class JoueurHumain //initialisation de la classe joueur humain
                     }
                 }
             }
-}}
+}
+
+}
 
 
 

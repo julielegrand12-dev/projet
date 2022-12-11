@@ -40,6 +40,7 @@ public class JoueurOrdi {
     public JoueurOrdi(String pseudo, int score) {
         this.pseudo = pseudo;
         this.score = score;
+        this.pasDeplacer = false;
     }
 
     //Déclaration des getters
@@ -348,7 +349,7 @@ public class JoueurOrdi {
         Integer i = 0;
         boolean drapeau = false;
         ArrayList<Case> lesCases = new ArrayList<>();
-        pasDeplacer=false;
+        setPasDeplacer(false);
 
         //affichage de départ
         System.out.println("L'ordinateur a choisi de déplacer un navire\n");
@@ -364,15 +365,19 @@ public class JoueurOrdi {
                 break;
             }
         }
-
-        while(casetouche == true ){
+int compt =0;
+        while(casetouche == true &&  compt<50){
             System.out.println("L'ordinateur a choisi un bateau qui est touché, on recommence :");
             choix = (int) (Math.random() * (10)) ;
             for(int da =0;da<MapDeBateaux.get(choix).getlesCases().size();da++){
                 if(MapDeBateaux.get(choix).getlesCases().get(da).EtatCase() == true){
                     casetouche =true;
+                    compt++;
                     break;
                 }else{casetouche=false;}}}
+        if(compt>=50){
+            return;
+        }
 
         //on demande les coordonnées
         System.out.print("L'ordinateur a choisi : " + MapDeBateaux.get(choix).getNom_navire() + "\n");
@@ -458,7 +463,7 @@ public class JoueurOrdi {
                     setMapDeBateauxOrdi(MapDeBateaux);
                     System.out.println("Coordonnées bateau X:" + MapDeBateaux.get(choix).getCoordonneeDebutX() + " Y:" + MapDeBateaux.get(choix).getCoordonneeDebutY());
                 } else {
-                    System.out.println("Coordonnées bateau X:" + MapDeBateaux.get(choix).getCoordonneeDebutX() + " Y:" + MapDeBateaux.get(choix).getCoordonneeDebutY());
+                    System.out.println("lalalalalCoordonnées bateau X:" + MapDeBateaux.get(choix).getCoordonneeDebutX() + " Y:" + MapDeBateaux.get(choix).getCoordonneeDebutY());
                 }
             }}
 
@@ -570,11 +575,13 @@ public class JoueurOrdi {
                     System.out.println("Coordonnée Case X:" + MapDeBateaux.get(choix).getlesCases().get(i).getX() + " Y:" + MapDeBateaux.get(choix).getlesCases().get(i).getY());
                     flag = false;
                     setMapDeCasesOrdi(MapDeCases);
+                    MapDeBateaux.get(choix).setLesCases(lesCases);
 
                 } else {
                     System.out.println("La coordonnée saisie est non disponible.\nVous pouvez recommencer :");
                    // DeplacerBateauOrdi(MapDeBateaux,  MapDeCases);
                     setPasDeplacer(true);
+                    return;
                 }
 
                 if (flag == false) {
@@ -582,10 +589,9 @@ public class JoueurOrdi {
                     //   MapDeBateaux.replace(choix, b);
                     MapDeBateaux.get(choix).setCoordonneeDebutY(MapDeBateaux.get(choix).getCoordonneeDebutY()-1);
                     setMapDeBateauxOrdi(MapDeBateaux);
-                    MapDeBateaux.get(choix).setLesCases(lesCases);
                     System.out.println("Coordonnées bateau X:" + MapDeBateaux.get(choix).getCoordonneeDebutX() + " Y:" + MapDeBateaux.get(choix).getCoordonneeDebutY());
                 } else {
-                    System.out.println("Coordonnées bateau X:" + MapDeBateaux.get(choix).getCoordonneeDebutX() + " Y:" + MapDeBateaux.get(choix).getCoordonneeDebutY());
+                    System.out.println("lalalaCoordonnées bateau X:" + MapDeBateaux.get(choix).getCoordonneeDebutX() + " Y:" + MapDeBateaux.get(choix).getCoordonneeDebutY());
                 }
 
 
@@ -606,18 +612,19 @@ public class JoueurOrdi {
                     System.out.println("Coordonnée Case X:" + MapDeBateaux.get(choix).getlesCases().get(i).getX() + " Y:" + MapDeBateaux.get(choix).getlesCases().get(i).getY());
                     flag = false;
                     setMapDeCasesOrdi(MapDeCases);
+                    MapDeBateaux.get(choix).setLesCases(lesCases);
 
                 } else {
                     System.out.println("La coordonnée saisie est non disponible.\nVous pouvez recommencer :");
                     //DeplacerBateauOrdi(MapDeBateaux,  MapDeCases);
                     setPasDeplacer(true);
+                    return;
                 }
 
                 if (flag == false) {
                     // Bateau b = new Bateau(MapDeBateaux.get(choix).getTaille_navire(), choix, MapDeBateaux.get(choix).getNom_navire(), MapDeBateaux.get(choix).isHorizontal(), MapDeBateaux.get(choix).getCoordonneeDebutX()+1, MapDeBateaux.get(choix).getCoordonneeDebutY());
                     MapDeBateaux.get(choix).setCoordonneeDebutX(MapDeBateaux.get(choix).getCoordonneeDebutX()+1);
                     setMapDeBateauxOrdi(MapDeBateaux);
-                    MapDeBateaux.get(choix).setLesCases(lesCases);
                     System.out.println("Coordonnées bateau X:" + MapDeBateaux.get(choix).getCoordonneeDebutX() + " Y:" + MapDeBateaux.get(choix).getCoordonneeDebutY());
                 } else {
                     System.out.println("false Coordonnées bateau X:" + MapDeBateaux.get(choix).getCoordonneeDebutX() + " Y:" + MapDeBateaux.get(choix).getCoordonneeDebutY());
@@ -641,10 +648,12 @@ public class JoueurOrdi {
                     System.out.println("Coordonnée Case X:" + MapDeBateaux.get(choix).getlesCases().get(i).getX() + " Y:" +MapDeBateaux.get(choix).getlesCases().get(i).getY());
                     flag = false;
                     setMapDeCasesOrdi(MapDeCases);
+                    MapDeBateaux.get(choix).setLesCases(lesCases);
                 } else {
                     System.out.println("La coordonnée saisie est non disponible.\nVous pouvez recommencer :");
                    // DeplacerBateauOrdi(MapDeBateaux,  MapDeCases);
                     setPasDeplacer(true);
+                    return;
 
                 }
 
@@ -653,10 +662,9 @@ public class JoueurOrdi {
                     // MapDeBateaux.replace(choix, b);
                     MapDeBateaux.get(choix).setCoordonneeDebutY(MapDeBateaux.get(choix).getCoordonneeDebutY()+1);
                     setMapDeBateauxOrdi(MapDeBateaux);
-                    MapDeBateaux.get(choix).setLesCases(lesCases);
                     System.out.println("Coordonnées bateau X:" + MapDeBateaux.get(choix).getCoordonneeDebutX() + " Y:" + MapDeBateaux.get(choix).getCoordonneeDebutY());
                 } else {
-                    System.out.println("Coordonnées bateau X:" + MapDeBateaux.get(choix).getCoordonneeDebutX() + " Y:" + MapDeBateaux.get(choix).getCoordonneeDebutY());
+                    System.out.println("lalallaCoordonnées bateau X:" + MapDeBateaux.get(choix).getCoordonneeDebutX() + " Y:" + MapDeBateaux.get(choix).getCoordonneeDebutY());
                 }
 
 
@@ -677,12 +685,14 @@ public class JoueurOrdi {
                     System.out.println("Coordonnée Case X:" + MapDeBateaux.get(choix).getlesCases().get(i).getX() + " Y:" + MapDeBateaux.get(choix).getlesCases().get(i).getY());
                     flag = false;
                     setMapDeCasesOrdi(MapDeCases);
+                    MapDeBateaux.get(choix).setLesCases(lesCases);
                     System.out.println(lesCases.size());
 
                 } else {
                     System.out.println("La coordonnée saisie est non disponible.\nVous pouvez recommencer :");
                     //DeplacerBateauOrdi(MapDeBateaux,  MapDeCases);
                     setPasDeplacer(true);
+                    return;
                 }
 
                 if (flag == false) {
@@ -693,7 +703,7 @@ public class JoueurOrdi {
                     MapDeBateaux.get(choix).setLesCases(lesCases);
                     System.out.println("Coordonnées bateau X:" + MapDeBateaux.get(choix).getCoordonneeDebutX() + " Y:" + MapDeBateaux.get(choix).getCoordonneeDebutY());
                 } else {
-                    System.out.println("Coordonnées bateau X:" + MapDeBateaux.get(choix).getCoordonneeDebutX() + " Y:" + MapDeBateaux.get(choix).getCoordonneeDebutY());
+                    System.out.println("lalalaCoordonnées bateau X:" + MapDeBateaux.get(choix).getCoordonneeDebutX() + " Y:" + MapDeBateaux.get(choix).getCoordonneeDebutY());
                 }
         }}
     }

@@ -38,7 +38,7 @@ public class Menu extends JPanel
     private Scanner scan = new Scanner(System.in);
     private Scanner scan1 = new Scanner(System.in);
     Bateau b=new Bateau();
-    Plateaugraphique E = new Plateaugraphique();
+    Elliot E = new Elliot();
 
     /** Dans cette fonction, on créé le menu de notre jeu. Notre menu ci-dessous appelle la classe GraphismeMenu afin d'avoir le visuel. A l'aide de getters de la classe GraphismeMenu nous déclenchons des actions en fonction de ce que l'utilisateur souhaite. */
     public void MenuDebut()  {
@@ -49,7 +49,6 @@ public class Menu extends JPanel
         HashMap<Integer, Bateau> mapDeBateauxHumain = new HashMap<>();
         HashMap<Integer, Case> mapDeCasesOrdi = new HashMap<Integer, Case>();
         HashMap<Integer, Bateau> mapDeBateauxOrdi = new HashMap<>();
-        Plateaugraphique E = new Plateaugraphique();
         GraphismeMenu GM = new GraphismeMenu();
         int x=6;
 
@@ -79,8 +78,6 @@ public class Menu extends JPanel
         System.out.println(ANSI_BLUE +"Veuillez selectionner votre pseudo:\n"+ ANSI_RESET);
         pseudo= scan1.nextLine();
         JoueurH.setPseudo(pseudo);
-        System.out.println("Bonjour " + JoueurH.getPseudo() + "\n");
-        System.out.println("Votre premier plateau "+JoueurH.getPseudo()+"(permet de positionner et visualiser les navires):\n");
         E.PlateauJoueur(JoueurH,JoueurO,E);
         MenuBateau(JoueurH,JoueurO,E);
         }
@@ -97,7 +94,7 @@ public class Menu extends JPanel
         }
     }
 
-    public void MenuBateau(JoueurHumain JoueurH, JoueurOrdi JoueurO, Plateaugraphique E)
+    public void MenuBateau(JoueurHumain JoueurH, JoueurOrdi JoueurO, Elliot E)
     {
         HashMap<Integer, Case> mapDeCasesHumain = new HashMap<Integer, Case>();
         HashMap<Integer, Bateau> mapDeBateauxHumain = new HashMap<>();
@@ -114,9 +111,7 @@ public class Menu extends JPanel
         int xB=0;
         int yB=0;
         int ll=0;
-
-        do
-        {
+        while(b.flotteACouler(mapDeCasesHumain,mapDeBateauxHumain)!=true && b.flotteACouler(mapDeCasesOrdi, mapDeBateauxOrdi)!=true) {
         if(compteur%2==0)
         {
             mapDeBateauxHumain = JoueurH.getMapDeBateauxHumain();
@@ -134,7 +129,7 @@ public class Menu extends JPanel
                     throw new RuntimeException(e);
                 }
             }
-            int nbBateauxTouchesH =1;
+            int nbBateauxTouchesH =0;
             for  (Integer ka : mapDeBateauxHumain.keySet()) {
                 for(int da =0;da<mapDeBateauxHumain.get(ka).getlesCases().size();da++){
                     if(mapDeBateauxHumain.get(ka).getlesCases().get(da).EtatCase() == true){
@@ -189,8 +184,8 @@ public class Menu extends JPanel
            else if(GM.getEnvoi()==2)
            {
                     JoueurH.DeplacerBateauHumain(mapDeBateauxHumain, mapDeCasesHumain);
-               E.MiseajourGrap(JoueurH,JoueurO,E);
-               if( JoueurH.isPasDeplacer() == true ){
+                    E.PlateauJoueur(JoueurH,JoueurO,E);
+               while( JoueurH.isPasDeplacer() == true ){
                    JoueurH.DeplacerBateauHumain(mapDeBateauxHumain, mapDeCasesHumain);
                }
                     GM.setEnvoi(0);
@@ -208,6 +203,7 @@ public class Menu extends JPanel
 
             Random r = new Random();
             int n = r.nextInt(2);
+
             System.out.println(ANSI_BLUE+"Joueur Ordinateur - A votre tour\n"+ANSI_RESET); //Nous affichons les choix possibles
 
 
@@ -241,8 +237,8 @@ public class Menu extends JPanel
 
             case 1:
             JoueurO.DeplacerBateauOrdi(mapDeBateauxOrdi, mapDeCasesOrdi);
-            E.MiseajourGrap(JoueurH,JoueurO,E);
-               if( JoueurO.isPasDeplacer() == true ){
+            E.PlateauJoueur(JoueurH,JoueurO,E);
+               while( JoueurO.isPasDeplacer() == true ){
                    JoueurO.DeplacerBateauOrdi(mapDeBateauxOrdi, mapDeCasesOrdi);
                }
             GM.setEnvoi(0);
@@ -251,7 +247,14 @@ public class Menu extends JPanel
 
         }
         }
-        } while(b.flotteACouler(mapDeCasesHumain,mapDeBateauxHumain)!=true || b.flotteACouler(mapDeCasesOrdi, mapDeBateauxOrdi)!=true);
+        System.out.println("LALALALALA " + b.flotteACouler(mapDeCasesOrdi, mapDeBateauxOrdi));
+        }
+        if (b.flotteACouler(mapDeCasesOrdi, mapDeBateauxOrdi)){
+            System.out.println("FIN DE PARTIE\n Le  joueur " + JoueurH.getPseudo() +" a gagné !");
+        }
+        else {
+            System.out.println("FIN DE PARTIE\n Le  joueur " + JoueurO.getPseudo()+ " a gagné !");
+        }
 
 
     }

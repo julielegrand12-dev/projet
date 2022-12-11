@@ -85,10 +85,6 @@ private JoueurHumain eva ;
                 g.fillRect(eva.getMapDeCasesHumain().get(i).getX() * 31 + 19, eva.getMapDeCasesHumain().get(i).getY() * 31 + 19, 31, 31);
 
             }
-            if (eva.getMapDeCasesHumain().get(i).getCaseEclairee() == true) {
-                g.setColor(Color.GREEN);
-                g.fillRect(eva.getMapDeCasesHumain().get(i).getX() * 31 + 569, eva.getMapDeCasesHumain().get(i).getY() * 31 + 19, 31, 31);
-            }
 
         }}
 if(eve!=null){
@@ -132,7 +128,18 @@ if(eve!=null){
 
 
 
+
+
+
+
+
         }
+
+
+
+
+
+
 
 
 }

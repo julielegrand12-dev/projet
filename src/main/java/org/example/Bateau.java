@@ -101,7 +101,7 @@ public class Bateau implements Serializable {
             if(MapDeBateaux.get(i).getlesCases().get(da).EtatCase() == true){
                 compte =compte +1;
             }}}
-        if(compte==29){
+        if(compte==30){
             return true;
         }else{return false;}
     }
