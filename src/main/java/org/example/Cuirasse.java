@@ -59,7 +59,7 @@ public class Cuirasse extends Bateau {
                 System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());
                 Flag = true;
             }
-            if((mapDeCases.get(TY).getX() == choixX   && mapDeCases.get(TY).getY() == choixY - 1&& mapDeCases.get(TY).getGetID() !=1)){
+            if((mapDeCases.get(TY).getX() == choixX   && mapDeCases.get(TY).getY() == choixY - 1 && mapDeCases.get(TY).getGetID() !=1)){
                 mapDeCases.get(TY).CaseTouche();
                 System.out.println("\nLa case de coordonnées X = " + mapDeCases.get(TY).getX() + " et Y = " + mapDeCases.get(TY).getY() + " a bien été touché");
                 System.out.println("Etat Case Touché = " + mapDeCases.get(TY).EtatCase());

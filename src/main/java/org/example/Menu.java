@@ -131,6 +131,19 @@ public class Menu extends JPanel
                     throw new RuntimeException(e);
                 }
             }
+            int nbBateauxTouchesH =1;
+            for  (Integer ka : mapDeBateauxHumain.keySet()) {
+                for(int da =0;da<mapDeBateauxHumain.get(ka).getlesCases().size();da++){
+                    if(mapDeBateauxHumain.get(ka).getlesCases().get(da).EtatCase() == true){
+                        nbBateauxTouchesH++;
+                        break;
+                    }
+                }
+            }
+            if(nbBateauxTouchesH == 10){
+                System.out.println("Tous les bateaux sont touchés, vous ne pouvez que tirer");
+                GM.setEnvoi(1);
+            }
 
            if(GM.getEnvoi()==1)
            {
@@ -174,6 +187,9 @@ public class Menu extends JPanel
            {
                     JoueurH.DeplacerBateauHumain(mapDeBateauxHumain, mapDeCasesHumain);
                     E.PlateauJoueur(JoueurH,JoueurO,E);
+               while( JoueurH.isPasDeplacer() == true ){
+                   JoueurH.DeplacerBateauHumain(mapDeBateauxHumain, mapDeCasesHumain);
+               }
                     GM.setEnvoi(0);
                     compteur++;
 
@@ -188,15 +204,30 @@ public class Menu extends JPanel
             mapDeCasesOrdi = JoueurO.getMapDeCasesOrdi();
 
             Random r = new Random();
-            int n = r.nextInt(2);
-
+            //int n = r.nextInt(2);
+            int n = 1;
             System.out.println(ANSI_BLUE+"Joueur Ordinateur - A votre tour\n"+ANSI_RESET); //Nous affichons les choix possibles
 
 
         if(n==0) {System.out.println("L'ordinateur a choisi: 1 - Tirer\n");}
         else if(n==1) {System.out.println("L'ordinateur a choisi: 2 - Deplacer un bateau de sa flotte\n");}
 
-        switch(n)
+            int nbBateauxTouches =0;
+            for  (Integer ka : mapDeBateauxOrdi.keySet()) {
+                for(int da =0;da<mapDeBateauxOrdi.get(ka).getlesCases().size();da++){
+                    if(mapDeBateauxOrdi.get(ka).getlesCases().get(da).EtatCase() == true){
+                        nbBateauxTouches++;
+                        break;
+                    }
+                }
+            }
+            if(nbBateauxTouches == 10){
+                System.out.println("Tous les bateaux sont touchés, l'ordinateur ne peut  que tirer");
+                n = 0;
+            }
+
+
+            switch(n)
         {
             case 0:
             Random v = new Random();
@@ -209,6 +240,9 @@ public class Menu extends JPanel
             case 1:
             JoueurO.DeplacerBateauOrdi(mapDeBateauxOrdi, mapDeCasesOrdi);
             E.PlateauJoueur(JoueurH,JoueurO,E);
+               while( JoueurO.isPasDeplacer() == true ){
+                   JoueurO.DeplacerBateauOrdi(mapDeBateauxOrdi, mapDeCasesOrdi);
+               }
             GM.setEnvoi(0);
             compteur++;
             break;
