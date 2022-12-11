@@ -202,8 +202,8 @@ public class Menu extends JPanel
             mapDeCasesOrdi = JoueurO.getMapDeCasesOrdi();
 
             Random r = new Random();
-            //int n = r.nextInt(2);
-            int n=1;
+            int n = r.nextInt(2);
+
             System.out.println(ANSI_BLUE+"Joueur Ordinateur - A votre tour\n"+ANSI_RESET); //Nous affichons les choix possibles
 
 
