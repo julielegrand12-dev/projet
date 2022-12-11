@@ -348,6 +348,7 @@ public class JoueurOrdi {
         Integer i = 0;
         boolean drapeau = false;
         ArrayList<Case> lesCases = new ArrayList<>();
+        pasDeplacer=false;
 
         //affichage de départ
         System.out.println("L'ordinateur a choisi de déplacer un navire\n");
@@ -374,7 +375,7 @@ public class JoueurOrdi {
                 }else{casetouche=false;}}}
 
         //on demande les coordonnées
-        System.out.print("Lordinateur a choisi : " + MapDeBateaux.get(choix).getNom_navire() + "\n");
+        System.out.print("L'ordinateur a choisi : " + MapDeBateaux.get(choix).getNom_navire() + "\n");
 
         if(choix>=0 && choix<=5){
         if (MapDeBateaux.get(choix).isHorizontal() == true) //si le bateau est horizontal

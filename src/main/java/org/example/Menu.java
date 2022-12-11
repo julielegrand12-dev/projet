@@ -164,7 +164,7 @@ public class Menu extends JPanel
                     do             //blindage exception pour le choix du menu bateau
                     {do{try
                     {choixbateau = Integer.parseInt(scan.nextLine());
-                        x=0;} catch (Exception e) {System.out.println("L'entrée doit être un chiffre compris entre 1 et 9.");
+                        x=0;} catch (Exception e) {System.out.println("L'entrée doit être un chiffre compris entre 0 et 9.");
                         x=1;}
                     }while(x!=0 ); }while((choixbateau!= 0) && (choixbateau != 2) && (choixbateau != 3) && (choixbateau != 4) && (choixbateau != 5) && (choixbateau != 6) && (choixbateau != 7) && (choixbateau != 8) && (choixbateau != 9) && (choixbateau!= 1));
 
@@ -187,7 +187,7 @@ public class Menu extends JPanel
            {
                     JoueurH.DeplacerBateauHumain(mapDeBateauxHumain, mapDeCasesHumain);
                     E.PlateauJoueur(JoueurH,JoueurO,E);
-               while( JoueurH.isPasDeplacer() == true ){
+               if( JoueurH.isPasDeplacer() == true ){
                    JoueurH.DeplacerBateauHumain(mapDeBateauxHumain, mapDeCasesHumain);
                }
                     GM.setEnvoi(0);
@@ -204,8 +204,7 @@ public class Menu extends JPanel
             mapDeCasesOrdi = JoueurO.getMapDeCasesOrdi();
 
             Random r = new Random();
-            //int n = r.nextInt(2);
-            int n = 1;
+            int n = r.nextInt(2);
             System.out.println(ANSI_BLUE+"Joueur Ordinateur - A votre tour\n"+ANSI_RESET); //Nous affichons les choix possibles
 
 
@@ -222,7 +221,7 @@ public class Menu extends JPanel
                 }
             }
             if(nbBateauxTouches == 10){
-                System.out.println("Tous les bateaux sont touchés, l'ordinateur ne peut  que tirer");
+                System.out.println("Tous les bateaux sont touchés, l'ordinateur ne peut que tirer");
                 n = 0;
             }
 
@@ -240,7 +239,7 @@ public class Menu extends JPanel
             case 1:
             JoueurO.DeplacerBateauOrdi(mapDeBateauxOrdi, mapDeCasesOrdi);
             E.PlateauJoueur(JoueurH,JoueurO,E);
-               while( JoueurO.isPasDeplacer() == true ){
+               if( JoueurO.isPasDeplacer() == true ){
                    JoueurO.DeplacerBateauOrdi(mapDeBateauxOrdi, mapDeCasesOrdi);
                }
             GM.setEnvoi(0);
